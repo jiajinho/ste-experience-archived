@@ -2,13 +2,13 @@ import React from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTFResult } from './types';
 
-const url = "/static/hellfire-clubroom.glb"
+const url = "/static/hellfire-clubroom.glb";
 
-export default () => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group scale={0.1} dispose={null}>
+    <group dispose={null} {...props}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group

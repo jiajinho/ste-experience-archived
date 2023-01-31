@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
-import useAudio from 'hooks/useAudio';
+
 import HellfireClub from 'components/HellfireClub';
 
 const Wrapper = styled.main`
@@ -11,8 +11,6 @@ const Wrapper = styled.main`
 `;
 
 export default () => {
-  useAudio("/static/ste-theme.wav");
-
 
   return (
     <Wrapper>
@@ -22,7 +20,7 @@ export default () => {
         <ambientLight intensity={0.2} />
 
 
-        <HellfireClub />
+        <HellfireClub scale={0.01} />
       </Canvas>
     </Wrapper>
   );
