@@ -7,7 +7,6 @@ import useOutlineMeshStore from 'store/useOutlineMeshStore';
 import HellfireClub from 'components/HellfireClub';
 import Lights from 'components/Lights';
 
-
 const RedDot = styled.div`
   background: red;
   border-radius: 50%;
@@ -33,9 +32,7 @@ export default () => {
       <Canvas>
         <OrbitControls />
 
-        <ambientLight intensity={0.05} />
         <Lights />
-
         <HellfireClub scale={0.01} />
 
         <Html occlude={false} position={[11.2, 4.4, -6.4]}>

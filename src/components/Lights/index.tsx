@@ -42,6 +42,8 @@ export default () => {
 
   return (
     <>
+      <ambientLight intensity={0.06} />
+
       <SpotLight
         ref={spot1}
         position={[-2.85, 11.1, -3.76]}

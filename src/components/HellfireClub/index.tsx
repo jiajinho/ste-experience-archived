@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTFResult } from './types';
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
+import useAudio from 'hooks/useAudio';
 
 const url = "/static/hellfire-clubroom.glb";
 
@@ -11,8 +12,18 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const add = useOutlineMeshStore(state => state.add);
   const remove = useOutlineMeshStore(state => state.remove);
 
+  const clickSfx = useAudio("/static/audio/click-sfx.mp3");
+
   const poster = useRef<THREE.Mesh>(null);
   const globe = useRef<THREE.Mesh>(null);
+
+  const handleClick = () => {
+    if (!clickSfx) return;
+
+    clickSfx.playbackRate = 1.5;
+    clickSfx.currentTime = 0;
+    clickSfx.play();
+  }
 
   return (
     <group dispose={null} {...props}>
@@ -466,6 +477,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
               material={materials["Blue.globus"]}
               onPointerOver={() => add(globe.current)}
               onPointerOut={() => remove(globe.current)}
+              onClick={handleClick}
             />
           </group>
           <group
@@ -702,6 +714,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
               material={materials.poster}
               onPointerOver={() => { add(poster.current) }}
               onPointerLeave={() => { remove(poster.current) }}
+              onClick={handleClick}
             />
           </group>
           <group
