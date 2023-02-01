@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { EffectComposer, Outline } from '@react-three/postprocessing';
+import { useControls } from 'leva';
 
-import HellfireClub from 'components/HellfireClub';
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
+import HellfireClub from 'components/HellfireClub';
+import Lights from 'components/Lights';
 
 const Wrapper = styled.main`
   height: 100vh;
@@ -15,13 +17,18 @@ const Wrapper = styled.main`
 export default () => {
   const meshs = useOutlineMeshStore(state => state.meshs);
 
+  const { intensity } = useControls({
+    intensity: { min: 0, max: 0.1, step: 0.01, value: 0.05 }
+  })
+
+
   return (
     <Wrapper>
       <Canvas>
         <OrbitControls />
 
-        <ambientLight intensity={0.1} />
-
+        <ambientLight intensity={intensity} />
+        <Lights />
 
         <HellfireClub scale={0.01} />
 
