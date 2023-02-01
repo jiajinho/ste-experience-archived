@@ -1,14 +1,25 @@
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Html, OrbitControls } from '@react-three/drei';
 import { EffectComposer, Outline } from '@react-three/postprocessing';
-import { useControls } from 'leva';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
 import HellfireClub from 'components/HellfireClub';
 import Lights from 'components/Lights';
 
+
+const RedDot = styled.div`
+  background: red;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  height: 5px;
+  width: auto;
+`;
+
 const Wrapper = styled.main`
+  position: relative;
+  z-index: 1;
+
   height: 100vh;
   width: 100vw;
   background: black;
@@ -17,20 +28,23 @@ const Wrapper = styled.main`
 export default () => {
   const meshs = useOutlineMeshStore(state => state.meshs);
 
-  const { intensity } = useControls({
-    intensity: { min: 0, max: 0.1, step: 0.01, value: 0.05 }
-  })
-
-
   return (
     <Wrapper>
       <Canvas>
         <OrbitControls />
 
-        <ambientLight intensity={intensity} />
+        <ambientLight intensity={0.05} />
         <Lights />
 
         <HellfireClub scale={0.01} />
+
+        <Html occlude={false} position={[11.2, 4.4, -6.4]}>
+          <RedDot />
+        </Html>
+
+        <Html occlude={false} position={[-5.3, 6.2, 12.8]}>
+          <RedDot />
+        </Html>
 
         <EffectComposer enabled autoClear={false}>
           <Outline

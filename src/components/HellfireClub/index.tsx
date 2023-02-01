@@ -11,7 +11,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const add = useOutlineMeshStore(state => state.add);
   const remove = useOutlineMeshStore(state => state.remove);
 
-  const ref = useRef<THREE.Mesh>(null);
+  const poster = useRef<THREE.Mesh>(null);
+  const globe = useRef<THREE.Mesh>(null);
 
   return (
     <group dispose={null} {...props}>
@@ -460,8 +461,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
               material={materials.Black}
             />
             <mesh
+              ref={globe}
               geometry={nodes.Sphere_Blueglobus_0.geometry}
               material={materials["Blue.globus"]}
+              onPointerOver={() => add(globe.current)}
+              onPointerOut={() => remove(globe.current)}
             />
           </group>
           <group
@@ -693,11 +697,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             scale={1.83804965}
           >
             <mesh
-              ref={ref}
+              ref={poster}
               geometry={nodes.Plane063_poster_0.geometry}
               material={materials.poster}
-              onPointerOver={() => { ref.current && add(ref.current) }}
-              onPointerLeave={() => { ref.current && remove(ref.current) }}
+              onPointerOver={() => { add(poster.current) }}
+              onPointerLeave={() => { remove(poster.current) }}
             />
           </group>
           <group
