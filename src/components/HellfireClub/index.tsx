@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTFResult } from './types';
+import useOutlineMeshStore from 'store/useOutlineMeshStore';
 
 const url = "/static/hellfire-clubroom.glb";
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
+
+  const add = useOutlineMeshStore(state => state.add);
+  const remove = useOutlineMeshStore(state => state.remove);
+
+  const ref = useRef<THREE.Mesh>(null);
 
   return (
     <group dispose={null} {...props}>
@@ -687,8 +693,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             scale={1.83804965}
           >
             <mesh
+              ref={ref}
               geometry={nodes.Plane063_poster_0.geometry}
               material={materials.poster}
+              onPointerOver={() => { ref.current && add(ref.current) }}
+              onPointerLeave={() => { ref.current && remove(ref.current) }}
             />
           </group>
           <group
