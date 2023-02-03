@@ -2,11 +2,9 @@ import React from 'react';
 import useCameraStore from 'store/useCameraStore';
 import styled from 'styled-components';
 
-import Caret, { Wrapper as $Caret } from './common/Caret';
+import Caret, { Wrapper as $Caret } from './Caret';
 
 const Wrapper = styled.div`
-
-
   ${$Caret} {
     position: fixed;
     z-index: 2;

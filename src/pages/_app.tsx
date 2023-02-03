@@ -13,7 +13,7 @@ export default ({ Component, pageProps }: AppProps) => {
 
     const play = () => {
       song.loop = true;
-      song.volume = 0.01;
+      song.volume = 0.1;
       song.play();
     }
 

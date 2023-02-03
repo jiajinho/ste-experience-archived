@@ -4,10 +4,10 @@ import { Html, OrbitControls } from '@react-three/drei';
 import { EffectComposer, Outline } from '@react-three/postprocessing';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
-import HellfireClub from 'components/HellfireClub';
-import Lights from 'components/Lights';
-import CameraGroup from 'components/CameraGroup';
-import CameraUI from 'components/CameraUI';
+import HellfireClub from 'components/webgl/HellfireClub';
+import LightGroup from 'components/webgl/LightGroup';
+import CameraGroup from 'components/webgl/CameraGroup';
+import CameraUI from 'components/html/CameraUI';
 
 const RedDot = styled.div`
   background: red;
@@ -40,7 +40,7 @@ export default () => {
       <Canvas>
         <OrbitControls />
 
-        <Lights />
+        <LightGroup />
         <CameraGroup />
         <HellfireClub scale={0.01} />
 
