@@ -1,12 +1,11 @@
 import '../styles/globals.css';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import type { AppProps } from 'next/app';
 import { Stats } from '@react-three/drei';
 
-import useAudio from 'hooks/useAudio';
 import { Canvas } from '@react-three/fiber';
 import CameraUI from 'components/html/CameraUI';
+import useThemeSong from 'hooks/useThemeSong';
 
 const Wrapper = styled.main`
   position: relative;
@@ -18,19 +17,7 @@ const Wrapper = styled.main`
 `;
 
 export default ({ Component, pageProps }: AppProps) => {
-  const song = useAudio("/static/audio/ste-theme.wav");
-
-  useEffect(() => {
-    if (!song) return;
-
-    const play = () => {
-      song.loop = true;
-      song.volume = 0.1;
-      song.play();
-    }
-
-    window.addEventListener("click", play, { once: true });
-  }, [song]);
+  useThemeSong();
 
   return (
     <>

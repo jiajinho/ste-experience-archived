@@ -6,7 +6,7 @@ export default (url: string) => {
   useEffect(() => {
     const audio = new Audio(url);
     setAudio(audio);
-  }, []);
+  }, [url]);
 
   return audio;
 }

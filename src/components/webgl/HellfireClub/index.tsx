@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTFResult } from './types';
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
-import useAudio from 'hooks/useAudio';
+import useAudio from 'hooks/common/useAudio';
 
 const url = "/static/hellfire-clubroom.glb";
 
