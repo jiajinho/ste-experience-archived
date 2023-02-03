@@ -19,34 +19,8 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
-  const cameras = useCameraStore(state => state.cameras);
-
-  const currentCamera = useCameraStore(state => state.current);
-  const setCurrentCamera = useCameraStore(state => state.setCurrent);
-
-
-  const goToPreviousCamera = () => {
-    let index = cameras.findIndex(c => c === currentCamera);
-    if (index === -1) return;
-
-    if (--index < 0) {
-      index = cameras.length - 1;
-    }
-
-    setCurrentCamera(cameras[index]);
-  }
-
-  const goToNextCamera = () => {
-    let index = cameras.findIndex(c => c === currentCamera);
-    if (index === -1) return;
-
-    if (++index > cameras.length - 1) {
-      index = 0;
-    }
-
-    setCurrentCamera(cameras[index]);
-  }
-
+  const goPrev = useCameraStore(state => state.goPrev);
+  const goNext = useCameraStore(state => state.goNext);
 
   return (
     <Wrapper>
@@ -54,14 +28,14 @@ export default () => {
         id="left"
         direction="left"
         color="#CA1515"
-        onClick={goToPreviousCamera}
+        onClick={goPrev}
       />
 
       <Caret
         id="right"
         direction="right"
         color="#CA1515"
-        onClick={goToNextCamera}
+        onClick={goNext}
       />
     </Wrapper>
   )

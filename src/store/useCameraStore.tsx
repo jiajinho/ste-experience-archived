@@ -1,16 +1,33 @@
 import { create } from "zustand";
-import THREE from "three";
+import { Camera } from "types";
+import config from "config";
 
 type Store = {
-  current?: THREE.PerspectiveCamera,
-  setCurrent: (c: THREE.PerspectiveCamera) => void,
-  cameras: THREE.PerspectiveCamera[],
-  setCameras: (c: THREE.PerspectiveCamera[]) => void
+  data: Camera,
+  goNext: () => void,
+  goPrev: () => void
 }
 
 export default create<Store>((set) => ({
-  current: undefined,
-  setCurrent: c => set({ current: c }),
-  cameras: [],
-  setCameras: c => set({ cameras: c })
+  data: config.cameras[0],
+  goNext: () => set(state => {
+    let index = config.cameras.findIndex(c => c === state.data);
+    if (index === -1) return state;
+
+    if (--index < 0) {
+      index = config.cameras.length - 1;
+    }
+
+    return { data: config.cameras[index] }
+  }),
+  goPrev: () => set(state => {
+    let index = config.cameras.findIndex(c => c === state.data);
+    if (index === -1) return state;
+
+    if (++index > config.cameras.length - 1) {
+      index = 0;
+    }
+
+    return { data: config.cameras[index] }
+  })
 }));
