@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { Html, OrbitControls } from '@react-three/drei';
 import { EffectComposer, Outline } from '@react-three/postprocessing';
+import { useControls } from 'leva';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
+import useCamera from 'hooks/useCamera';
+
 import HellfireClub from 'components/webgl/HellfireClub';
 import LightGroup from 'components/webgl/LightGroup';
-import useCamera from 'hooks/useCamera';
 
 const RedDot = styled.div`
   background: red;
@@ -21,9 +23,13 @@ export default () => {
 
   const meshs = useOutlineMeshStore(state => state.meshs);
 
+  const { freeCam } = useControls({
+    freeCam: false
+  });
+
   return (
     <>
-      <OrbitControls />
+      <OrbitControls enabled={freeCam} />
 
       <LightGroup />
       <HellfireClub scale={0.01} />
