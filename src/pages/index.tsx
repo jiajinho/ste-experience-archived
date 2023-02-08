@@ -7,40 +7,20 @@ import useOutlineMeshStore from 'store/useOutlineMeshStore';
 import useCamera from 'hooks/useCamera';
 
 import HellfireClub from 'components/webgl/HellfireClub';
-import LightGroup from 'components/webgl/LightGroup';
-
-const RedDot = styled.div`
-  background: red;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  height: 5px;
-  width: auto;
-`;
 
 export default () => {
-
   useCamera();
 
   const meshs = useOutlineMeshStore(state => state.meshs);
 
-  const { freeCam } = useControls({
-    freeCam: false
-  });
-
   return (
     <>
-      <OrbitControls enabled={freeCam} />
+      <OrbitControls />
 
-      <LightGroup />
-      <HellfireClub scale={0.01} />
+      {/* <spotLight position={[5, 5, 5]} />
+      <ambientLight intensity={0.5} /> */}
 
-      <Html occlude={false} position={[11.2, 4.4, -6.4]}>
-        <RedDot />
-      </Html>
-
-      <Html occlude={false} position={[-5.3, 6.2, 12.8]}>
-        <RedDot />
-      </Html>
+      <HellfireClub />
 
       <EffectComposer enabled autoClear={false}>
         <Outline

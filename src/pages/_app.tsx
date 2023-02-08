@@ -13,20 +13,20 @@ const Wrapper = styled.main`
 
   height: 100vh;
   width: 100vw;
-  background: black;
+  background: white;
 `;
 
 export default ({ Component, pageProps }: AppProps) => {
-  useThemeSong();
+  // useThemeSong();
 
   return (
     <>
       <Stats />
 
       <Wrapper>
-        <CameraUI />
+        {/* <CameraUI /> */}
 
-        <Canvas style={{ zIndex: 1 }}>
+        <Canvas shadows style={{ zIndex: 1 }}>
           <Component {...pageProps} />
         </Canvas>
       </Wrapper>
