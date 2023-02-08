@@ -2,7 +2,7 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 
-const url = "/static/glb/tabletop.glb";
+const url = "/static/glb/long-tabletop.glb";
 
 type GLTFResult = GLTF & {
   nodes: { Box013: THREE.Mesh },
