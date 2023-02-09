@@ -22,14 +22,14 @@ export default () => {
 
       <HellfireClub />
 
-      <EffectComposer enabled autoClear={false}>
+      {/* <EffectComposer enabled autoClear={false}>
         <Outline
           selection={meshs}
           hiddenEdgeColor={0x99c4ac}
           edgeStrength={2.5}
           xRay={true}
         />
-      </EffectComposer>
+      </EffectComposer> */}
     </>
   );
 }
