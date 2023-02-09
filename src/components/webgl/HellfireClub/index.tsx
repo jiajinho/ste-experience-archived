@@ -8,6 +8,7 @@ import Coffin from './components/Coffin';
 import Cupboard from './components/Cupboard';
 import Curtain from './components/Curtain';
 import Candlestand from './components/Candlestand';
+import { Color } from 'three';
 
 export default () => {
 
@@ -23,7 +24,7 @@ export default () => {
 
       {/* <Cupboard /> */}
 
-      <Candlestand />
+      <Candlestand glow={{ color: new Color(0xff0000), emissive: new Color(0xff0000), emissiveIntensity: 2.5 }} />
     </Stage>
   )
 }

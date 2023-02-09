@@ -5,8 +5,7 @@ import { GLTF } from "three-stdlib";
 const url = "/static/glb/coffin.glb";
 
 type GLTFResult = GLTF & {
-  nodes: { coffin: THREE.Mesh },
-  materials: {}
+  nodes: { coffin: THREE.Mesh }
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {

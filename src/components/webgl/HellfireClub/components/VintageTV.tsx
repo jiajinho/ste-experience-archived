@@ -8,18 +8,11 @@ type GLTFResult = GLTF & {
   nodes: {
     Object007: THREE.Mesh,
     Tv: THREE.Mesh
-  },
-  materials: {};
+  }
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
-
-  // const { x, y, z } = useControls({
-  //   x: { min: -0.5, max: 0.5, step: 0.001, value: 0 },
-  //   y: { min: -0.5, max: 0.5, step: 0.001, value: 0 },
-  //   z: { min: -0.5, max: 0.5, step: 0.001, value: 0 },
-  // });
 
   return (
     <group {...props} dispose={null}>

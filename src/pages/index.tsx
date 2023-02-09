@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Html, OrbitControls } from '@react-three/drei';
-import { EffectComposer, Outline } from '@react-three/postprocessing';
+import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 import { useControls } from 'leva';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
@@ -13,12 +13,22 @@ export default () => {
 
   const meshs = useOutlineMeshStore(state => state.meshs);
 
+
+  const { radius, intensity, smoothing, x, y, z } = useControls({
+    radius: { min: 0, max: 2, value: 0, step: 0.1 },
+    intensity: { min: 0, max: 100, value: 1, step: 1 },
+    smoothing: { min: 0, max: 1, value: 0, step: 0.1 },
+    x: { min: -10, max: 10, step: 0.1, value: 0 },
+    y: { min: -10, max: 10, step: 0.1, value: 0 },
+    z: { min: -10, max: 10, step: 0.1, value: 0 },
+  });
+
   return (
     <>
       <OrbitControls />
 
-      {/* <spotLight position={[5, 5, 5]} />
-      <ambientLight intensity={0.5} /> */}
+      <spotLight position={[5, 5, 5]} />
+      <ambientLight intensity={0.5} />
 
       <HellfireClub />
 
@@ -30,6 +40,20 @@ export default () => {
           xRay={true}
         />
       </EffectComposer> */}
+
+      <EffectComposer
+        autoClear={false}
+        multisampling={0}
+        disableNormalPass={true}
+      >
+        <Bloom
+          luminanceThreshold={1}
+          radius={0.6}
+          intensity={1}
+          luminanceSmoothing={0}
+          mipmapBlur
+        />
+      </EffectComposer>
     </>
   );
 }

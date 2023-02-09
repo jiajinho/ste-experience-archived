@@ -5,8 +5,7 @@ import { GLTF } from "three-stdlib";
 const url = "/static/glb/chair.glb";
 
 type GLTFResult = GLTF & {
-  nodes: { Chair_007: THREE.Mesh },
-  materials: {}
+  nodes: { Chair_007: THREE.Mesh }
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
