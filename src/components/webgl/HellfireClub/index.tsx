@@ -1,30 +1,18 @@
 import React from 'react';
-import { Stage } from '@react-three/drei';
-import Tabletop from './components/LongTabletop';
+
+import LongTabletop from './components/LongTabletop';
 import VintageTV from './components/VintageTV';
-import Chair from './components/Chair';
-import CoffeeTabletop from './components/CoffeeTabletop';
-import Coffin from './components/Coffin';
-import Cupboard from './components/Cupboard';
-import Curtain from './components/Curtain';
-import Candlestand from './components/Candlestand';
-import { Color } from 'three';
+import Room from './components/Room';
 
 export default () => {
+  const scale = 4;
 
   return (
-    <Stage
-      intensity={0.5}
-      shadows
-      environment="city"
-    >
-      {/* <VintageTV /> */}
-      {/* <Tabletop /> */}
-      {/* <Coffin /> */}
+    <>
+      <VintageTV scale={scale} position={[-11.7, 2.78, 11.1]} />
+      <LongTabletop scale={scale} position={[-11.47, 0, 11.15]} />
 
-      {/* <Cupboard /> */}
-
-      <Candlestand glow={{ color: new Color(0xff0000), emissive: new Color(0xff0000), emissiveIntensity: 2.5 }} />
-    </Stage>
+      <Room scale={scale} />
+    </>
   )
 }

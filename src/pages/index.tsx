@@ -7,11 +7,13 @@ import useOutlineMeshStore from 'store/useOutlineMeshStore';
 import useCamera from 'hooks/useCamera';
 
 import HellfireClub from 'components/webgl/HellfireClub';
+import useObjectMover from 'hooks/useObjectMover';
 
 export default () => {
-  useCamera();
+  const outlineMesh = useOutlineMeshStore(state => state.mesh);
 
-  const meshs = useOutlineMeshStore(state => state.meshs);
+  // useCamera();
+  useObjectMover();
 
 
   const { radius, intensity, smoothing, x, y, z } = useControls({
@@ -27,31 +29,35 @@ export default () => {
     <>
       <OrbitControls />
 
-      <spotLight position={[5, 5, 5]} />
-      <ambientLight intensity={0.5} />
+      <spotLight position={[10, 10, 0]} />
+      <spotLight position={[0, 10, 10]} />
+      <spotLight position={[0, 20, 0]} />
+      <ambientLight intensity={0.75} />
+
+      <axesHelper args={[5]} />
+
 
       <HellfireClub />
-
-      {/* <EffectComposer enabled autoClear={false}>
-        <Outline
-          selection={meshs}
-          hiddenEdgeColor={0x99c4ac}
-          edgeStrength={2.5}
-          xRay={true}
-        />
-      </EffectComposer> */}
 
       <EffectComposer
         autoClear={false}
         multisampling={0}
         disableNormalPass={true}
+        resolutionScale={0.6}
       >
-        <Bloom
+        {/* <Bloom
           luminanceThreshold={1}
           radius={0.6}
           intensity={1}
           luminanceSmoothing={0}
           mipmapBlur
+        /> */}
+        <Outline
+          selection={outlineMesh ? [outlineMesh] : []}
+          visibleEdgeColor={0xff0000}
+          hiddenEdgeColor={0xffffff}
+          edgeStrength={2.5}
+          xRay={true}
         />
       </EffectComposer>
     </>
