@@ -8,26 +8,23 @@ import useCamera from 'hooks/useCamera';
 
 import HellfireClub from 'components/webgl/HellfireClub';
 import useObjectMover from 'hooks/useObjectMover';
+import useZoomAnimation from 'hooks/useZoomAnimation';
 
 export default () => {
   const outlineMesh = useOutlineMeshStore(state => state.mesh);
 
   useCamera();
+  useZoomAnimation();
   useObjectMover();
 
 
-  const { radius, intensity, smoothing, x, y, z } = useControls({
-    radius: { min: 0, max: 2, value: 0, step: 0.1 },
-    intensity: { min: 0, max: 100, value: 1, step: 1 },
-    smoothing: { min: 0, max: 1, value: 0, step: 0.1 },
-    x: { min: -10, max: 10, step: 0.1, value: 0 },
-    y: { min: -10, max: 10, step: 0.1, value: 0 },
-    z: { min: -10, max: 10, step: 0.1, value: 0 },
-  });
+  const { freeCam } = useControls({
+    freeCam: false
+  })
 
   return (
     <>
-      <OrbitControls />
+      <OrbitControls enabled={freeCam} />
 
       <ambientLight intensity={1} />
       <spotLight position={[15, 10, 15]} intensity={0.5} />
