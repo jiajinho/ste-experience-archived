@@ -12,7 +12,7 @@ import useObjectMover from 'hooks/useObjectMover';
 export default () => {
   const outlineMesh = useOutlineMeshStore(state => state.mesh);
 
-  // useCamera();
+  useCamera();
   useObjectMover();
 
 
@@ -29,10 +29,10 @@ export default () => {
     <>
       <OrbitControls />
 
-      <spotLight position={[10, 10, 0]} />
-      <spotLight position={[0, 10, 10]} />
-      <spotLight position={[0, 20, 0]} />
-      <ambientLight intensity={0.75} />
+      <ambientLight intensity={1} />
+      <spotLight position={[15, 10, 15]} intensity={0.5} />
+      <directionalLight color={0xffffff} intensity={0.5} />
+
 
       <axesHelper args={[5]} />
 

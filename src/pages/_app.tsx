@@ -24,7 +24,7 @@ export default ({ Component, pageProps }: AppProps) => {
       <Stats />
 
       <Wrapper>
-        {/* <CameraUI /> */}
+        <CameraUI />
 
         <Canvas shadows style={{ zIndex: 1 }}>
           <Component {...pageProps} />
