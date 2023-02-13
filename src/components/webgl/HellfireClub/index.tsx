@@ -4,6 +4,7 @@ import useZoomStore from 'store/useZoomStore';
 import LongTabletop from './components/LongTabletop';
 import VintageTV from './components/VintageTV';
 import Room from './components/Room';
+import Coffin from './components/Coffin';
 
 export default () => {
   const scale = 4;
@@ -29,6 +30,12 @@ export default () => {
       <LongTabletop
         scale={scale}
         position={[-11.47, 0, 11.15]}
+      />
+
+      <Coffin
+        scale={scale}
+        position={[-9.78, 4.35, -15.94]}
+        rotation-y={-0.6}
       />
 
       <Room scale={scale} />
