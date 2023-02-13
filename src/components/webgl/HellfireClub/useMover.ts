@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { ThreeEvent } from '@react-three/fiber';
 
-import useObjectMoverStore from 'store/useObjectMoverStore';
+import useObjectMoverStore from 'store/useLevaMoverStore';
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
 
 export default (props: JSX.IntrinsicElements["group"]) => {

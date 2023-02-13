@@ -1,9 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
-import type { ThreeEvent } from "@react-three/fiber";
-
-import { applyObjectMover } from "../utils";
+import useMover from "../useMover";
 
 const url = "/static/glb/coffin.glb";
 
@@ -17,23 +15,17 @@ type GLTFResult = GLTF & {
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
-  const group = useRef<THREE.Group>(null);
-  const mesh = useRef<THREE.Mesh>(null);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    applyObjectMover(group.current, mesh.current);
-    props.onClick && props.onClick(e);
-  }
+  const { refs, onClick } = useMover(props);
 
   return (
     <group
-      ref={group}
+      ref={refs.group}
       {...props}
-      onClick={handleClick}
+      onClick={onClick}
       dispose={null}
     >
       <mesh
-        ref={mesh}
+        ref={refs.mesh}
         geometry={nodes.coffin.geometry}
         material={nodes.coffin.material}
       />

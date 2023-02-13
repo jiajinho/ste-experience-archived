@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useControls } from 'leva';
 
-import useObjectMoverStore from 'store/useObjectMoverStore';
+import useLevaMoverStore from 'store/useLevaMoverStore';
 
 export default () => {
-  const group = useObjectMoverStore(state => state.group);
+  const group = useLevaMoverStore(state => state.group);
 
   const [{ x, y, z, rx, ry, rz }, set] = useControls("useObjectMover", () => ({
     x: { min: -20, max: 20, step: 0.01, value: 0 },
