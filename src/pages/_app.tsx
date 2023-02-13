@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import styled from 'styled-components';
 import type { AppProps } from 'next/app';
 import { Stats } from '@react-three/drei';
+import { Leva } from 'leva';
 
 import { Canvas } from '@react-three/fiber';
 import CameraUI from 'components/html/CameraUI';
@@ -22,6 +23,7 @@ export default ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Stats />
+      <Leva theme={{ sizes: { numberInputMinWidth: "50px" } }} />
 
       <Wrapper>
         <CameraUI />

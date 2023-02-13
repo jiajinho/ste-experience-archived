@@ -24,7 +24,7 @@ export default () => {
 
   return (
     <>
-      <OrbitControls enabled={freeCam} />
+      <OrbitControls />
 
       <ambientLight intensity={1} />
       <spotLight position={[15, 10, 15]} intensity={0.5} />
