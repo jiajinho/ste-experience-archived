@@ -17,19 +17,14 @@ export default () => {
   useZoomAnimation();
   useLevaMover();
 
-
-  const { freeCam } = useControls({
-    freeCam: false
-  })
-
   return (
     <>
       <OrbitControls />
 
-      <ambientLight intensity={1} />
-      <spotLight position={[15, 10, 15]} intensity={0.5} />
+      <ambientLight intensity={0.4} />
+      <spotLight position={[20, 20, 20]} intensity={0.3} />
+      <spotLight position={[-20, 20, 20]} intensity={0.3} />
       <directionalLight color={0xffffff} intensity={0.5} />
-
 
       <axesHelper args={[5]} />
 
