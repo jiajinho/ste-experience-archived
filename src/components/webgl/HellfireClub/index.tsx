@@ -4,6 +4,7 @@ import useZoomStore from 'store/useZoomStore';
 import LongTabletop from './components/LongTabletop';
 import VintageTV from './components/VintageTV';
 import Room from './components/Room';
+import POCHtml from './POCHtml';
 
 export default () => {
   const scale = 4;
@@ -30,6 +31,9 @@ export default () => {
         scale={scale}
         position={[-11.47, 0, 11.15]}
       />
+
+      <POCHtml />
+
 
       <Room scale={scale} />
     </>
