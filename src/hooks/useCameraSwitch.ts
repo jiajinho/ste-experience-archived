@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 import { useControls } from 'leva';
 
-import useCameraStore from 'store/useCameraStore';
+import useCameraSwitchStore from 'store/useCameraSwitchStore';
 
 export default () => {
   const { camera } = useThree();
-  const data = useCameraStore(state => state.data);
+  const data = useCameraSwitchStore(state => state.data);
 
   const { rx, ry, rz } = useControls({
     rx: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },

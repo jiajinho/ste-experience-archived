@@ -4,7 +4,7 @@ import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 import { useControls } from 'leva';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
-import useCamera from 'hooks/useCamera';
+import useCameraSwitch from 'hooks/useCameraSwitch';
 
 import HellfireClub from 'components/webgl/HellfireClub';
 import useObjectMover from 'hooks/useObjectMover';
@@ -13,7 +13,7 @@ import useZoomAnimation from 'hooks/useZoomAnimation';
 export default () => {
   const outlineMesh = useOutlineMeshStore(state => state.mesh);
 
-  useCamera();
+  useCameraSwitch();
   useZoomAnimation();
   useObjectMover();
 
