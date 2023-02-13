@@ -7,7 +7,7 @@ import useOutlineMeshStore from 'store/useOutlineMeshStore';
 import useCameraSwitch from 'hooks/useCameraSwitch';
 
 import HellfireClub from 'components/webgl/HellfireClub';
-import useObjectMover from 'hooks/useObjectMover';
+import useLevaMover from 'hooks/useLevaMover';
 import useZoomAnimation from 'hooks/useZoomAnimation';
 
 export default () => {
@@ -15,7 +15,7 @@ export default () => {
 
   useCameraSwitch();
   useZoomAnimation();
-  useObjectMover();
+  useLevaMover();
 
 
   const { freeCam } = useControls({

@@ -1,26 +1,35 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
-import { GLTF } from "three-stdlib";
+import type { GLTF } from "three-stdlib";
+
+import useMover from "../useMover";
 
 const url = "/static/glb/chair.glb";
 
 type GLTFResult = GLTF & {
-  nodes: { Chair_007: THREE.Mesh }
+  nodes: {
+    Chair_003: THREE.Mesh;
+  };
+  materials: {};
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
+  const { refs, onClick } = useMover(props);
+
   return (
-    <group {...props} dispose={null}>
+    <group
+      ref={refs.group}
+      {...props}
+      dispose={null}
+      onClick={onClick}
+    >
       <mesh
-        // castShadow
-        // receiveShadow
-        geometry={nodes.Chair_007.geometry}
-        scale={0.1}
-      >
-        <meshStandardMaterial />
-      </mesh>
+        ref={refs.mesh}
+        geometry={nodes.Chair_003.geometry}
+        material={nodes.Chair_003.material}
+      />
     </group>
   );
 }
