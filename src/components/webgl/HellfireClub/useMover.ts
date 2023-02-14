@@ -11,14 +11,20 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const setOutlineTargets = useOutlineMeshStore(state => state.set)
 
   const onClick = (e: ThreeEvent<MouseEvent>) => {
+    props.onClick && props.onClick(e);
+
     if (!ref.current) return;
 
+    const meshes: THREE.Mesh[] = [];
+
+    ref.current.children.forEach(c => {
+      if (c.type === "Mesh") {
+        meshes.push(c as THREE.Mesh);
+      }
+    });
+
     setObjectMoverTarget(ref.current);
-
-    const meshs = ref.current.children as THREE.Mesh[];
-    setOutlineTargets(meshs);
-
-    props.onClick && props.onClick(e);
+    setOutlineTargets(meshes);
   }
 
   return { ref, onClick }
