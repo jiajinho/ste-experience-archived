@@ -13,6 +13,7 @@ import WallRack from './components/WallRack';
 import CoffeeTable from './components/CoffeeTable';
 import Chandelier from './components/Chandelier';
 import MeetingTable from './components/MeetingTable';
+import Throne from './components/Throne';
 
 export default () => {
   const scale = 4;
@@ -113,7 +114,12 @@ export default () => {
 
       <MeetingTable
         scale={scale}
-        position-y={-0.15}
+        position={[0, -0.15, 0]}
+      />
+
+      <Throne
+        scale={scale}
+        position={[0, 0, -6.44]}
       />
 
       <Room scale={scale} />
