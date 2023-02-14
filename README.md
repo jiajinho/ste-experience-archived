@@ -1,3 +1,6 @@
+## Intro
+This will be the 3D landing page for Stranger Things Experience 2023 and running on Vercel https://vercel.com/mighty-jaxx-team/ste-encounter
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
