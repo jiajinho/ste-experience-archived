@@ -17,8 +17,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group {...props} dispose={null}>
       <mesh
-        // castShadow
-        // receiveShadow
         geometry={nodes.room.geometry}
         material={nodes.room.material}
       />

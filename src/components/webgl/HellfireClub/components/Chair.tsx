@@ -16,17 +16,16 @@ type GLTFResult = GLTF & {
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
-  const { refs, onClick } = useMover(props);
+  const { ref, onClick } = useMover(props);
 
   return (
     <group
-      ref={refs.group}
+      ref={ref}
       {...props}
       dispose={null}
       onClick={onClick}
     >
       <mesh
-        ref={refs.mesh}
         geometry={nodes.Chair_003.geometry}
         material={nodes.Chair_003.material}
       />

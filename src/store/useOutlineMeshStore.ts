@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
 type Store = {
-  mesh?: THREE.Mesh | null,
-  set: (m: THREE.Mesh | null | undefined) => void
+  meshes: THREE.Mesh[],
+  set: (m: THREE.Mesh[]) => void
 }
 
 export default create<Store>((set) => ({
-  mesh: undefined,
+  meshes: [],
   set: (m) => set(() => ({
-    mesh: m
+    meshes: m
   }))
 }));

@@ -5,21 +5,21 @@ import useObjectMoverStore from 'store/useLevaMoverStore';
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const group = useRef<THREE.Group>(null);
-  const mesh = useRef<THREE.Mesh>(null);
+  const ref = useRef<THREE.Group>(null);
 
   const setObjectMoverTarget = useObjectMoverStore(state => state.set);
-  const setOutlineTarget = useOutlineMeshStore(state => state.set)
+  const setOutlineTargets = useOutlineMeshStore(state => state.set)
 
   const onClick = (e: ThreeEvent<MouseEvent>) => {
-    setObjectMoverTarget(group.current);
-    setOutlineTarget(mesh.current);
+    if (!ref.current) return;
+
+    setObjectMoverTarget(ref.current);
+
+    const meshs = ref.current.children as THREE.Mesh[];
+    setOutlineTargets(meshs);
 
     props.onClick && props.onClick(e);
   }
 
-  return {
-    refs: { group, mesh },
-    onClick
-  }
+  return { ref, onClick }
 }

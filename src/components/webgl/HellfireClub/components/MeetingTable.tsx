@@ -20,11 +20,11 @@ type GLTFResult = GLTF & {
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
-  const { refs, onClick } = useMover(props);
+  const { ref, onClick } = useMover(props);
 
   return (
     <group
-      ref={refs.group}
+      ref={ref}
       {...props}
       onClick={onClick}
       dispose={null}
@@ -45,7 +45,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0.3, 0, -0.77]}
       />
       <mesh
-        ref={refs.mesh}
         geometry={nodes.Box001002.geometry}
         material={nodes.Box001002.material}
         position={[0, 0.72, 0]}

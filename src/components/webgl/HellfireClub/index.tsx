@@ -1,19 +1,16 @@
 import React from 'react';
 
 import useZoomStore from 'store/useZoomStore';
-import LongTabletop from './components/LongTable';
-import VintageTV from './components/VintageTV';
+
 import Room from './components/Room';
 import Coffin from './components/Coffin';
 import Cupboard from './components/Cupboard';
-import Chair from './components/Chair';
 import LongTable from './components/LongTable';
 import BulletinBoard from './components/BulletinBoard';
 import Curtain from './components/Curtain';
 import Banner from './components/Banner';
 import WallRack from './components/WallRack';
 import CoffeeTable from './components/CoffeeTable';
-import Candlestand from './components/Candlestand';
 import Chandelier from './components/Chandelier';
 import MeetingTable from './components/MeetingTable';
 

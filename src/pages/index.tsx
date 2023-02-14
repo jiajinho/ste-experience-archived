@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Html, OrbitControls } from '@react-three/drei';
 import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
-import { useControls } from 'leva';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
 import useCameraSwitch from 'hooks/useCameraSwitch';
@@ -11,7 +10,7 @@ import useLevaMover from 'hooks/useLevaMover';
 import useZoomAnimation from 'hooks/useZoomAnimation';
 
 export default () => {
-  const outlineMesh = useOutlineMeshStore(state => state.mesh);
+  const outlineMeshs = useOutlineMeshStore(state => state.meshes);
 
   useCameraSwitch();
   useZoomAnimation();
@@ -45,7 +44,7 @@ export default () => {
           mipmapBlur
         /> */}
         <Outline
-          selection={outlineMesh ? [outlineMesh] : []}
+          selection={outlineMeshs}
           visibleEdgeColor={0xff0000}
           hiddenEdgeColor={0xffffff}
           edgeStrength={2.5}
