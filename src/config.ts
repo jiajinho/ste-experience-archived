@@ -2,6 +2,10 @@ import { Camera } from "types";
 
 const zoomDuration = 1; //second
 
+const gltf = {
+  scale: 4
+}
+
 const cameras: Camera[] = [
   {
     position: [0, 5, 15],
@@ -15,5 +19,6 @@ const cameras: Camera[] = [
 
 export default {
   zoomDuration,
+  gltf,
   cameras
 }

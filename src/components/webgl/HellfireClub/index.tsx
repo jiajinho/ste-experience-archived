@@ -1,5 +1,6 @@
 import React from 'react';
 
+import config from 'config';
 import useZoomStore from 'store/useZoomStore';
 
 import Room from './components/Room';
@@ -14,10 +15,10 @@ import CoffeeTable from './components/CoffeeTable';
 import Chandelier from './components/Chandelier';
 import MeetingTable from './components/MeetingTable';
 import Throne from './components/Throne';
+import ChairGroup from './groups/ChairGroup';
+import CurtainGroup from './groups/CurtainGroup';
 
 export default () => {
-  const scale = 4;
-
   const currentZoom = useZoomStore(state => state.currentZoom);
   const setZoomTarget = useZoomStore(state => state.setZoomTarget);
 
@@ -37,92 +38,67 @@ export default () => {
       /> */}
 
       <Coffin
-        scale={scale}
+        scale={config.gltf.scale}
         position={[-9.78, 4.35, -15.94]}
         rotation-y={-0.6}
       />
 
       <Cupboard
-        scale={scale}
+        scale={config.gltf.scale}
         position={[9, 0, -18.4]}
       />
 
       <LongTable
-        scale={scale}
+        scale={config.gltf.scale}
         position={[-11, -0.3, 10.72]}
       />
 
       <BulletinBoard
-        scale={scale}
+        scale={config.gltf.scale}
         position={[-12.9, 4.3, -2.76]}
       />
 
-      <Curtain.Large
-        scale={scale}
-        position={[-12.5, 0.7, 11]}
-      />
-
-      <Curtain.Classic
-        scale={scale}
-        position={[-12.5, 0.6, -12.61]}
-      />
-
-      <Curtain.Classic
-        scale={scale}
-        position={[-9.3, 0.75, -19.5]}
-        rotation-y={-Math.PI / 2}
-      />
-
-      <Curtain.Classic
-        scale={scale}
-        position={[11.6, 0.7, -19.5]}
-        rotation-y={-Math.PI / 2}
-      />
-
-      <Curtain.Classic
-        scale={scale}
-        position={[16.8, 0.7, -14.4]}
-        rotation-y={Math.PI}
-      />
-
       <Banner
-        scale={scale}
+        scale={config.gltf.scale}
         position={[-6.35, 9.79, -18.8]}
       />
 
       <Banner
-        scale={scale}
+        scale={config.gltf.scale}
         position={[6.13, 9.79, -18.8]}
       />
 
 
       <WallRack
-        scale={scale}
+        scale={config.gltf.scale}
         position={[0.9, 1.84, -19.9]}
       />
 
       <CoffeeTable
-        scale={scale}
+        scale={config.gltf.scale}
         position={[13.38, -0.92, 4.6]}
       />
 
       <Chandelier
-        scale={scale}
+        scale={config.gltf.scale}
         position={[13.38, 2.23, 4.61]}
         rotation-x={-0.2}
       />
 
       <MeetingTable
-        scale={scale}
+        scale={config.gltf.scale}
         position={[0, -0.15, 0]}
       />
 
       <Throne
-        scale={scale}
+        scale={config.gltf.scale}
         position={[0, 0, -6.44]}
       />
 
-      <Room scale={scale} />
+      <CurtainGroup />
+      <ChairGroup />
+
+      <Room scale={config.gltf.scale} />
     </>
   )
 }

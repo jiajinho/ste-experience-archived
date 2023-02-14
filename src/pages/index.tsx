@@ -27,7 +27,6 @@ export default () => {
 
       <axesHelper args={[5]} />
 
-
       <HellfireClub />
 
       <EffectComposer
