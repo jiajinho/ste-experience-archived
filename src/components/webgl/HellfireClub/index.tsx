@@ -12,6 +12,10 @@ import BulletinBoard from './components/BulletinBoard';
 import Curtain from './components/Curtain';
 import Banner from './components/Banner';
 import WallRack from './components/WallRack';
+import CoffeeTable from './components/CoffeeTable';
+import Candlestand from './components/Candlestand';
+import Chandelier from './components/Chandelier';
+import MeetingTable from './components/MeetingTable';
 
 export default () => {
   const scale = 4;
@@ -97,6 +101,22 @@ export default () => {
       <WallRack
         scale={scale}
         position={[0.9, 1.84, -19.9]}
+      />
+
+      <CoffeeTable
+        scale={scale}
+        position={[13.38, -0.92, 4.6]}
+      />
+
+      <Chandelier
+        scale={scale}
+        position={[13.38, 2.23, 4.61]}
+        rotation-x={-0.2}
+      />
+
+      <MeetingTable
+        scale={scale}
+        position-y={-0.15}
       />
 
       <Room scale={scale} />

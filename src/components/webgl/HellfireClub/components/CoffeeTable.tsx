@@ -4,12 +4,11 @@ import type { GLTF } from "three-stdlib";
 
 import useMover from "../useMover";
 
-const url = "/static/glb/candlestand.glb";
+const url = "/static/glb/coffee-table.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    flame008: THREE.Mesh;
-    Candle_002: THREE.Mesh;
+    coffeetable: THREE.Mesh;
   };
   materials: {};
 };
@@ -27,14 +26,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
-        geometry={nodes.flame008.geometry}
-        material={nodes.flame008.material}
-        position={[0, 1.09, 0]}
-      />
-      <mesh
         ref={refs.mesh}
-        geometry={nodes.Candle_002.geometry}
-        material={nodes.Candle_002.material}
+        geometry={nodes.coffeetable.geometry}
+        material={nodes.coffeetable.material}
       />
     </group>
   );
