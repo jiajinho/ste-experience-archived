@@ -18,6 +18,7 @@ import Throne from './components/Throne';
 import ChairGroup from './groups/ChairGroup';
 import CurtainGroup from './groups/CurtainGroup';
 import CandlestandGroup from './groups/CandlestandGroup';
+import StandeeGroup from './groups/StandeeGroup';
 
 export default () => {
   const currentZoom = useZoomStore(state => state.currentZoom);
@@ -99,6 +100,7 @@ export default () => {
       <CurtainGroup />
       <ChairGroup />
       <CandlestandGroup />
+      <StandeeGroup />
 
       <Room scale={config.gltf.scale} />
     </>
