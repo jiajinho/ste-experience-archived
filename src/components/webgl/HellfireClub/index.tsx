@@ -85,6 +85,8 @@ export default () => {
         scale={config.gltf.scale}
         position={[13.38, 2.23, 4.61]}
         rotation-x={-0.2}
+        emissive="red"
+        color={0xff7777}
       />
 
       <MeetingTable
