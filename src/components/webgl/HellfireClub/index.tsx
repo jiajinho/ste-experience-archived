@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import config from 'config';
-import useZoomStore from 'store/useZoomStore';
+import useCameraStore from 'store/useCameraStore';
 
 import Room from './components/Room';
 import Coffin from './components/Coffin';
 import Cupboard from './components/Cupboard';
 import LongTable from './components/LongTable';
 import BulletinBoard from './components/BulletinBoard';
-import Curtain from './components/Curtain';
 import Banner from './components/Banner';
 import WallRack from './components/WallRack';
 import CoffeeTable from './components/CoffeeTable';
@@ -21,24 +20,14 @@ import CandlestandGroup from './groups/CandlestandGroup';
 import StandeeGroup from './groups/StandeeGroup';
 
 export default () => {
-  const currentZoom = useZoomStore(state => state.currentZoom);
-  const setZoomTarget = useZoomStore(state => state.setZoomTarget);
 
-  const handleVintageTVClick = () => {
-    if (!currentZoom)
-      setZoomTarget("vintage-tv");
-    else
-      setZoomTarget(undefined);
-  }
+  const setHotspot = useCameraStore(state => state.set);
+
+  const cupboard = useRef<THREE.Group>(null);
+  const bulletin = useRef<THREE.Group>(null);
 
   return (
     <>
-      {/* <VintageTV
-        scale={scale}
-        position={[-11.7, 2.51, 11.1]}
-        onClick={handleVintageTVClick}
-      /> */}
-
       <Coffin
         scale={config.gltf.scale}
         position={[-9.78, 4.35, -15.94]}
@@ -46,8 +35,10 @@ export default () => {
       />
 
       <Cupboard
+        ref={cupboard}
         scale={config.gltf.scale}
         position={[9, 0, -18.4]}
+        onClick={() => setHotspot("cupboard", cupboard.current)}
       />
 
       <LongTable
@@ -56,8 +47,10 @@ export default () => {
       />
 
       <BulletinBoard
+        ref={bulletin}
         scale={config.gltf.scale}
         position={[-12.9, 4.3, -2.76]}
+        onClick={() => setHotspot("bulletin", bulletin.current)}
       />
 
       <Banner

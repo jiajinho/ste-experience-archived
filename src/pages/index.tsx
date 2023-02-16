@@ -3,29 +3,18 @@ import { Html, OrbitControls } from '@react-three/drei';
 import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
-import useCameraSwitch from 'hooks/useCameraSwitch';
 
 import HellfireClub from 'components/webgl/HellfireClub';
 import useLevaMover from 'hooks/useLevaMover';
-import useZoomAnimation from 'hooks/useZoomAnimation';
-import { useControls } from 'leva';
+import Camera from 'components/webgl/Camera';
 
 export default () => {
   const outlineMeshs = useOutlineMeshStore(state => state.meshes);
 
-  useCameraSwitch();
-  useZoomAnimation();
   useLevaMover();
-
-  const { radius, intensity } = useControls("bloom", {
-    radius: { min: 0, max: 3, step: 0.1, value: 0.6 },
-    intensity: { min: 0, max: 10, step: 0.1, value: 1 }
-  });
 
   return (
     <>
-      <OrbitControls />
-
       <ambientLight intensity={0.4} />
       <spotLight position={[20, 20, 20]} intensity={0.3} />
       <spotLight position={[-20, 20, 20]} intensity={0.3} />
@@ -34,6 +23,7 @@ export default () => {
       <axesHelper args={[5]} />
 
       <HellfireClub />
+      <Camera />
 
       <EffectComposer
         autoClear={false}

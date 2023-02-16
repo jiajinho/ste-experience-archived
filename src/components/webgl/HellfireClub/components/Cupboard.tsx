@@ -2,6 +2,7 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
+import { applyRef } from "../utils";
 import useMover from "../useMover";
 
 const url = "/static/glb/cupboard.glb";
@@ -13,15 +14,18 @@ type GLTFResult = GLTF & {
   materials: {};
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default React.forwardRef((
+  props: JSX.IntrinsicElements["group"],
+  ref: React.ForwardedRef<THREE.Group>
+) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
-  const { ref, onClick } = useMover(props);
+  const { ref: _ref, onClick } = useMover(props);
 
   return (
     <group
-      ref={ref}
       {...props}
+      ref={g => applyRef([ref, _ref], g)}
       onClick={onClick}
       dispose={null}
     >
@@ -31,6 +35,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       />
     </group>
   );
-}
+});
 
 useGLTF.preload(url);
