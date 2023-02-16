@@ -14,7 +14,11 @@ type GLTFResult = GLTF & {
   materials: {};
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default ({ emissive, color, ...props }: {
+  emissive: number | string,
+  color: number | string,
+} & JSX.IntrinsicElements["group"]
+) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   const { ref, onClick } = useMover(props);
@@ -30,7 +34,14 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         geometry={nodes.flame008.geometry}
         material={nodes.flame008.material}
         position={[0, 1.09, 0]}
-      />
+      >
+        <meshStandardMaterial
+          toneMapped={false}
+          emissive={emissive}
+          color={color}
+          emissiveIntensity={10}
+        />
+      </mesh>
       <mesh
         geometry={nodes.Candle_002.geometry}
         material={nodes.Candle_002.material}
