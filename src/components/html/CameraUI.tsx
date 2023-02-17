@@ -38,7 +38,7 @@ export default () => {
 
   return (
     <Wrapper>
-      <Caret
+      {/* <Caret
         id="left"
         direction="left"
         color="#CA1515"
@@ -48,7 +48,7 @@ export default () => {
         id="right"
         direction="right"
         color="#CA1515"
-      />
+      /> */}
 
       <BackButton onClick={handleBackClick}>
         Back
