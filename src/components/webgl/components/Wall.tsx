@@ -1,5 +1,5 @@
 import React from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 const url = "/static/glb/wall.glb";
@@ -8,13 +8,17 @@ type GLTFResult = GLTF & {
   nodes: {
     room: THREE.Mesh;
   };
-  materials: {
-    Room: THREE.MeshStandardMaterial;
-  };
+  materials: {};
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
+  const { nodes } = useGLTF(url) as any as GLTFResult;
+
+  const { map } = useTexture({
+    map: "/static/texture-map/StrangerThings_Room_DefaultMaterial_BaseColor.png"
+  });
+
+  map.flipY = false;
 
   return (
     <group
@@ -23,8 +27,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     >
       <mesh
         geometry={nodes.room.geometry}
-        material={materials.Room}
-      />
+        position-y={-0.05}
+      >
+        <meshStandardMaterial map={map} />
+      </mesh>
     </group>
   );
 }
