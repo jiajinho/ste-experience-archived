@@ -18,7 +18,7 @@ const Wrapper = styled.main`
 `;
 
 export default ({ Component, pageProps }: AppProps) => {
-  useThemeSong();
+  // useThemeSong();
 
   return (
     <>
