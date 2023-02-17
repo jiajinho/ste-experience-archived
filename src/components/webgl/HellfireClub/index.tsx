@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import config from 'config';
 import useCameraStore from 'store/useCameraStore';
 
-import Room from './components/Room';
 import Coffin from './components/Coffin';
 import Cupboard from './components/Cupboard';
 import LongTable from './components/LongTable';
@@ -19,6 +18,7 @@ import Wall from '../components/Wall';
 import RiftFloor from '../components/RiftFloor';
 import Curtain from '../components/Curtain';
 import Standee from '../components/Standee';
+import Box from '../components/Box';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -48,6 +48,10 @@ export default () => {
       <Standee.Forest
         position={[3.93, 0.81, -1.91]}
         rotation-y={-0.16}
+      />
+
+      <Box
+
       />
 
       <Wall />
