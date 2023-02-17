@@ -1,7 +1,5 @@
 import { Hotspot, Vector3 } from "types";
 
-const zoomDuration = 1; //second
-
 const gltf = {
   scale: 4
 }
@@ -14,7 +12,6 @@ const hotspots: { [k in Hotspot]: Vector3 } = {
 }
 
 export default {
-  zoomDuration,
   gltf,
   hotspots
 }
