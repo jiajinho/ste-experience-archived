@@ -1,17 +1,17 @@
 import { create } from "zustand";
-import { Hotspot } from "types";
+import config from "config";
 
 type Store = {
-  hotspot: Hotspot,
-  object: THREE.Group | null
-  set: (h: Hotspot, o: THREE.Group | null) => void
+  targetObject: THREE.Group | null,
+  cameraPosition: THREE.Vector3,
+  set: (targetObject: THREE.Group | null, cameraPosition: THREE.Vector3) => void
 }
 
 export default create<Store>((set) => ({
-  hotspot: "default",
-  object: null,
-  set: (h, o) => set(() => ({
-    hotspot: h,
-    object: o
+  targetObject: null,
+  cameraPosition: config.camera.default.position,
+  set: (targetObject, cameraPosition) => set(() => ({
+    targetObject,
+    cameraPosition
   }))
 }));

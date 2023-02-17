@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import * as THREE from 'three';
 
 import config from 'config';
 import useCameraStore from 'store/useCameraStore';
@@ -21,7 +22,7 @@ import StandeeGroup from './groups/StandeeGroup';
 
 export default () => {
 
-  const setHotspot = useCameraStore(state => state.set);
+  const set = useCameraStore(state => state.set);
 
   const cupboard = useRef<THREE.Group>(null);
   const bulletin = useRef<THREE.Group>(null);
@@ -37,8 +38,8 @@ export default () => {
       <Cupboard
         ref={cupboard}
         scale={config.gltf.scale}
-        position={[9, 0, -18.4]}
-        onClick={() => setHotspot("cupboard", cupboard.current)}
+        position={[9, 4.45, -18.4]}
+        onClick={() => set(cupboard.current, new THREE.Vector3(9, 4.45, -13.4))}
       />
 
       <LongTable
@@ -49,8 +50,8 @@ export default () => {
       <BulletinBoard
         ref={bulletin}
         scale={config.gltf.scale}
-        position={[-12.9, 4.3, -2.76]}
-        onClick={() => setHotspot("bulletin", bulletin.current)}
+        position={[-12.9, 8.1, -2.76]}
+        onClick={() => set(bulletin.current, new THREE.Vector3(-7.9, 8.1, -2.76))}
       />
 
       <Banner

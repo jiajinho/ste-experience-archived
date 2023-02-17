@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Caret, { Wrapper as $Caret } from './Caret';
 import useCameraStore from 'store/useCameraStore';
+import config from 'config';
 
 const Wrapper = styled.div`
   & * { z-index: 2 }
@@ -29,10 +30,10 @@ const BackButton = styled.button`
 
 export default () => {
 
-  const setHotspot = useCameraStore(state => state.set);
+  const set = useCameraStore(state => state.set);
 
   const handleBackClick = () => {
-    setHotspot("default", null);
+    set(null, config.camera.default.position);
   }
 
   return (

@@ -15,8 +15,8 @@ export default () => {
 
   const firstTime = useRef(true);
 
-  const hotspot = useCameraStore(state => state.hotspot);
-  const object = useCameraStore(state => state.object);
+  const targetObject = useCameraStore(state => state.targetObject);
+  const cameraPosition = useCameraStore(state => state.cameraPosition);
 
   const { rx, ry, rz, x, y, z, freeCam } = useControls("camera", {
     rx: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
@@ -32,20 +32,16 @@ export default () => {
     camera.position.x = x;
     camera.position.y = y;
     camera.position.z = z;
-
-    if (object) {
-      camera.lookAt(object.position);
-    }
   }, [rx, ry, rz, x, y, z]);
 
   useEffect(() => {
     if (!shadowCamera.current) return;
 
-    const hotspotPosition = object ? object.position : new THREE.Vector3(0, 0, 0);
+    const hotspotPosition = targetObject ? targetObject.position : config.camera.default.lookAt;
 
-    shadowCamera.current.position.x = config.hotspots[hotspot][0];
-    shadowCamera.current.position.y = config.hotspots[hotspot][1];
-    shadowCamera.current.position.z = config.hotspots[hotspot][2];
+    shadowCamera.current.position.x = cameraPosition.x;
+    shadowCamera.current.position.y = cameraPosition.y;
+    shadowCamera.current.position.z = cameraPosition.z;
 
     shadowCamera.current.lookAt(hotspotPosition);
 
@@ -60,9 +56,9 @@ export default () => {
 
     timeline
       .to(camera.position, {
-        x: config.hotspots[hotspot][0],
-        y: config.hotspots[hotspot][1],
-        z: config.hotspots[hotspot][2]
+        x: cameraPosition.x,
+        y: cameraPosition.y,
+        z: cameraPosition.z
       })
       .to(camera.rotation, {
         x: endRotation.x,
@@ -71,7 +67,7 @@ export default () => {
       }, "0");
 
     firstTime.current = false;
-  }, [hotspot]);
+  }, [targetObject, cameraPosition]);
 
   useEffect(() => {
     console.log("camera position", camera.position);
