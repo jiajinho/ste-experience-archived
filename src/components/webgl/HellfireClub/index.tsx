@@ -18,6 +18,7 @@ import Throne from './components/Throne';
 import Wall from '../components/Wall';
 import RiftFloor from '../components/RiftFloor';
 import Curtain from '../components/Curtain';
+import Standee from '../components/Standee';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -30,12 +31,27 @@ export default () => {
       <Curtain.Classic position={[-2.22, 2.59, -4.96]} />
       <Curtain.Classic position={[2.57, 2.48, -4.95]} />
       <Curtain.Classic
-        rotation-y={-Math.PI / 2}
         position={[4.15, 2.58, -3.51]}
+        rotation-y={-Math.PI / 2}
+      />
+
+      <Standee.CastleWall
+        position={[-2.02, 0.97, 4.66]}
+        rotation-y={0.46}
+      />
+
+      <Standee.CastleWall
+        position={[2.81, 0.38, 4.41]}
+        rotation-y={1.49}
+      />
+
+      <Standee.Forest
+        position={[3.93, 0.81, -1.91]}
+        rotation-y={-0.16}
       />
 
       <Wall />
       <RiftFloor />
     </>
-  )
+  );
 }
