@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-import { Html, OrbitControls } from '@react-three/drei';
 import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
@@ -20,7 +18,9 @@ export default () => {
       <spotLight position={[-20, 20, 20]} intensity={0.3} />
       <directionalLight color={0xffffff} intensity={0.5} />
 
-      <axesHelper args={[5]} />
+      <axesHelper args={[1]} />
+
+      <fog attach="fog" near={4} far={20} color={0xaaaaaa} />
 
       <HellfireClub />
       <Camera />

@@ -8,7 +8,7 @@ const gltf = {
 // Vector3 -> camera position
 const camera = {
   default: {
-    position: new THREE.Vector3(10, 10, 10),
+    position: new THREE.Vector3(3, 3, 3),
     lookAt: new THREE.Vector3(0, 0, 0)
   }
 }
