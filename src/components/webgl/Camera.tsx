@@ -6,6 +6,7 @@ import { useControls } from 'leva';
 
 import useCameraStore from 'store/useCameraStore';
 import config from 'config';
+import { OrbitControls } from '@react-three/drei';
 
 export default () => {
   const { camera } = useThree();
@@ -17,13 +18,14 @@ export default () => {
   const hotspot = useCameraStore(state => state.hotspot);
   const object = useCameraStore(state => state.object);
 
-  const { rx, ry, rz, x, y, z } = useControls("camera", {
+  const { rx, ry, rz, x, y, z, freeCam } = useControls("camera", {
     rx: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
     ry: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
     rz: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
     x: { min: -20, max: 20, step: 0.01, value: 0 },
     y: { min: -20, max: 20, step: 0.01, value: 0 },
     z: { min: -20, max: 20, step: 0.01, value: 0 },
+    freeCam: false
   });
 
   useEffect(() => {
@@ -76,6 +78,9 @@ export default () => {
   }, [camera.position.x, camera.position.y, camera.position.z]);
 
   return (
-    <perspectiveCamera ref={shadowCamera} />
+    <>
+      <perspectiveCamera ref={shadowCamera} />
+      <OrbitControls enabled={freeCam} />
+    </>
   )
 }
