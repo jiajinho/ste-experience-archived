@@ -5,7 +5,6 @@ import config from 'config';
 import useCameraStore from 'store/useCameraStore';
 
 import Coffin from './components/Coffin';
-import Cupboard from './components/Cupboard';
 import LongTable from './components/LongTable';
 import Banner from './components/Banner';
 import WallRack from './components/WallRack';
@@ -21,6 +20,7 @@ import Curtain from './components2/Curtain';
 import Box from './components2/Box';
 import Ladder from './components2/Ladder';
 import BulletinBoard from './components2/BulletinBoard';
+import Shelf from './components2/Shelf';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -77,6 +77,10 @@ export default () => {
 
       <BulletinBoard
         position={[-3.22, 2.06, 0.15]}
+      />
+
+      <Shelf
+        position={[2.15, 1.15, -4.29]}
       />
 
       <Wall />
