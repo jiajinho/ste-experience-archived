@@ -20,6 +20,7 @@ import RiftFloor from '../components/RiftFloor';
 import Standee from './components2/Standee';
 import Curtain from './components2/Curtain';
 import Box from './components2/Box';
+import Ladder from './components2/Ladder';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -67,6 +68,11 @@ export default () => {
       <Standee.Forest
         position={[3.91, 0.58, -1.91]}
         rotation={[-0.19, 2.02, 0.19]}
+      />
+
+      <Ladder
+        position={[0.92, 0.86, -4]}
+        rotation-y={0.67}
       />
 
       <Wall />
