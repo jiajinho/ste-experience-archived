@@ -16,29 +16,42 @@ import MeetingTable from './components/MeetingTable';
 import Throne from './components/Throne';
 import Wall from '../components/Wall';
 import RiftFloor from '../components/RiftFloor';
-import Curtain from '../components/Curtain';
 import Box from '../components/Box';
 
 import Standee from './components2/Standee';
+import Curtain from './components2/Curtain';
 
 export default () => {
   const set = useCameraStore(state => state.set);
 
   return (
     <>
-      <Curtain.Large position={[-3.12, 2.54, 2.86]} />
-      <Curtain.Large position={[-3.17, 2.52, -2.52]} />
+      <Curtain.Large
+        position={[-3.14, 2.53, -2.76]}
+        rotation-y={Math.PI / 2}
+      />
 
-      <Curtain.Classic position={[-2.22, 2.59, -4.96]} />
-      <Curtain.Classic position={[2.57, 2.48, -4.95]} />
+      <Curtain.Large
+        position={[-3.14, 2.52, 2.37]}
+        rotation-y={Math.PI / 2}
+      />
+
       <Curtain.Classic
-        position={[4.15, 2.58, -3.51]}
+        position={[1.88, 2.5, -4.95]}
+      />
+
+      <Curtain.Classic
+        position={[4.21, 2.46, -3.13]}
         rotation-y={-Math.PI / 2}
       />
 
-      <Box
-
+      <Curtain.Classic
+        position={[-2.17, 2.52, -4.95]}
       />
+
+      {/* <Box
+
+      /> */}
 
       <Standee.CastleWall
         position={[-2, 0.9, 4.59]}
