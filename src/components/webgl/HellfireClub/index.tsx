@@ -7,7 +7,6 @@ import useCameraStore from 'store/useCameraStore';
 import Coffin from './components/Coffin';
 import Cupboard from './components/Cupboard';
 import LongTable from './components/LongTable';
-import BulletinBoard from './components/BulletinBoard';
 import Banner from './components/Banner';
 import WallRack from './components/WallRack';
 import CoffeeTable from './components/CoffeeTable';
@@ -21,6 +20,7 @@ import Standee from './components2/Standee';
 import Curtain from './components2/Curtain';
 import Box from './components2/Box';
 import Ladder from './components2/Ladder';
+import BulletinBoard from './components2/BulletinBoard';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -33,7 +33,7 @@ export default () => {
       />
 
       <Curtain.Large
-        position={[-3.14, 2.52, 2.37]}
+        position={[-3.14, 2.52, 3.06]}
         rotation-y={Math.PI / 2}
       />
 
@@ -73,6 +73,10 @@ export default () => {
       <Ladder
         position={[0.92, 0.86, -4]}
         rotation-y={0.67}
+      />
+
+      <BulletinBoard
+        position={[-3.22, 2.06, 0.15]}
       />
 
       <Wall />
