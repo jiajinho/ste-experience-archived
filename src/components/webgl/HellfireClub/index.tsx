@@ -16,10 +16,10 @@ import MeetingTable from './components/MeetingTable';
 import Throne from './components/Throne';
 import Wall from '../components/Wall';
 import RiftFloor from '../components/RiftFloor';
-import Box from '../components/Box';
 
 import Standee from './components2/Standee';
 import Curtain from './components2/Curtain';
+import Box from './components2/Box';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -49,9 +49,10 @@ export default () => {
         position={[-2.17, 2.52, -4.95]}
       />
 
-      {/* <Box
-
-      /> */}
+      <Box
+        position={[-1.3, 0.38, 4.44]}
+        rotation={[0.1, -0.29, -1.53]}
+      />
 
       <Standee.CastleWall
         position={[-2, 0.9, 4.59]}
