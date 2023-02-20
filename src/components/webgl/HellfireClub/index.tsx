@@ -38,7 +38,7 @@ export default () => {
       />
 
       <Curtain.Classic
-        position={[1.88, 2.5, -4.95]}
+        position={[2.42, 2.5, -4.95]}
       />
 
       <Curtain.Classic
