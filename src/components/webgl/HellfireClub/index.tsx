@@ -21,6 +21,7 @@ import Box from './components2/Box';
 import Ladder from './components2/Ladder';
 import BulletinBoard from './components2/BulletinBoard';
 import Shelf from './components2/Shelf';
+import StandingBoard from './components2/StandingBoard';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -38,7 +39,7 @@ export default () => {
       />
 
       <Curtain.Classic
-        position={[2.42, 2.5, -4.95]}
+        position={[2.57, 2.5, -4.95]}
       />
 
       <Curtain.Classic
@@ -71,7 +72,7 @@ export default () => {
       />
 
       <Ladder
-        position={[0.92, 0.86, -4]}
+        position={[1.22, 0.86, -4]}
         rotation-y={0.67}
       />
 
@@ -80,7 +81,13 @@ export default () => {
       />
 
       <Shelf
-        position={[2.15, 1.15, -4.29]}
+        position={[2.38, 1.15, -4.29]}
+      />
+
+
+      <StandingBoard
+        position={[-0.08, 1.35, -3.51]}
+        rotation-y={1.86}
       />
 
       <Wall />
