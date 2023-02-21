@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import config from 'config';
 import useCameraStore from 'store/useCameraStore';
 
-import Coffin from './components/Coffin';
 import LongTable from './components/LongTable';
 import Banner from './components/Banner';
 import WallRack from './components/WallRack';
@@ -23,6 +22,7 @@ import BulletinBoard from './components2/BulletinBoard';
 import Shelf from './components2/Shelf';
 import StandingBoard from './components2/StandingBoard';
 import Lamp from './components2/Lamp';
+import Coffin from './components2/Coffin';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -93,6 +93,11 @@ export default () => {
 
       <Lamp
         position={[-2.76, 1.26, -4.44]}
+      />
+
+      <Coffin
+        position={[-2.6, 1, -2.46]}
+        rotation-y={-0.34}
       />
 
       <Wall />

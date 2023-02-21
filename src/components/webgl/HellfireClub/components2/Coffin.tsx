@@ -1,19 +1,22 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
+
 import useMover from "../useMover";
 
-const url = "/static/glb/coffin.glb";
+const url = "/static/gltf/coffin.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    coffin: THREE.Mesh;
+    Coffin: THREE.Mesh;
   };
-  materials: {};
+  materials: {
+    Coffin: THREE.MeshStandardMaterial;
+  };
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   const { ref, onClick } = useMover(props);
 
@@ -25,8 +28,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
-        geometry={nodes.coffin.geometry}
-        material={nodes.coffin.material}
+        geometry={nodes.Coffin.geometry}
+        material={materials.Coffin}
       />
     </group>
   );
