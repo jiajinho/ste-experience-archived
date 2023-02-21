@@ -22,6 +22,7 @@ import Ladder from './components2/Ladder';
 import BulletinBoard from './components2/BulletinBoard';
 import Shelf from './components2/Shelf';
 import StandingBoard from './components2/StandingBoard';
+import Lamp from './components2/Lamp';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -88,6 +89,10 @@ export default () => {
       <StandingBoard
         position={[-0.08, 1.35, -3.51]}
         rotation-y={1.86}
+      />
+
+      <Lamp
+        position={[-2.76, 1.26, -4.44]}
       />
 
       <Wall />
