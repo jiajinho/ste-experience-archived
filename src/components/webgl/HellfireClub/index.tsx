@@ -4,10 +4,6 @@ import * as THREE from 'three';
 import config from 'config';
 import useCameraStore from 'store/useCameraStore';
 
-import Banner from './components/Banner';
-import Chandelier from './components/Chandelier';
-import MeetingTable from './components/MeetingTable';
-import Throne from './components/Throne';
 import Wall from '../components/Wall';
 import RiftFloor from '../components/RiftFloor';
 

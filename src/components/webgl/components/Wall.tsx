@@ -2,7 +2,7 @@ import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-const url = "/static/glb/wall.glb";
+const url = "/static/gltf/wall.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
