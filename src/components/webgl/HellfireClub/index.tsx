@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import config from 'config';
 import useCameraStore from 'store/useCameraStore';
 
-import LongTable from './components/LongTable';
 import Banner from './components/Banner';
 import WallRack from './components/WallRack';
 import CoffeeTable from './components/CoffeeTable';
@@ -23,6 +22,7 @@ import Shelf from './components2/Shelf';
 import StandingBoard from './components2/StandingBoard';
 import Lamp from './components2/Lamp';
 import Coffin from './components2/Coffin';
+import Tabletop from './components2/Tabletop';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -98,6 +98,10 @@ export default () => {
       <Coffin
         position={[-2.6, 1, -2.46]}
         rotation-y={-0.34}
+      />
+
+      <Tabletop.DShape
+        position={[-2.7, 0.68, 3.06]}
       />
 
       <Wall />

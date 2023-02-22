@@ -2,19 +2,21 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useMover from "../useMover";
+import useMover from "../../useMover";
 
-const url = "/static/glb/long-table.glb";
+const url = "/static/gltf/dshape-tabletop.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Box013: THREE.Mesh;
+    DShapeTabletop: THREE.Mesh;
   };
-  materials: {};
+  materials: {
+    ["DShape.Tabletop"]: THREE.MeshStandardMaterial;
+  };
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   const { ref, onClick } = useMover(props);
 
@@ -26,8 +28,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
-        geometry={nodes.Box013.geometry}
-        material={nodes.Box013.material}
+        geometry={nodes.DShapeTabletop.geometry}
+        material={materials["DShape.Tabletop"]}
       />
     </group>
   );
