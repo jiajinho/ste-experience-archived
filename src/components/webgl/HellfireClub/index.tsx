@@ -24,6 +24,7 @@ import Coffin from './components2/Coffin';
 import Tabletop from './components2/Tabletop';
 import Chair from './components2/Chair';
 import RetroTV from './components2/RetroTV';
+import Candlestand from './components2/Candlestand';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -121,6 +122,10 @@ export default () => {
 
       <RetroTV
         position={[-2.61, 1.07, 3.13]}
+      />
+
+      <Candlestand
+        position={[2.3, 0.55, 3.58]}
       />
 
 
