@@ -58,6 +58,21 @@ export default () => {
         rotation={[0.1, -0.29, -1.53]}
       />
 
+      <Box
+        position={[3.54, 0.23, -0.9]}
+        rotation={[Math.PI / 2, 0, 0.56]}
+      />
+
+      <Box
+        position={[2.77, 0.18, 1.84]}
+        rotation={[Math.PI / 2, 0, 1.25]}
+      />
+
+      <Box
+        position={[-1.23, 0.2, 3.98]}
+        rotation={[Math.PI, 0.3, 0]}
+      />
+
       <Standee.CastleWall
         position={[-2, 0.9, 4.59]}
         rotation={[0.19, -0.52, 0.1]}
@@ -106,7 +121,7 @@ export default () => {
       />
 
       <Tabletop.Round
-        position={[3.22, 0.52, 1.07]}
+        position={[3.22, 0.52, 1.38]}
       />
 
       <Chair.Ornamental
@@ -115,8 +130,8 @@ export default () => {
       />
 
       <Chair.Ornamental
-        position={[3.6, 0.48, 0.18]}
-        rotation-y={0.1}
+        position={[3.6, 0.38, 0.1]}
+        rotation-y={0.68}
       />
 
       <RetroTV
