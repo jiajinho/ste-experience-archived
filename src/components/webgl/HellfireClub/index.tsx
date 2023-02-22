@@ -22,6 +22,7 @@ import StandingBoard from './components2/StandingBoard';
 import Lamp from './components2/Lamp';
 import Coffin from './components2/Coffin';
 import Tabletop from './components2/Tabletop';
+import Chair from './components2/Chair';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -105,6 +106,16 @@ export default () => {
 
       <Tabletop.Round
         position={[3.22, 0.52, 1.07]}
+      />
+
+      <Chair.Ornamental
+        position={[-2.75, 0.48, 0.69]}
+        rotation-y={-2.8}
+      />
+
+      <Chair.Ornamental
+        position={[3.6, 0.48, 0.18]}
+        rotation-y={0.1}
       />
 
 

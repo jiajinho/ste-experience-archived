@@ -2,19 +2,21 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useMover from "../useMover";
+import useMover from "../../useMover";
 
-const url = "/static/glb/chair.glb";
+const url = "/static/gltf/chair-classic.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Chair_003: THREE.Mesh;
+    ChairClassic: THREE.Mesh;
   };
-  materials: {};
+  materials: {
+    ChairClassic: THREE.MeshStandardMaterial;
+  };
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   const { ref, onClick } = useMover(props);
 
@@ -22,12 +24,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     <group
       ref={ref}
       {...props}
-      dispose={null}
       onClick={onClick}
+      dispose={null}
     >
       <mesh
-        geometry={nodes.Chair_003.geometry}
-        material={nodes.Chair_003.material}
+        geometry={nodes.ChairClassic.geometry}
+        material={materials.ChairClassic}
       />
     </group>
   );
