@@ -1,5 +1,7 @@
 import DShape from "./DShape";
+import Round from "./Round";
 
 export default {
-  DShape
+  DShape,
+  Round
 }

@@ -6,7 +6,6 @@ import useCameraStore from 'store/useCameraStore';
 
 import Banner from './components/Banner';
 import WallRack from './components/WallRack';
-import CoffeeTable from './components/CoffeeTable';
 import Chandelier from './components/Chandelier';
 import MeetingTable from './components/MeetingTable';
 import Throne from './components/Throne';
@@ -103,6 +102,11 @@ export default () => {
       <Tabletop.DShape
         position={[-2.7, 0.68, 3.06]}
       />
+
+      <Tabletop.Round
+        position={[3.22, 0.52, 1.07]}
+      />
+
 
       <Wall />
       <RiftFloor />
