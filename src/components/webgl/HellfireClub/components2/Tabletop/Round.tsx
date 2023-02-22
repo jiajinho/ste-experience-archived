@@ -1,25 +1,29 @@
 import React from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import useMover from "../../useMover";
 
-const url = "/static/gltf/round-tabletop.glb";
+const url = "/static/gltf/tabletop-round.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    RoundTabletopLeg: THREE.Mesh;
-    RoundTabletop: THREE.Mesh;
+    TabletopRoundLeg: THREE.Mesh;
+    TabletopRound: THREE.Mesh;
   };
-  materials: {
-    ["Round.Tabletop"]: THREE.MeshStandardMaterial;
-  };
+  materials: {};
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
+  const { nodes } = useGLTF(url) as any as GLTFResult;
 
   const { ref, onClick } = useMover(props);
+
+  const { map } = useTexture({
+    map: "/static/texture-map/wood.jpg"
+  });
+
+  map.flipY = false;
 
   return (
     <group
@@ -28,14 +32,18 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={onClick}
       dispose={null}
     >
-      <mesh
-        geometry={nodes.RoundTabletopLeg.geometry}
-        material={materials["Round.Tabletop"]}
-      />
-      <mesh
-        geometry={nodes.RoundTabletop.geometry}
-        material={materials["Round.Tabletop"]}
-      />
+      <mesh geometry={nodes.TabletopRoundLeg.geometry}>
+        <meshStandardMaterial
+          roughness={0.8}
+          map={map}
+        />
+      </mesh>
+      <mesh geometry={nodes.TabletopRound.geometry}>
+        <meshStandardMaterial
+          roughness={0.8}
+          map={map}
+        />
+      </mesh>
     </group>
   );
 }

@@ -100,7 +100,7 @@ export default () => {
       />
 
       <Tabletop.DShape
-        position={[-2.7, 0.68, 3.06]}
+        position={[-2.7, 0.75, 3.06]}
       />
 
       <Tabletop.Round
