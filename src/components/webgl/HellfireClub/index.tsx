@@ -94,7 +94,7 @@ export default () => {
       />
 
       <BulletinBoard
-        position={[-3.22, 2.06, 0.15]}
+        position={[-3.22, 1.75, 0.15]}
       />
 
       <Shelf
