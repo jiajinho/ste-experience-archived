@@ -5,7 +5,6 @@ import config from 'config';
 import useCameraStore from 'store/useCameraStore';
 
 import Banner from './components/Banner';
-import WallRack from './components/WallRack';
 import Chandelier from './components/Chandelier';
 import MeetingTable from './components/MeetingTable';
 import Throne from './components/Throne';
