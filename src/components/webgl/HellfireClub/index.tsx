@@ -23,6 +23,7 @@ import Lamp from './components2/Lamp';
 import Coffin from './components2/Coffin';
 import Tabletop from './components2/Tabletop';
 import Chair from './components2/Chair';
+import RetroTV from './components2/RetroTV';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -116,6 +117,10 @@ export default () => {
       <Chair.Ornamental
         position={[3.6, 0.48, 0.18]}
         rotation-y={0.1}
+      />
+
+      <RetroTV
+        position={[-2.61, 1.07, 3.13]}
       />
 
 
