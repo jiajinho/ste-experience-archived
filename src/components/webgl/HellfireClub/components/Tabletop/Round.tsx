@@ -4,24 +4,23 @@ import type { GLTF } from "three-stdlib";
 
 import useMover from "../../useMover";
 
-const url = "/static/gltf/tabletop-dshape.glb";
+const gltfUrl = "/static/gltf/tabletop-round.glb";
+const mapUrl = "/static/texture/wood.jpg";
 
 type GLTFResult = GLTF & {
   nodes: {
-    TabletopDShape: THREE.Mesh;
+    TabletopRoundLeg: THREE.Mesh;
+    TabletopRound: THREE.Mesh;
   };
   materials: {};
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
+  const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
 
   const { ref, onClick } = useMover(props);
 
-  const { map } = useTexture({
-    map: "/static/texture-map/wood.jpg"
-  });
-
+  const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
 
   return (
@@ -31,7 +30,13 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={onClick}
       dispose={null}
     >
-      <mesh geometry={nodes.TabletopDShape.geometry}>
+      <mesh geometry={nodes.TabletopRoundLeg.geometry}>
+        <meshStandardMaterial
+          roughness={0.8}
+          map={map}
+        />
+      </mesh>
+      <mesh geometry={nodes.TabletopRound.geometry}>
         <meshStandardMaterial
           roughness={0.8}
           map={map}
@@ -41,4 +46,4 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   );
 }
 
-useGLTF.preload(url);
+useGLTF.preload(gltfUrl);

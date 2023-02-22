@@ -4,23 +4,22 @@ import * as THREE from 'three';
 import config from 'config';
 import useCameraStore from 'store/useCameraStore';
 
-import Wall from '../components/Wall';
-import RiftFloor from '../components/RiftFloor';
-
-import Standee from './components2/Standee';
-import Curtain from './components2/Curtain';
-import Box from './components2/Box';
-import Ladder from './components2/Ladder';
-import BulletinBoard from './components2/BulletinBoard';
-import Shelf from './components2/Shelf';
-import StandingBoard from './components2/StandingBoard';
-import Lamp from './components2/Lamp';
-import Coffin from './components2/Coffin';
-import Tabletop from './components2/Tabletop';
-import Chair from './components2/Chair';
-import RetroTV from './components2/RetroTV';
-import Candlestand from './components2/Candlestand';
-import QuadLightStand from './components2/QuadLightStand';
+import Wall from './components/Wall';
+import RiftFloor from './components/RiftFloor';
+import Standee from './components/Standee';
+import Curtain from './components/Curtain';
+import Box from './components/Box';
+import Ladder from './components/Ladder';
+import BulletinBoard from './components/BulletinBoard';
+import Shelf from './components/Shelf';
+import StandingBoard from './components/StandingBoard';
+import Lamp from './components/Lamp';
+import Coffin from './components/Coffin';
+import Tabletop from './components/Tabletop';
+import Chair from './components/Chair';
+import RetroTV from './components/RetroTV';
+import Candlestand from './components/Candlestand';
+import QuadLightStand from './components/QuadLightStand';
 
 export default () => {
   const set = useCameraStore(state => state.set);

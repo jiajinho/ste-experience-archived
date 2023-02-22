@@ -4,7 +4,8 @@ import type { GLTF } from "three-stdlib";
 
 import useMover from "../../useMover";
 
-const url = "/static/gltf/chair-ornamental.glb";
+const gltfUrl = "/static/gltf/chair-ornamental.glb";
+const mapUrl = "/static/texture/wood.jpg";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -14,14 +15,11 @@ type GLTFResult = GLTF & {
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
+  const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
 
   const { ref, onClick } = useMover(props);
 
-  const { map } = useTexture({
-    map: "/static/texture-map/wood.jpg"
-  });
-
+  const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
 
   return (
@@ -41,4 +39,4 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   );
 }
 
-useGLTF.preload(url);
+useGLTF.preload(gltfUrl);
