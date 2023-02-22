@@ -24,6 +24,7 @@ import Tabletop from './components2/Tabletop';
 import Chair from './components2/Chair';
 import RetroTV from './components2/RetroTV';
 import Candlestand from './components2/Candlestand';
+import QuadLightStand from './components2/QuadLightStand';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -140,6 +141,10 @@ export default () => {
 
       <Candlestand
         position={[2.3, 0.55, 3.58]}
+      />
+
+      <QuadLightStand
+        position={[-2.38, 0, 1.63]}
       />
 
 
