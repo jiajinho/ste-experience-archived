@@ -22,6 +22,7 @@ import Candlestand from './components/Candlestand';
 import QuadLightStand from './components/QuadLightStand';
 import CeilingLightBar from './components/CeilingLightBar';
 import HellfireSignStand from './components/HellfireSignStand';
+import WallLight from './components/WallLight';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -154,6 +155,10 @@ export default () => {
 
       <HellfireSignStand
         position={[0, 0, -4.52]}
+      />
+
+      <WallLight
+        position={[0, 0, -5]}
       />
 
 
