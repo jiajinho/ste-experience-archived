@@ -6,19 +6,15 @@ const url = "/static/gltf/wall.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    room: THREE.Mesh;
+    Wall: THREE.Mesh;
   };
-  materials: {};
+  materials: {
+    Wall: THREE.MeshStandardMaterial;
+  };
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
-
-  const { map } = useTexture({
-    map: "/static/texture-map/StrangerThings_Room_DefaultMaterial_BaseColor.png"
-  });
-
-  map.flipY = false;
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
     <group
@@ -26,11 +22,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
-        geometry={nodes.room.geometry}
         position-y={-0.05}
-      >
-        <meshStandardMaterial map={map} />
-      </mesh>
+        geometry={nodes.Wall.geometry}
+        material={materials.Wall}
+      />
     </group>
   );
 }
