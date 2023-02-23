@@ -21,6 +21,7 @@ import RetroTV from './components/RetroTV';
 import Candlestand from './components/Candlestand';
 import QuadLightStand from './components/QuadLightStand';
 import LightsBar from './components/LightsBar';
+import HellfireSign from './components/HellfireSign';
 
 export default () => {
   const set = useCameraStore(state => state.set);
@@ -151,6 +152,10 @@ export default () => {
 
       <LightsBar
         position={[-2.68, 3.3, -1.35]}
+      />
+
+      <HellfireSign
+        position={[0, 0, -4.52]}
       />
 
 
