@@ -20,14 +20,12 @@ import Chair from './components/Chair';
 import RetroTV from './components/RetroTV';
 import Candlestand from './components/Candlestand';
 import QuadLightStand from './components/QuadLightStand';
-import LightsBar from './components/LightsBar';
-import HellfireSign from './components/HellfireSign';
+import CeilingLightBar from './components/CeilingLightBar';
+import HellfireSignStand from './components/HellfireSignStand';
 
 export default () => {
   const set = useCameraStore(state => state.set);
 
-
-  //TODO: refactor curtain material, make it more shiny and store it in config
   return (
     <>
       <Curtain.Large
@@ -146,15 +144,15 @@ export default () => {
         position={[-2.38, 0, 1.63]}
       />
 
-      <LightsBar
+      <CeilingLightBar
         position={[-2.68, 3.3, 1.35]}
       />
 
-      <LightsBar
+      <CeilingLightBar
         position={[-2.68, 3.3, -1.35]}
       />
 
-      <HellfireSign
+      <HellfireSignStand
         position={[0, 0, -4.52]}
       />
 
