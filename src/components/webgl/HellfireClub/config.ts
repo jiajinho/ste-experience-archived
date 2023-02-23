@@ -11,7 +11,14 @@ const lightStandMaterial = new THREE.MeshStandardMaterial({
   color: "#040406"
 });
 
+const curtainMaterial = new THREE.MeshStandardMaterial({
+  roughness: 0.8,
+  metalness: 0.1,
+  color: "black"
+})
+
 export default {
   bulbMaterialProps,
-  lightStandMaterial
+  lightStandMaterial,
+  curtainMaterial
 }

@@ -3,6 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import useMover from "../../useMover";
+import config from "../../config";
 
 const url = "/static/gltf/curtain-classic.glb";
 
@@ -24,12 +25,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={onClick}
       dispose={null}
     >
-      <mesh geometry={nodes.CurtainClassic.geometry}>
-        <meshStandardMaterial
-          color="black"
-          roughness={1}
-        />
-      </mesh>
+      <mesh
+        geometry={nodes.CurtainClassic.geometry}
+        material={config.curtainMaterial}
+      />
     </group>
   );
 }

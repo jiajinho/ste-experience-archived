@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+import React from "react";
 import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
+import config from "../config";
 import useMover from "../useMover";
 
 const url = "/static/gltf/quad-lightstand.glb";
@@ -25,21 +26,10 @@ type GLTFResult = GLTF & {
   }
 };
 
-const bulbMaterial: THREE.MeshStandardMaterialParameters = {
-  toneMapped: false,
-  emissiveIntensity: 10
-}
-
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   const { ref, onClick } = useMover(props);
-
-  const standMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    roughness: 0.5,
-    metalness: 0.1,
-    color: "#252e36"
-  }), []);
 
   return (
     <group
@@ -50,7 +40,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     >
       <mesh geometry={nodes.Light1Lens.geometry}>
         <meshStandardMaterial
-          {...bulbMaterial}
+          {...config.bulbMaterialProps}
           emissive="red"
           color="red"
         />
@@ -58,7 +48,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
       <mesh geometry={nodes.Light2Lens.geometry}>
         <meshStandardMaterial
-          {...bulbMaterial}
+          {...config.bulbMaterialProps}
           emissive="red"
           color="red"
         />
@@ -66,7 +56,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
       <mesh geometry={nodes.Light3Lens.geometry}>
         <meshStandardMaterial
-          {...bulbMaterial}
+          {...config.bulbMaterialProps}
           emissive="red"
           color="red"
         />
@@ -74,7 +64,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
       <mesh geometry={nodes.Light4Lens.geometry}>
         <meshStandardMaterial
-          {...bulbMaterial}
+          {...config.bulbMaterialProps}
           emissive="red"
           color="red"
         />
@@ -82,39 +72,39 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
       <mesh
         geometry={nodes.Light3.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
       <mesh
         geometry={nodes.Light4.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
       <mesh
         geometry={nodes.Light2.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
       <mesh
         geometry={nodes.Light1.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
       <mesh
         geometry={nodes.Light1Handle.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
       <mesh
         geometry={nodes.Light3Handle.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
       <mesh
         geometry={nodes.Light2Handle.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
       <mesh
         geometry={nodes.LightStand.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
       <mesh
         geometry={nodes.Light4Handle.geometry}
-        material={standMaterial}
+        material={config.lightStandMaterial}
       />
     </group>
   );

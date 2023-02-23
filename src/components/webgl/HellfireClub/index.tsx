@@ -25,6 +25,8 @@ import LightsBar from './components/LightsBar';
 export default () => {
   const set = useCameraStore(state => state.set);
 
+
+  //TODO: refactor curtain material, make it more shiny and store it in config
   return (
     <>
       <Curtain.Large
