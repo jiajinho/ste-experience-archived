@@ -133,6 +133,10 @@ export default () => {
         rotation-y={0.68}
       />
 
+      <Chair.Throne
+        position={[0, 0.68, -2.1]}
+      />
+
       <RetroTV
         position={[-2.61, 1.07, 3.13]}
       />
