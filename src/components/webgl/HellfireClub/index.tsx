@@ -111,7 +111,7 @@ export default () => {
       />
 
       <Coffin
-        position={[-2.6, 1, -2.46]}
+        position={[-2.6, 0, -2.46]}
         rotation-y={-0.34}
       />
 
