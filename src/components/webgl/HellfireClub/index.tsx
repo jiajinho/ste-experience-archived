@@ -40,7 +40,7 @@ export default () => {
       />
 
       <Curtain.Classic
-        position={[2.57, 2.5, -4.95]}
+        position={[2.57, 2.5, -4.8]}
       />
 
       <Curtain.Classic
@@ -49,7 +49,7 @@ export default () => {
       />
 
       <Curtain.Classic
-        position={[-2.17, 2.52, -4.95]}
+        position={[-2.17, 2.52, -4.8]}
       />
 
       <Box
@@ -88,8 +88,8 @@ export default () => {
       />
 
       <Ladder
-        position={[1.22, 0.86, -4]}
-        rotation-y={0.67}
+        position={[0.92, 0.86, -4.31]}
+        rotation-y={0.86}
       />
 
       <BulletinBoard
@@ -97,7 +97,7 @@ export default () => {
       />
 
       <Shelf
-        position={[2.38, 1.15, -4.29]}
+        position={[2.07, 1.15, -4.29]}
       />
 
 
@@ -107,7 +107,7 @@ export default () => {
       />
 
       <Lamp
-        position={[-2.76, 1.26, -4.44]}
+        position={[-2.3, 1.26, -4.13]}
       />
 
       <Coffin
