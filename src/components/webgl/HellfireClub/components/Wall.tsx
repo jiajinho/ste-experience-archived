@@ -1,5 +1,5 @@
 import React from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 const url = "/static/gltf/wall.glb";
