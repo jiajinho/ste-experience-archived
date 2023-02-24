@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Wrapper as $Caret } from './Caret';
+import Caret, { Wrapper as $Caret } from './Caret';
 import useCameraStore from 'store/useCameraStore';
 
 const Wrapper = styled.div`
@@ -29,6 +29,8 @@ const BackButton = styled.button`
 
 export default () => {
   const setCurrentZoom = useCameraStore(state => state.setCurrentZoom);
+  const goNextZoom = useCameraStore(state => state.goNextZoom);
+  const goPrevZoom = useCameraStore(state => state.goPrevZoom);
 
   const handleBackClick = () => {
     setCurrentZoom("default");
@@ -36,17 +38,19 @@ export default () => {
 
   return (
     <Wrapper>
-      {/* <Caret
+      <Caret
         id="left"
         direction="left"
         color="#CA1515"
+        onClick={goPrevZoom}
       />
 
       <Caret
         id="right"
         direction="right"
         color="#CA1515"
-      /> */}
+        onClick={goNextZoom}
+      />
 
       <BackButton onClick={handleBackClick}>
         Back

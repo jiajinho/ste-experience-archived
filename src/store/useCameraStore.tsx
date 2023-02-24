@@ -7,8 +7,11 @@ type Store = {
   zoomChoices: { [h in Hotspot]: Zoom },
   updateZoomChoices: (h: Hotspot, z: Zoom) => void,
 
-  currentZoom: Zoom,
-  setCurrentZoom: (h: Hotspot) => void
+  currentZoom: Hotspot,
+  setCurrentZoom: (h: Hotspot) => void,
+
+  goNextZoom: () => void,
+  goPrevZoom: () => void
 }
 
 export default create<Store>((set) => ({
@@ -20,8 +23,31 @@ export default create<Store>((set) => ({
     return { zoomChoices: clone }
   }),
 
-  currentZoom: config.zoomChoices.default,
-  setCurrentZoom: (h) => set((state) => ({
-    currentZoom: state.zoomChoices[h]
-  }))
+  currentZoom: "default",
+  setCurrentZoom: (h) => set(() => ({
+    currentZoom: h
+  })),
+
+  goNextZoom: () => set((state) => {
+    const keys = Object.keys(state.zoomChoices);
+    let index = keys.findIndex(k => k === state.currentZoom);
+
+    if (++index > keys.length - 1) {
+      index = 0;
+    }
+
+    const currentZoom = keys[index] as Hotspot;
+    return { currentZoom }
+  }),
+  goPrevZoom: () => set((state) => {
+    const keys = Object.keys(state.zoomChoices);
+    let index = keys.findIndex(k => k === state.currentZoom);
+
+    if (--index < 0) {
+      index = keys.length - 1;
+    }
+
+    const currentZoom = keys[index] as Hotspot;
+    return { currentZoom }
+  }),
 }));

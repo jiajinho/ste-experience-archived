@@ -13,7 +13,8 @@ export default () => {
   const shadowCamera = useRef<THREE.PerspectiveCamera>(null);
   const firstTime = useRef(true);
 
-  const { lookAt, cameraPosition } = useCameraStore(state => state.currentZoom);
+  const zoomChoices = useCameraStore(state => state.zoomChoices);
+  const currentZoom = useCameraStore(state => state.currentZoom);
 
   const { rx, ry, rz, x, y, z, freeCam } = useControls("Camera", {
     rx: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
@@ -35,8 +36,14 @@ export default () => {
 
   useEffect(() => {
     if (!shadowCamera.current) return;
-    if (!lookAt) return;
-    if (!cameraPosition) return;
+
+    const { lookAt, cameraPosition } = zoomChoices[currentZoom];
+
+    if (!lookAt || !cameraPosition) {
+      console.warn("lookAt and cameraPosition is undefined");
+      return;
+    }
+
 
     shadowCamera.current.position.x = cameraPosition[0];
     shadowCamera.current.position.y = cameraPosition[1];
@@ -45,6 +52,7 @@ export default () => {
     shadowCamera.current.lookAt(lookAt);
 
     const endRotation = new THREE.Euler().copy(shadowCamera.current.rotation);
+
 
     const timeline = gsap.timeline({
       defaults: {
@@ -66,7 +74,7 @@ export default () => {
       }, "0");
 
     firstTime.current = false;
-  }, [cameraPosition, lookAt]);
+  }, [currentZoom]);
 
   useEffect(() => {
     console.log("camera position", camera.position);
