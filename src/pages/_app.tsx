@@ -23,7 +23,11 @@ export default ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Stats />
-      <Leva theme={{ sizes: { numberInputMinWidth: "50px" } }} />
+
+      <Leva
+        collapsed
+        theme={{ sizes: { numberInputMinWidth: "50px" } }}
+      />
 
       <Wrapper>
         <CameraUI />
