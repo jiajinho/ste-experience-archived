@@ -6,14 +6,16 @@ import useLevaMoverStore from 'store/useLevaMoverStore';
 export default () => {
   const group = useLevaMoverStore(state => state.group);
 
-  const [{ x, y, z, rx, ry, rz }, set] = useControls("useObjectMover", () => ({
+  const [{ x, y, z, rx, ry, rz }, set] = useControls("useLevaMover", () => ({
     x: { min: -5, max: 5, step: 0.01, value: 0 },
     y: { min: -5, max: 5, step: 0.01, value: 0 },
     z: { min: -5, max: 5, step: 0.01, value: 0 },
     rx: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
     ry: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
     rz: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 }
-  }));
+  }), {
+    collapsed: true
+  });
 
   useEffect(() => {
     if (!group) return;

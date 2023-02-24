@@ -1,17 +1,27 @@
 import { create } from "zustand";
+
+import type { Hotspot, Zoom } from "types";
 import config from "config";
 
 type Store = {
-  targetObject: THREE.Group | null,
-  cameraPosition: THREE.Vector3,
-  set: (targetObject: THREE.Group | null, cameraPosition: THREE.Vector3) => void
+  zoomChoices: { [h in Hotspot]: Zoom },
+  updateZoomChoices: (h: Hotspot, z: Zoom) => void,
+
+  currentZoom: Zoom,
+  setCurrentZoom: (h: Hotspot) => void
 }
 
 export default create<Store>((set) => ({
-  targetObject: null,
-  cameraPosition: config.camera.default.position,
-  set: (targetObject, cameraPosition) => set(() => ({
-    targetObject,
-    cameraPosition
+  zoomChoices: config.zoomChoices,
+  updateZoomChoices: (h, z) => set((state) => {
+    const clone = { ...state.zoomChoices };
+    clone[h] = z;
+
+    return { zoomChoices: clone }
+  }),
+
+  currentZoom: config.zoomChoices.default,
+  setCurrentZoom: (h) => set((state) => ({
+    currentZoom: state.zoomChoices[h]
   }))
 }));

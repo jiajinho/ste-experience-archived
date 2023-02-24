@@ -1,8 +1,4 @@
-import React, { useRef } from 'react';
-import * as THREE from 'three';
-
-import config from 'config';
-import useCameraStore from 'store/useCameraStore';
+import React from 'react';
 
 import Wall from './components/Wall';
 import RiftFloor from './components/RiftFloor';
@@ -25,13 +21,6 @@ import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 
 export default () => {
-  const set = useCameraStore(state => state.set);
-
-  const retroTV = useRef<THREE.Group>(null);
-  const bulletinBoard = useRef<THREE.Group>(null);
-  const standingBoard = useRef<THREE.Group>(null);
-  const shelf = useRef<THREE.Group>(null);
-
   return (
     <>
       <Curtain.Large
@@ -98,23 +87,28 @@ export default () => {
       />
 
       <BulletinBoard
-        ref={bulletinBoard}
         position={[-3.22, 1.75, 0.15]}
-        onClick={() => set(bulletinBoard.current, new THREE.Vector3(-2.22, 1.75, 0.15))}
+        zoom={{
+          hotspot: "bulletinBoard",
+          cameraPosition: [-2.22, 1.75, 0.15]
+        }}
       />
 
       <Shelf
-        ref={shelf}
         position={[2.07, 1.15, -4.29]}
-        onClick={() => set(shelf.current, new THREE.Vector3(2.07, 1.15, -3.29))}
+        zoom={{
+          hotspot: "shelf",
+          cameraPosition: [2.07, 1.15, -3.29]
+        }}
       />
 
-
       <StandingBoard
-        ref={standingBoard}
         position={[-0.08, 1.35, -3.51]}
         rotation-y={1.86}
-        onClick={() => set(standingBoard.current, new THREE.Vector3(0.2, 1.35, -2.51))}
+        zoom={{
+          hotspot: "standingBoard",
+          cameraPosition: [0.2, 1.35, -2.51]
+        }}
       />
 
       <Lamp
@@ -149,9 +143,11 @@ export default () => {
       />
 
       <RetroTV
-        ref={retroTV}
         position={[-2.61, 1.07, 3.13]}
-        onClick={() => set(retroTV.current, new THREE.Vector3(-1.61, 1.07, 3.13))}
+        zoom={{
+          hotspot: "retroTV",
+          cameraPosition: [-2.21, 1.07, 3.13]
+        }}
       />
 
       <Candlestand

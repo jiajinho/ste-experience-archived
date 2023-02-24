@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
+import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useMover from "../../useMover";
+import useMover from "../../hooks/useMover";
 
 const gltfUrl = "/static/gltf/tabletop-round.glb";
 const mapUrl = "/static/texture/wood.jpg";
@@ -11,23 +12,28 @@ type GLTFResult = GLTF & {
   nodes: {
     TabletopRoundLeg: THREE.Mesh;
     TabletopRound: THREE.Mesh;
-  };
-  materials: {};
+  }
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
+  const ref = useRef<THREE.Group>(null);
 
-  const { ref, onClick } = useMover(props);
+  const triggerMover = useMover(ref);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
+
+  const handleClick = (e: ThreeEvent<MouseEvent>) => {
+    triggerMover();
+    props.onClick && props.onClick(e);
+  }
 
   return (
     <group
       ref={ref}
       {...props}
-      onClick={onClick}
+      onClick={handleClick}
       dispose={null}
     >
       <mesh geometry={nodes.TabletopRoundLeg.geometry}>

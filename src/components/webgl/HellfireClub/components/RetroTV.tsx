@@ -1,9 +1,10 @@
-import React from "react";
-import { useGLTF } from "@react-three/drei";
+import React, { useRef } from "react";
 import type { GLTF } from "three-stdlib";
+import type { ThreeEvent } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 
-import useMover from "../useMover";
-import { applyRef } from "../utils";
+import useMover from "../hooks/useMover";
+import useZoom, { Zoom } from "../hooks/useZoom";
 
 const url = "/static/gltf/retro-tv.glb";
 
@@ -16,19 +17,27 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default React.forwardRef((
-  props: JSX.IntrinsicElements["group"],
-  ref: React.ForwardedRef<THREE.Group>
+export default ({ zoom, ...props }: {
+  zoom: Zoom
+} & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
+  const ref = useRef<THREE.Group>(null);
 
-  const { ref: _ref, onClick } = useMover(props);
+  const triggerMover = useMover(ref);
+  const triggerZoom = useZoom(ref, zoom);
+
+  const handleClick = (e: ThreeEvent<MouseEvent>) => {
+    triggerZoom();
+    triggerMover();
+    props.onClick && props.onClick(e);
+  }
 
   return (
     <group
-      ref={g => applyRef([ref, _ref], g)}
+      ref={ref}
       {...props}
-      onClick={onClick}
+      onClick={handleClick}
       dispose={null}
     >
       <mesh
@@ -37,6 +46,6 @@ export default React.forwardRef((
       />
     </group>
   );
-});
+}
 
 useGLTF.preload(url);

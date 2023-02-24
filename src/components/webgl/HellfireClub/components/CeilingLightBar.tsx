@@ -1,14 +1,13 @@
-import React, { useMemo } from "react";
+import React, { useRef } from "react";
 import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
+import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import config from "../config";
-import useMover from "../useMover";
-import { useControls } from "leva";
+import useMover from "../hooks/useMover";
 
 const url = "/static/gltf/lightsbar.glb";
-
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -40,14 +39,20 @@ type GLTFResult = GLTF & {
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
+  const ref = useRef<THREE.Group>(null);
 
-  const { ref, onClick } = useMover(props);
+  const triggerMover = useMover(ref);
+
+  const handleClick = (e: ThreeEvent<MouseEvent>) => {
+    triggerMover();
+    props.onClick && props.onClick(e);
+  }
 
   return (
     <group
       ref={ref}
       {...props}
-      onClick={onClick}
+      onClick={handleClick}
       dispose={null}
     >
       <mesh geometry={nodes.Light1Lens.geometry}>
@@ -136,7 +141,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
           color="red"
         />
       </mesh>
-
 
       <mesh
         geometry={nodes.Light1.geometry}
