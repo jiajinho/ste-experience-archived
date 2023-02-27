@@ -14,7 +14,7 @@ export default () => {
     ry: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
     rz: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 }
   }), {
-    collapsed: true
+    collapsed: false
   });
 
   useEffect(() => {

@@ -19,6 +19,7 @@ import QuadLightStand from './components/QuadLightStand';
 import CeilingLightBar from './components/CeilingLightBar';
 import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
+import Chandelier from './components/Chandelier';
 
 export default () => {
   return (
@@ -173,6 +174,13 @@ export default () => {
       <WallLight
         position={[0, 0, -5]}
       />
+
+      <Chandelier
+        position={[3.22, 0.93, 1.4]}
+        rotation={[-0.35, 0.67, 0]}
+      />
+
+
 
 
       <Wall />
