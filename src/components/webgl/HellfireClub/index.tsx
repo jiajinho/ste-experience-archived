@@ -21,6 +21,7 @@ import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
 import MeetingTable from './components/MeetingTable';
+import HellfireBanner from './components/HellfireBanner';
 
 export default () => {
   return (
@@ -183,6 +184,14 @@ export default () => {
 
       <MeetingTable
         position={[0, 0.68, 0]}
+      />
+
+      <HellfireBanner.Welcome
+        position={[-1.76, 2.5, -4.65]}
+      />
+
+      <HellfireBanner.Hellfire
+        position={[1.45, 2.5, -4.65]}
       />
 
 
