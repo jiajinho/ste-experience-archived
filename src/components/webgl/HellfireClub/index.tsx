@@ -135,8 +135,8 @@ export default () => {
       />
 
       <Chair.Ornamental
-        position={[3.6, 0.38, 0.1]}
-        rotation-y={0.68}
+        position={[3.52, 0.38, 0.48]}
+        rotation-y={0.2}
       />
 
       <Chair.Throne
