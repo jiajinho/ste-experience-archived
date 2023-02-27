@@ -20,6 +20,7 @@ import CeilingLightBar from './components/CeilingLightBar';
 import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
+import MeetingTable from './components/MeetingTable';
 
 export default () => {
   return (
@@ -180,6 +181,9 @@ export default () => {
         rotation={[-0.35, 0.67, 0]}
       />
 
+      <MeetingTable
+        position={[0, 0.68, 0]}
+      />
 
 
 
