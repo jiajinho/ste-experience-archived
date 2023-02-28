@@ -27,7 +27,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
       <Bulb
         position={[0.09, -0.47, 1.21]}
-        light={0xff0000}
       />
 
       <Bulb
@@ -36,7 +35,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
       <Bulb
         position={[0.09, -0.47, 0.73]}
-        light={0x00ff00}
       />
 
       <Bulb

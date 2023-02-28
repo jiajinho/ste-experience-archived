@@ -4,7 +4,6 @@ import { SpotLight, useGLTF, useHelper } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import config from '../../config';
-import { useControls } from "leva";
 
 const url = "/static/gltf/ceiling-light-bulb.glb";
 
@@ -24,11 +23,6 @@ export default ({ light, ...props }: {
 
   //@ts-ignore
   useHelper(ref, THREE.SpotLightHelper, light);
-
-  const { attenuation, anglePower } = useControls({
-    attenuation: { min: 0, max: 5, value: 5, step: 0.01 },
-    anglePower: { min: 0, max: 5, value: 0, step: 0.01 },
-  })
 
   useEffect(() => {
     if (!light) return;
@@ -63,9 +57,9 @@ export default ({ light, ...props }: {
           position={[0.08, -0.1, -0.01]}
           distance={10}
           angle={0.3}
-          penumbra={1}
-          attenuation={attenuation}
-          anglePower={anglePower}
+          penumbra={0.5}
+          attenuation={2}
+          anglePower={5}
           color={light}
         />
       }

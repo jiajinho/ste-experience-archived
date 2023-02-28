@@ -16,7 +16,6 @@ import Chair from './components/Chair';
 import RetroTV from './components/RetroTV';
 import Candlestand from './components/Candlestand';
 import QuadLightStand from './components/QuadLightStand';
-import CeilingLightBar from './components/CeilingLightBar';
 import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
@@ -162,12 +161,12 @@ export default () => {
         position={[-2.38, 0, 1.63]}
       />
 
-      <CeilingLightBar
-        position={[-2.68, 3.3, 1.35]}
+      <CeilingLight
+        position={[-2.68, 4.13, 1.35]}
       />
 
-      <CeilingLightBar
-        position={[-2.68, 3.3, -1.35]}
+      <CeilingLight
+        position={[-2.68, 4.13, -1.35]}
       />
 
       <HellfireSignStand
@@ -195,10 +194,6 @@ export default () => {
         position={[1.45, 2.5, -4.65]}
       />
 
-
-      <CeilingLight
-        position={[0, 3, 0]}
-      />
 
 
       <Wall />
