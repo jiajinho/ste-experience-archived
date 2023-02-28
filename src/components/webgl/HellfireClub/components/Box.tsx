@@ -10,11 +10,12 @@ const url = "/static/gltf/box.glb";
 type GLTFResult = GLTF & {
   nodes: {
     Box: THREE.Mesh;
-  };
+  },
   materials: {
     Box: THREE.MeshStandardMaterial;
-  };
+  }
 };
+
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
@@ -34,8 +35,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.Box.geometry}
         material={materials.Box}
       />

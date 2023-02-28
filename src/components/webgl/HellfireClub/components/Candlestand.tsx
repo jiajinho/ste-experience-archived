@@ -13,11 +13,11 @@ type GLTFResult = GLTF & {
     CandlestandFlame: THREE.Mesh;
     CandlestandCandle: THREE.Mesh;
     Candlestand: THREE.Mesh;
-  };
+  },
   materials: {
     Candle: THREE.MeshStandardMaterial;
     Candlestand: THREE.MeshStandardMaterial;
-  };
+  }
 };
 
 export default ({ light, ...props }: {
