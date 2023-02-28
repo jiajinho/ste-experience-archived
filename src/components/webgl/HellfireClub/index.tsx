@@ -22,6 +22,7 @@ import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
 import MeetingTable from './components/MeetingTable';
 import HellfireBanner from './components/HellfireBanner';
+import CeilingLight from './components/CeilingLight';
 
 export default () => {
   return (
@@ -194,6 +195,10 @@ export default () => {
         position={[1.45, 2.5, -4.65]}
       />
 
+
+      <CeilingLight
+        position={[0, 3, 0]}
+      />
 
 
       <Wall />
