@@ -28,9 +28,9 @@ export default () => {
       >
         <Bloom
           luminanceThreshold={1}
-          radius={0.8}
-          intensity={0.8}
-          luminanceSmoothing={0}
+          radius={0.5}
+          intensity={0.6}
+          luminanceSmoothing={0.5}
           mipmapBlur
         />
         <Outline

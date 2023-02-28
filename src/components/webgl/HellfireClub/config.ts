@@ -18,10 +18,10 @@ const curtainMaterial = new THREE.MeshStandardMaterial({
 });
 
 export enum LightColor {
-  Banana = 0xFFDE9F,
-  Cyan = 0xA6FFFA,
-  Teal = 0xABFFE1,
-  Salmon = 0xFFBEAA
+  Yellow = 0xFFB931,
+  Cyan = 0x45E9FF,
+  Teal = 0x29FFB2,
+  Tangerine = 0xFE7044
 }
 
 export default {

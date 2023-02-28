@@ -156,15 +156,15 @@ export default () => {
 
       <Candlestand
         position={[2.3, 0.55, 3.58]}
-        light={LightColor.Banana}
+        light={LightColor.Yellow}
       />
 
       <QuadLightStand
         position={[-2.38, 0, 1.63]}
         lights={[
-          LightColor.Banana,
+          LightColor.Yellow,
           LightColor.Cyan,
-          LightColor.Banana,
+          LightColor.Yellow,
           LightColor.Cyan
         ]}
       />
@@ -172,33 +172,33 @@ export default () => {
       <CeilingLight
         position={[-2.68, 4.13, 1.35]}
         lights={[
-          LightColor.Banana,
+          LightColor.Yellow,
           undefined,
           LightColor.Cyan,
           undefined,
           LightColor.Teal,
           undefined,
           LightColor.Cyan,
-          LightColor.Salmon,
+          LightColor.Tangerine,
           LightColor.Cyan,
           undefined,
-          LightColor.Salmon
+          LightColor.Tangerine
         ]}
       />
 
       <CeilingLight
         position={[-2.68, 4.13, -1.35]}
         lights={[
-          LightColor.Banana,
+          LightColor.Yellow,
           LightColor.Teal,
-          LightColor.Banana,
+          LightColor.Yellow,
           LightColor.Cyan,
           undefined,
           undefined,
           undefined,
-          LightColor.Banana,
+          LightColor.Yellow,
           LightColor.Cyan,
-          LightColor.Salmon,
+          LightColor.Tangerine,
           undefined
         ]}
       />
@@ -218,7 +218,7 @@ export default () => {
       <Chandelier
         position={[3.22, 0.93, 1.4]}
         rotation={[-0.35, 0.67, 0]}
-        light={LightColor.Banana}
+        light={LightColor.Yellow}
       />
 
       <MeetingTable
