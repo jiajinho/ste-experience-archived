@@ -4,8 +4,9 @@ import { useGLTF } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import config from "../config";
+import config, { LightColor } from "../config";
 import useMover from "../hooks/useMover";
+import { Tuple } from "types";
 
 const url = "/static/gltf/quad-lightstand.glb";
 
@@ -27,7 +28,10 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default ({ lights, ...props }: {
+  lights: Tuple<LightColor | undefined, 4>
+} & JSX.IntrinsicElements["group"]
+) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
@@ -48,32 +52,32 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <mesh geometry={nodes.Light1Lens.geometry}>
         <meshStandardMaterial
           {...config.bulbMaterialProps}
-          emissive="red"
-          color="red"
+          emissive={lights[0] || undefined}
+          color={lights[0] || "black"}
         />
       </mesh>
 
       <mesh geometry={nodes.Light2Lens.geometry}>
         <meshStandardMaterial
           {...config.bulbMaterialProps}
-          emissive="red"
-          color="red"
+          emissive={lights[1] || undefined}
+          color={lights[1] || "black"}
         />
       </mesh>
 
       <mesh geometry={nodes.Light3Lens.geometry}>
         <meshStandardMaterial
           {...config.bulbMaterialProps}
-          emissive="red"
-          color="red"
+          emissive={lights[2] || undefined}
+          color={lights[2] || "black"}
         />
       </mesh>
 
       <mesh geometry={nodes.Light4Lens.geometry}>
         <meshStandardMaterial
           {...config.bulbMaterialProps}
-          emissive="red"
-          color="red"
+          emissive={lights[3] || undefined}
+          color={lights[3] || "black"}
         />
       </mesh>
 

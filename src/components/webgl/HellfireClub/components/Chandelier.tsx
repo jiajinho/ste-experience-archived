@@ -4,7 +4,7 @@ import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useMover from "../hooks/useMover";
-import config from "../config";
+import config, { LightColor } from "../config";
 
 const url = "/static/gltf/chandelier.glb";
 
@@ -18,7 +18,10 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default ({ light, ...props }: {
+  light: LightColor
+} & JSX.IntrinsicElements["group"]
+) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
@@ -39,8 +42,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <mesh geometry={nodes.ChandelilerFlame.geometry}>
         <meshStandardMaterial
           {...config.bulbMaterialProps}
-          emissive="red"
-          color="red"
+          emissive={light}
+          color={light}
         />
       </mesh>
       <mesh

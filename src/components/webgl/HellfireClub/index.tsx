@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { LightColor } from './config';
 import Wall from './components/Wall';
 import RiftFloor from './components/RiftFloor';
 import Standee from './components/Standee';
@@ -155,18 +156,51 @@ export default () => {
 
       <Candlestand
         position={[2.3, 0.55, 3.58]}
+        light={LightColor.Banana}
       />
 
       <QuadLightStand
         position={[-2.38, 0, 1.63]}
+        lights={[
+          LightColor.Banana,
+          LightColor.Cyan,
+          LightColor.Banana,
+          LightColor.Cyan
+        ]}
       />
 
       <CeilingLight
         position={[-2.68, 4.13, 1.35]}
+        lights={[
+          LightColor.Banana,
+          undefined,
+          LightColor.Cyan,
+          undefined,
+          LightColor.Teal,
+          undefined,
+          LightColor.Cyan,
+          LightColor.Salmon,
+          LightColor.Cyan,
+          undefined,
+          LightColor.Salmon
+        ]}
       />
 
       <CeilingLight
         position={[-2.68, 4.13, -1.35]}
+        lights={[
+          LightColor.Banana,
+          LightColor.Teal,
+          LightColor.Banana,
+          LightColor.Cyan,
+          undefined,
+          undefined,
+          undefined,
+          LightColor.Banana,
+          LightColor.Cyan,
+          LightColor.Salmon,
+          undefined
+        ]}
       />
 
       <HellfireSignStand
@@ -175,11 +209,16 @@ export default () => {
 
       <WallLight
         position={[0, 0, -5]}
+        lights={[
+          LightColor.Cyan,
+          LightColor.Cyan
+        ]}
       />
 
       <Chandelier
         position={[3.22, 0.93, 1.4]}
         rotation={[-0.35, 0.67, 0]}
+        light={LightColor.Banana}
       />
 
       <MeetingTable

@@ -14,7 +14,7 @@ const Wrapper = styled.main`
 
   height: 100vh;
   width: 100vw;
-  background: #aaa;
+  background: black;
 `;
 
 export default ({ Component, pageProps }: AppProps) => {

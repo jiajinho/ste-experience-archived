@@ -1,3 +1,5 @@
+export type Tuple<T, N extends Number> = [T, ...T[]] & { length: N };
+
 export type Vector3 = [number, number, number];
 
 export type Hotspot =
