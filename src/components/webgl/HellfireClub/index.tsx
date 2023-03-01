@@ -143,7 +143,7 @@ export default () => {
       />
 
       <Chair.Throne
-        position={[0, 0.68, -2.1]}
+        position={[0, 0.68, -1.57]}
       />
 
       <RetroTV
@@ -233,6 +233,35 @@ export default () => {
         position={[1.45, 2.5, -4.65]}
       />
 
+      <Chair.Classic
+        position={[1.12, 0.45, -0.31]}
+        rotation-y={0.1}
+      />
+
+      <Chair.Classic
+        position={[1.0, 0.45, 0.56]}
+        rotation-y={-0.38}
+      />
+
+      <Chair.Classic
+        position={[0.83, 0.45, 1.43]}
+        rotation-y={-0.97}
+      />
+
+      <Chair.Classic
+        position={[-0.56, 0.45, 1.37]}
+        rotation-y={-1.92}
+      />
+
+      <Chair.Classic
+        position={[-1.1, 0.45, 0.15]}
+        rotation-y={-3.4}
+      />
+
+      <Chair.Classic
+        position={[-0.84, 0.45, -0.83]}
+        rotation-y={-3.37}
+      />
 
 
       <Wall />
