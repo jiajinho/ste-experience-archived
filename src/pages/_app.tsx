@@ -2,11 +2,12 @@ import '../styles/globals.css';
 import styled from 'styled-components';
 import type { AppProps } from 'next/app';
 import { Stats } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 
-import { Canvas } from '@react-three/fiber';
+import useToggleEnv from 'hooks/useToggleEnv';
+import useEnvStore from 'store/useEnvStore';
 import CameraUI from 'components/html/CameraUI';
-import useThemeSong from 'hooks/useThemeSong';
 
 const Wrapper = styled.main`
   position: relative;
@@ -18,14 +19,19 @@ const Wrapper = styled.main`
 `;
 
 export default ({ Component, pageProps }: AppProps) => {
+  const env = useEnvStore(state => state.env);
+
   // useThemeSong();
+
+  useToggleEnv();
 
   return (
     <>
-      <Stats />
+      {env === "development" && <Stats />}
 
       <Leva
         collapsed
+        hidden={env !== "development"}
         theme={{ sizes: { numberInputMinWidth: "50px" } }}
       />
 
