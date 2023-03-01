@@ -6,13 +6,14 @@ const url = "/static/gltf/rift-floor.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    floor_LR1: THREE.Mesh;
-    hole_LR1: THREE.Mesh;
-    sinew_LR1: THREE.Mesh;
-    Tentacles_LR1: THREE.Mesh;
+    Sinew: THREE.Mesh;
+    Tentacle: THREE.Mesh;
+    Floor: THREE.Mesh;
   };
   materials: {
-    Rift1: THREE.MeshStandardMaterial;
+    Sinew: THREE.MeshStandardMaterial;
+    Tentacle: THREE.MeshStandardMaterial;
+    Floor: THREE.MeshPhysicalMaterial;
   };
 };
 
@@ -25,20 +26,16 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
-        geometry={nodes.floor_LR1.geometry}
-        material={materials.Rift1}
+        geometry={nodes.Sinew.geometry}
+        material={materials.Sinew}
       />
       <mesh
-        geometry={nodes.hole_LR1.geometry}
-        material={materials.Rift1}
+        geometry={nodes.Tentacle.geometry}
+        material={materials.Tentacle}
       />
       <mesh
-        geometry={nodes.sinew_LR1.geometry}
-        material={materials.Rift1}
-      />
-      <mesh
-        geometry={nodes.Tentacles_LR1.geometry}
-        material={materials.Rift1}
+        geometry={nodes.Floor.geometry}
+        material={materials.Floor}
       />
     </group>
   );
