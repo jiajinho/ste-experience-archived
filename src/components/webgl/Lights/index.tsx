@@ -4,7 +4,7 @@ import BulletinSpotLight from './BulletinSpotLight';
 export default () => {
   return (
     <>
-      <ambientLight intensity={0.3} />
+      <ambientLight intensity={0.25} />
 
       <BulletinSpotLight />
     </>
