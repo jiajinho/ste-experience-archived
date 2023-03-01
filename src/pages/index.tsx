@@ -2,8 +2,10 @@ import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
 
-import HellfireClub from 'components/webgl/HellfireClub';
 import useLevaMover from 'hooks/useLevaMover';
+import useDebugLight from 'hooks/useDebugLight';
+
+import HellfireClub from 'components/webgl/HellfireClub';
 import Camera from 'components/webgl/Camera';
 import Lights from 'components/webgl/Lights';
 
@@ -11,6 +13,7 @@ export default () => {
   const outlineMeshs = useOutlineMeshStore(state => state.meshes);
 
   useLevaMover();
+  useDebugLight(false);
 
   return (
     <>

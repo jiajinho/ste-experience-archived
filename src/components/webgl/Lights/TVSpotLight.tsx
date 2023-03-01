@@ -25,22 +25,23 @@ export default () => {
     debug.current.position.y = ref.current.position.y;
     debug.current.position.z = ref.current.position.z;
 
-    ref.current.target.position.x = -30;
+    ref.current.target.position.x = -40;
     ref.current.target.position.y = -100;
     ref.current.target.position.z = 0;
     ref.current.target.updateMatrixWorld();
+
   }, []);
 
   return (
     <>
       <spotLight
         ref={ref}
-        angle={Math.PI / 7}
+        angle={0.32}
         penumbra={1}
         distance={15}
-        position={[-2.42, 5.6, 0]}
+        position={[-1.46, 3.76, 3.06]}
         intensity={1}
-        power={10}
+        power={2.8}
       />
 
       <DebugBox
