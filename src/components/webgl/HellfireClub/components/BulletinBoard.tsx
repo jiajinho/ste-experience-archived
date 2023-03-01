@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useMover from "../hooks/useMover";
+import useDebug from "../hooks/useDebug";
 import useZoom, { Zoom } from "../hooks/useZoom";
 
 const url = "/static/gltf/bulletin.glb";
@@ -24,7 +24,7 @@ export default ({ zoom, ...props }: {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useMover(ref);
+  const triggerMover = useDebug(ref);
   const triggerZoom = useZoom(ref, zoom);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {

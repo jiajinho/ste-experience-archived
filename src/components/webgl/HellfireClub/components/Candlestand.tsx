@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useMover from "../hooks/useMover";
+import useDebug from "../hooks/useDebug";
 import { ThreeEvent } from "@react-three/fiber";
 import config, { LightColor } from "../config";
 
@@ -27,7 +27,7 @@ export default ({ light, ...props }: {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useMover(ref);
+  const triggerMover = useDebug(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();

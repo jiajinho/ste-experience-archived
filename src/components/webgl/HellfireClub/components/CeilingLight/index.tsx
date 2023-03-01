@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import { ThreeEvent } from '@react-three/fiber';
 
 import { Tuple } from 'types';
-import useMover from '../../hooks/useMover';
+import { LightColor } from '../../config';
+import useDebug from '../../hooks/useDebug';
 import Bar from './Bar';
 import Bulb from './Bulb';
-import { LightColor } from '../../config';
 
 export default ({ lights, ...props }: {
   lights: Tuple<LightColor | undefined, 11>
@@ -13,7 +13,7 @@ export default ({ lights, ...props }: {
 ) => {
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useMover(ref);
+  const triggerMover = useDebug(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();

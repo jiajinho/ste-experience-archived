@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useMover from "../../hooks/useMover";
+import useDebug from "../../hooks/useDebug";
 import config from "../../config";
 
 const url = "/static/gltf/curtain-large.glb";
@@ -18,7 +18,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useMover(ref);
+  const triggerMover = useDebug(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();

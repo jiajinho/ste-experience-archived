@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
 import { useControls } from 'leva';
 
-import useLevaMoverStore from 'store/useLevaMoverStore';
+import useEnvStore from 'store/useEnvStore';
+import useDebugModelStore from 'store/useDebugModelStore';
+import useOutlineMeshStore from 'store/useOutlineMeshStore';
 
-export default () => {
-  const group = useLevaMoverStore(state => state.group);
+export default (collapsed: boolean) => {
+  const env = useEnvStore(state => state.env);
 
-  const [{ x, y, z, rx, ry, rz }, set] = useControls("useLevaMover", () => ({
+  const group = useDebugModelStore(state => state.group);
+  const setOutline = useOutlineMeshStore(state => state.set);
+
+  const [{ x, y, z, rx, ry, rz }, set] = useControls("useDebugModel", () => ({
     x: { min: -5, max: 5, step: 0.01, value: 0 },
     y: { min: -5, max: 5, step: 0.01, value: 0 },
     z: { min: -5, max: 5, step: 0.01, value: 0 },
@@ -14,8 +19,14 @@ export default () => {
     ry: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
     rz: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 }
   }), {
-    collapsed: false
+    collapsed
   });
+
+  useEffect(() => {
+    if (env !== "development") {
+      setOutline([]);
+    }
+  }, [env, setOutline]);
 
   useEffect(() => {
     if (!group) return;

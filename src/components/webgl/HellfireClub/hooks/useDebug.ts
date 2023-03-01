@@ -1,4 +1,4 @@
-import useObjectMoverStore from 'store/useLevaMoverStore';
+import useObjectMoverStore from 'store/useDebugModelStore';
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
 
 const getMeshes = (group: THREE.Group) => {

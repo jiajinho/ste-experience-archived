@@ -3,9 +3,9 @@ import { useGLTF } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import config, { LightColor } from "../config";
-import useMover from "../hooks/useMover";
 import { Tuple } from "types";
+import config, { LightColor } from "../config";
+import useDebug from "../hooks/useDebug";
 
 const url = "/static/gltf/wall-light.glb";
 
@@ -28,7 +28,7 @@ export default ({ lights, ...props }: {
   const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useMover(ref);
+  const triggerMover = useDebug(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
