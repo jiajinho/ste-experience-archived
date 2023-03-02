@@ -7,6 +7,7 @@ import BulletinLight from './components/BulletinLight';
 import TVLight from './components/TVLight';
 import RoomCrimsonLight from './components/RoomCrimsonLight';
 import TVBlueLight from './components/TVBlueLight';
+import LampBlueLight from './components/LampBlueLight';
 
 export default () => {
   const light = useDebugLightStore(state => state.light);
@@ -35,6 +36,8 @@ export default () => {
 
       <TVLight />
       <TVBlueLight />
+
+      <LampBlueLight />
     </>
   )
 }
