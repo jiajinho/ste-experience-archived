@@ -3,9 +3,9 @@ import * as THREE from 'three';
 import { useHelper } from '@react-three/drei';
 
 import useDebugLightStore from 'store/useDebugLightStore';
-import BulletinSpotLight from './components/BulletinSpotLight';
-import TVSpotLight from './components/TVSpotLight';
-import RoomSpotLight from './components/RoomSpotLight';
+import BulletinLight from './components/BulletinLight';
+import TVLight from './components/TVLight';
+import RoomCrimsonLight from './components/RoomCrimsonLight';
 import TVBlueLight from './components/TVBlueLight';
 
 export default () => {
@@ -30,10 +30,10 @@ export default () => {
     <>
       <ambientLight intensity={0.1} />
 
-      <RoomSpotLight />
-      <BulletinSpotLight />
+      <RoomCrimsonLight />
+      <BulletinLight />
 
-      <TVSpotLight />
+      <TVLight />
       <TVBlueLight />
     </>
   )
