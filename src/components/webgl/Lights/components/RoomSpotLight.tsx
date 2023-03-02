@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import DebugBox from './DebugBox';
 import useDebug from '../useDebug';
+import DebugBox from './DebugBox';
 
 export default () => {
   const light = useRef<THREE.SpotLight>(null);
@@ -18,8 +18,8 @@ export default () => {
     box.current.position.y = light.current.position.y;
     box.current.position.z = light.current.position.z;
 
-    light.current.target.position.x = -40;
-    light.current.target.position.y = -100;
+    light.current.target.position.x = 0;
+    light.current.target.position.y = 0;
     light.current.target.position.z = 0;
     light.current.target.updateMatrixWorld();
   }, []);
@@ -28,12 +28,13 @@ export default () => {
     <>
       <spotLight
         ref={light}
-        angle={0.32}
+        angle={0.79}
         penumbra={1}
         distance={15}
-        position={[-1.46, 3.76, 3.06]}
+        position={[5, 5, 5]}
         intensity={1}
-        power={3}
+        power={5}
+        color="#ff927c"
       />
 
       <DebugBox

@@ -5,6 +5,8 @@ import { useHelper } from '@react-three/drei';
 import useDebugLightStore from 'store/useDebugLightStore';
 import BulletinSpotLight from './components/BulletinSpotLight';
 import TVSpotLight from './components/TVSpotLight';
+import RoomSpotLight from './components/RoomSpotLight';
+import TVBlueLight from './components/TVBlueLight';
 
 export default () => {
   const light = useDebugLightStore(state => state.light);
@@ -26,10 +28,13 @@ export default () => {
 
   return (
     <>
-      <ambientLight intensity={0.2} />
+      <ambientLight intensity={0.1} />
 
+      <RoomSpotLight />
       <BulletinSpotLight />
+
       <TVSpotLight />
+      <TVBlueLight />
     </>
   )
 }
