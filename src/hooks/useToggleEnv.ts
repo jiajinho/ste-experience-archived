@@ -12,11 +12,11 @@ export default () => {
       if (e.code !== "KeyD") return;
       if (!e.shiftKey) return;
 
-      if (env === "test") {
+      if (env === "staging") {
         set("development");
       }
       else {
-        set("test");
+        set("staging");
       }
     }
 

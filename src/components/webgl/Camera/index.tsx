@@ -37,6 +37,7 @@ export default () => {
     const endRotation = new THREE.Euler().copy(shadowCamera.current.rotation);
 
 
+    //Animate
     const timeline = gsap.timeline({
       defaults: {
         duration: firstTime.current ? 0 : 1.5,
@@ -44,7 +45,6 @@ export default () => {
       }
     });
 
-    //Animate
     timeline
       .to(camera.position, {
         x: cameraPosition[0],
@@ -59,8 +59,6 @@ export default () => {
 
     firstTime.current = false;
   }, [currentZoom]);
-
-  console.log(freeCam);
 
   return (
     <>
