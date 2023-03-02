@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-
-import DebugBox from './DebugBox';
-import useDebugLight from './useDebug';
-import useDebugLightStore from 'store/useDebugLightStore';
 import { useHelper } from '@react-three/drei';
+
+import useDebugLightStore from 'store/useDebugLightStore';
+import useDebug from '../useDebug';
+import DebugBox from './DebugBox';
 
 export default () => {
   const light = useDebugLightStore(state => state.light);
@@ -12,7 +12,7 @@ export default () => {
   const ref = useRef<THREE.SpotLight>(null);
   const debug = useRef<THREE.Mesh>(null);
 
-  const triggerControl = useDebugLight(ref, debug);
+  const triggerControl = useDebug(ref, debug);
 
   //@ts-ignore
   useHelper(light && light.uuid === ref.current?.uuid && ref, THREE.SpotLightHelper, "cyan");

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import BulletinSpotLight from './BulletinSpotLight';
-import TVSpotLight from './TVSpotLight';
+import BulletinSpotLight from './components/BulletinSpotLight';
+import TVSpotLight from './components/TVSpotLight';
 
 export default () => {
   return (
