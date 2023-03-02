@@ -3,12 +3,13 @@ import gsap from 'gsap';
 import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { useControls } from 'leva';
 
 import useCameraStore from 'store/useCameraStore';
+import useDebug from './useDebug';
 
 export default () => {
   const { camera } = useThree();
+  const freeCam = useDebug();
 
   const shadowCamera = useRef<THREE.PerspectiveCamera>(null);
   const firstTime = useRef(true);
@@ -16,34 +17,16 @@ export default () => {
   const zoomChoices = useCameraStore(state => state.zoomChoices);
   const currentZoom = useCameraStore(state => state.currentZoom);
 
-  const { rx, ry, rz, x, y, z, freeCam } = useControls("Camera", {
-    rx: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
-    ry: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
-    rz: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
-    x: { min: -20, max: 20, step: 0.01, value: 0 },
-    y: { min: -20, max: 20, step: 0.01, value: 0 },
-    z: { min: -20, max: 20, step: 0.01, value: 0 },
-    freeCam: false
-  }, {
-    collapsed: true
-  });
-
-  useEffect(() => {
-    camera.position.x = x;
-    camera.position.y = y;
-    camera.position.z = z;
-  }, [rx, ry, rz, x, y, z]);
-
   useEffect(() => {
     if (!shadowCamera.current) return;
 
+    //Calculate the end rotation
     const { lookAt, cameraPosition } = zoomChoices[currentZoom];
 
     if (!lookAt || !cameraPosition) {
       console.warn("lookAt and cameraPosition is undefined");
       return;
     }
-
 
     shadowCamera.current.position.x = cameraPosition[0];
     shadowCamera.current.position.y = cameraPosition[1];
@@ -61,6 +44,7 @@ export default () => {
       }
     });
 
+    //Animate
     timeline
       .to(camera.position, {
         x: cameraPosition[0],
@@ -70,15 +54,13 @@ export default () => {
       .to(camera.rotation, {
         x: endRotation.x,
         y: endRotation.y,
-        z: endRotation.z,
-      });
+        z: currentZoom === "book" ? -endRotation.z : endRotation.z,
+      }, 0);
 
     firstTime.current = false;
   }, [currentZoom]);
 
-  useEffect(() => {
-    console.log("camera position", camera.position);
-  }, [camera.position.x, camera.position.y, camera.position.z]);
+  console.log(freeCam);
 
   return (
     <>

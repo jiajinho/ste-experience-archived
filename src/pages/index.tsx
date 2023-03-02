@@ -2,6 +2,7 @@ import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
 
+import useEnvStore from 'store/useEnvStore';
 import useDebugModel from 'hooks/useDebugModel';
 import useDebugLight from 'hooks/useDebugLight';
 
@@ -10,14 +11,15 @@ import Camera from 'components/webgl/Camera';
 import Lights from 'components/webgl/Lights';
 
 export default () => {
-  const outlineMeshs = useOutlineMeshStore(state => state.meshes);
+  const env = useEnvStore(state => state.env);
+  const outlineMeshes = useOutlineMeshStore(state => state.meshes);
 
   useDebugModel(true);
   useDebugLight(true);
 
   return (
     <>
-      <axesHelper args={[1]} />
+      {env === "development" && <axesHelper args={[1]} />}
 
       <HellfireClub />
       <Camera />
@@ -37,7 +39,7 @@ export default () => {
           mipmapBlur
         />
         <Outline
-          selection={outlineMeshs}
+          selection={outlineMeshes}
           visibleEdgeColor={0xff0000}
           hiddenEdgeColor={0xffffff}
           edgeStrength={2.5}

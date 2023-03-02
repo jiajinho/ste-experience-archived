@@ -1,3 +1,4 @@
+import useEnvStore from 'store/useEnvStore';
 import useObjectMoverStore from 'store/useDebugModelStore';
 import useOutlineMeshStore from 'store/useOutlineMeshStore';
 
@@ -17,11 +18,14 @@ const getMeshes = (group: THREE.Group) => {
 }
 
 export default (ref: React.RefObject<THREE.Group>) => {
+  const env = useEnvStore(state => state.env);
+
   const setObjectMoverTarget = useObjectMoverStore(state => state.set);
   const setOutlineTargets = useOutlineMeshStore(state => state.set)
 
   const triggerMover = () => {
     if (!ref.current) return;
+    if (env !== "development") return;
 
     setObjectMoverTarget(ref.current);
     setOutlineTargets(getMeshes(ref.current));
