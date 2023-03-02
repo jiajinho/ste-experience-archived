@@ -1,41 +1,33 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { useHelper } from '@react-three/drei';
 
-import useDebugLightStore from 'store/useDebugLightStore';
 import DebugBox from './DebugBox';
 import useDebug from '../useDebug';
 
 export default () => {
-  const light = useDebugLightStore(state => state.light);
+  const light = useRef<THREE.SpotLight>(null);
+  const box = useRef<THREE.Mesh>(null);
 
-  const ref = useRef<THREE.SpotLight>(null);
-  const debug = useRef<THREE.Mesh>(null);
-
-  const triggerControl = useDebug(ref, debug);
-
-  //@ts-ignore
-  useHelper(light && light.uuid === ref.current?.uuid && ref, THREE.SpotLightHelper, "cyan");
+  const triggerControl = useDebug(light, box);
 
   useEffect(() => {
-    if (!ref.current) return;
-    if (!debug.current) return;
+    if (!light.current) return;
+    if (!box.current) return;
 
-    debug.current.position.x = ref.current.position.x;
-    debug.current.position.y = ref.current.position.y;
-    debug.current.position.z = ref.current.position.z;
+    box.current.position.x = light.current.position.x;
+    box.current.position.y = light.current.position.y;
+    box.current.position.z = light.current.position.z;
 
-    ref.current.target.position.x = -40;
-    ref.current.target.position.y = -100;
-    ref.current.target.position.z = 0;
-    ref.current.target.updateMatrixWorld();
-
+    light.current.target.position.x = -40;
+    light.current.target.position.y = -100;
+    light.current.target.position.z = 0;
+    light.current.target.updateMatrixWorld();
   }, []);
 
   return (
     <>
       <spotLight
-        ref={ref}
+        ref={light}
         angle={0.32}
         penumbra={1}
         distance={15}
@@ -45,8 +37,8 @@ export default () => {
       />
 
       <DebugBox
-        ref={debug}
-        position={ref.current?.position}
+        ref={box}
+        position={light.current?.position}
         onClick={triggerControl}
       />
     </>
