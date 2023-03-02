@@ -23,7 +23,7 @@ export default () => {
     x: { min: -20, max: 20, step: 0.01, value: 0 },
     y: { min: -20, max: 20, step: 0.01, value: 0 },
     z: { min: -20, max: 20, step: 0.01, value: 0 },
-    freeCam: true
+    freeCam: false
   }, {
     collapsed: true
   });
@@ -71,7 +71,7 @@ export default () => {
         x: endRotation.x,
         y: endRotation.y,
         z: endRotation.z,
-      }, "0");
+      });
 
     firstTime.current = false;
   }, [currentZoom]);

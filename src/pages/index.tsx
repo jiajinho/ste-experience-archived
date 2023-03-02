@@ -13,7 +13,7 @@ export default () => {
   const outlineMeshs = useOutlineMeshStore(state => state.meshes);
 
   useDebugModel(true);
-  useDebugLight(false);
+  useDebugLight(true);
 
   return (
     <>

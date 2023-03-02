@@ -17,6 +17,7 @@ const zoomChoices: { [h in Hotspot]: Zoom } = {
   retroTV: {},
   bulletinBoard: {},
   standingBoard: {},
+  book: {},
   shelf: {}
 }
 

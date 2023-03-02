@@ -23,6 +23,7 @@ import Chandelier from './components/Chandelier';
 import MeetingTable from './components/MeetingTable';
 import HellfireBanner from './components/HellfireBanner';
 import CeilingLight from './components/CeilingLight';
+import Book from './components/Book';
 
 export default () => {
   return (
@@ -261,6 +262,14 @@ export default () => {
       <Chair.Classic
         position={[-0.84, 0.45, -0.83]}
         rotation-y={-3.37}
+      />
+
+      <Book
+        position={[0, 0.83, -0.68]}
+        zoom={{
+          hotspot: "book",
+          cameraPosition: [0, 1.2, -0.7]
+        }}
       />
 
 

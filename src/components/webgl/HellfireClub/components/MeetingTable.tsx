@@ -31,7 +31,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     <group
       ref={ref}
       {...props}
-      onClick={handleClick}
+      // onClick={handleClick}
       dispose={null}
     >
       <mesh

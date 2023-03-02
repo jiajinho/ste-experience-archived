@@ -7,7 +7,8 @@ export type Hotspot =
   "shelf" |
   "bulletinBoard" |
   "standingBoard" |
-  "retroTV";
+  "retroTV" |
+  "book";
 
 export type Zoom = {
   cameraPosition?: Vector3,
