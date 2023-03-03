@@ -33,7 +33,7 @@ export default () => {
         distance={15}
         position={[-1.46, 3.76, 3.06]}
         intensity={1}
-        power={3}
+        power={4}
       />
 
       <DebugBox
