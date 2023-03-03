@@ -24,6 +24,10 @@ import MeetingTable from './components/MeetingTable';
 import HellfireBanner from './components/HellfireBanner';
 import CeilingLight from './components/CeilingLight';
 import Book from './components/Book';
+import Cup from './components/Cup';
+import Map from './components/Map';
+import Page from './components/Page';
+import Dossier from './components/Dossier';
 
 export default () => {
   return (
@@ -265,11 +269,68 @@ export default () => {
       />
 
       <Book
-        position={[0, 0.83, -0.68]}
+        position={[0, 0.83, -0.73]}
         zoom={{
           hotspot: "book",
           cameraPosition: [0, 1.2, -0.7]
         }}
+      />
+
+      <Cup
+        position={[0.28, 0.89, -0.69]}
+      />
+
+      <Map
+        position={[0, 0.815, 0.05]}
+      />
+
+      <Page.Rafflesia
+        position={[0.27, 0.825, -0.23]}
+        rotation-y={-0.1}
+      />
+
+      <Page.Rafflesia
+        position={[-0.29, 0.825, 0.3]}
+        rotation-y={-1.96}
+      />
+
+      <Page.Rafflesia
+        position={[0.3, 0.825, 0.73]}
+        rotation-y={-1.54}
+      />
+
+      <Page.Demogorgon
+        position={[-0.25, 0.825, -0.31]}
+        rotation-y={-0.48}
+      />
+
+      <Page.Demogorgon
+        position={[0.22, 0.83, 0.63]}
+        rotation-y={0.96}
+      />
+
+      <Cup
+        position={[-0.27, 0.9, -0.33]}
+      />
+
+      <Cup
+        position={[0.25, 0.87, 0.7]}
+        rotation={[1.35, 0, -0.97]}
+      />
+
+      <Dossier.DarkBlue
+        position={[0.10, 0.975, -0.45]}
+        rotation-y={0.25}
+      />
+
+      <Dossier.Yellow
+        position={[-0.17, 0.96, -0.45]}
+        rotation-y={-0.47}
+      />
+
+      <Page.Rafflesia
+        position={[0.21, 0.975, -0.50]}
+        rotation={[0, 2.08, -Math.PI / 2]}
       />
 
 

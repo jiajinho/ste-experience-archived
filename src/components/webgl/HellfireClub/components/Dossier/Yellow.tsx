@@ -3,33 +3,27 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useDebug from "../hooks/useDebug";
-import useZoom, { Zoom } from "../hooks/useZoom";
+import useDebug from "../../hooks/useDebug";
 
-const gltfUrl = "/static/gltf/book.glb";
+const gltfUrl = "/static/gltf/dossier-yellow.glb";
 const mapUrl = "/static/texture/dnd.jpg";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Book: THREE.Mesh;
+    DossierYellow: THREE.Mesh;
   }
 };
 
-export default ({ zoom, ...props }: {
-  zoom: Zoom
-} & JSX.IntrinsicElements["group"]
-) => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useDebug(ref);
-  const triggerZoom = useZoom(ref, zoom);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerZoom();
     triggerMover();
     props.onClick && props.onClick(e);
   }
@@ -41,10 +35,10 @@ export default ({ zoom, ...props }: {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.Book.geometry}>
+      <mesh geometry={nodes.DossierYellow.geometry}>
         <meshStandardMaterial
           map={map}
-          metalness={0.3}
+          metalness={0.1}
           roughness={0.3}
         />
       </mesh>
