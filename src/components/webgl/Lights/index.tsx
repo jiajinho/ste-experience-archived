@@ -9,6 +9,7 @@ import RoomCrimsonLight from './components/RoomCrimsonLight';
 import TVBlueLight from './components/TVBlueLight';
 import LampBlueLight from './components/LampBlueLight';
 import ShelfLight from './components/ShelfLight';
+import DnDLight from './components/DnDLight';
 
 export default () => {
   const light = useDebugLightStore(state => state.light);
@@ -33,6 +34,7 @@ export default () => {
       <ambientLight intensity={0.1} />
 
       <RoomCrimsonLight />
+
       <BulletinLight />
 
       <TVLight />
@@ -41,6 +43,8 @@ export default () => {
       <LampBlueLight />
 
       <ShelfLight />
+
+      <DnDLight />
     </>
   )
 }
