@@ -8,6 +8,7 @@ import TVLight from './components/TVLight';
 import RoomCrimsonLight from './components/RoomCrimsonLight';
 import TVBlueLight from './components/TVBlueLight';
 import LampBlueLight from './components/LampBlueLight';
+import ShelfLight from './components/ShelfLight';
 
 export default () => {
   const light = useDebugLightStore(state => state.light);
@@ -38,6 +39,8 @@ export default () => {
       <TVBlueLight />
 
       <LampBlueLight />
+
+      <ShelfLight />
     </>
   )
 }
