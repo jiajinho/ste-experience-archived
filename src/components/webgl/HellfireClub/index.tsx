@@ -28,6 +28,9 @@ import Cup from './components/Cup';
 import Map from './components/Map';
 import Page from './components/Page';
 import Dossier from './components/Dossier';
+import Soda from './components/Soda';
+import Paper from './components/Paper';
+import Dice from './components/Dice';
 
 export default () => {
   return (
@@ -285,7 +288,7 @@ export default () => {
       />
 
       <Page.Rafflesia
-        position={[0.27, 0.825, -0.23]}
+        position={[0.27, 0.825, -0.16]}
         rotation-y={-0.1}
       />
 
@@ -343,6 +346,37 @@ export default () => {
         rotation={[0, 2.08, -Math.PI / 2]}
       />
 
+      <Soda
+        position={[-0.23, 0.875, 0.06]}
+      />
+
+      <Soda
+        position={[0.25, 0.845, -0.3]}
+        rotation={[0, 2.05, Math.PI / 2]}
+      />
+
+      <Paper.Scribbled
+        position={[2.08, 0, -3.4]}
+        rotation-y={1.15}
+      />
+
+      <Paper.Empty
+        position={[1.94, 0.01, -3.5]}
+        rotation-y={2.31}
+      />
+
+      <Paper.Yellow
+        position={[2.53, 0, -3.6]}
+        rotation-y={-2.07}
+      />
+
+      <Paper.Crumpled
+        position={[-2.38, 0.01, -0.46]}
+      />
+
+      <Dice
+        position={[0.18, 0.835, -0.1]}
+      />
 
       <Wall />
       <RiftFloor />
