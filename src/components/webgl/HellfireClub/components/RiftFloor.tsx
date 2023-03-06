@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import gsap from "gsap";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
@@ -20,8 +21,23 @@ type GLTFResult = GLTF & {
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
-  materials.Floor.emissiveIntensity = 30;
-  materials.Floor.toneMapped = false;
+  useEffect(() => {
+    if (!materials) return;
+
+    materials.Floor.emissiveIntensity = 10;
+    materials.Floor.toneMapped = false;
+
+    const tween = gsap.to(materials.Floor, {
+      duration: 2.5,
+      ease: "power2.inOut",
+      emissiveIntensity: 30,
+      yoyo: true,
+      repeat: -1,
+    });
+
+    return () => { tween.kill() }
+  }, [materials]);
+
 
   return (
     <group
