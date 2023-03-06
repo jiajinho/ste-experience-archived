@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 import { useControls } from 'leva';
+import useEnvStore from 'store/useEnvStore';
 
 export default () => {
+  const env = useEnvStore(state => state.env);
   const camera = useThree(state => state.camera);
 
   const { rx, ry, rz, x, y, z, freeCam } = useControls("useDebugCamera", {
@@ -12,7 +14,7 @@ export default () => {
     x: { min: -20, max: 20, step: 0.01, value: 0 },
     y: { min: -20, max: 20, step: 0.01, value: 0 },
     z: { min: -20, max: 20, step: 0.01, value: 0 },
-    freeCam: true
+    freeCam: env === "development"
   }, {
     collapsed: true
   });
