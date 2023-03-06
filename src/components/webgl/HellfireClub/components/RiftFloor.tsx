@@ -20,6 +20,9 @@ type GLTFResult = GLTF & {
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
+  materials.Floor.emissiveIntensity = 30;
+  materials.Floor.toneMapped = false;
+
   return (
     <group
       {...props}
