@@ -328,6 +328,16 @@ export default () => {
         rotation-y={-0.47}
       />
 
+      <Dossier.Violet
+        position={[0.29, 0.83, 0.29]}
+        rotation-y={1.6}
+      />
+
+      <Dossier.Green
+        position={[-0.18, 0.83, 0.75]}
+        rotation-y={3.08}
+      />
+
       <Page.Rafflesia
         position={[0.21, 0.975, -0.50]}
         rotation={[0, 2.08, -Math.PI / 2]}

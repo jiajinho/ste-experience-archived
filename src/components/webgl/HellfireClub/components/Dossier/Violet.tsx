@@ -5,12 +5,12 @@ import type { GLTF } from "three-stdlib";
 
 import useDebug from "../../hooks/useDebug";
 
-const gltfUrl = "/static/gltf/dossier-darkblue.glb";
+const gltfUrl = "/static/gltf/dossier-violet.glb";
 const mapUrl = "/static/texture/dnd.jpg";
 
 type GLTFResult = GLTF & {
   nodes: {
-    DossierDarkBlue: THREE.Mesh;
+    DossierViolet: THREE.Mesh;
   }
 };
 
@@ -35,7 +35,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.DossierDarkBlue.geometry}>
+      <mesh geometry={nodes.DossierViolet.geometry}>
         <meshStandardMaterial
           map={map}
           metalness={0.1}
