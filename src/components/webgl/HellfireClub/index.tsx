@@ -108,6 +108,7 @@ export default () => {
 
       <Lamp
         position={[-2.3, 1.26, -4.13]}
+        rotation-y={-3.08}
       />
 
       <Coffin
