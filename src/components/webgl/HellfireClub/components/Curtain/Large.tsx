@@ -4,7 +4,6 @@ import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useDebug from "../../hooks/useDebug";
-import config from "../../config";
 
 const url = "/static/gltf/curtain-large.glb";
 
@@ -14,7 +13,10 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default ({ material, ...props }: {
+  material: THREE.Material
+} & JSX.IntrinsicElements["group"]
+) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
@@ -34,7 +36,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     >
       <mesh
         geometry={nodes.CurtainLarge.geometry}
-        material={config.curtainMaterial}
+        material={material}
       />
     </group>
   );

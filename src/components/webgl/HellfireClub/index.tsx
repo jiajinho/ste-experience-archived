@@ -2,11 +2,12 @@ import React from 'react';
 
 import { LightColor } from './config';
 import PaperGroup from './groups/PaperGroup';
+import CurtainGroup from './groups/CurtainGroup';
+
 
 import Wall from './components/Wall';
 import RiftFloor from './components/RiftFloor';
 import Standee from './components/Standee';
-import Curtain from './components/Curtain';
 import Box from './components/Box';
 import Ladder from './components/Ladder';
 import BulletinBoard from './components/BulletinBoard';
@@ -37,28 +38,7 @@ import Rift from './components/Rift';
 export default () => {
   return (
     <>
-      <Curtain.Large
-        position={[-3.14, 2.53, -2.76]}
-        rotation-y={Math.PI / 2}
-      />
-
-      <Curtain.Large
-        position={[-3.14, 2.52, 3.06]}
-        rotation-y={Math.PI / 2}
-      />
-
-      <Curtain.Classic
-        position={[2.57, 2.5, -4.8]}
-      />
-
-      <Curtain.Classic
-        position={[4.21, 2.46, -3.13]}
-        rotation-y={-Math.PI / 2}
-      />
-
-      <Curtain.Classic
-        position={[-2.17, 2.52, -4.8]}
-      />
+      <CurtainGroup />
 
       <Box
         position={[-1.3, 0.38, 4.44]}
