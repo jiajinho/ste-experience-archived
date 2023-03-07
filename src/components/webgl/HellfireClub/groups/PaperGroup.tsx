@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import * as THREE from 'three';
+import { useTexture } from '@react-three/drei';
 
 import Paper from '@hellfire/components/Paper';
-import { useTexture } from '@react-three/drei';
 
 const mapUrl = "/static/texture/soda-dice-paper.jpg";
 

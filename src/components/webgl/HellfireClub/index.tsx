@@ -3,7 +3,7 @@ import React from 'react';
 import { LightColor } from './config';
 import PaperGroup from './groups/PaperGroup';
 import CurtainGroup from './groups/CurtainGroup';
-
+import CandlestandGroup from './groups/CandlestandGroup';
 
 import Wall from './components/Wall';
 import RiftFloor from './components/RiftFloor';
@@ -18,7 +18,6 @@ import Coffin from './components/Coffin';
 import Tabletop from './components/Tabletop';
 import Chair from './components/Chair';
 import RetroTV from './components/RetroTV';
-import Candlestand from './components/Candlestand';
 import QuadLightStand from './components/QuadLightStand';
 import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
@@ -39,6 +38,8 @@ export default () => {
   return (
     <>
       <CurtainGroup />
+
+      <CandlestandGroup />
 
       <Box
         position={[-1.3, 0.38, 4.44]}
@@ -142,11 +143,6 @@ export default () => {
           hotspot: "retroTV",
           cameraPosition: [-2.21, 1.07, 3.13]
         }}
-      />
-
-      <Candlestand
-        position={[2.3, 0.55, 3.58]}
-        light={LightColor.Yellow}
       />
 
       <QuadLightStand
