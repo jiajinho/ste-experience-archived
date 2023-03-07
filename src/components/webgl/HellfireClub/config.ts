@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 const bulbMaterialProps: THREE.MeshStandardMaterialParameters = {
   toneMapped: false,
-  emissiveIntensity: 5
+  emissiveIntensity: 10
 }
 
 const lightStandMaterial = new THREE.MeshStandardMaterial({
