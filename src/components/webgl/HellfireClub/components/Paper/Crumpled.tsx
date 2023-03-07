@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useDebug from "../../hooks/useDebug";
+import useDebug from "@hellfire/hooks/useDebug";
 
-const gltfUrl = "/static/gltf/paper-crumpled.glb";
-const mapUrl = "/static/texture/soda-dice-paper.jpg";
+const url = "/static/gltf/paper-crumpled.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -14,14 +13,14 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
+export default ({ material, ...props }: {
+  material?: THREE.Material
+} & JSX.IntrinsicElements["group"]
+) => {
+  const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useDebug(ref);
-
-  const { map } = useTexture({ map: mapUrl });
-  map.flipY = false;
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
@@ -37,16 +36,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     >
       <mesh
         geometry={nodes.CrumpledPaper.geometry}
+        material={material}
         scale={1.5}
-      >
-        <meshStandardMaterial
-          map={map}
-          metalness={0.1}
-          roughness={0.3}
-        />
-      </mesh>
+      />
     </group>
   );
 }
 
-useGLTF.preload(gltfUrl);
+useGLTF.preload(url);

@@ -11,12 +11,6 @@ const lightStandMaterial = new THREE.MeshStandardMaterial({
   color: "#040406"
 });
 
-const curtainMaterial = new THREE.MeshStandardMaterial({
-  roughness: 0.8,
-  metalness: 0.1,
-  color: "black"
-});
-
 export enum LightColor {
   Yellow = 0xFFB931,
   Cyan = 0x45E9FF,
@@ -27,5 +21,4 @@ export enum LightColor {
 export default {
   bulbMaterialProps,
   lightStandMaterial,
-  curtainMaterial,
 }

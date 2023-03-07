@@ -1,12 +1,9 @@
 import React, { useMemo } from 'react';
 import * as THREE from 'three';
 
-import Curtain from '../components/Curtain';
+import Curtain from '@hellfire/components/Curtain';
 
 export default () => {
-
-
-
   const clothMaterial = useMemo(() => new THREE.MeshStandardMaterial({
     roughness: 0.2,
     metalness: 0.5,
