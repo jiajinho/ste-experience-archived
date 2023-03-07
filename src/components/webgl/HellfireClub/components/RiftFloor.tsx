@@ -26,6 +26,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
     materials.Floor.emissiveIntensity = 10;
     materials.Floor.toneMapped = false;
+    materials.Floor.metalness = 0.3;
+    materials.Floor.roughness = 0.6;
 
     const tween = gsap.to(materials.Floor, {
       duration: 2.5,
