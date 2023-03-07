@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { LightColor } from './config';
+import PaperGroup from './groups/PaperGroup';
+
 import Wall from './components/Wall';
 import RiftFloor from './components/RiftFloor';
 import Standee from './components/Standee';
@@ -29,7 +31,6 @@ import Map from './components/Map';
 import Page from './components/Page';
 import Dossier from './components/Dossier';
 import Soda from './components/Soda';
-import Paper from './components/Paper';
 import Dice from './components/Dice';
 import Rift from './components/Rift';
 
@@ -356,25 +357,6 @@ export default () => {
         rotation={[0, 2.05, Math.PI / 2]}
       />
 
-      <Paper.Scribbled
-        position={[2.08, 0, -3.4]}
-        rotation-y={1.15}
-      />
-
-      <Paper.Empty
-        position={[1.94, 0.01, -3.5]}
-        rotation-y={2.31}
-      />
-
-      <Paper.Yellow
-        position={[2.53, 0, -3.6]}
-        rotation-y={-2.07}
-      />
-
-      <Paper.Crumpled
-        position={[-2.38, 0.01, -0.46]}
-      />
-
       <Dice
         position={[0.18, 0.835, -0.1]}
       />
@@ -402,6 +384,8 @@ export default () => {
         rotation={[0, -Math.PI / 2, -0.38]}
         scale={0.6}
       />
+
+      <PaperGroup />
 
       <Wall />
       <RiftFloor />

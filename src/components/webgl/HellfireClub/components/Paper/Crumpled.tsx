@@ -35,7 +35,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.CrumpledPaper.geometry}>
+      <mesh
+        geometry={nodes.CrumpledPaper.geometry}
+        scale={1.5}
+      >
         <meshStandardMaterial
           map={map}
           metalness={0.1}
