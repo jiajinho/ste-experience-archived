@@ -12,11 +12,15 @@ const normalMapUrl = "/static/texture/lamp-normal.jpg";
 
 type GLTFResult = GLTF & {
   nodes: {
+    LampHead: THREE.Mesh;
     Lamp: THREE.Mesh;
-  }
+  };
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  /**
+   * Hooks
+   */
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
@@ -31,22 +35,40 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     if (!colorMap) return;
     if (!normalMap) return;
 
-    colorMap.flipY = false;
-    normalMap.flipY = false;
-
     return new THREE.MeshStandardMaterial({
-      metalness: 0.4,
-      roughness: 0.4,
+      metalness: 0.6,
+      roughness: 0.2,
       map: colorMap,
       normalMap: normalMap
     });
   }, [colorMap, normalMap]);
+
+  const lampHeadMaterial = useMemo(() => {
+    if (!colorMap) return;
+    if (!normalMap) return;
+
+    return new THREE.MeshStandardMaterial({
+      metalness: 0.3,
+      roughness: 0.7,
+      map: colorMap,
+      normalMap: normalMap
+    });
+  }, [colorMap, normalMap]);
+
+  /**
+   * Not hooks
+   */
+  colorMap.flipY = false;
+  normalMap.flipY = false;
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
     props.onClick && props.onClick(e);
   }
 
+  /**
+   * Render
+   */
   return (
     <group
       ref={ref}
@@ -54,6 +76,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
+      <mesh
+        castShadow
+        geometry={nodes.LampHead.geometry}
+        material={lampHeadMaterial}
+      />
       <mesh
         castShadow
         geometry={nodes.Lamp.geometry}
