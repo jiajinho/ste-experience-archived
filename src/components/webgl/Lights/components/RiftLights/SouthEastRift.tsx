@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import { LightColor } from '../config';
-import useDebug from '../useDebug';
-import DebugBox from './DebugBox';
+import { LightColor } from '../../config';
+import useDebug from '../../useDebug';
+import DebugBox from '../DebugBox';
 
-export default () => {
+export default ({ debug = false }: {
+  debug?: boolean
+}) => {
   const light = useRef<THREE.SpotLight>(null);
   const box = useRef<THREE.Mesh>(null);
 
@@ -13,16 +15,15 @@ export default () => {
 
   useEffect(() => {
     if (!light.current) return;
-    if (!box.current) return;
+    light.current.target.position.x = 75;
+    light.current.target.position.y = -5;
+    light.current.target.position.z = -100;
+    light.current.target.updateMatrixWorld();
 
+    if (!box.current) return;
     box.current.position.x = light.current.position.x;
     box.current.position.y = light.current.position.y;
     box.current.position.z = light.current.position.z;
-
-    light.current.target.position.x = 0;
-    light.current.target.position.y = 0;
-    light.current.target.position.z = 0;
-    light.current.target.updateMatrixWorld();
   }, []);
 
   return (
@@ -30,20 +31,21 @@ export default () => {
       <spotLight
         ref={light}
         castShadow
-        angle={0.79}
+        angle={0.75}
         penumbra={1}
-        distance={15}
-        position={[5, 5, 5]}
+        distance={6}
+        position={[0.14, 0.3, 0]}
         intensity={1}
-        power={3}
         color={LightColor.Coral}
       />
 
-      <DebugBox
-        ref={box}
-        position={light.current?.position}
-        onClick={triggerControl}
-      />
+      {debug &&
+        <DebugBox
+          ref={box}
+          position={light.current?.position}
+          onClick={triggerControl}
+        />
+      }
     </>
   )
 }

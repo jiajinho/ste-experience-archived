@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useDebug from "../hooks/useDebug";
+import useDebug from "@hellfire/hooks/useDebug";
 
 const url = "/static/gltf/meeting-table.glb";
 

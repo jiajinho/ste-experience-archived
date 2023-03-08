@@ -7,7 +7,7 @@ export default (collapsed: boolean) => {
   const light = useDebugLightStore(state => state.light);
   const box = useDebugLightStore(state => state.box);
 
-  const [{ x, y, z, tx, ty, tz, angle, power, distance, color }, set] = useControls("useDebugLight", () => ({
+  const [{ x, y, z, tx, ty, tz, angle, power, intensity, distance, color }, set] = useControls("useDebugLight", () => ({
     x: { min: -10, max: 10, value: 0, step: 0.01 },
     y: { min: -10, max: 10, value: 0, step: 0.01 },
     z: { min: -10, max: 10, value: 0, step: 0.01 },
@@ -15,8 +15,9 @@ export default (collapsed: boolean) => {
     ty: { min: -100, max: 100, value: -100, step: 5 },
     tz: { min: -100, max: 100, value: 0, step: 5 },
     angle: { min: 0, max: Math.PI / 2, value: 0, step: 0.01 },
-    power: { min: 1, max: 10, step: 0.1, value: 1 },
-    distance: { min: 5, max: 30, step: 1, value: 15 },
+    power: { min: 0, max: 10, step: 0.1, value: 1 },
+    intensity: { min: 0, max: 10, step: 0.1, value: 1 },
+    distance: { min: 0, max: 30, step: 1, value: 15 },
     color: "#ffffff"
   }), {
     collapsed
@@ -35,20 +36,18 @@ export default (collapsed: boolean) => {
       angle: light.angle,
       power: light.power,
       distance: light.distance,
+      intensity: light.intensity,
       color: `#${light.color.getHexString()}`
     });
-
-    console.log(light.color.getHexString());
   }, [light]);
 
   useEffect(() => {
     if (!light) return;
-    if (!box) return;
-
     light.position.x = x;
     light.position.y = y;
     light.position.z = z;
 
+    if (!box) return;
     box.position.x = x;
     box.position.y = y;
     box.position.z = z;
@@ -68,7 +67,8 @@ export default (collapsed: boolean) => {
 
     light.angle = angle;
     light.power = power;
+    light.intensity = intensity;
     light.distance = distance;
     light.color.set(color);
-  }, [angle, power, distance, color]);
+  }, [angle, power, distance, color, intensity]);
 }

@@ -51,6 +51,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         material={materials.Sinew}
       />
       <mesh
+        castShadow
         geometry={nodes.Tentacle.geometry}
         material={materials.Tentacle}
       />
