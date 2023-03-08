@@ -5,8 +5,8 @@ import Curtain from '@hellfire/components/Curtain';
 
 export default () => {
   const clothMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    roughness: 0.2,
-    metalness: 0.5,
+    roughness: 0.6,
+    metalness: 0.3,
     color: "#555555"
   }), []);
 

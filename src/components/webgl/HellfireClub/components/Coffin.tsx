@@ -29,6 +29,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     props.onClick && props.onClick(e);
   }
 
+  materials.Coffin.metalness = 0.3;
+  materials.Coffin.roughness = 0.8;
+
   return (
     <group
       ref={ref}
