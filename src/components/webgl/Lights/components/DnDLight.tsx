@@ -18,9 +18,9 @@ export default () => {
     box.current.position.y = light.current.position.y;
     box.current.position.z = light.current.position.z;
 
-    light.current.target.position.x = 0;
+    light.current.target.position.x = 5;
     light.current.target.position.y = -100;
-    light.current.target.position.z = 100;
+    light.current.target.position.z = -55;
     light.current.target.updateMatrixWorld();
   }, []);
 
@@ -28,12 +28,11 @@ export default () => {
     <>
       <spotLight
         ref={light}
-        angle={0.3}
+        angle={0.31}
         penumbra={1}
         distance={15}
-        position={[0, 3.65, -4]}
-        intensity={1}
-        power={7}
+        position={[1.88, 4.68, -2.15]}
+        intensity={0.5}
       />
 
       <DebugBox

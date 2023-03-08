@@ -98,8 +98,8 @@ export default () => {
       />
 
       <StandingBoard
-        position={[-0.08, 1.35, -3.51]}
-        rotation-y={1.86}
+        position={[-0.74, 1.35, -3.51]}
+        rotation-y={2.19}
         zoom={{
           hotspot: "standingBoard",
           cameraPosition: [0.2, 1.35, -2.51]

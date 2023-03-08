@@ -37,16 +37,22 @@ export default () => {
       <RoomCrimsonLight />
       <RiftLights />
 
-      {/* <BulletinLight /> */}
+      <TVLight />
+      <BulletinLight />
 
-      {/* <TVLight /> */}
+
       {/* <TVBlueLight /> */}
 
       {/* <LampBlueLight /> */}
 
-      {/* <ShelfLight /> */}
 
-      {/* <DnDLight /> */}
+      {/* <StandingBoardLight /> */}
+
+
+      {/* <ShelfInnerLight /> */}
+
+      {/* <ShelfLight />
+      <DnDLight /> */}
     </>
   )
 }

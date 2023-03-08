@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import { SpotLight } from '@react-three/drei';
+import { useControls } from 'leva';
+import React, { useContext, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 import useDebug from '../useDebug';
@@ -24,18 +26,25 @@ export default () => {
     light.current.target.updateMatrixWorld();
   }, []);
 
+  const { anglePower, attenuation } = useControls({
+    anglePower: { min: 0.1, max: 10, step: 0.01, value: 0.1 },
+    attenuation: { min: 0.1, max: 10, step: 0.01, value: 0.1 },
+  });
+
   return (
     <>
-      <spotLight
+      <SpotLight
         ref={light}
         castShadow
         angle={0.52}
+        anglePower={anglePower}
+        attenuation={attenuation}
         penumbra={1}
         distance={15}
         position={[-0.36, 6.39, -1.05]}
         intensity={1}
         power={4}
-        color="#3DE7F4"
+        color="#45E9FF"
       />
 
       <DebugBox
