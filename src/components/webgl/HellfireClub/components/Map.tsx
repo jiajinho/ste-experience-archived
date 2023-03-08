@@ -40,7 +40,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         <meshStandardMaterial
           map={map}
           metalness={0.1}
-          roughness={0.3}
+          roughness={0.6}
         />
       </mesh>
     </group>
