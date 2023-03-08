@@ -55,6 +55,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
+        castShadow
         geometry={nodes.Lamp.geometry}
         material={lampMaterial}
       />

@@ -37,10 +37,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
+        castShadow
         geometry={nodes.HellfireStandSign.geometry}
         material={materials.HellfireSign}
       />
       <mesh
+        castShadow
         geometry={nodes.HellfireStand.geometry}
         material={config.lightStandMaterial}
       />

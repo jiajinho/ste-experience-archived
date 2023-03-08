@@ -28,6 +28,7 @@ export default () => {
     <>
       <spotLight
         ref={light}
+        castShadow
         angle={Math.PI / 7}
         penumbra={1}
         distance={15}

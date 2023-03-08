@@ -36,7 +36,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.WoodChair.geometry}>
+      <mesh
+        castShadow
+        geometry={nodes.WoodChair.geometry}
+      >
         <meshStandardMaterial
           roughness={0.8}
           map={map}

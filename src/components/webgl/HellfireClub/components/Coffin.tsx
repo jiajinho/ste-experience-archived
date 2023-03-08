@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useDebug from "../hooks/useDebug";
+import useDebug from "@hellfire/hooks/useDebug";
 
 const url = "/static/gltf/coffin.glb";
 
@@ -40,6 +40,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
+        castShadow
         geometry={nodes.Coffin.geometry}
         material={materials.Coffin}
       />

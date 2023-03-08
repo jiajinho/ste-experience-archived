@@ -55,6 +55,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         material={materials.Tentacle}
       />
       <mesh
+        receiveShadow
         geometry={nodes.Floor.geometry}
         material={materials.Floor}
       />

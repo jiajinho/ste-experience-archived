@@ -32,6 +32,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
+        castShadow
         geometry={nodes.Ladder.geometry}
       >
         <meshStandardMaterial

@@ -46,6 +46,7 @@ export default ({ light, material, ...props }: {
         />
       </mesh>
       <mesh
+        castShadow
         geometry={nodes.Candlestand.geometry}
         material={material}
       />

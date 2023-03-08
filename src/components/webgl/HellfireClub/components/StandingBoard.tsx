@@ -41,6 +41,7 @@ export default ({ zoom, ...props }: {
       dispose={null}
     >
       <mesh
+        castShadow
         geometry={nodes.StandingBoard.geometry}
         material={materials.ChalkBoard}
       />

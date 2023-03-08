@@ -82,38 +82,47 @@ export default ({ lights, ...props }: {
       </mesh>
 
       <mesh
+        castShadow
         geometry={nodes.Light3.geometry}
         material={config.lightStandMaterial}
       />
       <mesh
+        castShadow
         geometry={nodes.Light4.geometry}
         material={config.lightStandMaterial}
       />
       <mesh
+        castShadow
         geometry={nodes.Light2.geometry}
         material={config.lightStandMaterial}
       />
       <mesh
+        castShadow
         geometry={nodes.Light1.geometry}
         material={config.lightStandMaterial}
       />
       <mesh
+        castShadow
         geometry={nodes.Light1Handle.geometry}
         material={config.lightStandMaterial}
       />
       <mesh
+        castShadow
         geometry={nodes.Light3Handle.geometry}
         material={config.lightStandMaterial}
       />
       <mesh
+        castShadow
         geometry={nodes.Light2Handle.geometry}
         material={config.lightStandMaterial}
       />
       <mesh
+        castShadow
         geometry={nodes.LightStand.geometry}
         material={config.lightStandMaterial}
       />
       <mesh
+        castShadow
         geometry={nodes.Light4Handle.geometry}
         material={config.lightStandMaterial}
       />

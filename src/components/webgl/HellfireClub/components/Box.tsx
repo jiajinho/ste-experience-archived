@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useDebug from "../hooks/useDebug";
+import useDebug from "@hellfire/hooks/useDebug";
 
 const url = "/static/gltf/box.glb";
 
@@ -35,6 +35,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
+        castShadow
         geometry={nodes.Box.geometry}
         material={materials.Box}
       />

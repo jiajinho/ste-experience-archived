@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useDebug from "../../hooks/useDebug";
+import useDebug from "@hellfire/hooks/useDebug";
 
 const gltfUrl = "/static/gltf/tabletop-dshape.glb";
 const mapUrl = "/static/texture/wood.jpg";
@@ -36,7 +36,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.TabletopDShape.geometry}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.TabletopDShape.geometry}
+      >
         <meshStandardMaterial
           roughness={0.8}
           map={map}

@@ -22,6 +22,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
     >
       <mesh
+        receiveShadow
         position-y={-0.05}
         geometry={nodes.Wall.geometry}
         material={materials.Wall}

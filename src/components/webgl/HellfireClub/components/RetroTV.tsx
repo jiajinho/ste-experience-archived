@@ -41,6 +41,7 @@ export default ({ zoom, ...props }: {
       dispose={null}
     >
       <mesh
+        castShadow
         geometry={nodes.RetroTV.geometry}
         material={materials.RetroTV}
       />

@@ -12,7 +12,6 @@ export default () => (
       position={[1.03, 2.22, -4.85]}
       rotation={[0, Math.PI, -0.38]}
       scale={1.1}
-
     />
 
     <Rift

@@ -67,6 +67,7 @@ export default ({ light, ...props }: {
         />
       </mesh>
       <mesh
+        castShadow
         geometry={nodes.Chandelier.geometry}
         material={chandelierMaterial}
       />
