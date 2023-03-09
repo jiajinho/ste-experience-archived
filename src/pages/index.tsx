@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 
 import HTML from 'components/HTML';
-import WebGL from 'components/WebGL2';
+import WebGL from 'components/WebGL';
 
 const Wrapper = styled.main`
   position: relative;
