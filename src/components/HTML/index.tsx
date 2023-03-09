@@ -37,7 +37,7 @@ export default () => {
 
       <Typewriter
         phase={x}
-        onContinue={handleClick}
+        onContinue={() => setX("end")}
       />
     </Wrapper>
   )

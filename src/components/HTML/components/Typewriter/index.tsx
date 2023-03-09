@@ -34,7 +34,7 @@ const Char = styled.p`
 
 export default ({ phase, onContinue }: {
   phase: AnimatePhase,
-  onContinue: () => void
+  onContinue?: () => void
 }) => {
   const chars = useRef<HTMLParagraphElement[]>([]);
   const caret = useRef<HTMLDivElement>(null);
@@ -58,13 +58,19 @@ export default ({ phase, onContinue }: {
       <Wrapper>
         <Container>
           {data.map((s, i) =>
-            <Char key={i} ref={d => d && chars.current.push(d)}>
+            <Char
+              key={i}
+              ref={d => d && chars.current.push(d)}
+            >
               {s}
             </Char>
           )}
         </Container>
 
-        <Button ref={button} onClick={onContinue}>
+        <Button
+          ref={button}
+          onClick={onContinue}
+        >
           {locale.loading.continueBtn}
         </Button>
       </Wrapper>

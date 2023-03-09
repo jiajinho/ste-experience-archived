@@ -14,7 +14,7 @@ const Wrapper = styled.button`
   cursor: pointer;
   background: #FFEDC8;
 
-  padding-top: calc(var(--padding-bottom) + 6px);
+  padding-top: calc(var(--padding-bottom) + 3px);
   padding-bottom: var(--padding-bottom);
   width: 235px;
   text-align: center;

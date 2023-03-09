@@ -1,1 +1,1 @@
-export type AnimatePhase = "idle" | "start";
+export type AnimatePhase = "idle" | "start" | "end";
