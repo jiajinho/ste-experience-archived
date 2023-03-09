@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import { LightColor } from '../../config';
-import useDebug from '../../useDebug';
-import DebugBox from '../DebugBox';
+import { LightColor } from '../config';
+import useDebug from '../useDebug';
+import DebugBox from './DebugBox';
 
 export default ({ debug = false }: {
   debug?: boolean
@@ -15,9 +15,9 @@ export default ({ debug = false }: {
 
   useEffect(() => {
     if (!light.current) return;
-    light.current.target.position.x = -95;
-    light.current.target.position.y = -5;
-    light.current.target.position.z = 100;
+    light.current.target.position.x = 0;
+    light.current.target.position.y = -100;
+    light.current.target.position.z = 0;
     light.current.target.updateMatrixWorld();
 
     if (!box.current) return;
@@ -31,22 +31,19 @@ export default ({ debug = false }: {
       <spotLight
         ref={light}
         castShadow
-        angle={0.83}
+        angle={1.32}
         penumbra={1}
-        distance={3}
-        position={[0, 0.1, 0]}
-        intensity={2.6}
-        power={4.3}
+        distance={15}
+        position={[0, 0.7, 0]}
+        intensity={1.5}
         color={LightColor.Coral}
       />
 
-      {debug &&
-        <DebugBox
-          ref={box}
-          position={light.current?.position}
-          onClick={triggerControl}
-        />
-      }
+      <DebugBox
+        ref={box}
+        position={light.current?.position}
+        onClick={triggerControl}
+      />
     </>
   )
 }

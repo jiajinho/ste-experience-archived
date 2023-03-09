@@ -11,8 +11,8 @@ const gltf = {
  */
 const zoomChoices: { [h in Hotspot]: Zoom } = {
   default: {
-    cameraPosition: [3, 3, 3],
-    lookAt: new THREE.Vector3(0, 0, 0)
+    cameraPosition: [1.95, 1.7, 1.41],
+    lookAt: new THREE.Vector3(0, 1, 0)
   },
   retroTV: {},
   bulletinBoard: {},

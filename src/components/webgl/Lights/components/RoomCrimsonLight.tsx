@@ -34,8 +34,7 @@ export default () => {
         penumbra={1}
         distance={15}
         position={[5, 5, 5]}
-        intensity={1}
-        power={3}
+        intensity={0.7}
         color={LightColor.Coral}
       />
 

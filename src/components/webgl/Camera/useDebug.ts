@@ -1,33 +1,38 @@
 import { useEffect } from 'react';
+import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 import { useControls } from 'leva';
-import useEnvStore from 'store/useEnvStore';
 
-export default () => {
+import useEnvStore from 'store/useEnvStore';
+import { moveCamera } from './utils';
+
+export default (shadowCamera: React.RefObject<THREE.PerspectiveCamera>) => {
   const env = useEnvStore(state => state.env);
   const camera = useThree(state => state.camera);
 
-  const { rx, ry, rz, x, y, z, freeCam } = useControls("useDebugCamera", {
-    rx: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
-    ry: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
-    rz: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
+  const [{ x, y, z, tx, ty, tz, freeCam }, set] = useControls("useDebugCamera", () => ({
     x: { min: -20, max: 20, step: 0.01, value: 0 },
     y: { min: -20, max: 20, step: 0.01, value: 0 },
     z: { min: -20, max: 20, step: 0.01, value: 0 },
+    tx: { min: -100, max: 100, step: 0.5, value: -100 },
+    ty: { min: -100, max: 100, step: 0.5, value: 0.5 },
+    tz: { min: -200, max: 200, step: 0.5, value: 0 },
     freeCam: env === "development"
-  }, {
+  }), {
     collapsed: true
   });
 
   useEffect(() => {
-    camera.position.x = x;
-    camera.position.y = y;
-    camera.position.z = z;
+    if (!shadowCamera.current) return;
 
-    camera.rotation.x = rx;
-    camera.rotation.y = ry;
-    camera.rotation.z = rz;
-  }, [rx, ry, rz, x, y, z]);
+    moveCamera({
+      camera,
+      shadowCamera: shadowCamera.current,
+      lookAt: new THREE.Vector3(tx, ty, tz),
+      cameraPosition: [x, y, z],
+      animate: false
+    });
+  }, [x, y, z, tx, ty, tz]);
 
-  return freeCam;
+  return { freeCam, set };
 }

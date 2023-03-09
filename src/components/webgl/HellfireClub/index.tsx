@@ -76,10 +76,10 @@ export default () => {
         rotation={[-0.19, 2.02, 0.19]}
       />
 
-      <Ladder
+      {/* <Ladder
         position={[0.92, 0.86, -4.31]}
         rotation-y={0.86}
-      />
+      /> */}
 
       <BulletinBoard
         position={[-3.22, 1.75, 0.15]}
@@ -98,7 +98,7 @@ export default () => {
       />
 
       <StandingBoard
-        position={[-0.74, 1.35, -3.51]}
+        position={[-2.07, 1.35, -3.06]}
         rotation-y={2.19}
         zoom={{
           hotspot: "standingBoard",
@@ -106,15 +106,15 @@ export default () => {
         }}
       />
 
-      <Lamp
+      {/* <Lamp
         position={[-2.3, 1.26, -4.13]}
         rotation-y={-3.08}
-      />
+      /> */}
 
-      <Coffin
+      {/* <Coffin
         position={[-2.6, 0, -2.46]}
         rotation-y={-0.34}
-      />
+      /> */}
 
       <Tabletop.DShape
         position={[-2.7, 0.75, 3.06]}
@@ -146,7 +146,7 @@ export default () => {
         }}
       />
 
-      <QuadLightStand
+      {/* <QuadLightStand
         position={[-2.38, 0, 1.63]}
         lights={[
           LightColor.Yellow,
@@ -154,7 +154,7 @@ export default () => {
           LightColor.Yellow,
           LightColor.Cyan
         ]}
-      />
+      /> */}
 
       <CeilingLight
         position={[-2.68, 4.13, 1.35]}

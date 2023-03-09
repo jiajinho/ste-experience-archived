@@ -32,7 +32,7 @@ export default () => {
 
   return (
     <>
-      <ambientLight intensity={0.05} />
+      <ambientLight intensity={0.1} />
 
       <RoomCrimsonLight />
       <RiftLights />
