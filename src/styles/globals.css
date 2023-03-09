@@ -1,3 +1,7 @@
+:root {
+  --color-cherry: #E23A3A;
+}
+
 html,
 body {
   padding: 0;

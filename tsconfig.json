@@ -16,7 +16,7 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@hellfire/*": ["components/webgl/HellfireClub/*"]
+      "@hellfire/*": ["components/WebGL/HellfireClub/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
