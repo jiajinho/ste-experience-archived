@@ -1,7 +1,8 @@
 import { create } from "zustand";
-import type { STEncounterPhase, HellfireCardPhase, TypewriterPhase, ProgressPhase } from "@html/LoadingTutorial/types";
+import type { STEncounterPhase, HellfireCardPhase, TypewriterPhase, ProgressPhase, MaskPhase } from "@html/LoadingTutorial/types";
 
 type Phases = {
+  mask: MaskPhase,
   progress: ProgressPhase,
   ste: STEncounterPhase,
   card: HellfireCardPhase,
@@ -13,6 +14,7 @@ type Store = Phases & {
 }
 
 export default create<Store>((set) => ({
+  mask: "dark",
   progress: "standby",
   ste: "standby",
   card: "standby",

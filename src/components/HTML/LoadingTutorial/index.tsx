@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { button, useControls } from 'leva';
+
+import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
+import useAnimation from './useAnimation';
 
 import ProgressNumber from './components/ProgressNumber';
 import STEncounter from './components/STEncounter';
 import Typewriter from './components/Typewriter';
 import HellfireCard from './components/HellfireCard';
-import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
-import { button, useControls } from 'leva';
 
 const Wrapper = styled.div`
   position: fixed;
   z-index: 2;
   height: 100%;
   width: 100%;
+`;
 
-  background: #000d;
+const Mask = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  background: #000;
+  opacity: 0.9;
 `;
 
 export default () => {
+  const mask = useRef<HTMLDivElement>(null);
 
   const set = useLoadingPhaseStore(state => state.set);
+
+  useAnimation(mask);
+
+  useControls("mask", {
+    dark: button(() => set("mask", "dark")),
+    cloudy: button(() => set("mask", "cloudy")),
+    clear: button(() => set("mask", "clear")),
+  })
 
   useControls("progress", {
     standby: button(() => set("progress", "standby")),
@@ -46,6 +66,8 @@ export default () => {
 
   return (
     <Wrapper>
+      <Mask ref={mask} />
+
       <STEncounter />
 
       <ProgressNumber data={0} />
@@ -54,5 +76,5 @@ export default () => {
 
       <HellfireCard />
     </Wrapper>
-  )
+  );
 }

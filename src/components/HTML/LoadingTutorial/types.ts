@@ -1,3 +1,5 @@
+export type MaskPhase = "dark" | "cloudy" | "clear";
+
 export type ProgressPhase = "standby" | "end";
 
 export type STEncounterPhase = "standby" | "end";
