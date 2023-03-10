@@ -1,3 +1,5 @@
+export type ProgressPhase = "idle" | "end";
+
 export type STEncounterPhase = "idle" | "end";
 
 export type TypewriterPhase = "idle" | "start" | "end";

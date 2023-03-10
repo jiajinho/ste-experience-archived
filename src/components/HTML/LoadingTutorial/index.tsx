@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import ProgressNumber from './components/ProgressNumber';
-import { TypewriterPhase, HellfireCardPhase } from './types';
 import STEncounter from './components/STEncounter';
 import Typewriter from './components/Typewriter';
 import HellfireCard from './components/HellfireCard';
@@ -22,6 +21,11 @@ export default () => {
 
   const set = useLoadingPhaseStore(state => state.set);
 
+  useControls("progress", {
+    idle: button(() => set("progress", "idle")),
+    end: button(() => set("progress", "end"))
+  });
+
   useControls("ste", {
     idle: button(() => set("ste", "idle")),
     end: button(() => set("ste", "end"))
@@ -40,13 +44,11 @@ export default () => {
     end: button(() => set("card", "end"))
   });
 
-
-
   return (
     <Wrapper>
       <STEncounter />
 
-      {/* <ProgressNumber data={0} /> */}
+      <ProgressNumber data={0} />
 
       <Typewriter />
 
