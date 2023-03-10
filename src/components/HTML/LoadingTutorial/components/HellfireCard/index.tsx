@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import useAnimation from './useAnimation';
+import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -26,7 +27,8 @@ const Card = styled.div`
 `;
 
 export default () => {
-  const clicked = useRef(false);
+  const clicked = useRef(true);
+  const set = useLoadingPhaseStore(state => state.set);
 
   const card = useRef<HTMLDivElement>(null);
   const front = useRef<HTMLImageElement>(null);
@@ -35,13 +37,7 @@ export default () => {
   useAnimation(card);
 
   const handleClick = () => {
-    if (clicked.current) {
-      // onFirstClick && onFirstClick();
-    }
-    else {
-      // onSecondClick && onSecondClick();
-    }
-
+    clicked.current ? set("card", "flip") : set("card", "end");
     clicked.current = !clicked.current;
   }
 
