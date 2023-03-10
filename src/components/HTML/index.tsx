@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { button, useControls } from 'leva';
 
 import ProgressNumber from './components/ProgressNumber';
+import { AnimatePhase as TypewriterPhase } from './components/Typewriter/types';
+import { HellfireCardPhase } from './types';
 import STEncounter from './components/STEncounter';
 import Typewriter from './components/Typewriter';
-import { AnimatePhase } from './components/Typewriter/types';
+import HellfireCard from './components/HellfireCard';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -18,17 +19,6 @@ const Wrapper = styled.div`
 
 export default () => {
 
-  const [x, setX] = useState<AnimatePhase>("idle");
-
-  const handleClick = () => {
-    console.log(x);
-    setX(x === "idle" ? "start" : "idle");
-  }
-
-  useControls("animation", {
-    playTypewriter: button(handleClick)
-  }, [x]);
-
   return (
     <Wrapper>
       <STEncounter />
@@ -36,8 +26,14 @@ export default () => {
       {/* <ProgressNumber data={0} /> */}
 
       <Typewriter
-        phase={x}
-        onContinue={() => setX("end")}
+        phase={"idle"}
+        onContinue={() => { }}
+      />
+
+      <HellfireCard
+        phase={"idle"}
+        onFirstClick={() => { }}
+        onSecondClick={() => { }}
       />
     </Wrapper>
   )
