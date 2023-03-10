@@ -13,10 +13,10 @@ type Store = Phases & {
 }
 
 export default create<Store>((set) => ({
-  progress: "idle",
-  ste: "idle",
-  card: "idle",
-  typewriter: "idle",
+  progress: "standby",
+  ste: "standby",
+  card: "standby",
+  typewriter: "standby",
   set: (k, v) => set((state) => {
     const clone = { ...state };
 

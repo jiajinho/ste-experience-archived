@@ -8,7 +8,7 @@ export default (wrapper: React.RefObject<HTMLDivElement>) => {
 
   useEffect(() => {
     switch (phase) {
-      case "idle":
+      case "standby":
         gsap.to(wrapper.current, {
           duration: 0.01,
           zIndex: 10,

@@ -22,23 +22,23 @@ export default () => {
   const set = useLoadingPhaseStore(state => state.set);
 
   useControls("progress", {
-    idle: button(() => set("progress", "idle")),
+    standby: button(() => set("progress", "standby")),
     end: button(() => set("progress", "end"))
   });
 
   useControls("ste", {
-    idle: button(() => set("ste", "idle")),
+    standby: button(() => set("ste", "standby")),
     end: button(() => set("ste", "end"))
   });
 
   useControls("typewriter", {
-    idle: button(() => set("typewriter", "idle")),
+    standby: button(() => set("typewriter", "standby")),
     start: button(() => set("typewriter", "start")),
     end: button(() => set("typewriter", "end")),
   });
 
   useControls("card", {
-    idle: button(() => set("card", "idle")),
+    standby: button(() => set("card", "standby")),
     slide: button(() => set("card", "slide")),
     flip: button(() => set("card", "flip")),
     end: button(() => set("card", "end"))

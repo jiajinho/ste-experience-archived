@@ -1,7 +1,7 @@
-export type ProgressPhase = "idle" | "end";
+export type ProgressPhase = "standby" | "end";
 
-export type STEncounterPhase = "idle" | "end";
+export type STEncounterPhase = "standby" | "end";
 
-export type TypewriterPhase = "idle" | "start" | "end";
+export type TypewriterPhase = "standby" | "start" | "end";
 
-export type HellfireCardPhase = "idle" | "slide" | "flip" | "end";
+export type HellfireCardPhase = "standby" | "slide" | "flip" | "end";

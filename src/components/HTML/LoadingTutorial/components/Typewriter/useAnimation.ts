@@ -14,7 +14,7 @@ export default (
 
   useEffect(() => {
     switch (phase) {
-      case "idle":
+      case "standby":
         gsap.to(wrapper.current, {
           duration: 0,
           zIndex: 1

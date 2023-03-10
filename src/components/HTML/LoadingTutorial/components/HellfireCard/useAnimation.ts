@@ -9,7 +9,7 @@ export default (card: React.RefObject<HTMLDivElement>) => {
 
   useEffect(() => {
     switch (phase) {
-      case "idle":
+      case "standby":
         gsap.to(card.current, {
           overwrite: true,
           duration: 0,
