@@ -1,1 +1,0 @@
-export type HellfireCardPhase = "idle" | "slide" | "flip" | "end";

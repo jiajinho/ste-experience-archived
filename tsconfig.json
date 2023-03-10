@@ -16,6 +16,7 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@html/*": ["components/HTML/*"],
       "@hellfire/*": ["components/WebGL/HellfireClub/*"]
     }
   },

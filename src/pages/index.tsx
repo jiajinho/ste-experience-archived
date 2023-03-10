@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 
-import HTML from 'components/HTML';
 import WebGL from 'components/WebGL';
+import LoadingTutorial from '@html/LoadingTutorial';
 
 const Wrapper = styled.main`
   position: relative;
@@ -18,7 +18,7 @@ export default () => {
 
   return (
     <Wrapper>
-      <HTML />
+      <LoadingTutorial />
 
       {/* <Canvas shadows style={{ zIndex: 1 }}>
         <WebGL />

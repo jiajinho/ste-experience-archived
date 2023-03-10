@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
-import { HellfireCardPhase } from 'components/HTML/types';
+import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
 
-export default (
-  phase: HellfireCardPhase,
-  card: React.RefObject<HTMLDivElement>,
-  front: React.RefObject<HTMLImageElement>,
-  back: React.RefObject<HTMLImageElement>
-) => {
+export default (card: React.RefObject<HTMLDivElement>) => {
+
+  const phase = useLoadingPhaseStore(state => state.card);
 
   useEffect(() => {
     switch (phase) {
@@ -27,13 +24,15 @@ export default (
         gsap.timeline()
           .fromTo(card.current, {
             y: "150%",
-            autoAlpha: 1
+            autoAlpha: 1,
+            rotateY: 0
           }, {
             duration: 1.2,
             ease: "power4.out",
             y: "0%"
           });
         break;
+
 
       case "flip":
         gsap.fromTo(card.current, {

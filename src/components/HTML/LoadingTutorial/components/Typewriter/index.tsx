@@ -2,8 +2,8 @@ import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
+import { TypewriterPhase } from '../../types';
 
-import { AnimatePhase } from './types';
 import useAnimation from './useAnimation';
 import Button from './Button';
 import Caret from './Caret';
@@ -32,10 +32,7 @@ const Char = styled.p`
   visibility: hidden;
 `;
 
-export default ({ phase, onContinue }: {
-  phase: AnimatePhase,
-  onContinue?: () => void
-}) => {
+export default () => {
   const chars = useRef<HTMLParagraphElement[]>([]);
   const caret = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
@@ -47,7 +44,7 @@ export default ({ phase, onContinue }: {
       .split("");
   }, []);
 
-  useAnimation(phase, chars, caret, button);
+  useAnimation(chars, caret, button);
 
   chars.current.length = 0;
 
@@ -69,7 +66,7 @@ export default ({ phase, onContinue }: {
 
         <Button
           ref={button}
-          onClick={onContinue}
+        // onClick={onContinue}
         >
           {locale.loading.continueBtn}
         </Button>

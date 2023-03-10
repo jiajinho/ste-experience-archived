@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 
-import { AnimatePhase } from "./types";
+import useLoadingPhaseStore from "store/html/useLoadingPhaseStore";
 
 export default (
-  phase: AnimatePhase,
   chars: React.RefObject<HTMLParagraphElement[]>,
   caret: React.RefObject<HTMLDivElement>,
   button: React.RefObject<HTMLButtonElement>
 ) => {
+  const phase = useLoadingPhaseStore(state => state.typewriter);
+
   useEffect(() => {
     switch (phase) {
       case "idle":
@@ -26,7 +27,7 @@ export default (
         let delay = 0;
 
         const staggerFn = (_: any, target: HTMLParagraphElement) => {
-          delay += (Math.random() * 0.03) + 0.07;
+          delay += (Math.random() * 0.1) + 0.03;
 
           if (pause) {
             delay += 0.6;

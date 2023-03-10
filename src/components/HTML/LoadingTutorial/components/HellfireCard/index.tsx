@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { HellfireCardPhase } from 'components/HTML/types';
 import useAnimation from './useAnimation';
 
 const Wrapper = styled.div`
@@ -26,24 +25,22 @@ const Card = styled.div`
   img#back { transform: rotateY(180deg) }
 `;
 
-export default ({ phase, onFirstClick, onSecondClick }: {
-  phase: HellfireCardPhase,
-  onFirstClick?: () => void,
-  onSecondClick?: () => void
-}) => {
+export default () => {
   const clicked = useRef(false);
 
   const card = useRef<HTMLDivElement>(null);
   const front = useRef<HTMLImageElement>(null);
   const back = useRef<HTMLImageElement>(null);
 
-  useAnimation(phase, card, front, back);
+  useAnimation(card);
 
   const handleClick = () => {
-    if (clicked.current)
-      onFirstClick && onFirstClick();
-    else
-      onSecondClick && onSecondClick();
+    if (clicked.current) {
+      // onFirstClick && onFirstClick();
+    }
+    else {
+      // onSecondClick && onSecondClick();
+    }
 
     clicked.current = !clicked.current;
   }
