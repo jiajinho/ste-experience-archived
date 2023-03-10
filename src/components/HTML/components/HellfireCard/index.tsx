@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -12,22 +12,18 @@ const Wrapper = styled.div`
   transform: translate(-50%, -50%);
 
   perspective: 1000px;
-  cursor: pointer;
 `;
 
 const Card = styled.div`
   aspect-ratio: 2/3;
   height: 500px;
   width: auto;
+
+  cursor: pointer;
   transform-style: preserve-3d;
 
-  img {
-    backface-visibility: hidden;
-  }
-`;
-
-const BackImage = styled(Image)`
-  transform: rotateY(180deg);
+  img { backface-visibility: hidden }
+  img#back { transform: rotateY(180deg) }
 `;
 
 export default ({ phase, onFirstClick, onSecondClick }: {
@@ -61,14 +57,15 @@ export default ({ phase, onFirstClick, onSecondClick }: {
         <Image
           ref={front}
           src="/static/texture/hellfire-card-front.png"
-          alt="Card front"
+          alt="Card front invitation"
           fill
         />
 
-        <BackImage
+        <Image
           ref={back}
+          id="back"
           src="/static/texture/hellfire-card-back.png"
-          alt="Card back"
+          alt="Card back enter club room"
           fill
         />
       </Card>

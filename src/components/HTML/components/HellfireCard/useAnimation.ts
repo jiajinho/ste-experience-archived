@@ -16,6 +16,7 @@ export default (
         gsap.to(card.current, {
           overwrite: true,
           duration: 0,
+          y: "150%",
           autoAlpha: 0,
           rotateY: 0
         });
