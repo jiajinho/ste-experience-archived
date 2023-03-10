@@ -6,13 +6,20 @@ import useLoadingPhaseStore from "store/html/useLoadingPhaseStore";
 export default (
   chars: React.RefObject<HTMLParagraphElement[]>,
   caret: React.RefObject<HTMLDivElement>,
-  button: React.RefObject<HTMLButtonElement>
+  button: React.RefObject<HTMLButtonElement>,
+  wrapper: React.RefObject<HTMLDivElement>
 ) => {
   const phase = useLoadingPhaseStore(state => state.typewriter);
+  const set = useLoadingPhaseStore(state => state.set);
 
   useEffect(() => {
     switch (phase) {
       case "idle":
+        gsap.to(wrapper.current, {
+          duration: 0,
+          zIndex: 1
+        });
+
         gsap.to([chars.current, caret.current, button.current], {
           duration: 0,
           autoAlpha: 0,
@@ -53,6 +60,11 @@ export default (
         }
 
         //Animate
+        gsap.to(wrapper.current, {
+          duration: 0,
+          zIndex: 10
+        });
+
         const tween = gsap
           .fromTo(chars.current, {
             autoAlpha: 0
@@ -90,9 +102,12 @@ export default (
 
       case "end":
         gsap.to([chars.current, caret.current, button.current], {
-          duration: 1.5,
+          duration: 0.5,
+          ease: "power2.out",
           autoAlpha: 0,
           overwrite: true
+        }).eventCallback("onComplete", () => {
+          wrapper.current!.style.zIndex = "1";
         });
         break;
     }

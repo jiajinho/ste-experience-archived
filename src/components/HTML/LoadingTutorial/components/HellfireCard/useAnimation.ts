@@ -15,7 +15,8 @@ export default (card: React.RefObject<HTMLDivElement>) => {
           duration: 0,
           y: "150%",
           autoAlpha: 0,
-          rotateY: 0
+          rotateY: 0,
+          zIndex: 1
         });
         break;
 
@@ -25,11 +26,13 @@ export default (card: React.RefObject<HTMLDivElement>) => {
           .fromTo(card.current, {
             y: "150%",
             autoAlpha: 1,
-            rotateY: 0
+            rotateY: 0,
+            zIndex: 1
           }, {
             duration: 1.2,
             ease: "power4.out",
-            y: "0%"
+            y: "0%",
+            zIndex: 10
           });
         break;
 

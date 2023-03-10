@@ -2,9 +2,9 @@ import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
-import { TypewriterPhase } from '../../types';
-
+import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
 import useAnimation from './useAnimation';
+
 import Button from './Button';
 import Caret from './Caret';
 
@@ -33,6 +33,9 @@ const Char = styled.p`
 `;
 
 export default () => {
+  const set = useLoadingPhaseStore(state => state.set);
+
+  const wrapper = useRef<HTMLDivElement>(null);
   const chars = useRef<HTMLParagraphElement[]>([]);
   const caret = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
@@ -44,7 +47,7 @@ export default () => {
       .split("");
   }, []);
 
-  useAnimation(chars, caret, button);
+  useAnimation(chars, caret, button, wrapper);
 
   chars.current.length = 0;
 
@@ -52,7 +55,7 @@ export default () => {
     <>
       <Caret ref={caret} />
 
-      <Wrapper>
+      <Wrapper ref={wrapper}>
         <Container>
           {data.map((s, i) =>
             <Char
@@ -66,7 +69,7 @@ export default () => {
 
         <Button
           ref={button}
-        // onClick={onContinue}
+          onClick={() => set("typewriter", "end")}
         >
           {locale.loading.continueBtn}
         </Button>

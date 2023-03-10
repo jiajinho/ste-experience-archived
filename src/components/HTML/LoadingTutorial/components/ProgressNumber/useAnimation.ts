@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
-import config from '@html/LoadingTutorial/config';
 import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
 
 export default (wrapper: React.RefObject<HTMLDivElement>) => {
@@ -20,10 +19,11 @@ export default (wrapper: React.RefObject<HTMLDivElement>) => {
 
       case "end":
         gsap.to(wrapper.current, {
-          ...config.progress.end,
-          zIndex: 1,
+          duration: 1.5,
           autoAlpha: 0
-        });
+        }).eventCallback("onComplete", () => {
+          wrapper.current!.style.zIndex = "1";
+        })
         break;
     }
   }, [phase]);
