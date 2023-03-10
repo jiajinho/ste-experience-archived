@@ -4,8 +4,8 @@ import gsap from 'gsap';
 import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
 
 export default (card: React.RefObject<HTMLDivElement>) => {
-
   const phase = useLoadingPhaseStore(state => state.card);
+  const set = useLoadingPhaseStore(state => state.set);
 
   useEffect(() => {
     switch (phase) {
@@ -15,8 +15,7 @@ export default (card: React.RefObject<HTMLDivElement>) => {
           duration: 0,
           y: "150%",
           autoAlpha: 0,
-          rotateY: 0,
-          zIndex: 1
+          rotateY: 0
         });
         break;
 
@@ -27,12 +26,10 @@ export default (card: React.RefObject<HTMLDivElement>) => {
             y: "150%",
             autoAlpha: 1,
             rotateY: 0,
-            zIndex: 1
           }, {
             duration: 1.2,
             ease: "power4.out",
-            y: "0%",
-            zIndex: 10
+            y: "0%"
           });
         break;
 
@@ -47,6 +44,9 @@ export default (card: React.RefObject<HTMLDivElement>) => {
           rotateY: 180
         });
         break;
+
+      case "end":
+        set("wrapper", "fade-out");
     }
   }, [phase]);
 

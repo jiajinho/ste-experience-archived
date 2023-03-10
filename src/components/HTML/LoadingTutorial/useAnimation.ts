@@ -1,17 +1,17 @@
-/**
- * Animation for mask
- */
 import { useEffect } from "react";
 import gsap from "gsap";
 
 import useLoadingPhaseStore from "store/html/useLoadingPhaseStore"
 
 
-export default (mask: React.RefObject<HTMLDivElement>) => {
-  const phase = useLoadingPhaseStore(state => state.mask);
+export default (mask: React.RefObject<HTMLDivElement>, wrapper: React.RefObject<HTMLDivElement>) => {
+  const phase = {
+    mask: useLoadingPhaseStore(state => state.mask),
+    wrapper: useLoadingPhaseStore(state => state.wrapper)
+  }
 
   useEffect(() => {
-    switch (phase) {
+    switch (phase.mask) {
       case "dark":
         gsap.to(mask.current, {
           duration: 0,
@@ -25,12 +25,25 @@ export default (mask: React.RefObject<HTMLDivElement>) => {
           opacity: 0.4
         });
         break;
-
-      case "clear":
-        gsap.to(mask.current, {
-          duration: 0.5,
-          opacity: 0
-        });
     }
-  }, [phase]);
+  }, [phase.mask]);
+
+  useEffect(() => {
+    switch (phase.wrapper) {
+      case "standby":
+        gsap.to(wrapper.current, {
+          duration: 0,
+          autoAlpha: 1
+        });
+        break;
+
+      case "fade-out":
+        gsap.to(wrapper.current, {
+          duration: 0.5,
+          ease: "power2.out",
+          autoAlpha: 0
+        });
+        break;
+    }
+  }, [phase.wrapper])
 }

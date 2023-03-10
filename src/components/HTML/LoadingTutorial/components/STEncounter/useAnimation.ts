@@ -17,7 +17,7 @@ export default (wrapper: React.RefObject<HTMLDivElement>) => {
 
       case "end":
         gsap.to(wrapper.current, {
-          duration: 0.25,
+          duration: 0.5,
           ease: "power2.out",
           autoAlpha: 0
         });

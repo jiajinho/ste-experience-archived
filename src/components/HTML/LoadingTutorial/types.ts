@@ -1,4 +1,6 @@
-export type MaskPhase = "dark" | "cloudy" | "clear";
+export type WrapperPhase = "standby" | "fade-out";
+
+export type MaskPhase = "dark" | "cloudy";
 
 export type ProgressPhase = "standby" | "end";
 

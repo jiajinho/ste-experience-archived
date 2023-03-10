@@ -1,7 +1,8 @@
 import { create } from "zustand";
-import type { STEncounterPhase, HellfireCardPhase, TypewriterPhase, ProgressPhase, MaskPhase } from "@html/LoadingTutorial/types";
+import type { STEncounterPhase, HellfireCardPhase, TypewriterPhase, ProgressPhase, MaskPhase, WrapperPhase } from "@html/LoadingTutorial/types";
 
 type Phases = {
+  wrapper: WrapperPhase,
   mask: MaskPhase,
   progress: ProgressPhase,
   ste: STEncounterPhase,
@@ -14,6 +15,7 @@ type Store = Phases & {
 }
 
 export default create<Store>((set) => ({
+  wrapper: "standby",
   mask: "dark",
   progress: "standby",
   ste: "standby",

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -27,7 +27,9 @@ const Card = styled.div`
 `;
 
 export default () => {
-  const clicked = useRef(true);
+  const clicked = useRef(false);
+
+  const phase = useLoadingPhaseStore(state => state.card);
   const set = useLoadingPhaseStore(state => state.set);
 
   const card = useRef<HTMLDivElement>(null);
@@ -36,9 +38,20 @@ export default () => {
 
   useAnimation(card);
 
+  useEffect(() => {
+    if (phase === "standby") {
+      clicked.current = false;
+    }
+  }, [phase]);
+
   const handleClick = () => {
-    clicked.current ? set("card", "flip") : set("card", "end");
-    clicked.current = !clicked.current;
+    if (!clicked.current) {
+      set("card", "flip");
+      clicked.current = true;
+    }
+    else {
+      set("card", "end");
+    }
   }
 
   return (

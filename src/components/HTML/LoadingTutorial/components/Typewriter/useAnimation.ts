@@ -16,19 +16,19 @@ export default (
     switch (phase) {
       case "standby":
         gsap.to(wrapper.current, {
-          duration: 0,
-          zIndex: 1
+          duration: 0.01,
+          autoAlpha: 1
         });
 
         gsap.to([chars.current, caret.current, button.current], {
-          duration: 0,
-          autoAlpha: 0,
-          overwrite: true
+          duration: 0.01,
+          autoAlpha: 0
         });
         break;
 
 
       case "start":
+        const tweens: GSAPTween[] = [];
         const timeouts: NodeJS.Timeout[] = [];
         let pause = false;
         let delay = 0;
@@ -101,15 +101,23 @@ export default (
 
 
       case "end":
-        gsap.to([chars.current, caret.current, button.current], {
+        let t: NodeJS.Timer;
+
+        gsap.to([wrapper.current, caret.current], {
           duration: 0.5,
           ease: "power2.out",
           autoAlpha: 0,
           overwrite: true
+        }).eventCallback("onStart", () => {
+          set("ste", "end");
+          set("mask", "cloudy");
         }).eventCallback("onComplete", () => {
-          wrapper.current!.style.zIndex = "1";
+          t = setTimeout(() => {
+            set("card", "slide");
+          }, 750);
         });
-        break;
+
+        return () => { clearTimeout(t) }
     }
   }, [phase]);
 }

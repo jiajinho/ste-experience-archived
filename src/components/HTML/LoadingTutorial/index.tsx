@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { button, useControls } from 'leva';
 
-import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
 import useAnimation from './useAnimation';
+import useDebug from './useDebug';
 
 import ProgressNumber from './components/ProgressNumber';
 import STEncounter from './components/STEncounter';
@@ -29,51 +28,20 @@ const Mask = styled.div`
 `;
 
 export default () => {
+  const wrapper = useRef<HTMLDivElement>(null);
   const mask = useRef<HTMLDivElement>(null);
 
-  const set = useLoadingPhaseStore(state => state.set);
+  useAnimation(mask, wrapper);
 
-  useAnimation(mask);
-
-  useControls("mask", {
-    dark: button(() => set("mask", "dark")),
-    cloudy: button(() => set("mask", "cloudy")),
-    clear: button(() => set("mask", "clear")),
-  })
-
-  useControls("progress", {
-    standby: button(() => set("progress", "standby")),
-    end: button(() => set("progress", "end"))
-  });
-
-  useControls("ste", {
-    standby: button(() => set("ste", "standby")),
-    end: button(() => set("ste", "end"))
-  });
-
-  useControls("typewriter", {
-    standby: button(() => set("typewriter", "standby")),
-    start: button(() => set("typewriter", "start")),
-    end: button(() => set("typewriter", "end")),
-  });
-
-  useControls("card", {
-    standby: button(() => set("card", "standby")),
-    slide: button(() => set("card", "slide")),
-    flip: button(() => set("card", "flip")),
-    end: button(() => set("card", "end"))
-  });
+  useDebug();
 
   return (
-    <Wrapper>
+    <Wrapper ref={wrapper}>
       <Mask ref={mask} />
 
       <STEncounter />
-
       <ProgressNumber data={0} />
-
       <Typewriter />
-
       <HellfireCard />
     </Wrapper>
   );
