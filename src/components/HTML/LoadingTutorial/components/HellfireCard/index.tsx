@@ -9,12 +9,13 @@ const Wrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-
   perspective: 1000px;
 `;
 
 const Card = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+
   aspect-ratio: 2/3;
   height: 500px;
   width: auto;
@@ -62,16 +63,18 @@ export default () => {
       >
         <Image
           ref={front}
-          src="/static/texture/hellfire-card-front.png"
+          src="/static/texture/hellfirecard-front.png"
           alt="Card front invitation"
+          sizes="100vw"
           fill
         />
 
         <Image
           ref={back}
           id="back"
-          src="/static/texture/hellfire-card-back.png"
+          src="/static/texture/hellfirecard-back.png"
           alt="Card back enter club room"
+          sizes="100vw"
           fill
         />
       </Card>
