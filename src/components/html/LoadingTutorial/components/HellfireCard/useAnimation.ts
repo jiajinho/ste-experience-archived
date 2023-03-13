@@ -11,6 +11,10 @@ const useDebug = () => {
     reset: button(() => set("card", "standby")),
     slide: folder({
       play1: button(() => set("card", "slide")),
+      ease1: {
+        options: ["power0.out", "power2.out", "power3.out", "power4.out", "expo.out"],
+        value: "power4.out"
+      },
       duration1: { min: 1, max: 3, step: 0.01, value: 1.2 }
     }),
     flip: folder({
@@ -49,7 +53,7 @@ export default (card: React.RefObject<HTMLDivElement>) => {
             rotateY: 0,
           }, {
             duration: debug.duration1,
-            ease: "expo.out",
+            ease: debug.ease1,
             y: "0vh"
           });
         break;
