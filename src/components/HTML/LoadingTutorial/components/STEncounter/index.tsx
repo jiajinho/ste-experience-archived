@@ -3,9 +3,8 @@ import styled from 'styled-components';
 
 import fonts from 'fonts';
 import locale from 'locale';
-import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
-
 import useAnimation from './useAnimation';
+
 import Netflix, { Wrapper as $Netflix } from '@html/svg/Netflix';
 import StrangerThings, { Wrapper as $StrangerThings } from '@html/svg/StrangerThings';
 

@@ -1,8 +1,8 @@
 import { button, useControls } from 'leva';
-import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
+import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
 
 export default () => {
-  const set = useLoadingPhaseStore(state => state.set);
+  const set = useLoadAnimationStore(state => state.set);
 
   useControls({
     reset: button(() => {

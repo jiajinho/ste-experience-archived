@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import useAnimation from './useAnimation';
-import useDebug from './useDebug';
+import useAnimation from './hooks/useAnimation';
+import useDebug from './hooks/useDebug';
+import useProgress from './hooks/useProgress';
 
 import ProgressNumber from './components/ProgressNumber';
 import STEncounter from './components/STEncounter';
@@ -31,8 +32,9 @@ export default () => {
   const wrapper = useRef<HTMLDivElement>(null);
   const mask = useRef<HTMLDivElement>(null);
 
-  useAnimation(mask, wrapper);
+  const progress = useProgress();
 
+  useAnimation(mask, wrapper);
   useDebug();
 
   return (
@@ -40,7 +42,7 @@ export default () => {
       <Mask ref={mask} />
 
       <STEncounter />
-      <ProgressNumber data={0} />
+      <ProgressNumber data={progress.toFixed(0)} />
       <Typewriter />
       <HellfireCard />
     </Wrapper>

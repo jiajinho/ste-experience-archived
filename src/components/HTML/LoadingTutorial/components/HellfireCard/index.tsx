@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 import useAnimation from './useAnimation';
-import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
+import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
+import useLoaderStore from 'store/useLoaderStore';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -27,14 +28,22 @@ const Card = styled.div`
 `;
 
 export default () => {
+  /**
+   * Hooks
+   */
   const clicked = useRef(false);
 
-  const phase = useLoadingPhaseStore(state => state.card);
-  const set = useLoadingPhaseStore(state => state.set);
+  const phase = useLoadAnimationStore(state => state.card);
+  const setLoadAnimateStore = useLoadAnimationStore(state => state.set);
+
+  const setLoaderStore = useLoaderStore(state => state.set);
 
   const card = useRef<HTMLDivElement>(null);
   const front = useRef<HTMLImageElement>(null);
   const back = useRef<HTMLImageElement>(null);
+
+  const [frontLoaded, setFrontLoaded] = useState(false);
+  const [backLoaded, setBackLoaded] = useState(false);
 
   useAnimation(card);
 
@@ -44,16 +53,28 @@ export default () => {
     }
   }, [phase]);
 
+  useEffect(() => {
+    if (frontLoaded && backLoaded) {
+      setLoaderStore("html", { card: true });
+    }
+  }, [frontLoaded, backLoaded]);
+
+  /**
+   * Not hook
+   */
   const handleClick = () => {
     if (!clicked.current) {
-      set("card", "flip");
+      setLoadAnimateStore("card", "flip");
       clicked.current = true;
     }
     else {
-      set("card", "end");
+      setLoadAnimateStore("card", "end");
     }
   }
 
+  /**
+   * Render
+   */
   return (
     <Wrapper>
       <Card
@@ -64,6 +85,8 @@ export default () => {
           ref={front}
           src="/static/texture/hellfire-card-front.png"
           alt="Card front invitation"
+          onLoadingComplete={() => setFrontLoaded(true)}
+          priority
           fill
         />
 
@@ -72,6 +95,8 @@ export default () => {
           id="back"
           src="/static/texture/hellfire-card-back.png"
           alt="Card back enter club room"
+          onLoadingComplete={() => setBackLoaded(true)}
+          priority
           fill
         />
       </Card>

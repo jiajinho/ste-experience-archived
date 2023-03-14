@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
-import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
+import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
 import useAnimation from './useAnimation';
 
 import Button from './Button';
@@ -33,7 +33,7 @@ const Char = styled.p`
 `;
 
 export default () => {
-  const set = useLoadingPhaseStore(state => state.set);
+  const set = useLoadAnimationStore(state => state.set);
 
   const wrapper = useRef<HTMLDivElement>(null);
   const chars = useRef<HTMLParagraphElement[]>([]);

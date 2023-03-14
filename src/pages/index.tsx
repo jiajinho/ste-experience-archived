@@ -20,9 +20,9 @@ export default () => {
     <Wrapper>
       <LoadingTutorial />
 
-      {/* <Canvas shadows style={{ zIndex: 1 }}>
+      <Canvas shadows style={{ zIndex: 1 }}>
         <WebGL />
-      </Canvas> */}
+      </Canvas>
     </Wrapper>
   )
 }

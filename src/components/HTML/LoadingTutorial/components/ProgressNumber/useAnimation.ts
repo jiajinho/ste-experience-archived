@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
-import useLoadingPhaseStore from 'store/html/useLoadingPhaseStore';
+import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
 
 export default (wrapper: React.RefObject<HTMLDivElement>) => {
-  const phase = useLoadingPhaseStore(state => state.progress);
-  const set = useLoadingPhaseStore(state => state.set);
+  const phase = useLoadAnimationStore(state => state.progress);
+  const set = useLoadAnimationStore(state => state.set);
 
   useEffect(() => {
     switch (phase) {

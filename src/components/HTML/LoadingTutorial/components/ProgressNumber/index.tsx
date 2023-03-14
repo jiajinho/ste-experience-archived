@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   color: var(--color-cherry);
 `;
 
-export default ({ data }: { data: number }) => {
+export default ({ data }: { data: string }) => {
   const wrapper = useRef<HTMLDivElement>(null);
 
   useAnimation(wrapper);

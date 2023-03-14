@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 
-import useLoadingPhaseStore from "store/html/useLoadingPhaseStore"
+import useLoadAnimationStore from "store/html/useLoadAnimationStore"
 
 
 export default (mask: React.RefObject<HTMLDivElement>, wrapper: React.RefObject<HTMLDivElement>) => {
   const phase = {
-    mask: useLoadingPhaseStore(state => state.mask),
-    wrapper: useLoadingPhaseStore(state => state.wrapper)
+    mask: useLoadAnimationStore(state => state.mask),
+    wrapper: useLoadAnimationStore(state => state.wrapper)
   }
 
   useEffect(() => {
