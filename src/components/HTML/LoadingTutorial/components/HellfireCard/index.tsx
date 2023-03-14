@@ -23,6 +23,9 @@ const Card = styled.div`
   cursor: pointer;
   transform-style: preserve-3d;
 
+  opacity: 0;
+  visibility: hidden;
+
   img { backface-visibility: hidden }
   img#back { transform: rotateY(180deg) }
 `;

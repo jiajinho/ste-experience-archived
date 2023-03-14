@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 
+import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
+
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
 
@@ -11,14 +13,16 @@ const Wrapper = styled.main`
 
   height: 100vh;
   width: 100vw;
+  background: black;
 `;
 
 export default () => {
 
+  const renderTutorial = useLoadAnimationStore(state => state.renderPage);
 
   return (
     <Wrapper>
-      <LoadingTutorial />
+      {renderTutorial && <LoadingTutorial />}
 
       <Canvas shadows style={{ zIndex: 1 }}>
         <WebGL />

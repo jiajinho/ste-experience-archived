@@ -10,19 +10,21 @@ export default (mask: React.RefObject<HTMLDivElement>, wrapper: React.RefObject<
     wrapper: useLoadAnimationStore(state => state.wrapper)
   }
 
+  const set = useLoadAnimationStore(state => state.set);
+
   useEffect(() => {
     switch (phase.mask) {
       case "dark":
         gsap.to(mask.current, {
           duration: 0,
-          opacity: 0.9
+          opacity: 1
         });
         break;
 
       case "cloudy":
         gsap.to(mask.current, {
           duration: 0.5,
-          opacity: 0.4
+          opacity: 0.65
         });
         break;
     }
@@ -42,6 +44,8 @@ export default (mask: React.RefObject<HTMLDivElement>, wrapper: React.RefObject<
           duration: 0.5,
           ease: "power2.out",
           autoAlpha: 0
+        }).eventCallback("onComplete", () => {
+          set("renderPage", false);
         });
         break;
     }

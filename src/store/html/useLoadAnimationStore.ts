@@ -7,7 +7,9 @@ type Phases = {
   progress: ProgressPhase,
   ste: STEncounterPhase,
   card: HellfireCardPhase,
-  typewriter: TypewriterPhase
+  typewriter: TypewriterPhase,
+
+  renderPage: boolean //Determine if need to remove the loading/tutorial page
 }
 
 type Store = Phases & {
@@ -21,6 +23,8 @@ export default create<Store>((set) => ({
   ste: "standby",
   card: "standby",
   typewriter: "standby",
+  renderPage: true,
+
   set: (k, v) => set((state) => {
     const clone = { ...state };
 
