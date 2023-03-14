@@ -28,50 +28,28 @@ export default (
 
 
       case "start":
-        const tweens: GSAPTween[] = [];
         const timeouts: NodeJS.Timeout[] = [];
-        let pause = false;
-        let delay = 0;
-
-        const staggerFn = (_: any, target: HTMLParagraphElement) => {
-          delay += (Math.random() * 0.1) + 0.03;
-
-          if (pause) {
-            delay += 0.6;
-            pause = false;
-          }
-
-          if (target.innerHTML === ".") {
-            pause = true;
-          }
-
-          const t = setTimeout(() => {
-            const bound = target.getBoundingClientRect();
-
-            caret.current!.style.left = `${bound.right + 1}px`;
-            caret.current!.style.top = `${bound.top}px`;
-            caret.current!.style.opacity = "1";
-            caret.current!.style.visibility = "visible";
-          }, delay * 1000);
-
-          timeouts.push(t);
-
-          return delay;
-        }
+        let count = 0;
 
         //Animate
-        gsap.to(wrapper.current, {
-          duration: 0,
-          zIndex: 10
-        });
-
         const tween = gsap
           .fromTo(chars.current, {
             autoAlpha: 0
           }, {
             duration: 0.01,
             autoAlpha: 1,
-            stagger: staggerFn
+            stagger: {
+              each: 0.07,
+              onComplete: function () {
+                const bound = chars.current![count].getBoundingClientRect();
+                caret.current!.style.left = `${bound.right + 1}px`;
+                caret.current!.style.top = `${bound.top}px`;
+                caret.current!.style.opacity = "1";
+                caret.current!.style.visibility = "visible";
+
+                count++;
+              }
+            }
           });
 
         tween.eventCallback("onComplete", () => {
