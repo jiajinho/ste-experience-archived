@@ -24,7 +24,11 @@ export default () => {
     <Wrapper>
       {renderTutorial && <LoadingTutorial />}
 
-      <Canvas shadows style={{ zIndex: 1 }}>
+      <Canvas
+        shadows
+        style={{ zIndex: 1 }}
+        frameloop="demand"
+      >
         <WebGL />
       </Canvas>
     </Wrapper>

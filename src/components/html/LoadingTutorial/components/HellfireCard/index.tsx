@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
+  opacity: 0;
+  visibility: hidden;
   perspective: 1000px;
 `;
 
@@ -22,9 +24,6 @@ const Card = styled.div`
 
   cursor: pointer;
   transform-style: preserve-3d;
-
-  opacity: 0;
-  visibility: hidden;
 
   img { backface-visibility: hidden }
   img#back { transform: rotateY(180deg) }
@@ -41,14 +40,13 @@ export default () => {
 
   const setLoaderStore = useLoaderStore(state => state.set);
 
+  const wrapper = useRef<HTMLDivElement>(null);
   const card = useRef<HTMLDivElement>(null);
-  const front = useRef<HTMLImageElement>(null);
-  const back = useRef<HTMLImageElement>(null);
 
   const [frontLoaded, setFrontLoaded] = useState(false);
   const [backLoaded, setBackLoaded] = useState(false);
 
-  useAnimation(card);
+  useAnimation(wrapper, card);
 
   useEffect(() => {
     if (phase === "standby") {
@@ -79,13 +77,9 @@ export default () => {
    * Render
    */
   return (
-    <Wrapper>
-      <Card
-        ref={card}
-        onClick={handleClick}
-      >
+    <Wrapper ref={wrapper}>
+      <Card ref={card} onClick={handleClick}>
         <Image
-          ref={front}
           src="/static/texture/hellfire-card-front.png"
           alt="Card front invitation"
           onLoadingComplete={() => setFrontLoaded(true)}
@@ -94,7 +88,6 @@ export default () => {
         />
 
         <Image
-          ref={back}
           id="back"
           src="/static/texture/hellfire-card-back.png"
           alt="Card back enter club room"
