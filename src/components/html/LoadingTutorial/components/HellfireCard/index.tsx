@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import useAnimation from './useAnimation';
 import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
-import useLoaderStore from 'store/useLoaderStore';
+import useLoadProgressStore from 'store/useLoadProgressStore';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -38,7 +38,7 @@ export default () => {
   const phase = useLoadAnimationStore(state => state.card);
   const setLoadAnimateStore = useLoadAnimationStore(state => state.set);
 
-  const setLoaderStore = useLoaderStore(state => state.set);
+  const setLoaderStore = useLoadProgressStore(state => state.set);
 
   const wrapper = useRef<HTMLDivElement>(null);
   const card = useRef<HTMLDivElement>(null);

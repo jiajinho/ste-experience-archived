@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
-import useLoaderStore from 'store/useLoaderStore';
+import useLoadProgressStore from 'store/useLoadProgressStore';
 
 export default () => {
   const [progress, setProgress] = useState(0);
 
   const set = useLoadAnimationStore(state => state.set);
-  const { webgl, html } = useLoaderStore(state => state);
+  const { webgl, html } = useLoadProgressStore(state => state);
 
   useEffect(() => {
     const total = (webgl.total || 0) + Object.keys(html).length;
