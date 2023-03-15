@@ -30,7 +30,7 @@ export default () => {
       {/* <Canvas
         shadows
         style={{ zIndex: 1 }}
-        frameloop="demand"
+        frameloop={renderTutorial ? "demand" : "always"}
       >
         <WebGL />
       </Canvas> */}

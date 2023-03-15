@@ -19,7 +19,7 @@ const zoomChoices: { [h in Hotspot]: Zoom } = {
 
 const viewport: Viewport = {
   sm: "456px",
-  md: "769px",
+  md: "768px",
   lg: "1200px"
 }
 
