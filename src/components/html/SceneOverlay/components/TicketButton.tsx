@@ -11,9 +11,10 @@ export const Wrapper = styled.svg`
   position: relative;
   display: block;
   cursor: pointer;
+  pointer-events: auto;
 
   & > text {
-    
+    user-select: none;
     font-family: var(--font-benguiat);
   }
 `;

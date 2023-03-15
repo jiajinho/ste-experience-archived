@@ -14,6 +14,8 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 6px;
 
+  user-select: none;
+
   ${$Netflix} { width: 40% }
   ${$StrangerThings} { width: 100% }
 `;
