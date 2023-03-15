@@ -6,7 +6,7 @@ import { Leva } from 'leva';
 import '../globals.css';
 import fonts from 'fonts';
 import useToggleEnv from 'hooks/useToggleEnv';
-import useEnvStore from 'store/useEnvStore';
+import useEnvStore from 'stores/useEnvStore';
 import useResponsive from 'hooks/useResponsive';
 
 const App = styled.div`

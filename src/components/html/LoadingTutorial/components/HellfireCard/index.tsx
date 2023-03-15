@@ -3,8 +3,8 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import useAnimation from './useAnimation';
-import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
-import useLoadProgressStore from 'store/useLoadProgressStore';
+import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 const Wrapper = styled.div`
   position: absolute;

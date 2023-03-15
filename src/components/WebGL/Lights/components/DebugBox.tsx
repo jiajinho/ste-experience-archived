@@ -1,5 +1,5 @@
 import React from 'react';
-import useEnvStore from 'store/useEnvStore';
+import useEnvStore from 'stores/useEnvStore';
 
 export default React.forwardRef((
   props: JSX.IntrinsicElements["mesh"],

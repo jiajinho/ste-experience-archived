@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useControls } from 'leva';
 
-import useDebugLightStore from 'store/webgl/useDebugLightStore';
+import useDebugLightStore from 'stores/webgl/useDebugLightStore';
 
 export default (collapsed: boolean) => {
   const light = useDebugLightStore(state => state.light);

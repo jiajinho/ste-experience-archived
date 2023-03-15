@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
-import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
+import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import useAnimation from './useAnimation';
 
 import Button from './Button';

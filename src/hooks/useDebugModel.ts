@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useControls } from 'leva';
 
-import useEnvStore from 'store/useEnvStore';
-import useDebugModelStore from 'store/webgl/useDebugModelStore';
-import useOutlineMeshStore from 'store/webgl/useOutlineMeshStore';
+import useEnvStore from 'stores/useEnvStore';
+import useDebugModelStore from 'stores/webgl/useDebugModelStore';
+import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 
 export default (collapsed: boolean) => {
   const env = useEnvStore(state => state.env);

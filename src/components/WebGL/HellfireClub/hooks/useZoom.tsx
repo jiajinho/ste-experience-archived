@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
 import { Hotspot, Vector3 } from 'types';
-import useCameraStore from 'store/webgl/useCameraStore';
-import useEnvStore from 'store/useEnvStore';
+import useCameraStore from 'stores/webgl/useCameraStore';
+import useEnvStore from 'stores/useEnvStore';
 
 export type Zoom = {
   hotspot: Hotspot,

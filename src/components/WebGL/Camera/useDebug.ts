@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 import { useControls } from 'leva';
 
-import useEnvStore from 'store/useEnvStore';
+import useEnvStore from 'stores/useEnvStore';
 import { moveCamera } from './utils';
 
 export default (shadowCamera: React.RefObject<THREE.PerspectiveCamera>) => {

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import * as THREE from 'three';
 
-import useEnvStore from 'store/useEnvStore';
-import useDebugLightStore from 'store/webgl/useDebugLightStore';
+import useEnvStore from 'stores/useEnvStore';
+import useDebugLightStore from 'stores/webgl/useDebugLightStore';
 
 export default (ref: React.RefObject<THREE.SpotLight>, debug: React.RefObject<THREE.Mesh>) => {
   const env = useEnvStore(state => state.env);

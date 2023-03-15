@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { useProgress } from '@react-three/drei';
 import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 
-import useOutlineMeshStore from 'store/webgl/useOutlineMeshStore';
-
-import useEnvStore from 'store/useEnvStore';
-import useLoadProgressStore from 'store/useLoadProgressStore';
+import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
+import useEnvStore from 'stores/useEnvStore';
+import useLoadProgressStore from 'stores/useLoadProgressStore';
 import useDebugModel from 'hooks/useDebugModel';
 import useDebugLight from 'hooks/useDebugLight';
 

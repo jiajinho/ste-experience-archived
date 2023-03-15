@@ -1,6 +1,6 @@
-import useEnvStore from 'store/useEnvStore';
-import useObjectMoverStore from 'store/webgl/useDebugModelStore';
-import useOutlineMeshStore from 'store/webgl/useOutlineMeshStore';
+import useEnvStore from 'stores/useEnvStore';
+import useObjectMoverStore from 'stores/webgl/useDebugModelStore';
+import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 
 const getMeshes = (group: THREE.Group) => {
   const meshes: THREE.Mesh[] = [];
