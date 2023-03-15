@@ -1,9 +1,9 @@
-import '../styles/globals.css';
 import styled from 'styled-components';
 import type { AppProps } from 'next/app';
 import { Stats } from '@react-three/drei';
 import { Leva } from 'leva';
 
+import '../globals.css';
 import useToggleEnv from 'hooks/useToggleEnv';
 import useEnvStore from 'store/useEnvStore';
 import fonts from 'fonts';
