@@ -22,7 +22,7 @@ export default ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      {/* {env === "development" && <Stats />} */}
+      {env === "development" && <Stats />}
 
       <Leva
         collapsed
