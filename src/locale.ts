@@ -11,7 +11,13 @@ const loading = {
   continueBtn: "Continue"
 }
 
+const overlayUI = {
+  presentedBy: "Presented By",
+  ticketBtn: "Tickets"
+}
+
 export default {
   global,
-  loading
+  loading,
+  overlayUI
 }

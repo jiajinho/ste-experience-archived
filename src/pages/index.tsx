@@ -6,6 +6,7 @@ import useLoadAnimationStore from 'store/html/useLoadAnimationStore';
 
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
+import SceneOverlay from '@html/SceneOverlay';
 
 const Wrapper = styled.main`
   position: relative;
@@ -23,6 +24,8 @@ export default () => {
   return (
     <Wrapper>
       {renderTutorial && <LoadingTutorial />}
+
+      <SceneOverlay />
 
       <Canvas
         shadows

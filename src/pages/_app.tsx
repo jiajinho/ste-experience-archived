@@ -10,6 +10,7 @@ import fonts from 'fonts';
 
 const App = styled.div`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
+  --font-inter: ${fonts.inter.style.fontFamily};
 `;
 
 export default ({ Component, pageProps }: AppProps) => {
