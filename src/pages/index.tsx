@@ -23,17 +23,17 @@ export default () => {
 
   return (
     <Wrapper>
-      {renderTutorial && <LoadingTutorial />}
+      {/* {renderTutorial && <LoadingTutorial />} */}
 
       <SceneOverlay />
 
-      <Canvas
+      {/* <Canvas
         shadows
         style={{ zIndex: 1 }}
         frameloop="demand"
       >
         <WebGL />
-      </Canvas>
+      </Canvas> */}
     </Wrapper>
   )
 }

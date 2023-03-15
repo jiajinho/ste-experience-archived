@@ -4,9 +4,10 @@ import { Stats } from '@react-three/drei';
 import { Leva } from 'leva';
 
 import '../globals.css';
+import fonts from 'fonts';
 import useToggleEnv from 'hooks/useToggleEnv';
 import useEnvStore from 'store/useEnvStore';
-import fonts from 'fonts';
+import useResponsive from 'hooks/useResponsive';
 
 const App = styled.div`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
@@ -18,6 +19,7 @@ export default ({ Component, pageProps }: AppProps) => {
 
   // useThemeSong();
 
+  useResponsive();
   useToggleEnv();
 
   return (

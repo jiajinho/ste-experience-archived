@@ -14,3 +14,10 @@ export type Zoom = {
   cameraPosition?: Vector3,
   lookAt?: THREE.Vector3
 }
+
+export type Viewport = {
+  xs?: undefined,
+  sm: string,
+  md: string,
+  lg: string
+}

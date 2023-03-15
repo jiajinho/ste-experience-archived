@@ -1,9 +1,5 @@
 import * as THREE from "three";
-import { Hotspot, Zoom } from "types";
-
-const gltf = {
-  scale: 4
-}
+import { Hotspot, Viewport, Zoom } from "types";
 
 /**
  * Order sensitive, initially set the zoom props of the hotspots to be empty, which 
@@ -21,7 +17,13 @@ const zoomChoices: { [h in Hotspot]: Zoom } = {
   shelf: {}
 }
 
+const viewport: Viewport = {
+  sm: "456px",
+  md: "769px",
+  lg: "1200px"
+}
+
 export default {
-  gltf,
-  zoomChoices
+  zoomChoices,
+  viewport
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import config from 'config';
+
 import STEncounter, { Wrapper as $STEncounter } from '@html/STEncounter';
 import TicketButton from './components/TicketButton';
 import HomeButton from './components/HomeButton';
@@ -45,6 +47,14 @@ const FlexRow = styled.div`
 
   &#bottom {
     align-items: end;
+  }
+
+  @media screen and (min-width: ${config.viewport.md}) {
+    ${$STEncounter} {
+      width: 160px;
+
+      p { font-size: 16px }
+    }
   }
 `;
 
