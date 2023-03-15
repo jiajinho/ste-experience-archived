@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useHelper } from '@react-three/drei';
 
-import useDebugLightStore from 'store/useDebugLightStore';
+import useDebugLightStore from 'store/webgl/useDebugLightStore';
+
 import BulletinLight from './components/BulletinLight';
 import TVLight from './components/TVLight';
 import RoomCrimsonLight from './components/RoomCrimsonLight';

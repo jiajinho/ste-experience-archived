@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
-import useCameraStore from 'store/useCameraStore';
+import useCameraStore from 'store/webgl/useCameraStore';
 import useDebug from './useDebug';
 import { moveCamera } from './utils';
 

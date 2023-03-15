@@ -1,6 +1,6 @@
 import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 
-import useOutlineMeshStore from 'store/useOutlineMeshStore';
+import useOutlineMeshStore from 'store/webgl/useOutlineMeshStore';
 
 import useEnvStore from 'store/useEnvStore';
 import useDebugModel from 'hooks/useDebugModel';
