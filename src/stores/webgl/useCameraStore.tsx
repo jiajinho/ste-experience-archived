@@ -4,8 +4,8 @@ import type { Hotspot, Zoom } from "types";
 import config from "config";
 
 type Store = {
-  zoomProps: { [h in Hotspot]: Zoom },
-  updateZoomProps: (h: Hotspot, z: Zoom) => void,
+  zoomSettings: { [h in Hotspot]: Zoom },
+  updateZoomSettings: (h: Hotspot, z: Zoom) => void,
 
   currentZoom: Hotspot,
   setCurrentZoom: (h: Hotspot) => void,
@@ -15,21 +15,23 @@ type Store = {
 }
 
 export default create<Store>((set) => ({
-  zoomProps: config.zoomProps,
-  updateZoomProps: (h, z) => set((state) => {
-    const clone = { ...state.zoomProps };
+  zoomSettings: config.zoomSettings,
+  updateZoomSettings: (h, z) => set((state) => {
+    const clone = { ...state.zoomSettings };
     clone[h] = z;
 
-    return { zoomProps: clone }
+    return { zoomSettings: clone }
   }),
+
 
   currentZoom: "default",
   setCurrentZoom: (h) => set(() => ({
     currentZoom: h
   })),
 
+
   goNextZoom: () => set((state) => {
-    const keys = Object.keys(state.zoomProps);
+    const keys = Object.keys(state.zoomSettings);
     let index = keys.findIndex(k => k === state.currentZoom);
 
     if (++index > keys.length - 1) {
@@ -40,7 +42,7 @@ export default create<Store>((set) => ({
     return { currentZoom }
   }),
   goPrevZoom: () => set((state) => {
-    const keys = Object.keys(state.zoomProps);
+    const keys = Object.keys(state.zoomSettings);
     let index = keys.findIndex(k => k === state.currentZoom);
 
     if (--index < 0) {

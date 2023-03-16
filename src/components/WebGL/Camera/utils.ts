@@ -3,12 +3,13 @@ import gsap from "gsap";
 
 import { Vector3 } from "types";
 
-export function moveCamera({ camera, shadowCamera, lookAt, cameraPosition, animate }: {
+export function moveCamera({ camera, shadowCamera, lookAt, cameraPosition, animate, callback }: {
   camera: THREE.Camera,
   shadowCamera: THREE.PerspectiveCamera,
   lookAt: THREE.Vector3,
   cameraPosition: Vector3,
-  animate: boolean
+  animate: boolean,
+  callback?: () => void
 }) {
   shadowCamera.position.x = cameraPosition[0];
   shadowCamera.position.y = cameraPosition[1];
@@ -36,4 +37,7 @@ export function moveCamera({ camera, shadowCamera, lookAt, cameraPosition, anima
       y: endRotation.y,
       z: endRotation.z
     }, 0)
+    .eventCallback("onComplete", () => {
+      callback && callback();
+    });
 }

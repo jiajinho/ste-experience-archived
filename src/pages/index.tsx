@@ -7,6 +7,7 @@ import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
 import SceneOverlay from '@html/SceneOverlay';
+import useEnvStore from 'stores/useEnvStore';
 
 const Wrapper = styled.main`
   position: relative;
@@ -18,7 +19,7 @@ const Wrapper = styled.main`
 `;
 
 export default () => {
-
+  const env = useEnvStore(state => state.env);
   const renderTutorial = useLoadAnimationStore(state => state.renderPage);
 
   return (
@@ -30,7 +31,7 @@ export default () => {
       <Canvas
         shadows
         style={{ zIndex: 1 }}
-        frameloop={renderTutorial ? "demand" : "always"}
+        frameloop={env === "production" && renderTutorial ? "demand" : "always"}
       >
         <WebGL />
       </Canvas>

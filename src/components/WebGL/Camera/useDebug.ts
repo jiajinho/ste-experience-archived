@@ -4,10 +4,14 @@ import { useThree } from '@react-three/fiber';
 import { useControls } from 'leva';
 
 import useEnvStore from 'stores/useEnvStore';
+import useCameraStore from 'stores/webgl/useCameraStore';
 import { moveCamera } from './utils';
 
 export default (shadowCamera: React.RefObject<THREE.PerspectiveCamera>) => {
   const env = useEnvStore(state => state.env);
+  const zoomSettings = useCameraStore(state => state.zoomSettings);
+  const currentZoom = useCameraStore(state => state.currentZoom);
+
   const camera = useThree(state => state.camera);
 
   const [{ x, y, z, tx, ty, tz, freeCam }, set] = useControls("useDebugCamera", () => ({
@@ -33,6 +37,24 @@ export default (shadowCamera: React.RefObject<THREE.PerspectiveCamera>) => {
       animate: false
     });
   }, [x, y, z, tx, ty, tz]);
+
+  useEffect(() => {
+    if (env === "development") return;
+
+    set({ freeCam: false });
+
+    const cameraSetting = zoomSettings[currentZoom];
+
+    if (cameraSetting.cameraPosition) {
+      camera.position.x = cameraSetting.cameraPosition[0];
+      camera.position.y = cameraSetting.cameraPosition[1];
+      camera.position.z = cameraSetting.cameraPosition[2];
+    }
+
+    if (cameraSetting.lookAt) {
+      camera.lookAt(cameraSetting.lookAt);
+    }
+  }, [env]);
 
   return { freeCam, set };
 }
