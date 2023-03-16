@@ -12,15 +12,15 @@ export type Zoom = {
 export default (ref: React.RefObject<THREE.Group>, zoom: Zoom) => {
   const env = useEnvStore(state => state.env);
 
-  const updateZoomChoices = useCameraStore(state => state.updateZoomChoices);
+  const updateZoomProps = useCameraStore(state => state.updateZoomProps);
   const setCurrentZoom = useCameraStore(state => state.setCurrentZoom);
 
   useEffect(() => {
-    updateZoomChoices(zoom.hotspot, {
+    updateZoomProps(zoom.hotspot, {
       cameraPosition: zoom.cameraPosition,
       lookAt: ref.current?.position
     });
-  }, [JSON.stringify(zoom), updateZoomChoices]);
+  }, [JSON.stringify(zoom), updateZoomProps]);
 
   const triggerZoom = () => {
     if (env === "development") return;

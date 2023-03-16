@@ -5,7 +5,7 @@ import { Hotspot, Viewport, Zoom } from "types";
  * Order sensitive, initially set the zoom props of the hotspots to be empty, which 
  * will be filler in the useZoom later
  */
-const zoomChoices: { [h in Hotspot]: Zoom } = {
+const zoomProps: { [h in Hotspot]: Zoom } = {
   default: {
     cameraPosition: [1.95, 1.7, 1.41],
     lookAt: new THREE.Vector3(0, 1, 0)
@@ -24,6 +24,6 @@ const viewport: Viewport = {
 }
 
 export default {
-  zoomChoices,
+  zoomProps,
   viewport
 }

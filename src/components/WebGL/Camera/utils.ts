@@ -35,5 +35,5 @@ export function moveCamera({ camera, shadowCamera, lookAt, cameraPosition, anima
       x: endRotation.x,
       y: endRotation.y,
       z: endRotation.z
-    }, 0);
+    }, 0)
 }

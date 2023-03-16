@@ -14,13 +14,13 @@ export default () => {
 
   const { freeCam, set } = useDebug(shadowCamera);
 
-  const zoomChoices = useCameraStore(state => state.zoomChoices);
+  const zoomProps = useCameraStore(state => state.zoomProps);
   const currentZoom = useCameraStore(state => state.currentZoom);
 
   useEffect(() => {
     if (!shadowCamera.current) return;
 
-    const { lookAt, cameraPosition } = zoomChoices[currentZoom];
+    const { lookAt, cameraPosition } = zoomProps[currentZoom];
 
     if (!lookAt || !cameraPosition) {
       console.warn("lookAt and cameraPosition is undefined");
@@ -35,14 +35,14 @@ export default () => {
       animate: !firstTime.current
     });
 
-    set({
-      x: shadowCamera.current.position.x,
-      y: shadowCamera.current.position.y,
-      z: shadowCamera.current.position.z,
-      tx: lookAt.x,
-      ty: lookAt.y,
-      tz: lookAt.z
-    });
+    // set({
+    //   x: shadowCamera.current.position.x,
+    //   y: shadowCamera.current.position.y,
+    //   z: shadowCamera.current.position.z,
+    //   tx: lookAt.x,
+    //   ty: lookAt.y,
+    //   tz: lookAt.z
+    // });
 
     firstTime.current = false;
   }, [currentZoom]);
