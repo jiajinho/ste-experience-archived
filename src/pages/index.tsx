@@ -1,55 +1,43 @@
+import React from 'react';
 import styled from 'styled-components';
-import { Html, OrbitControls } from '@react-three/drei';
-import { EffectComposer, Outline } from '@react-three/postprocessing';
-import { useControls } from 'leva';
+import { Canvas } from '@react-three/fiber';
 
-import useOutlineMeshStore from 'store/useOutlineMeshStore';
-import useCamera from 'hooks/useCamera';
+import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 
-import HellfireClub from 'components/webgl/HellfireClub';
-import LightGroup from 'components/webgl/LightGroup';
+import WebGL from 'components/WebGL';
+import LoadingTutorial from '@html/LoadingTutorial';
+import SceneOverlay from '@html/SceneOverlay';
+import useEnvStore from 'stores/useEnvStore';
 
-const RedDot = styled.div`
-  background: red;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  height: 5px;
-  width: auto;
+const Wrapper = styled.main`
+  position: relative;
+  z-index: 1;
+
+  height: 100vh;
+  width: 100vw;
+  background: black;
 `;
 
 export default () => {
+  const env = useEnvStore(state => state.env);
+  const loading = useLoadAnimationStore(state => state.loading);
 
-  useCamera();
-
-  const meshs = useOutlineMeshStore(state => state.meshs);
-
-  const { freeCam } = useControls({
-    freeCam: false
-  });
+  const renderTutorial = loading && env === "production";
+  const renderOverlay = env !== "development";
 
   return (
-    <>
-      <OrbitControls enabled={freeCam} />
+    <Wrapper>
+      {renderTutorial && <LoadingTutorial />}
 
-      <LightGroup />
-      <HellfireClub scale={0.01} />
+      {renderOverlay && <SceneOverlay />}
 
-      <Html occlude={false} position={[11.2, 4.4, -6.4]}>
-        <RedDot />
-      </Html>
-
-      <Html occlude={false} position={[-5.3, 6.2, 12.8]}>
-        <RedDot />
-      </Html>
-
-      <EffectComposer enabled autoClear={false}>
-        <Outline
-          selection={meshs}
-          hiddenEdgeColor={0x99c4ac}
-          edgeStrength={2.5}
-          xRay={true}
-        />
-      </EffectComposer>
-    </>
-  );
+      <Canvas
+        shadows
+        style={{ zIndex: 1 }}
+        frameloop={env === "production" && loading ? "demand" : "always"}
+      >
+        <WebGL />
+      </Canvas>
+    </Wrapper>
+  )
 }

@@ -1,35 +1,40 @@
-import '../styles/globals.css';
 import styled from 'styled-components';
 import type { AppProps } from 'next/app';
 import { Stats } from '@react-three/drei';
+import { Leva } from 'leva';
 
-import { Canvas } from '@react-three/fiber';
-import CameraUI from 'components/html/CameraUI';
-import useThemeSong from 'hooks/useThemeSong';
+import '../globals.css';
+import fonts from 'fonts';
+import useToggleEnv from 'hooks/useToggleEnv';
+import useEnvStore from 'stores/useEnvStore';
+import useResponsive from 'hooks/useResponsive';
 
-const Wrapper = styled.main`
-  position: relative;
-  z-index: 1;
-
-  height: 100vh;
-  width: 100vw;
-  background: black;
+const App = styled.div`
+  --font-benguiat: ${fonts.benguiat.style.fontFamily};
+  --font-inter: ${fonts.inter.style.fontFamily};
 `;
 
 export default ({ Component, pageProps }: AppProps) => {
-  useThemeSong();
+  const env = useEnvStore(state => state.env);
+
+  // useThemeSong();
+
+  useResponsive();
+  useToggleEnv();
 
   return (
     <>
-      <Stats />
+      {env === "development" && <Stats />}
 
-      <Wrapper>
-        <CameraUI />
+      <Leva
+        collapsed
+        hidden={env !== "development"}
+        theme={{ sizes: { numberInputMinWidth: "50px" } }}
+      />
 
-        <Canvas style={{ zIndex: 1 }}>
-          <Component {...pageProps} />
-        </Canvas>
-      </Wrapper>
+      <App>
+        <Component {...pageProps} />
+      </App>
     </>
   );
 }

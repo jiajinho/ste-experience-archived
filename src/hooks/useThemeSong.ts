@@ -9,7 +9,7 @@ export default () => {
 
     const play = () => {
       song.loop = true;
-      song.volume = 0.1;
+      song.volume = 0.05;
       song.play();
     }
 

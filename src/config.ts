@@ -1,16 +1,29 @@
-import { Camera } from "types"
+import * as THREE from "three";
+import { Hotspot, Viewport, Zoom } from "types";
 
-const cameras: Camera[] = [
-  {
-    position: [-10, 5, 5],
-    lookAt: [0, 0, 0]
+/**
+ * Order sensitive, initially set the zoom props of the hotspots to be empty, which 
+ * will be filler in the useZoom later
+ */
+const zoomSettings: { [h in Hotspot]: Zoom } = {
+  default: {
+    cameraPosition: [1.95, 1.7, 1.41],
+    lookAt: new THREE.Vector3(0, 1, 0)
   },
-  {
-    position: [10, 5, 5],
-    lookAt: [0, 0, 0]
-  }
-]
+  retroTV: {},
+  bulletinBoard: {},
+  standingBoard: {},
+  book: {},
+  shelf: {}
+}
+
+const viewport: Viewport = {
+  sm: "456px",
+  md: "768px",
+  lg: "1200px"
+}
 
 export default {
-  cameras
+  zoomSettings,
+  viewport
 }
