@@ -20,18 +20,21 @@ const Wrapper = styled.main`
 
 export default () => {
   const env = useEnvStore(state => state.env);
-  const renderTutorial = useLoadAnimationStore(state => state.renderPage);
+  const loading = useLoadAnimationStore(state => state.loading);
+
+  const renderTutorial = loading && env === "production";
+  const renderOverlay = env !== "development";
 
   return (
     <Wrapper>
-      {/* {renderTutorial && <LoadingTutorial />} */}
+      {renderTutorial && <LoadingTutorial />}
 
-      <SceneOverlay />
+      {renderOverlay && <SceneOverlay />}
 
       <Canvas
         shadows
         style={{ zIndex: 1 }}
-        frameloop={env === "production" && renderTutorial ? "demand" : "always"}
+        frameloop={env === "production" && loading ? "demand" : "always"}
       >
         <WebGL />
       </Canvas>

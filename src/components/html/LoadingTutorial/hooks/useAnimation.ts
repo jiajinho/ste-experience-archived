@@ -45,7 +45,7 @@ export default (mask: React.RefObject<HTMLDivElement>, wrapper: React.RefObject<
           ease: "power2.out",
           autoAlpha: 0
         }).eventCallback("onComplete", () => {
-          set("renderPage", false);
+          set("loading", false);
         });
         break;
     }

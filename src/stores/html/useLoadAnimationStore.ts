@@ -9,7 +9,7 @@ type Phases = {
   card: HellfireCardPhase,
   typewriter: TypewriterPhase,
 
-  renderPage: boolean //Determine if need to remove the loading/tutorial page
+  loading: boolean //Determine if need to remove the loading/tutorial page
 }
 
 type Store = Phases & {
@@ -23,7 +23,7 @@ export default create<Store>((set) => ({
   ste: "standby",
   card: "standby",
   typewriter: "standby",
-  renderPage: true,
+  loading: true,
 
   set: (k, v) => set((state) => {
     const clone = { ...state };

@@ -39,9 +39,10 @@ export default (shadowCamera: React.RefObject<THREE.PerspectiveCamera>) => {
   }, [x, y, z, tx, ty, tz]);
 
   useEffect(() => {
+    set({ freeCam: env === "development" });
+
     if (env === "development") return;
 
-    set({ freeCam: false });
 
     const cameraSetting = zoomSettings[currentZoom];
 

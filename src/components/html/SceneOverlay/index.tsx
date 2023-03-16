@@ -25,8 +25,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   
-  & * { pointer-events: none }
-  
   & > ${$ArrowGroup} { justify-content: space-between }
 
   @media screen and (min-width: ${config.viewport.md}) {
@@ -36,6 +34,7 @@ const Wrapper = styled.div`
 
 const TopRow = styled.div`
   position: relative;
+  pointer-events: none;
 
   display: flex;
   justify-content: space-between;
