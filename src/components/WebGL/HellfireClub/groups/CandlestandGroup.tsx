@@ -33,7 +33,8 @@ export default () => {
     <>
       <Candlestand
         material={standMaterial}
-        position={[2.3, 0, 3.58]}
+        position={[-0.38, 0.1, 3.92]}
+        rotation={[-1.54, 0, 0.83]}
         light={LightColor.Yellow}
       />
 
@@ -51,7 +52,8 @@ export default () => {
 
       <Candlestand
         material={standMaterial}
-        position={[0.92, 0, -2.38]}
+        position={[0.88, 0.08, -2.38]}
+        rotation={[-1.54, 0.1, -0.43]}
         light={LightColor.Yellow}
       />
     </>

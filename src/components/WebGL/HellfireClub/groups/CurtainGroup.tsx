@@ -31,7 +31,7 @@ export default () => {
 
       <Curtain.Classic
         material={clothMaterial}
-        position={[4.21, 2.46, -3.13]}
+        position={[4.15, 2.46, -3.13]}
         rotation-y={-Math.PI / 2}
       />
 
