@@ -24,7 +24,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   useEffect(() => {
     if (!materials) return;
 
-    materials.Floor.emissiveIntensity = 10;
+    materials.Floor.emissiveIntensity = 8;
     materials.Floor.toneMapped = false;
     materials.Floor.metalness = 0.3;
     materials.Floor.roughness = 0.6;
@@ -32,7 +32,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     const tween = gsap.to(materials.Floor, {
       duration: 2.5,
       ease: "power2.inOut",
-      emissiveIntensity: 30,
+      emissiveIntensity: 15,
       yoyo: true,
       repeat: -1,
     });
@@ -42,10 +42,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
 
   return (
-    <group
-      {...props}
-      dispose={null}
-    >
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Sinew.geometry}
         material={materials.Sinew}

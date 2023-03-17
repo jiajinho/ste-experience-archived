@@ -12,6 +12,7 @@ import LampBlueLight from './components/LampBlueLight';
 import ShelfLight from './components/ShelfLight';
 import DnDLight from './components/DnDLight';
 import RiftLights from './components/RiftLights';
+import StandingBoardLight from './components/StandingBoardLight';
 
 export default () => {
   const light = useDebugLightStore(state => state.light);
@@ -42,18 +43,10 @@ export default () => {
       <BulletinLight />
 
 
-      {/* <TVBlueLight /> */}
+      <StandingBoardLight />
 
-      {/* <LampBlueLight /> */}
-
-
-      {/* <StandingBoardLight /> */}
-
-
-      {/* <ShelfInnerLight /> */}
-
-      {/* <ShelfLight />
-      <DnDLight /> */}
+      <ShelfLight.Top />
+      <ShelfLight.Bottom />
     </>
   )
 }
