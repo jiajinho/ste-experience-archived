@@ -2,13 +2,15 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import { useControls } from 'leva';
 
+import { moveCamera } from './utils';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useDebug from './useDebug';
-import { moveCamera } from './utils';
 
 export default () => {
   const { camera } = useThree();
+
   const shadowCamera = useRef<THREE.PerspectiveCamera>(null);
   const firstTime = useRef(true);
 
@@ -16,6 +18,13 @@ export default () => {
 
   const zoomSettings = useCameraStore(state => state.zoomSettings);
   const currentZoom = useCameraStore(state => state.currentZoom);
+  const setShadowCamera = useCameraStore(state => state.setShadowCamera);
+  const setCameraPan = useCameraStore(state => state.setCameraPan);
+
+  useEffect(() => {
+    setShadowCamera(shadowCamera.current!);
+  }, []);
+
 
   useEffect(() => {
     if (!shadowCamera.current) return;
@@ -25,6 +34,10 @@ export default () => {
     if (!lookAt || !cameraPosition) {
       console.warn("lookAt and cameraPosition is undefined");
       return;
+    }
+
+    if (currentZoom !== "default") {
+      setCameraPan(false);
     }
 
     moveCamera({
@@ -42,11 +55,15 @@ export default () => {
           ty: lookAt.y,
           tz: lookAt.z
         });
+
+        if (currentZoom === "default" && !freeCam) {
+          setCameraPan(true);
+        }
       }
     });
 
     firstTime.current = false;
-  }, [currentZoom]);
+  }, [currentZoom, freeCam]);
 
   return (
     <>

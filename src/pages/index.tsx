@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import useCameraPan from 'hooks/useCameraPan';
+import useEnvStore from 'stores/useEnvStore';
 
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
 import SceneOverlay from '@html/SceneOverlay';
-import useEnvStore from 'stores/useEnvStore';
 
 const Wrapper = styled.main`
   position: relative;
@@ -18,7 +19,17 @@ const Wrapper = styled.main`
   background: black;
 `;
 
+const CanvasContainer = styled.div`
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+`;
+
 export default () => {
+  const canvas = useRef<HTMLDivElement>(null);
+  useCameraPan(canvas);
+
   const env = useEnvStore(state => state.env);
   const loading = useLoadAnimationStore(state => state.loading);
 
@@ -31,13 +42,14 @@ export default () => {
 
       {renderOverlay && <SceneOverlay />}
 
-      <Canvas
-        shadows
-        style={{ zIndex: 1 }}
-        frameloop={env === "production" && loading ? "demand" : "always"}
-      >
-        <WebGL />
-      </Canvas>
+      <CanvasContainer ref={canvas}>
+        <Canvas
+          shadows
+          frameloop={env === "production" && loading ? "demand" : "always"}
+        >
+          <WebGL />
+        </Canvas>
+      </CanvasContainer>
     </Wrapper>
   )
 }
