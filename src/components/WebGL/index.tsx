@@ -5,9 +5,9 @@ import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
-import useDebugModel from 'hooks/useDebugModel';
-import useDebugLight from 'hooks/useDebugLight';
+import useDebugLight from 'components/WebGL/useDebugLight';
 
+import useDebugModel from './useDebugModel';
 import HellfireClub from './HellfireClub';
 import Camera from './Camera';
 import Lights from './Lights';
