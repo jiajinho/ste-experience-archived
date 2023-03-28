@@ -1,22 +1,21 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useDebug from './useDebug';
 import useZoomHotspot from './useZoomHotspot';
-import { useThree } from '@react-three/fiber';
 import useMouseEvent from './useMouseEvent';
 
 export default () => {
   const { camera } = useThree();
   const shadowCamera = useRef<THREE.PerspectiveCamera>(null);
 
-  const { freeCam, set } = useDebug(shadowCamera);
-  useMouseEvent();
-
   const setCameraStore = useCameraStore(state => state.set);
 
+  const { freeCam, set } = useDebug(shadowCamera);
+  useMouseEvent();
   useZoomHotspot();
 
   useEffect(() => {
