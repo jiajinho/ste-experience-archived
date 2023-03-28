@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import * as THREE from 'three';
+import gsap from 'gsap';
 
 import config from 'config';
-import { moveCamera } from 'components/WebGL/Camera/utils';
 import useCameraStore from 'stores/webgl/useCameraStore';
 
 export default (canvas: React.RefObject<HTMLDivElement>) => {
@@ -37,6 +37,8 @@ export default (canvas: React.RefObject<HTMLDivElement>) => {
 
     function handleMouseMove(e: MouseEvent) {
       if (!enablePan) return;
+      if (!shadowCamera) return;
+      if (!camera) return;
 
       const delta = e.pageX - anchorX;
       const scaleFactor = 0.001;
@@ -50,29 +52,21 @@ export default (canvas: React.RefObject<HTMLDivElement>) => {
         -Math.cos(origin.alpha) * config.defaultLookAt.scale
       );
 
-      moveCamera({
-        camera: camera!,
-        shadowCamera: shadowCamera!,
-        lookAt: vec3,
-        cameraPosition: config.zoomSettings.default.cameraPosition!,
-        animate: true
+      shadowCamera.lookAt(vec3);
+
+      const endQuaternion = new THREE.Quaternion();
+      endQuaternion.setFromRotationMatrix(shadowCamera.matrix);
+
+      const time = { t: 0 };
+
+      gsap.to(time, {
+        t: 1,
+        duration: 10,
+        ease: "power2.out",
+        onUpdate: () => {
+          camera.quaternion.slerp(endQuaternion, time.t);
+        }
       });
-
-      // gsap.to(origin, {
-      //   duration: 1.5,
-      //   alpha: newAlpha,
-      //   ease: "power2.out",
-      //   overwrite: true,
-      //   onUpdate: () => {
-      //     const vec3 = new THREE.Vector3(
-      //       -Math.sin(origin.alpha) * config.defaultLookAt.scale,
-      //       config.defaultLookAt.y,
-      //       -Math.cos(origin.alpha) * config.defaultLookAt.scale
-      //     );
-
-      //     camera?.lookAt(vec3);
-      //   },
-      // });
 
       alpha = newAlpha;
     }

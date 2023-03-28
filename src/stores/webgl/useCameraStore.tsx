@@ -3,37 +3,38 @@ import { create } from "zustand";
 import type { Hotspot, Zoom } from "types";
 import config from "config";
 
-type Store = {
-  camera?: THREE.Camera,
-  setCamera: (c: THREE.Camera) => void,
-
+type State = {
+  camera?: THREE.PerspectiveCamera,
   shadowCamera?: THREE.PerspectiveCamera,
-  setShadowCamera: (c: THREE.PerspectiveCamera) => void,
-
   cameraPan: boolean,
-  setCameraPan: (b: boolean) => void,
+  currentZoom: Hotspot
+}
+
+type Store = State & {
+  set: <T extends keyof State>(key: T, value: State[T]) => void
 
   zoomSettings: { [h in Hotspot]: Zoom },
   updateZoomSettings: (h: Hotspot, z: Zoom) => void,
-
-  currentZoom: Hotspot,
-  setCurrentZoom: (h: Hotspot) => void,
 
   goNextZoom: () => void,
   goPrevZoom: () => void
 }
 
 export default create<Store>((set) => ({
+  //#region Basic states
   camera: undefined,
-  setCamera: c => set(({ camera: c })),
-
   shadowCamera: undefined,
-  setShadowCamera: c => set(({ shadowCamera: c })),
-
   cameraPan: false,
-  setCameraPan: b => set(({
-    cameraPan: b
-  })),
+  currentZoom: "default",
+
+  set: (key, value) => set((state) => {
+    const clone = { ...state };
+    //@ts-ignore
+    clone[key] = value;
+
+    return clone;
+  }),
+  //#endregion
 
   zoomSettings: config.zoomSettings,
   updateZoomSettings: (h, z) => set((state) => {
@@ -42,13 +43,6 @@ export default create<Store>((set) => ({
 
     return { zoomSettings: clone }
   }),
-
-
-  currentZoom: "default",
-  setCurrentZoom: (h) => set(() => ({
-    currentZoom: h
-  })),
-
 
   goNextZoom: () => set((state) => {
     const keys = Object.keys(state.zoomSettings);

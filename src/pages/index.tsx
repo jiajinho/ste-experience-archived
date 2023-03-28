@@ -45,7 +45,8 @@ export default () => {
       <CanvasContainer ref={canvas}>
         <Canvas
           shadows
-          frameloop={env === "production" && loading ? "demand" : "always"}
+          // frameloop={env === "production" && loading ? "demand" : "always"}
+          frameloop="always"
         >
           <WebGL />
         </Canvas>

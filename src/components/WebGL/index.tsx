@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useProgress } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
 import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
@@ -18,21 +17,15 @@ export default () => {
   /**
    * Hooks
    */
-  const camera = useThree(state => state.camera);
-
   const env = useEnvStore(state => state.env);
   const outlineMeshes = useOutlineMeshStore(state => state.meshes);
   const setLoaderStore = useLoadProgressStore(state => state.set);
-  const setCamera = useCameraStore(state => state.setCamera);
+  const setCameraStore = useCameraStore(state => state.set);
 
   const { total, loaded } = useProgress();
 
   useDebugModel(true);
   useDebugLight(true);
-
-  useEffect(() => {
-    setCamera(camera);
-  }, [camera, setCamera]);
 
   useEffect(() => {
     setLoaderStore("webgl", {
