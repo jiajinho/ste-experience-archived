@@ -55,7 +55,7 @@ export default () => {
 
       gsap.to(time, {
         t: 1,
-        duration: 10,
+        duration: 1.5,
         ease: "power2.out",
         onUpdate: () => {
           camera.quaternion.slerp(endQuaternion, time.t);

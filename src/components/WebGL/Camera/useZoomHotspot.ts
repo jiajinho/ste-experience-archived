@@ -18,9 +18,7 @@ export default () => {
 
     if (!lookAt || !cameraPosition) return;
 
-    if (currentZoom !== "default") {
-      setCameraStore("cameraPan", false);
-    }
+    setCameraStore("cameraPan", false);
 
     moveCamera({
       camera,
@@ -37,6 +35,8 @@ export default () => {
         //   ty: lookAt.y,
         //   tz: lookAt.z
         // });
+
+
 
         if (currentZoom === "default") {
           setCameraStore("cameraPan", true);
