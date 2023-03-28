@@ -3,13 +3,13 @@ import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 import { useControls } from 'leva';
 
+import config from 'config';
+import { moveCamera } from './utils';
 import useEnvStore from 'stores/useEnvStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
-import { moveCamera } from './utils';
 
 export default (shadowCamera: React.RefObject<THREE.PerspectiveCamera>) => {
   const env = useEnvStore(state => state.env);
-  const zoomSettings = useCameraStore(state => state.zoomSettings);
   const currentZoom = useCameraStore(state => state.currentZoom);
 
   const camera = useThree(state => state.camera);
@@ -43,8 +43,7 @@ export default (shadowCamera: React.RefObject<THREE.PerspectiveCamera>) => {
 
     if (env === "development") return;
 
-
-    const cameraSetting = zoomSettings[currentZoom];
+    const cameraSetting = config.zoomSettings[currentZoom];
 
     if (cameraSetting.cameraPosition) {
       camera.position.x = cameraSetting.cameraPosition[0];

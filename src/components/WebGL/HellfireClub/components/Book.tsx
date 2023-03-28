@@ -4,7 +4,7 @@ import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useDebug from "../hooks/useDebug";
-import useZoom, { Zoom } from "../hooks/useZoom";
+import useUpdateZoom, { Zoom } from "../hooks/useUpdateZoom";
 
 const gltfUrl = "/static/gltf/book.glb";
 const mapUrl = "/static/texture/dnd.jpg";
@@ -23,7 +23,7 @@ export default ({ zoom, ...props }: {
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useDebug(ref);
-  const triggerZoom = useZoom(ref, zoom);
+  const triggerZoom = useUpdateZoom(ref, zoom);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;

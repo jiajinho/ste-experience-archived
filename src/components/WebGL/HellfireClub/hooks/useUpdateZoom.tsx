@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Hotspot, Vector3 } from 'types';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useEnvStore from 'stores/useEnvStore';
+import config from 'config';
 
 export type Zoom = {
   hotspot: Hotspot,
@@ -12,15 +13,14 @@ export type Zoom = {
 export default (ref: React.RefObject<THREE.Group>, zoom: Zoom) => {
   const env = useEnvStore(state => state.env);
 
-  const updateZoomSettings = useCameraStore(state => state.updateZoomSettings);
   const setCameraStore = useCameraStore(state => state.set);
 
   useEffect(() => {
-    updateZoomSettings(zoom.hotspot, {
+    config.zoomSettings[zoom.hotspot] = {
       cameraPosition: zoom.cameraPosition,
       lookAt: ref.current?.position
-    });
-  }, [JSON.stringify(zoom), updateZoomSettings]);
+    }
+  }, [JSON.stringify(zoom)]);
 
   const triggerZoom = () => {
     if (env === "development") return;

@@ -5,7 +5,7 @@ import type { ThreeEvent } from "@react-three/fiber";
 import { Html, useGLTF } from "@react-three/drei";
 
 import useDebug from "../hooks/useDebug";
-import useZoom, { Zoom } from "../hooks/useZoom";
+import useUpdateZoom, { Zoom } from "../hooks/useUpdateZoom";
 
 const gltfUrl = "/static/gltf/retro-tv.glb";
 const videoUrl = "/static/mightyverse-teaser.mp4#t=0.001";
@@ -43,7 +43,7 @@ export default ({ zoom, ...props }: {
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useDebug(ref);
-  const triggerZoom = useZoom(ref, zoom);
+  const triggerZoom = useUpdateZoom(ref, zoom);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerZoom();

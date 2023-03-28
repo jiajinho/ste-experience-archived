@@ -1,3 +1,4 @@
+import config from 'config';
 import { useEffect, useRef } from 'react';
 
 import useCameraStore from 'stores/webgl/useCameraStore';
@@ -6,19 +7,16 @@ import { moveCamera } from './utils';
 export default () => {
   const firstTime = useRef(true);
 
-  const { shadowCamera, zoomSettings, currentZoom, camera } = useCameraStore(state => state);
+  const { shadowCamera, currentZoom, camera } = useCameraStore(state => state);
   const setCameraStore = useCameraStore(state => state.set);
 
   useEffect(() => {
     if (!shadowCamera) return;
     if (!camera) return;
 
-    const { lookAt, cameraPosition } = zoomSettings[currentZoom];
+    const { lookAt, cameraPosition } = config.zoomSettings[currentZoom];
 
-    if (!lookAt || !cameraPosition) {
-      console.warn("lookAt and cameraPosition is undefined");
-      return;
-    }
+    if (!lookAt || !cameraPosition) return;
 
     if (currentZoom !== "default") {
       setCameraStore("cameraPan", false);
