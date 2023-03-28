@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
-import useCameraPan from 'hooks/useCameraPan';
 import useEnvStore from 'stores/useEnvStore';
+import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import useCameraStore from 'stores/webgl/useCameraStore';
 
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
@@ -28,18 +28,22 @@ const CanvasContainer = styled.div`
 
 export default () => {
   const canvas = useRef<HTMLDivElement>(null);
-  useCameraPan(canvas);
 
   const env = useEnvStore(state => state.env);
   const loading = useLoadAnimationStore(state => state.loading);
+  const setCameraStore = useCameraStore(state => state.set);
 
   const renderTutorial = loading && env === "production";
   const renderOverlay = env !== "development";
 
+  useEffect(() => {
+    if (!canvas.current) return;
+    setCameraStore("canvas", canvas.current);
+  }, []);
+
   return (
     <Wrapper>
       {renderTutorial && <LoadingTutorial />}
-
       {renderOverlay && <SceneOverlay />}
 
       <CanvasContainer ref={canvas}>

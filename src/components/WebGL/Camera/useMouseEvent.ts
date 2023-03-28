@@ -5,20 +5,14 @@ import gsap from 'gsap';
 import config from 'config';
 import useCameraStore from 'stores/webgl/useCameraStore';
 
-export default (canvas: React.RefObject<HTMLDivElement>) => {
-  const cameraPan = useCameraStore(state => state.cameraPan);
-
-  const camera = useCameraStore(state => state.camera);
-  const shadowCamera = useCameraStore(state => state.shadowCamera);
+export default () => {
+  const { canvas, cameraPan, camera, shadowCamera } = useCameraStore(state => state);
 
   useEffect(() => {
-    console.log(cameraPan);
-
+    if (!canvas) return;
     if (!camera) return;
     if (!shadowCamera) return;
     if (!cameraPan) return;
-
-    console.log(cameraPan);
 
     let enablePan = false;
     let anchorX = 0;
@@ -71,14 +65,14 @@ export default (canvas: React.RefObject<HTMLDivElement>) => {
       alpha = newAlpha;
     }
 
-    canvas.current?.addEventListener("mousedown", handleMouseDown);
-    canvas.current?.addEventListener("mouseup", handleMouseUp);
-    canvas.current?.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mousedown", handleMouseDown);
+    canvas.addEventListener("mouseup", handleMouseUp);
+    canvas.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      canvas.current?.removeEventListener("mousedown", handleMouseDown);
-      canvas.current?.removeEventListener("mouseup", handleMouseUp);
-      canvas.current?.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mousedown", handleMouseDown);
+      canvas.removeEventListener("mouseup", handleMouseUp);
+      canvas.removeEventListener("mousemove", handleMouseMove);
     }
   }, [camera, cameraPan]);
 }
