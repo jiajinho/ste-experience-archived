@@ -1,8 +1,8 @@
 import config from 'config';
 import { useEffect, useRef } from 'react';
 
-import useCameraStore from 'stores/webgl/useCameraStore';
 import { moveCamera } from './utils';
+import useCameraStore from 'stores/webgl/useCameraStore';
 
 export default () => {
   const firstTime = useRef(true);
@@ -27,16 +27,7 @@ export default () => {
       cameraPosition,
       animate: !firstTime.current,
       callback: () => {
-        // set({
-        //   x: shadowCamera.current!.position.x,
-        //   y: shadowCamera.current!.position.y,
-        //   z: shadowCamera.current!.position.z,
-        //   tx: lookAt.x,
-        //   ty: lookAt.y,
-        //   tz: lookAt.z
-        // });
-
-        setCameraStore("mouseEvent", config.zoomSettings[currentZoom].allowEvent);
+        setCameraStore("mouseEvent", config.zoomSettings[currentZoom].allowEvent?.name);
       }
     });
 

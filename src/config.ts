@@ -3,7 +3,7 @@ import { Camera, Viewport } from "types";
 
 const defaultLookAt = {
   y: -20,
-  azimuth: 0.87,
+  azimuth: 0.9,
   scale: 100
 }
 
@@ -19,7 +19,16 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       defaultLookAt.y,
       -Math.cos(defaultLookAt.azimuth) * defaultLookAt.scale
     ),
-    allowEvent: "rotate"
+    allowEvent: {
+      name: "rotate",
+      props: {
+        azimuth: {
+          min: -0.05,
+          max: 2,
+          vwMultiplier: 0.00045
+        }
+      }
+    }
   },
   retroTV: {
     cameraPosition: [-2.21, 1.07, 3.13]

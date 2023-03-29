@@ -21,7 +21,9 @@ export default () => {
 
   useEffect(() => {
     set({ freeCam: env === "development" });
-    setCameraStore("mouseEvent", env === "development" ? undefined : config.zoomSettings[currentZoom].allowEvent);
+
+    const mouseEvent = config.zoomSettings[currentZoom].allowEvent?.name;
+    setCameraStore("mouseEvent", env === "development" ? undefined : mouseEvent);
 
     if (env === "development") return;
 

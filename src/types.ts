@@ -10,7 +10,10 @@ export namespace Camera {
   export type Zoom = {
     cameraPosition: Vector3,
     lookAt?: THREE.Vector3,
-    allowEvent?: MouseEvent
+    allowEvent?: {
+      name: "rotate",
+      props: Rotate
+    }
   }
 
   export type Rotate = {
