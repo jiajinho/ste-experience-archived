@@ -18,7 +18,7 @@ export default () => {
 
     if (!lookAt || !cameraPosition) return;
 
-    setCameraStore("cameraPan", false);
+    setCameraStore("mouseEvent", undefined);
 
     moveCamera({
       camera,
@@ -36,11 +36,7 @@ export default () => {
         //   tz: lookAt.z
         // });
 
-
-
-        if (currentZoom === "default") {
-          setCameraStore("cameraPan", true);
-        }
+        setCameraStore("mouseEvent", config.zoomSettings[currentZoom].allowEvent);
       }
     });
 

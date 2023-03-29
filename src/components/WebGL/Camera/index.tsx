@@ -10,11 +10,12 @@ import useMouseEvent from './useMouseEvent';
 
 export default () => {
   const { camera } = useThree();
+
   const shadowCamera = useRef<THREE.PerspectiveCamera>(null);
 
   const setCameraStore = useCameraStore(state => state.set);
 
-  const { freeCam, set } = useDebug(shadowCamera);
+  const { freeCam } = useDebug();
   useMouseEvent();
   useZoomHotspot();
 
@@ -25,10 +26,20 @@ export default () => {
     setCameraStore("shadowCamera", shadowCamera.current);
   }, []);
 
+  const handleOrbitChange = () => {
+    if (!freeCam) return;
+    console.log(camera.position);
+  }
+
   return (
     <>
       <perspectiveCamera ref={shadowCamera} />
-      <OrbitControls enabled={false} enableDamping={false} />
+
+      <OrbitControls
+        enabled={freeCam}
+        enableDamping={false}
+        onChange={handleOrbitChange}
+      />
     </>
   )
 }

@@ -1,14 +1,14 @@
 import { create } from "zustand";
 
-import type { Hotspot } from "types";
+import type { Camera } from "types";
 import config from "config";
 
 type State = {
   camera?: THREE.PerspectiveCamera,
   shadowCamera?: THREE.PerspectiveCamera,
-  cameraPan: boolean,
-  currentZoom: Hotspot,
-  canvas?: HTMLDivElement
+  currentZoom: Camera.Hotspot,
+  canvas?: HTMLDivElement,
+  mouseEvent?: Camera.MouseEvent
 }
 
 type Store = State & {
@@ -22,7 +22,6 @@ export default create<Store>((set) => ({
   //#region Basic states
   camera: undefined,
   shadowCamera: undefined,
-  cameraPan: false,
   currentZoom: "default",
   canvas: undefined,
 
@@ -43,7 +42,7 @@ export default create<Store>((set) => ({
       index = 0;
     }
 
-    const currentZoom = keys[index] as Hotspot;
+    const currentZoom = keys[index] as Camera.Hotspot;
     return { currentZoom }
   }),
   goPrevZoom: () => set((state) => {
@@ -54,7 +53,7 @@ export default create<Store>((set) => ({
       index = keys.length - 1;
     }
 
-    const currentZoom = keys[index] as Hotspot;
+    const currentZoom = keys[index] as Camera.Hotspot;
     return { currentZoom }
   }),
 }));

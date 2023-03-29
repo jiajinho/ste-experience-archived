@@ -68,27 +68,18 @@ export default () => {
 
       <BulletinBoard
         position={[-3.22, 1.75, 0.15]}
-        zoom={{
-          hotspot: "bulletinBoard",
-          cameraPosition: [-2.22, 1.75, 0.15]
-        }}
+        hotspot="bulletinBoard"
       />
 
       <Shelf
         position={[2.07, 1.15, -4.29]}
-        zoom={{
-          hotspot: "shelf",
-          cameraPosition: [2.07, 1.15, -3.29]
-        }}
+        hotspot="shelf"
       />
 
       <StandingBoard
         position={[-2.07, 1.35, -3.06]}
         rotation-y={2.19}
-        zoom={{
-          hotspot: "standingBoard",
-          cameraPosition: [0.2, 1.35, -2.51]
-        }}
+        hotspot="standingBoard"
       />
 
       {/* <Lamp
@@ -111,10 +102,7 @@ export default () => {
 
       <RetroTV
         position={[-2.61, 1.07, 3.13]}
-        zoom={{
-          hotspot: "retroTV",
-          cameraPosition: [-2.21, 1.07, 3.13]
-        }}
+        hotspot="retroTV"
       />
 
       {/* <QuadLightStand
@@ -193,10 +181,7 @@ export default () => {
 
       <Book
         position={[0, 0.83, -0.73]}
-        zoom={{
-          hotspot: "book",
-          cameraPosition: [0, 1.2, -0.7]
-        }}
+        hotspot="book"
       />
 
       <Cup

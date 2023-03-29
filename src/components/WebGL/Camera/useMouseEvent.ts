@@ -6,13 +6,13 @@ import config from 'config';
 import useCameraStore from 'stores/webgl/useCameraStore';
 
 export default () => {
-  const { canvas, cameraPan, camera, shadowCamera } = useCameraStore(state => state);
+  const { canvas, mouseEvent, camera, shadowCamera } = useCameraStore(state => state);
 
   useEffect(() => {
     if (!canvas) return;
     if (!camera) return;
     if (!shadowCamera) return;
-    if (!cameraPan) return;
+    if (!mouseEvent) return;
 
     let enablePan = false;
     let anchorX = 0;
@@ -37,7 +37,7 @@ export default () => {
       const delta = e.pageX - anchorX;
       const scaleFactor = 0.001;
 
-      const newAlpha = anchorAzimuth + delta * scaleFactor;
+      const newAzimuth = anchorAzimuth + delta * scaleFactor;
 
       const vec3 = new THREE.Vector3(
         -Math.sin(azimuth) * config.defaultLookAt.scale,
@@ -61,7 +61,7 @@ export default () => {
         }
       });
 
-      azimuth = newAlpha;
+      azimuth = newAzimuth;
     }
 
     canvas.addEventListener("mousedown", handleMouseDown);
@@ -73,5 +73,5 @@ export default () => {
       canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("mousemove", handleMouseMove);
     }
-  }, [camera, cameraPan]);
+  }, [camera, mouseEvent]);
 }
