@@ -15,6 +15,16 @@ export type Zoom = {
   lookAt?: THREE.Vector3
 }
 
+export namespace Camera {
+  export type Rotate = {
+    azimuth: {
+      min: number,
+      max: number,
+      vwMultiplier: number
+    }
+  }
+}
+
 export type Viewport = {
   xs?: undefined,
   sm: string,

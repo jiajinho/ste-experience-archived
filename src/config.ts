@@ -4,7 +4,7 @@ import { Hotspot, Viewport, Zoom } from "types";
 
 const defaultLookAt = {
   y: -20,
-  alpha: 0.87,
+  azimuth: 0.87,
   scale: 100
 }
 
@@ -16,9 +16,9 @@ const zoomSettings: { [h in Hotspot]: Zoom } = {
   default: {
     cameraPosition: [1.95, 1.7, 1.41],
     lookAt: new THREE.Vector3(
-      -Math.sin(defaultLookAt.alpha) * defaultLookAt.scale,
+      -Math.sin(defaultLookAt.azimuth) * defaultLookAt.scale,
       defaultLookAt.y,
-      -Math.cos(defaultLookAt.alpha) * defaultLookAt.scale
+      -Math.cos(defaultLookAt.azimuth) * defaultLookAt.scale
     )
   },
   retroTV: {},

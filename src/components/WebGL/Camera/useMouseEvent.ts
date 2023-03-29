@@ -16,8 +16,8 @@ export default () => {
 
     let enablePan = false;
     let anchorX = 0;
-    let anchorAlpha = config.defaultLookAt.alpha;
-    let alpha = config.defaultLookAt.alpha;
+    let anchorAzimuth = config.defaultLookAt.azimuth;
+    let azimuth = config.defaultLookAt.azimuth;
 
     function handleMouseDown(e: MouseEvent) {
       enablePan = true;
@@ -26,7 +26,7 @@ export default () => {
 
     function handleMouseUp() {
       enablePan = false;
-      anchorAlpha = alpha;
+      anchorAzimuth = azimuth;
     }
 
     function handleMouseMove(e: MouseEvent) {
@@ -37,13 +37,12 @@ export default () => {
       const delta = e.pageX - anchorX;
       const scaleFactor = 0.001;
 
-      const newAlpha = anchorAlpha + delta * scaleFactor;
-      const origin = { alpha };
+      const newAlpha = anchorAzimuth + delta * scaleFactor;
 
       const vec3 = new THREE.Vector3(
-        -Math.sin(origin.alpha) * config.defaultLookAt.scale,
+        -Math.sin(azimuth) * config.defaultLookAt.scale,
         config.defaultLookAt.y,
-        -Math.cos(origin.alpha) * config.defaultLookAt.scale
+        -Math.cos(azimuth) * config.defaultLookAt.scale
       );
 
       shadowCamera.lookAt(vec3);
@@ -62,7 +61,7 @@ export default () => {
         }
       });
 
-      alpha = newAlpha;
+      azimuth = newAlpha;
     }
 
     canvas.addEventListener("mousedown", handleMouseDown);
