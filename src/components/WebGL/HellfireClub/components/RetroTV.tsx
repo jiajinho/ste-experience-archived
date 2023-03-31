@@ -4,8 +4,9 @@ import type { GLTF } from "three-stdlib";
 import type { ThreeEvent } from "@react-three/fiber";
 import { Html, useGLTF } from "@react-three/drei";
 
+import { Camera } from "types";
 import useDebug from "../hooks/useDebug";
-import useZoom, { Zoom } from "../hooks/useZoom";
+import useRegisterZoom from "../hooks/useRegisterHotspot";
 
 const gltfUrl = "/static/gltf/retro-tv.glb";
 const videoUrl = "/static/mightyverse-teaser.mp4#t=0.001";
@@ -35,15 +36,15 @@ const Screen = styled.div`
   }
 `;
 
-export default ({ zoom, ...props }: {
-  zoom: Zoom
+export default ({ hotspot, ...props }: {
+  hotspot: Camera.Hotspot
 } & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useDebug(ref);
-  const triggerZoom = useZoom(ref, zoom);
+  const triggerZoom = useRegisterZoom(ref, hotspot);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerZoom();

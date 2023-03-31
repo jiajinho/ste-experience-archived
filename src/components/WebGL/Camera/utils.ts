@@ -39,5 +39,6 @@ export function moveCamera({ camera, shadowCamera, lookAt, cameraPosition, anima
     }, 0)
     .eventCallback("onComplete", () => {
       callback && callback();
+      camera.lookAt(lookAt);
     });
 }

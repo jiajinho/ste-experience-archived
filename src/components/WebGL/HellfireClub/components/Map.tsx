@@ -4,7 +4,6 @@ import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useDebug from "../hooks/useDebug";
-import useZoom, { Zoom } from "../hooks/useZoom";
 
 const gltfUrl = "/static/gltf/map.glb";
 const mapUrl = "/static/texture/dnd.jpg";

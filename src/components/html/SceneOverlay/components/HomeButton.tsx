@@ -13,10 +13,10 @@ export const Wrapper = styled.svg`
 `;
 
 export default () => {
-  const setCurrentZoom = useCameraStore(state => state.setCurrentZoom);
+  const setCameraStore = useCameraStore(state => state.set);
 
   const goToDefaultView = () => {
-    setCurrentZoom("default");
+    setCameraStore("currentZoom", "default");
   }
 
   return (

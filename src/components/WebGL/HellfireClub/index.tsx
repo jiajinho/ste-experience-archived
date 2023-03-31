@@ -5,6 +5,9 @@ import PaperGroup from './groups/PaperGroup';
 import CurtainGroup from './groups/CurtainGroup';
 import CandlestandGroup from './groups/CandlestandGroup';
 import RiftGroup from './groups/RiftGroup';
+import WallGroup from './groups/WallGroup';
+import ChairGroup from './groups/ChairGroup';
+import StandeeGroup from './groups/StandeeGroup';
 
 import Wall from './components/Wall';
 import RiftFloor from './components/RiftFloor';
@@ -34,13 +37,10 @@ import Dossier from './components/Dossier';
 import Soda from './components/Soda';
 import Dice from './components/Dice';
 
+
 export default () => {
   return (
     <>
-      <CurtainGroup />
-
-      <CandlestandGroup />
-
       <Box
         position={[-1.3, 0.38, 4.44]}
         rotation={[0.1, -0.29, -1.53]}
@@ -61,21 +61,6 @@ export default () => {
         rotation={[Math.PI, 0.3, 0]}
       />
 
-      <Standee.CastleWall
-        position={[-2, 0.9, 4.59]}
-        rotation={[0.19, -0.52, 0.1]}
-      />
-
-      <Standee.CastleWall
-        position={[2.72, 0.31, 4.44]}
-        rotation={[0.19, 0.5, -0.1]}
-      />
-
-      <Standee.Forest
-        position={[3.91, 0.58, -1.91]}
-        rotation={[-0.19, 2.02, 0.19]}
-      />
-
       {/* <Ladder
         position={[0.92, 0.86, -4.31]}
         rotation-y={0.86}
@@ -83,27 +68,18 @@ export default () => {
 
       <BulletinBoard
         position={[-3.22, 1.75, 0.15]}
-        zoom={{
-          hotspot: "bulletinBoard",
-          cameraPosition: [-2.22, 1.75, 0.15]
-        }}
+        hotspot="bulletinBoard"
       />
 
       <Shelf
         position={[2.07, 1.15, -4.29]}
-        zoom={{
-          hotspot: "shelf",
-          cameraPosition: [2.07, 1.15, -3.29]
-        }}
+        hotspot="shelf"
       />
 
       <StandingBoard
         position={[-2.07, 1.35, -3.06]}
         rotation-y={2.19}
-        zoom={{
-          hotspot: "standingBoard",
-          cameraPosition: [0.2, 1.35, -2.51]
-        }}
+        hotspot="standingBoard"
       />
 
       {/* <Lamp
@@ -121,29 +97,12 @@ export default () => {
       />
 
       <Tabletop.Round
-        position={[3.22, 0.52, 1.38]}
-      />
-
-      <Chair.Ornamental
-        position={[-2.75, 0.48, 0.69]}
-        rotation-y={-2.8}
-      />
-
-      <Chair.Ornamental
-        position={[3.52, 0.38, 0.48]}
-        rotation-y={0.2}
-      />
-
-      <Chair.Throne
-        position={[0, 0.68, -1.57]}
+        position={[3.22, 0.52, -4.18]}
       />
 
       <RetroTV
         position={[-2.61, 1.07, 3.13]}
-        zoom={{
-          hotspot: "retroTV",
-          cameraPosition: [-2.21, 1.07, 3.13]
-        }}
+        hotspot="retroTV"
       />
 
       {/* <QuadLightStand
@@ -203,8 +162,8 @@ export default () => {
       />
 
       <Chandelier
-        position={[3.22, 0.93, 1.4]}
-        rotation={[-0.35, 0.67, 0]}
+        position={[3.31, 0.92, -4.24]}
+        rotation={[0.45, -0.21, 0.1]}
         light={LightColor.Yellow}
       />
 
@@ -220,42 +179,9 @@ export default () => {
         position={[1.45, 2.5, -4.65]}
       />
 
-      <Chair.Classic
-        position={[1.12, 0.45, -0.31]}
-        rotation-y={0.1}
-      />
-
-      <Chair.Classic
-        position={[1.0, 0.45, 0.56]}
-        rotation-y={-0.38}
-      />
-
-      <Chair.Classic
-        position={[0.83, 0.45, 1.43]}
-        rotation-y={-0.97}
-      />
-
-      <Chair.Classic
-        position={[-0.56, 0.45, 1.37]}
-        rotation-y={-1.92}
-      />
-
-      <Chair.Classic
-        position={[-1.1, 0.45, 0.15]}
-        rotation-y={-3.4}
-      />
-
-      <Chair.Classic
-        position={[-0.84, 0.45, -0.83]}
-        rotation-y={-3.37}
-      />
-
       <Book
         position={[0, 0.83, -0.73]}
-        zoom={{
-          hotspot: "book",
-          cameraPosition: [0, 1.2, -0.7]
-        }}
+        hotspot="book"
       />
 
       <Cup
@@ -338,11 +264,16 @@ export default () => {
         position={[0.18, 0.835, -0.1]}
       />
 
+      <CurtainGroup />
+
+      <CandlestandGroup />
+      <StandeeGroup />
+      <ChairGroup />
+
       <RiftGroup />
-
       <PaperGroup />
+      <WallGroup />
 
-      <Wall />
       <RiftFloor />
     </>
   );

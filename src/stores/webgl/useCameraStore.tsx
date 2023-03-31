@@ -1,55 +1,59 @@
 import { create } from "zustand";
 
-import type { Hotspot, Zoom } from "types";
+import type { Camera } from "types";
 import config from "config";
 
-type Store = {
-  zoomSettings: { [h in Hotspot]: Zoom },
-  updateZoomSettings: (h: Hotspot, z: Zoom) => void,
+type State = {
+  camera?: THREE.PerspectiveCamera,
+  shadowCamera?: THREE.PerspectiveCamera,
+  currentZoom: Camera.Hotspot,
+  canvas?: HTMLDivElement,
+  mouseEvent?: Camera.MouseEvent
+}
 
-  currentZoom: Hotspot,
-  setCurrentZoom: (h: Hotspot) => void,
+type Store = State & {
+  set: <T extends keyof State>(key: T, value: State[T]) => void
 
   goNextZoom: () => void,
   goPrevZoom: () => void
 }
 
 export default create<Store>((set) => ({
-  zoomSettings: config.zoomSettings,
-  updateZoomSettings: (h, z) => set((state) => {
-    const clone = { ...state.zoomSettings };
-    clone[h] = z;
-
-    return { zoomSettings: clone }
-  }),
-
-
+  //#region Basic states
+  camera: undefined,
+  shadowCamera: undefined,
   currentZoom: "default",
-  setCurrentZoom: (h) => set(() => ({
-    currentZoom: h
-  })),
+  canvas: undefined,
 
+  set: (key, value) => set((state) => {
+    const clone = { ...state };
+    //@ts-ignore
+    clone[key] = value;
+
+    return clone;
+  }),
+  //#endregion
 
   goNextZoom: () => set((state) => {
-    const keys = Object.keys(state.zoomSettings);
+    const keys = Object.keys(config.zoomSettings);
     let index = keys.findIndex(k => k === state.currentZoom);
 
     if (++index > keys.length - 1) {
       index = 0;
     }
 
-    const currentZoom = keys[index] as Hotspot;
+    const currentZoom = keys[index] as Camera.Hotspot;
     return { currentZoom }
   }),
   goPrevZoom: () => set((state) => {
-    const keys = Object.keys(state.zoomSettings);
+    const keys = Object.keys(config.zoomSettings);
     let index = keys.findIndex(k => k === state.currentZoom);
 
     if (--index < 0) {
       index = keys.length - 1;
     }
 
-    const currentZoom = keys[index] as Hotspot;
+    const currentZoom = keys[index] as Camera.Hotspot;
     return { currentZoom }
   }),
 }));

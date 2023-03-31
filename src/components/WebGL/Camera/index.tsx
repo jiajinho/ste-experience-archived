@@ -5,53 +5,41 @@ import { OrbitControls } from '@react-three/drei';
 
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useDebug from './useDebug';
-import { moveCamera } from './utils';
+import useZoomHotspot from './useZoomHotspot';
+import useMouseEvent from './useMouseEvent';
 
 export default () => {
   const { camera } = useThree();
+
   const shadowCamera = useRef<THREE.PerspectiveCamera>(null);
-  const firstTime = useRef(true);
 
-  const { freeCam, set } = useDebug(shadowCamera);
+  const setCameraStore = useCameraStore(state => state.set);
 
-  const zoomSettings = useCameraStore(state => state.zoomSettings);
-  const currentZoom = useCameraStore(state => state.currentZoom);
+  const { freeCam } = useDebug();
+  useMouseEvent();
+  useZoomHotspot();
 
   useEffect(() => {
     if (!shadowCamera.current) return;
 
-    const { lookAt, cameraPosition } = zoomSettings[currentZoom];
+    setCameraStore("camera", camera as THREE.PerspectiveCamera);
+    setCameraStore("shadowCamera", shadowCamera.current);
+  }, []);
 
-    if (!lookAt || !cameraPosition) {
-      console.warn("lookAt and cameraPosition is undefined");
-      return;
-    }
-
-    moveCamera({
-      camera,
-      shadowCamera: shadowCamera.current,
-      lookAt,
-      cameraPosition,
-      animate: !firstTime.current,
-      callback: () => {
-        set({
-          x: shadowCamera.current!.position.x,
-          y: shadowCamera.current!.position.y,
-          z: shadowCamera.current!.position.z,
-          tx: lookAt.x,
-          ty: lookAt.y,
-          tz: lookAt.z
-        });
-      }
-    });
-
-    firstTime.current = false;
-  }, [currentZoom]);
+  const handleOrbitChange = () => {
+    if (!freeCam) return;
+    console.log(camera.position);
+  }
 
   return (
     <>
       <perspectiveCamera ref={shadowCamera} />
-      <OrbitControls enabled={freeCam} enableDamping={false} />
+
+      <OrbitControls
+        enabled={freeCam}
+        enableDamping={false}
+        onChange={handleOrbitChange}
+      />
     </>
   )
 }
