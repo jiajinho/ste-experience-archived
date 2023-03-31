@@ -65,8 +65,9 @@ function rotate(state: EventState, pageX: number, minAzimuth: number, maxAzimuth
 
   gsap.to(time, {
     t: 1,
-    duration: 1.5,
+    duration: 1,
     ease: "power2.out",
+    overwrite: true,
     onUpdate: () => {
       camera.quaternion.slerp(endQuaternion, time.t);
     },

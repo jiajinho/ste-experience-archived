@@ -3,7 +3,7 @@ import { Camera, Viewport } from "types";
 
 const defaultLookAt = {
   y: -20,
-  azimuth: 0.9,
+  azimuth: 1.1,
   scale: 100
 }
 
@@ -13,7 +13,7 @@ const defaultLookAt = {
  */
 const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   default: {
-    cameraPosition: [1.95, 1.7, 1.41],
+    cameraPosition: [3.81, 2.29, 2.26],
     lookAt: new THREE.Vector3(
       -Math.sin(defaultLookAt.azimuth) * defaultLookAt.scale,
       defaultLookAt.y,
@@ -31,19 +31,19 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   retroTV: {
-    cameraPosition: [-2.21, 1.07, 3.13]
+    cameraPosition: [-2.04, 1.07, 3.13]
   },
   bulletinBoard: {
-    cameraPosition: [-2.22, 1.75, 0.15]
+    cameraPosition: [-1.7, 1.75, 0.15]
   },
   standingBoard: {
-    cameraPosition: [-1.62, 1.41, -2.39]
+    cameraPosition: [-1.28, 1.49, -1.81]
   },
   book: {
     cameraPosition: [0, 1.2, -0.7]
   },
   shelf: {
-    cameraPosition: [2.07, 1.15, -3.29]
+    cameraPosition: [2.07, 1.15, -3.01]
   }
 }
 
