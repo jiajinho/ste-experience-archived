@@ -7,11 +7,11 @@ import { Camera } from "types";
 import useDebug from "../hooks/useDebug";
 import useRegisterHotspot from "../hooks/useRegisterHotspot";
 
-const url = "/static/gltf/standing-board.glb";
+const url = "/static/gltf/chalkboard.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    StandingBoard: THREE.Mesh;
+    ChalkBoard: THREE.Mesh;
   };
   materials: {
     ChalkBoard: THREE.MeshStandardMaterial;
@@ -43,7 +43,7 @@ export default ({ hotspot, ...props }: {
     >
       <mesh
         castShadow
-        geometry={nodes.StandingBoard.geometry}
+        geometry={nodes.ChalkBoard.geometry}
         material={materials.ChalkBoard}
       />
     </group>

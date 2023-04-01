@@ -50,7 +50,6 @@ export default () => {
         <Canvas
           shadows
           frameloop={env === "production" && loading ? "demand" : "always"}
-          // frameloop="always"
           camera={{ fov: 50 }}
         >
           <WebGL />

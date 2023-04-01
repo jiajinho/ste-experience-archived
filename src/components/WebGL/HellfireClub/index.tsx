@@ -16,7 +16,6 @@ import Box from './components/Box';
 import Ladder from './components/Ladder';
 import BulletinBoard from './components/BulletinBoard';
 import Shelf from './components/Shelf';
-import StandingBoard from './components/StandingBoard';
 import Lamp from './components/Lamp';
 import Coffin from './components/Coffin';
 import Tabletop from './components/Tabletop';
@@ -36,6 +35,7 @@ import Page from './components/Page';
 import Dossier from './components/Dossier';
 import Soda from './components/Soda';
 import Dice from './components/Dice';
+import ChalkBoard from './components/ChalkBoard';
 
 
 export default () => {
@@ -76,9 +76,9 @@ export default () => {
         hotspot="shelf"
       />
 
-      <StandingBoard
-        position={[-2.07, 1.35, -3.06]}
-        rotation-y={2.19}
+      <ChalkBoard
+        position={[-2.13, 1.35, -3.11]}
+        rotation-y={0.63}
         hotspot="standingBoard"
       />
 
