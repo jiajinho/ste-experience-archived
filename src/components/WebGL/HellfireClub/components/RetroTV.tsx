@@ -63,7 +63,7 @@ export default ({ hotspot, ...props }: {
         occlude="blending"
         prepend
         transform
-        position={[0.165, 0, 0]}
+        position={[0.1, 0, 0]}
         rotation-y={Math.PI / 2}
         scale={0.01}
       >

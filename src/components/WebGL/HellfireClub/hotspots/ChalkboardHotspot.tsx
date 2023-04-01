@@ -34,7 +34,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         penumbra={1}
         position={[0, 1, 1]}
         angle={0.47}
-
       />
 
       <WireframeBox.Light
