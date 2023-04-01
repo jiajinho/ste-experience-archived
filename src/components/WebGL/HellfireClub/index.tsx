@@ -14,7 +14,6 @@ import RiftFloor from './components/RiftFloor';
 import Standee from './components/Standee';
 import Box from './components/Box';
 import Ladder from './components/Ladder';
-import BulletinBoard from './components/BulletinBoard';
 import Shelf from './components/Shelf';
 import Lamp from './components/Lamp';
 import Coffin from './components/Coffin';
@@ -37,6 +36,7 @@ import Soda from './components/Soda';
 import Dice from './components/Dice';
 import ChalkBoard from './components/ChalkBoard';
 import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
+import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
 
 
 export default () => {
@@ -62,21 +62,19 @@ export default () => {
         rotation={[Math.PI, 0.3, 0]}
       />
 
-      <BulletinBoard
+      {/* <NoticeBoard
         position={[-3.22, 1.75, 0.15]}
         hotspot="bulletinBoard"
+      /> */}
+
+      <NoticeBoardHotspot
+        position={[-3.22, 1.75, 0.15]}
       />
 
       <Shelf
         position={[2.07, 1.15, -4.29]}
         hotspot="shelf"
       />
-
-      {/* <ChalkBoard
-        position={[-2.13, 1.35, -3.11]}
-        rotation-y={0.63}
-        hotspot="standingBoard"
-      /> */}
 
       <ChalkboardHotspot
         position={[-2.13, 1.35, -3.11]}

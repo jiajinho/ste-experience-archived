@@ -7,7 +7,7 @@ import { Camera } from "types";
 import useDebug from "../hooks/useDebug";
 import useRegisterHotspot from "../hooks/useRegisterHotspot";
 
-const url = "/static/gltf/bulletin.glb";
+const url = "/static/gltf/noticeboard.glb";
 
 type GLTFResult = GLTF & {
   nodes: {

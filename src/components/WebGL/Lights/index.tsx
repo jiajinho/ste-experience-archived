@@ -40,7 +40,7 @@ export default () => {
       <RiftLights />
 
       <TVLight />
-      <BulletinLight />
+      {/* <BulletinLight /> */}
 
 
       {/* <StandingBoardLight /> */}
