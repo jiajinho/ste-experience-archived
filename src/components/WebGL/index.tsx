@@ -7,8 +7,9 @@ import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
 
-import useDebugModel from './useDebugModel';
-import useDebugLight from './useDebugLight';
+import useControlGroup from '@webgl/debug/hooks/useControlGroup';
+import useControlLight from '@webgl/debug/hooks/useControlLight';
+
 import HellfireClub from './HellfireClub';
 import Camera from './Camera';
 import Lights from './Lights';
@@ -20,12 +21,11 @@ export default () => {
   const env = useEnvStore(state => state.env);
   const outlineMeshes = useOutlineMeshStore(state => state.meshes);
   const setLoaderStore = useLoadProgressStore(state => state.set);
-  const setCameraStore = useCameraStore(state => state.set);
 
   const { total, loaded } = useProgress();
 
-  useDebugModel(true);
-  useDebugLight(true);
+  useControlGroup(true);
+  useControlLight(true);
 
   useEffect(() => {
     setLoaderStore("webgl", {

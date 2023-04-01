@@ -11,7 +11,7 @@ export default (collapsed: boolean) => {
   const group = useDebugModelStore(state => state.group);
   const setOutline = useOutlineMeshStore(state => state.set);
 
-  const [{ x, y, z, rx, ry, rz }, set] = useControls("useDebugModel", () => ({
+  const [{ x, y, z, rx, ry, rz }, set] = useControls("useLevaControlGroup", () => ({
     x: { min: -5, max: 5, step: 0.01, value: 0 },
     y: { min: -5, max: 5, step: 0.01, value: 0 },
     z: { min: -5, max: 5, step: 0.01, value: 0 },

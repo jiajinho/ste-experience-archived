@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { SpotLight } from 'three';
 
-import useDebugSpotlight from '@webgl/debug/hooks/useDebugSpotlight';
+import useTriggerSpotlight from '@webgl/debug/hooks/useTriggerSpotlight';
 import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
@@ -11,7 +11,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const spotlight = useRef<SpotLight>(null);
   const box = useRef<THREE.Mesh>(null);
 
-  const triggerControl = useDebugSpotlight(spotlight, box);
+  const triggerControl = useTriggerSpotlight(spotlight, box);
   useAlignWireframeBox(spotlight, box);
 
   useEffect(() => {

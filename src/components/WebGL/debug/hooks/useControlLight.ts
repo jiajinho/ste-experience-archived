@@ -7,7 +7,7 @@ export default (collapsed: boolean) => {
   const light = useDebugLightStore(state => state.light);
   const box = useDebugLightStore(state => state.box);
 
-  const [{ x, y, z, tx, ty, tz, angle, intensity, distance, color }, set] = useControls("useDebugLight", () => ({
+  const [{ x, y, z, tx, ty, tz, angle, intensity, distance, color }, set] = useControls("useLevaControlLight", () => ({
     x: { min: -10, max: 10, value: 0, step: 0.01 },
     y: { min: -10, max: 10, value: 0, step: 0.01 },
     z: { min: -10, max: 10, value: 0, step: 0.01 },
