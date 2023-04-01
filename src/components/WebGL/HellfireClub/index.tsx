@@ -36,6 +36,7 @@ import Dossier from './components/Dossier';
 import Soda from './components/Soda';
 import Dice from './components/Dice';
 import ChalkBoard from './components/ChalkBoard';
+import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
 
 
 export default () => {
@@ -61,11 +62,6 @@ export default () => {
         rotation={[Math.PI, 0.3, 0]}
       />
 
-      {/* <Ladder
-        position={[0.92, 0.86, -4.31]}
-        rotation-y={0.86}
-      /> */}
-
       <BulletinBoard
         position={[-3.22, 1.75, 0.15]}
         hotspot="bulletinBoard"
@@ -76,21 +72,16 @@ export default () => {
         hotspot="shelf"
       />
 
-      <ChalkBoard
+      {/* <ChalkBoard
         position={[-2.13, 1.35, -3.11]}
         rotation-y={0.63}
         hotspot="standingBoard"
+      /> */}
+
+      <ChalkboardHotspot
+        position={[-2.13, 1.35, -3.11]}
+        rotation-y={0.63}
       />
-
-      {/* <Lamp
-        position={[-2.3, 1.26, -4.13]}
-        rotation-y={-3.08}
-      /> */}
-
-      {/* <Coffin
-        position={[-2.6, 0, -2.46]}
-        rotation-y={-0.34}
-      /> */}
 
       <Tabletop.DShape
         position={[-2.7, 0.75, 3.06]}

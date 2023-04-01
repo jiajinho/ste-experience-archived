@@ -43,7 +43,7 @@ export default () => {
       <BulletinLight />
 
 
-      <StandingBoardLight />
+      {/* <StandingBoardLight /> */}
 
       <ShelfLight.Top />
       <ShelfLight.Bottom />
