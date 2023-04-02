@@ -3,10 +3,10 @@ import { SpotLight } from 'three';
 
 import useTriggerSpotlight from '@webgl/debug/hooks/useTriggerSpotlight';
 import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
-
 import WireframeBox from '@webgl/debug/WireframeBox';
-import NoticeBoard from '../components/NoticeBoard';
-import useRegisterHotspot from './useRegisterHotspot';
+
+import useRegisterHotspot from '@hellfire/hotspots/useRegisterHotspot';
+import NoticeBoard from '@hellfire/components/NoticeBoard';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const spotlight = useRef<SpotLight>(null);
