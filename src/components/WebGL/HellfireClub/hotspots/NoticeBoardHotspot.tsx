@@ -5,20 +5,26 @@ import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotligh
 import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 import WireframeBox from '@webgl/debug/WireframeBox';
 
-import useRegisterHotspot from '@hellfire/hotspots/useRegisterHotspot';
 import NoticeBoard from '@hellfire/components/NoticeBoard';
+import useRegisterHotspot from '@hellfire/hotspots/useRegisterHotspot';
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  /**
+   * Hooks
+   */
+  const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<SpotLight>(null);
-
   const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
-  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
-  const triggerZoom = useRegisterHotspot("bulletinBoard", cameraBox, cameraTarget);
-
   useAlignWireframeBox(spotlight, lightBox);
+
+  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
+  const triggerModelControl = useTriggerDebugModel(ref);
+
+  const triggerZoom = useRegisterHotspot("bulletinBoard", cameraBox, cameraTarget);
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -28,9 +34,20 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     spotlight.current.target.updateMatrixWorld();
   }, []);
 
+  /**
+   * Not hook
+   */
+  const handleClick = () => {
+    triggerModelControl();
+    triggerZoom();
+  }
+
+  /**
+   * Render
+   */
   return (
-    <group {...props}>
-      <NoticeBoard onClick={triggerZoom} />
+    <group ref={ref} {...props}>
+      <NoticeBoard onClick={handleClick} />
 
       <spotLight
         ref={spotlight}
