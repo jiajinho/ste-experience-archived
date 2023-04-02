@@ -14,7 +14,6 @@ import RiftFloor from './components/RiftFloor';
 import Standee from './components/Standee';
 import Box from './components/Box';
 import Ladder from './components/Ladder';
-import Shelf from './components/Shelf';
 import Lamp from './components/Lamp';
 import Coffin from './components/Coffin';
 import Tabletop from './components/Tabletop';
@@ -38,6 +37,7 @@ import ChalkBoard from './components/ChalkBoard';
 import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
 import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
 import RetroTVHotspot from './hotspots/RetroTVHotspot';
+import ShelfHotspot from './hotspots/ShelfHotspot';
 
 
 export default () => {
@@ -67,8 +67,9 @@ export default () => {
         position={[-3.22, 1.75, 0.15]}
       />
 
-      <Shelf
+      <ShelfHotspot
         position={[2.07, 1.15, -4.29]}
+        rotation-y={-Math.PI / 2}
       />
 
       <RetroTVHotspot

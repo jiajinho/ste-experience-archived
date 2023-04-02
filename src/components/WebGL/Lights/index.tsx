@@ -5,7 +5,6 @@ import { useHelper } from '@react-three/drei';
 import useDebugLightStore from 'stores/webgl/useDebugLightStore';
 
 import RoomCrimsonLight from './components/RoomCrimsonLight';
-import ShelfLight from './components/ShelfLight';
 import RiftLights from './components/RiftLights';
 
 export default () => {
@@ -32,10 +31,6 @@ export default () => {
 
       <RoomCrimsonLight />
       <RiftLights />
-
-
-      <ShelfLight.Top />
-      <ShelfLight.Bottom />
     </>
   )
 }

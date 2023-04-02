@@ -14,8 +14,6 @@ const Light = React.forwardRef((
 });
 
 
-
-
 const Camera = React.forwardRef(({ target, lookAt, ...props }: {
   target: React.RefObject<THREE.Group>,
   lookAt: Vector3,
