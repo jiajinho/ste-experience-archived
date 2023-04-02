@@ -5,10 +5,7 @@ import { useHelper } from '@react-three/drei';
 import useDebugLightStore from 'stores/webgl/useDebugLightStore';
 
 import RoomCrimsonLight from './components/RoomCrimsonLight';
-import TVBlueLight from './components/TVBlueLight';
-import LampBlueLight from './components/LampBlueLight';
 import ShelfLight from './components/ShelfLight';
-import DnDLight from './components/DnDLight';
 import RiftLights from './components/RiftLights';
 
 export default () => {

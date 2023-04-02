@@ -3,9 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import { Camera } from "types";
 import useDebug from "../hooks/useDebug";
-import useRegisterHotspot from "../hooks/useRegisterHotspot";
 
 const url = "/static/gltf/chalkboard.glb";
 
@@ -18,18 +16,13 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ hotspot, ...props }: {
-  hotspot: Camera.Hotspot
-} & JSX.IntrinsicElements["group"]
-) => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useDebug(ref);
-  const triggerZoom = useRegisterHotspot(ref, hotspot);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerZoom();
     triggerMover();
     props.onClick && props.onClick(e);
   }

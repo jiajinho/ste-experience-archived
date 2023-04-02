@@ -36,18 +36,13 @@ const Screen = styled.div`
   }
 `;
 
-export default ({ hotspot, ...props }: {
-  hotspot: Camera.Hotspot
-} & JSX.IntrinsicElements["group"]
-) => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useDebug(ref);
-  const triggerZoom = useRegisterZoom(ref, hotspot);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerZoom();
     triggerMover();
     props.onClick && props.onClick(e);
   }

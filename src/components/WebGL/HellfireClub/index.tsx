@@ -69,7 +69,6 @@ export default () => {
 
       <Shelf
         position={[2.07, 1.15, -4.29]}
-        hotspot="shelf"
       />
 
       <RetroTVHotspot
@@ -153,10 +152,6 @@ export default () => {
         position={[1.45, 2.5, -4.65]}
       />
 
-      <Book
-        position={[0, 0.83, -0.73]}
-        hotspot="book"
-      />
 
       <Cup
         position={[0.28, 0.89, -0.69]}

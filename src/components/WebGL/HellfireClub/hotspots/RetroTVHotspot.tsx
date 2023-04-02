@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { SpotLight } from 'three';
 
+import WireframeBox from '@webgl/debug/WireframeBox';
 import useTriggerSpotlight from '@webgl/debug/hooks/useTriggerSpotlight';
 import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 
-import WireframeBox from '@webgl/debug/WireframeBox';
-import NoticeBoard from '../components/NoticeBoard';
-import RetroTV from '../components/RetroTV';
+import RetroTV from '@hellfire/components/RetroTV';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const spotlight = useRef<SpotLight>(null);
@@ -25,9 +24,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   return (
     <group {...props}>
-      <RetroTV
-        hotspot="retroTV"
-      />
+      <RetroTV />
 
       <spotLight
         ref={spotlight}
@@ -42,6 +39,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         ref={box}
         position={spotlight.current?.position}
         onClick={triggerControl}
+      />
+
+      <WireframeBox.Camera
+        position={[1, 0, 0]}
       />
     </group>
   )
