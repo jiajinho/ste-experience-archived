@@ -7,18 +7,24 @@ import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 
 import ChalkBoard from '@hellfire/components/ChalkBoard';
 import useRegisterHotspot from './useRegisterHotspot';
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  /**
+   * Hooks
+   */
+  const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<SpotLight>(null);
-
   const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
-  const triggerControl = useTriggerDebugSpotlight(spotlight, lightBox);
-  const triggerZoom = useRegisterHotspot("standingBoard", cameraBox, cameraTarget);
-
   useAlignWireframeBox(spotlight, lightBox);
+
+  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
+  const triggerModelControl = useTriggerDebugModel(ref);
+
+  const triggerZoom = useRegisterHotspot("standingBoard", cameraBox, cameraTarget);
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -28,9 +34,20 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     spotlight.current.target.updateMatrixWorld();
   }, []);
 
+  /**
+   * Not hook
+   */
+  const handleClick = () => {
+    triggerModelControl();
+    triggerZoom();
+  }
+
+  /**
+   * Render
+   */
   return (
-    <group {...props}>
-      <ChalkBoard onClick={triggerZoom} />
+    <group ref={ref} {...props}>
+      <ChalkBoard onClick={handleClick} />
 
       <spotLight
         ref={spotlight}
@@ -43,7 +60,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <WireframeBox.Light
         ref={lightBox}
         position={spotlight.current?.position}
-        onClick={triggerControl}
+        onClick={triggerSpotlightControl}
       />
 
       <WireframeBox.Camera
