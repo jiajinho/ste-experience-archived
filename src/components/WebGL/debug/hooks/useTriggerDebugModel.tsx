@@ -1,18 +1,21 @@
 import useEnvStore from 'stores/useEnvStore';
-import useObjectMoverStore from 'stores/webgl/useDebugModelStore';
+import useDebugModelStore from 'stores/webgl/useDebugModelStore';
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 
-const getMeshes = (group: THREE.Group) => {
+const getMeshes = (object: THREE.Object3D): THREE.Mesh[] => {
   const meshes: THREE.Mesh[] = [];
 
-  group.children.forEach(c => {
-    if (c.type === "Mesh") {
-      meshes.push(c as THREE.Mesh);
-    }
-    else if (c.type === "Group") {
-      meshes.push(...getMeshes(c as THREE.Group));
-    }
-  });
+  if (object.children.length) {
+    object.children.forEach(o => {
+      meshes.push(...getMeshes(o) as THREE.Mesh[]);
+    });
+  }
+  else if (object.type === "Mesh") {
+    return [object] as THREE.Mesh[];
+  }
+  else {
+    return [];
+  }
 
   return meshes;
 }
@@ -20,15 +23,15 @@ const getMeshes = (group: THREE.Group) => {
 export default (ref: React.RefObject<THREE.Group>) => {
   const env = useEnvStore(state => state.env);
 
-  const setObjectMoverTarget = useObjectMoverStore(state => state.set);
-  const setOutlineTargets = useOutlineMeshStore(state => state.set)
+  const setDebugModelStore = useDebugModelStore(state => state.set);
+  const setOutlineMeshStore = useOutlineMeshStore(state => state.set)
 
   const triggerMover = () => {
     if (!ref.current) return;
     if (env !== "development") return;
 
-    setObjectMoverTarget(ref.current);
-    setOutlineTargets(getMeshes(ref.current));
+    setDebugModelStore(ref.current);
+    setOutlineMeshStore(getMeshes(ref.current));
   }
 
   return triggerMover;
