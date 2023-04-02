@@ -37,6 +37,7 @@ import Dice from './components/Dice';
 import ChalkBoard from './components/ChalkBoard';
 import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
 import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
+import RetroTVHotspot from './hotspots/RetroTVHotspot';
 
 
 export default () => {
@@ -62,11 +63,6 @@ export default () => {
         rotation={[Math.PI, 0.3, 0]}
       />
 
-      {/* <NoticeBoard
-        position={[-3.22, 1.75, 0.15]}
-        hotspot="bulletinBoard"
-      /> */}
-
       <NoticeBoardHotspot
         position={[-3.22, 1.75, 0.15]}
       />
@@ -74,6 +70,10 @@ export default () => {
       <Shelf
         position={[2.07, 1.15, -4.29]}
         hotspot="shelf"
+      />
+
+      <RetroTVHotspot
+        position={[-2.61, 1.07, 3.13]}
       />
 
       <ChalkboardHotspot
@@ -88,21 +88,6 @@ export default () => {
       <Tabletop.Round
         position={[3.22, 0.52, -4.18]}
       />
-
-      <RetroTV
-        position={[-2.61, 1.07, 3.13]}
-        hotspot="retroTV"
-      />
-
-      {/* <QuadLightStand
-        position={[-2.38, 0, 1.63]}
-        lights={[
-          LightColor.Yellow,
-          LightColor.Cyan,
-          LightColor.Yellow,
-          LightColor.Cyan
-        ]}
-      /> */}
 
       <CeilingLight
         position={[-2.68, 4.13, 1.35]}

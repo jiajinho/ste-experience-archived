@@ -4,15 +4,12 @@ import { useHelper } from '@react-three/drei';
 
 import useDebugLightStore from 'stores/webgl/useDebugLightStore';
 
-import BulletinLight from './components/BulletinLight';
-import TVLight from './components/TVLight';
 import RoomCrimsonLight from './components/RoomCrimsonLight';
 import TVBlueLight from './components/TVBlueLight';
 import LampBlueLight from './components/LampBlueLight';
 import ShelfLight from './components/ShelfLight';
 import DnDLight from './components/DnDLight';
 import RiftLights from './components/RiftLights';
-import StandingBoardLight from './components/StandingBoardLight';
 
 export default () => {
   const light = useDebugLightStore(state => state.light);
@@ -39,11 +36,6 @@ export default () => {
       <RoomCrimsonLight />
       <RiftLights />
 
-      <TVLight />
-      {/* <BulletinLight /> */}
-
-
-      {/* <StandingBoardLight /> */}
 
       <ShelfLight.Top />
       <ShelfLight.Bottom />
