@@ -3,9 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import { Camera } from "types";
-import useDebug from "../hooks/useDebug";
-import useRegisterHotspot from "../hotspots/useRegisterHotspot";
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/book.glb";
 const mapUrl = "/static/texture/dnd.jpg";
@@ -16,21 +14,16 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default ({ hotspot, ...props }: {
-  hotspot: Camera.Hotspot
-} & JSX.IntrinsicElements["group"]
-) => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useDebug(ref);
-  const triggerZoom = useRegisterHotspot(ref, hotspot);
+  const triggerMover = useTriggerDebugModel(ref);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerZoom();
     triggerMover();
     props.onClick && props.onClick(e);
   }

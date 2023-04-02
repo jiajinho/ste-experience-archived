@@ -31,5 +31,5 @@ export default (ref: React.RefObject<THREE.Group>) => {
     setOutlineTargets(getMeshes(ref.current));
   }
 
-  return triggerMover
+  return triggerMover;
 }

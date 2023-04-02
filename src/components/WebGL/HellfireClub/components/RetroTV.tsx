@@ -4,7 +4,7 @@ import type { GLTF } from "three-stdlib";
 import type { ThreeEvent } from "@react-three/fiber";
 import { Html, useGLTF } from "@react-three/drei";
 
-import useDebug from "../hooks/useDebug";
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/retro-tv.glb";
 const videoUrl = "/static/mightyverse-teaser.mp4#t=0.001";
@@ -38,7 +38,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useDebug(ref);
+  const triggerMover = useTriggerDebugModel(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();

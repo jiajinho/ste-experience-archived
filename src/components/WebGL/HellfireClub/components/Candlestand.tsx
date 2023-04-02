@@ -4,7 +4,7 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import { ThreeEvent } from "@react-three/fiber";
 
-import useDebug from "@hellfire/hooks/useDebug";
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import config, { LightColor } from "@hellfire/config";
 
 const url = "/static/gltf/candlestand.glb";
@@ -24,7 +24,7 @@ export default ({ light, material, ...props }: {
   const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useDebug(ref);
+  const triggerMover = useTriggerDebugModel(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();

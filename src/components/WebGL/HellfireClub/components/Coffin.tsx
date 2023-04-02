@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useDebug from "@hellfire/hooks/useDebug";
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const url = "/static/gltf/coffin.glb";
 
@@ -22,7 +22,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useDebug(ref);
+  const triggerMover = useTriggerDebugModel(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();

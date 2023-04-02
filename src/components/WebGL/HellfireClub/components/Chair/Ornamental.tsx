@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import type { ThreeEvent } from "@react-three/fiber";
 
-import useDebug from "../../hooks/useDebug";
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/chair-ornamental.glb";
 const mapUrl = "/static/texture/wood.jpg";
@@ -19,7 +19,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useDebug(ref);
+  const triggerMover = useTriggerDebugModel(ref);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
