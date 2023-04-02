@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
-import useTriggerSpotlight from '@webgl/debug/hooks/useTriggerSpotlight';
+import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 
 import RetroTV from '@hellfire/components/RetroTV';
@@ -15,7 +15,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
-  const triggerSpotlightControl = useTriggerSpotlight(spotlight, lightBox);
+  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerZoom = useRegisterHotspot("retroTV", cameraBox, cameraTarget);
 
   useAlignWireframeBox(spotlight, lightBox);

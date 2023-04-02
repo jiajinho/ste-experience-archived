@@ -2,33 +2,31 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 import { LightColor } from '../config';
-import useDebug from '../useDebug';
-import DebugBox from './DebugBox';
+
+import WireframeBox from '@webgl/debug/WireframeBox';
+import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 
 export default () => {
-  const light = useRef<THREE.SpotLight>(null);
-  const box = useRef<THREE.Mesh>(null);
+  const spotlight = useRef<THREE.SpotLight>(null);
+  const lightBox = useRef<THREE.Mesh>(null);
 
-  const triggerControl = useDebug(light, box);
+  const triggerControl = useTriggerDebugSpotlight(spotlight, lightBox);
+
+  useAlignWireframeBox(spotlight, lightBox);
 
   useEffect(() => {
-    if (!light.current) return;
-    if (!box.current) return;
+    if (!spotlight.current) return;
+    if (!lightBox.current) return;
 
-    box.current.position.x = light.current.position.x;
-    box.current.position.y = light.current.position.y;
-    box.current.position.z = light.current.position.z;
-
-    light.current.target.position.x = 0;
-    light.current.target.position.y = 0;
-    light.current.target.position.z = 0;
-    light.current.target.updateMatrixWorld();
+    spotlight.current.target.position.set(0, 0, 0);
+    spotlight.current.target.updateMatrixWorld();
   }, []);
 
   return (
     <>
       <spotLight
-        ref={light}
+        ref={spotlight}
         castShadow
         angle={0.79}
         penumbra={1}
@@ -38,9 +36,9 @@ export default () => {
         color={LightColor.Coral}
       />
 
-      <DebugBox
-        ref={box}
-        position={light.current?.position}
+      <WireframeBox.Light
+        ref={lightBox}
+        position={spotlight.current?.position}
         onClick={triggerControl}
       />
     </>

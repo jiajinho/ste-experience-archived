@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { SpotLight } from 'three';
 
-import useTriggerSpotlight from '@webgl/debug/hooks/useTriggerSpotlight';
+import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 import WireframeBox from '@webgl/debug/WireframeBox';
 
@@ -15,7 +15,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
-  const triggerSpotlightControl = useTriggerSpotlight(spotlight, lightBox);
+  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerZoom = useRegisterHotspot("bulletinBoard", cameraBox, cameraTarget);
 
   useAlignWireframeBox(spotlight, lightBox);
