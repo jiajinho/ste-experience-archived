@@ -19,7 +19,9 @@ type Store = State & {
 }
 
 export default create<Store>((set) => ({
-  //#region Basic states
+  /**
+   * Basic states
+   */
   camera: undefined,
   shadowCamera: undefined,
   currentZoom: "default",
@@ -32,8 +34,10 @@ export default create<Store>((set) => ({
 
     return clone;
   }),
-  //#endregion
 
+  /**
+   * Utility
+   */
   goNextZoom: () => set((state) => {
     const keys = Object.keys(config.zoomSettings);
     let index = keys.findIndex(k => k === state.currentZoom);

@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import * as THREE from 'three';
+import { useHelper } from '@react-three/drei';
 import { useControls } from 'leva';
 
 import useDebugLightStore from 'stores/webgl/useDebugLightStore';
@@ -7,6 +9,9 @@ export default (collapsed: boolean) => {
   const light = useDebugLightStore(state => state.light);
   const box = useDebugLightStore(state => state.box);
 
+  /**
+   * Leva related
+   */
   const [{ x, y, z, tx, ty, tz, angle, intensity, distance, color }, set] = useControls("useLevaControlLight", () => ({
     x: { min: -10, max: 10, value: 0, step: 0.01 },
     y: { min: -10, max: 10, value: 0, step: 0.01 },
@@ -68,4 +73,24 @@ export default (collapsed: boolean) => {
     light.distance = distance;
     light.color.set(color);
   }, [angle, distance, color, intensity]);
+
+
+  /**
+   * 3js, light helper related
+   */
+  const ref = useRef<THREE.SpotLight | null>(null);
+
+  const [toggle, setToggle] = useState(false);
+
+  //@ts-ignore
+  useHelper(toggle && ref, THREE.SpotLightHelper, "cyan");
+
+  useEffect(() => {
+    setToggle(false);
+  }, [light]);
+
+  useEffect(() => {
+    setToggle(true);
+    ref.current = light;
+  }, [toggle]);
 }

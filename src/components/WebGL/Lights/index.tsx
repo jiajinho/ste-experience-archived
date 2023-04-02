@@ -1,36 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import { useHelper } from '@react-three/drei';
-
-import useDebugLightStore from 'stores/webgl/useDebugLightStore';
+import React from 'react';
 
 import RoomCrimsonLight from './components/RoomCrimsonLight';
 import RiftLights from './components/RiftLights';
 
-export default () => {
-  const light = useDebugLightStore(state => state.light);
-  const ref = useRef<THREE.SpotLight | null>(null);
+export default () => (
+  <>
+    <ambientLight intensity={0.1} />
 
-  const [toggle, setToggle] = useState(false);
-
-  //@ts-ignore
-  useHelper(toggle && ref, THREE.SpotLightHelper, "cyan");
-
-  useEffect(() => {
-    setToggle(false);
-  }, [light]);
-
-  useEffect(() => {
-    setToggle(true);
-    ref.current = light;
-  }, [toggle]);
-
-  return (
-    <>
-      <ambientLight intensity={0.1} />
-
-      <RoomCrimsonLight />
-      <RiftLights />
-    </>
-  )
-}
+    <RoomCrimsonLight />
+    <RiftLights />
+  </>
+);
