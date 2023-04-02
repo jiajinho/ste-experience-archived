@@ -6,7 +6,7 @@ import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
 
-import useControlGroup from '@webgl/debug/hooks/useControlGroup';
+import useControlModel from '@webgl/debug/hooks/useControlModel';
 import useControlSpotlight from '@webgl/debug/hooks/useControlSpotlight';
 
 import HellfireClub from './HellfireClub';
@@ -23,7 +23,7 @@ export default () => {
 
   const { total, loaded } = useProgress();
 
-  useControlGroup(true);
+  useControlModel(true);
   useControlSpotlight(true);
 
   useEffect(() => {
