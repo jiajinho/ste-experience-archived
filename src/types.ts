@@ -8,15 +8,15 @@ export namespace Camera {
   export type MouseEvent = "rotate" | "pan" | undefined;
 
   export type Zoom = {
-    cameraPosition: Vector3,
+    cameraPosition?: Vector3,
     lookAt?: THREE.Vector3,
     allowEvent?: {
       name: "rotate",
-      props: Rotate
+      props: RotateProp
     }
   }
 
-  export type Rotate = {
+  export type RotateProp = {
     azimuth: {
       min: number,
       max: number,

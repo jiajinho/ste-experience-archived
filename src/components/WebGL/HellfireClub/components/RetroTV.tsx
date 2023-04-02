@@ -4,9 +4,7 @@ import type { GLTF } from "three-stdlib";
 import type { ThreeEvent } from "@react-three/fiber";
 import { Html, useGLTF } from "@react-three/drei";
 
-import { Camera } from "types";
 import useDebug from "../hooks/useDebug";
-import useRegisterZoom from "../hooks/useRegisterHotspot";
 
 const gltfUrl = "/static/gltf/retro-tv.glb";
 const videoUrl = "/static/mightyverse-teaser.mp4#t=0.001";

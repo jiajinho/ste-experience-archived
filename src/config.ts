@@ -30,9 +30,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       }
     }
   },
-  retroTV: {
-    cameraPosition: [-2.04, 1.07, 3.13]
-  },
+  retroTV: {},
   bulletinBoard: {
     cameraPosition: [-1.7, 1.75, 0.15]
   },

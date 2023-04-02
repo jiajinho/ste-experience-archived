@@ -5,7 +5,7 @@ import type { GLTF } from "three-stdlib";
 
 import { Camera } from "types";
 import useDebug from "../hooks/useDebug";
-import useRegisterHotspot from "../hooks/useRegisterHotspot";
+import useRegisterHotspot from "../hotspots/useRegisterHotspot";
 
 const gltfUrl = "/static/gltf/book.glb";
 const mapUrl = "/static/texture/dnd.jpg";
