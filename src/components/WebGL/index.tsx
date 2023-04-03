@@ -8,10 +8,11 @@ import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 import useControlModel from '@webgl/debug/hooks/useControlModel';
 import useControlSpotlight from '@webgl/debug/hooks/useControlSpotlight';
+import useControlCamera from './debug/hooks/useControlCamera';
 
 import HellfireClub from './HellfireClub';
-import Camera from './Camera';
 import GlobalLight from './GlobalLight';
+import Camera from './Camera';
 
 export default () => {
   /**
@@ -25,6 +26,7 @@ export default () => {
 
   useControlModel(true);
   useControlSpotlight(true);
+  useControlCamera();
 
   useEffect(() => {
     setLoaderStore("webgl", {

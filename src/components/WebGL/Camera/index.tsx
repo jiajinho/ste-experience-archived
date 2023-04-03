@@ -38,7 +38,7 @@ export default () => {
    */
   const handleOrbitChange = () => {
     if (env !== "development") return;
-    console.log(camera.position);
+    console.log({ cameraPosition: camera.position });
   }
 
   /**
