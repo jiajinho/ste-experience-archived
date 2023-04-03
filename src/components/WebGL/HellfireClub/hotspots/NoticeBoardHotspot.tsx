@@ -24,7 +24,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("bulletinBoard", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("noticeBoard", cameraBox, cameraTarget);
 
   useEffect(() => {
     if (!spotlight.current) return;

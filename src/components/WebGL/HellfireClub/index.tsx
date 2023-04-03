@@ -28,17 +28,18 @@ import HellfireBanner from './components/HellfireBanner';
 import CeilingLight from './components/CeilingLight';
 import Book from './components/Book';
 import Cup from './components/Cup';
-import Map from './components/Map';
 import Page from './components/Page';
 import Dossier from './components/Dossier';
 import Soda from './components/Soda';
 import Dice from './components/Dice';
+import TabletopGroup from './groups/TabletopGroup';
 
 import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
 import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
 import RetroTVHotspot from './hotspots/RetroTVHotspot';
 import ShelfHotspot from './hotspots/ShelfHotspot';
 import DefaultViewHotspot from './hotspots/DefaultViewHotspot';
+import VecnaBoardHotspot from './hotspots/VecnaBoardHotspot';
 
 
 export default () => {
@@ -73,6 +74,10 @@ export default () => {
       <ShelfHotspot
         position={[2.07, 1.15, -4.29]}
         rotation-y={-Math.PI / 2}
+      />
+
+      <VecnaBoardHotspot
+        position={[0, 0.82, 0.2]}
       />
 
       <RetroTVHotspot
@@ -144,10 +149,6 @@ export default () => {
         light={LightColor.Yellow}
       />
 
-      <MeetingTable
-        position={[0, 0.68, 0]}
-      />
-
       <HellfireBanner.Welcome
         position={[-1.76, 2.5, -4.65]}
       />
@@ -157,11 +158,11 @@ export default () => {
       />
 
 
-      <Cup
+      {/* <Cup
         position={[0.28, 0.89, -0.69]}
-      />
+      /> */}
 
-      <Map
+      {/* <Map
         position={[0, 0.815, 0.05]}
       />
 
@@ -222,29 +223,32 @@ export default () => {
       <Page.Rafflesia
         position={[0.21, 0.975, -0.50]}
         rotation={[0, 2.08, -Math.PI / 2]}
-      />
+      /> */}
 
-      <Soda
+      {/* <Soda
         position={[-0.23, 0.875, 0.06]}
       />
 
       <Soda
         position={[0.25, 0.845, -0.3]}
         rotation={[0, 2.05, Math.PI / 2]}
-      />
+      /> */}
 
-      <Dice
-        position={[0.18, 0.835, -0.1]}
-      />
+
+      <TabletopGroup />
 
       <CurtainGroup />
 
       <CandlestandGroup />
+
       <StandeeGroup />
+
       <ChairGroup />
 
       <RiftGroup />
+
       <PaperGroup />
+
       <WallGroup />
 
       <RiftFloor />

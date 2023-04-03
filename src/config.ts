@@ -29,9 +29,9 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   retroTV: {},
-  bulletinBoard: {},
-  standingBoard: {},
-  book: {},
+  noticeBoard: {},
+  vecnaBoard: {},
+  chalkBoard: {},
   shelf: {}
 }
 
