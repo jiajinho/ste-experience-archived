@@ -33,11 +33,12 @@ import Page from './components/Page';
 import Dossier from './components/Dossier';
 import Soda from './components/Soda';
 import Dice from './components/Dice';
-import ChalkBoard from './components/ChalkBoard';
+
 import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
 import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
 import RetroTVHotspot from './hotspots/RetroTVHotspot';
 import ShelfHotspot from './hotspots/ShelfHotspot';
+import DefaultViewHotspot from './hotspots/DefaultViewHotspot';
 
 
 export default () => {
@@ -62,6 +63,8 @@ export default () => {
         position={[-1.23, 0.2, 3.98]}
         rotation={[Math.PI, 0.3, 0]}
       />
+
+      <DefaultViewHotspot />
 
       <NoticeBoardHotspot
         position={[-3.22, 1.75, 0.15]}

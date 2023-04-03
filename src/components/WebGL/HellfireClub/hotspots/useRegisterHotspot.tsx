@@ -15,8 +15,11 @@ export default (
   const env = useEnvStore(state => state.env);
   const setCameraStore = useCameraStore(state => state.set);
 
-  const triggerZoom = () => {
-    if (env === "development") return;
+  useEffect(() => {
+    setupZoomConfig();
+  }, []);
+
+  const setupZoomConfig = () => {
     if (!cameraBox.current) return;
     if (!cameraTarget.current) return;
 
@@ -28,7 +31,12 @@ export default (
 
     config.zoomSettings[hotspot].cameraPosition = [position.x, position.y, position.z];
     config.zoomSettings[hotspot].lookAt = lookAt;
+  }
 
+  const triggerZoom = () => {
+    if (env === "development") return;
+
+    setupZoomConfig();
     setCameraStore("currentZoom", hotspot);
   }
 

@@ -14,11 +14,13 @@ export default () => {
     if (!shadowCamera) return;
     if (!mouseEvent) return;
 
+    const setting = config.zoomSettings[currentZoom];
+
     const state: EventState = {
       enabled: false,
       anchorX: 0,
-      anchorAzimuth: config.defaultLookAt.azimuth,
-      azimuth: config.defaultLookAt.azimuth
+      anchorAzimuth: setting.allowEvent?.default.azimuth || 0,
+      azimuth: setting.allowEvent?.default.azimuth || 0
     }
 
     function handleMouseDown(e: MouseEvent) {

@@ -10,17 +10,22 @@ export namespace Camera {
   export type Zoom = {
     cameraPosition?: Vector3,
     lookAt?: THREE.Vector3,
-    allowEvent?: {
-      name: "rotate",
-      props: RotateProp
-    }
+    allowEvent?: RotateEvent
   }
 
-  export type RotateProp = {
-    azimuth: {
-      min: number,
-      max: number,
-      vwMultiplier: number
+  type RotateEvent = {
+    name: "rotate",
+    props: {
+      azimuth: {
+        min: number,
+        max: number,
+        vwMultiplier: number
+      }
+    },
+    default: {
+      lookAtY: number,
+      azimuth: number,
+      azimuthScaleFactor: number
     }
   }
 }
