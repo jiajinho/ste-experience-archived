@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { Camera, Viewport } from "types";
 
 const viewport: Viewport = {
@@ -30,9 +31,15 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   },
   retroTV: {},
   noticeBoard: {},
-  vecnaBoard: {},
-  faqBoard: {},
-  map: {},
+  vecnaBoard: {
+    cameraUp: new THREE.Vector3(-1, 0, 0)
+  },
+  faqBoard: {
+    cameraUp: new THREE.Vector3(0.05, -1, 0.55)
+  },
+  map: {
+    cameraUp: new THREE.Vector3(0, -1, 0)
+  },
   chalkBoard: {},
   shelf: {}
 }

@@ -18,6 +18,7 @@ export namespace Camera {
   export type Zoom = {
     cameraPosition?: Vector3,
     lookAt?: THREE.Vector3,
+    cameraUp?: THREE.Vector3,
     allowEvent?: RotateEvent
   }
 

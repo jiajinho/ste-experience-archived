@@ -14,7 +14,7 @@ export default () => {
     if (!shadowCamera) return;
     if (!camera) return;
 
-    const { lookAt, cameraPosition } = config.zoomSettings[currentZoom];
+    const { lookAt, cameraPosition, cameraUp } = config.zoomSettings[currentZoom];
 
     if (!lookAt || !cameraPosition) return;
 
@@ -25,6 +25,7 @@ export default () => {
       shadowCamera: shadowCamera,
       lookAt,
       cameraPosition,
+      up: cameraUp,
       animate: !firstTime.current,
       callback: () => {
         setCameraStore("mouseEvent", config.zoomSettings[currentZoom].allowEvent?.name);
