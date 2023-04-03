@@ -4,20 +4,27 @@ import { useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import useCameraStore from 'stores/webgl/useCameraStore';
-import useDebug from './useDebug';
+import useEnvStore from 'stores/useEnvStore';
+import useControlCamera from '@webgl/debug/hooks/useControlCamera';
+
 import useZoomHotspot from './useZoomHotspot';
 import useMouseEvent from './useMouseEvent';
 
 export default () => {
+  /**
+   * Hooks
+   */
   const { camera } = useThree();
 
   const shadowCamera = useRef<THREE.PerspectiveCamera>(null);
 
+  const env = useEnvStore(state => state.env);
   const setCameraStore = useCameraStore(state => state.set);
 
-  const { freeCam } = useDebug();
   useMouseEvent();
   useZoomHotspot();
+
+  useControlCamera();
 
   useEffect(() => {
     if (!shadowCamera.current) return;
@@ -26,17 +33,23 @@ export default () => {
     setCameraStore("shadowCamera", shadowCamera.current);
   }, []);
 
+  /**
+   * Not hook
+   */
   const handleOrbitChange = () => {
-    if (!freeCam) return;
+    if (env !== "development") return;
     console.log(camera.position);
   }
 
+  /**
+   * Render
+   */
   return (
     <>
       <perspectiveCamera ref={shadowCamera} />
 
       <OrbitControls
-        enabled={freeCam}
+        enabled={env === "development"}
         enableDamping={false}
         onChange={handleOrbitChange}
       />
