@@ -40,6 +40,8 @@ export default () => {
     target: useDebugCameraStore(state => state.target),
   }
 
+  const setDebugCameraStore = useDebugCameraStore(state => state.set)
+
   const [{ x, y, z, tx, ty, tz }, set] = useControls("useControlCamera", () => ({
     x: { min: -5, max: 5, value: 0, step: 0.01 },
     y: { min: -5, max: 5, value: 0, step: 0.01 },
@@ -47,7 +49,9 @@ export default () => {
     tx: { min: -100, max: 100, value: 0, step: 0.01 },
     ty: { min: -100, max: 100, value: 0, step: 0.01 },
     tz: { min: -100, max: 100, value: 0, step: 0.01 },
-  }));
+  }), {
+    collapsed: true
+  });
 
   useEffect(() => {
     if (!debug.box) return;
@@ -70,7 +74,13 @@ export default () => {
 
   useEffect(() => {
     if (!debug.target) return;
-
     debug.target.position.set(tx, ty, tz);
   }, [tx, ty, tz]);
+
+  useEffect(() => {
+    if (env === "development") return;
+
+    setDebugCameraStore("box", null);
+    setDebugCameraStore("target", null);
+  }, [env]);
 }

@@ -6,6 +6,7 @@ import { Camera } from 'types';
 
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useEnvStore from 'stores/useEnvStore';
+import useDebugCameraStore from 'stores/webgl/useDebugCameraStore';
 
 export default (
   hotspot: Camera.Hotspot,
@@ -15,9 +16,14 @@ export default (
   const env = useEnvStore(state => state.env);
   const setCameraStore = useCameraStore(state => state.set);
 
+  const debug = {
+    cameraBox: useDebugCameraStore(state => state.box),
+    cameraTarget: useDebugCameraStore(state => state.target)
+  }
+
   useEffect(() => {
     setupZoomConfig();
-  }, []);
+  }, [JSON.stringify(debug.cameraBox?.position), JSON.stringify(debug.cameraTarget?.position)]);
 
   const setupZoomConfig = () => {
     if (!cameraBox.current) return;

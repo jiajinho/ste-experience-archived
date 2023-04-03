@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Line } from "@react-three/drei";
 
-import type { Vector3 } from "types";
+import type { Camera, Vector3 } from "types";
 import useEnvStore from "stores/useEnvStore";
 import useDebugCameraStore from "stores/webgl/useDebugCameraStore";
 import useTriggerDebugCamera from "@webgl/debug/hooks/useTriggerDebugCamera";
@@ -19,7 +19,7 @@ const Light = React.forwardRef((
 
 const Camera = React.forwardRef(({ target, lookAt, ...props }: {
   target: React.RefObject<THREE.Group>,
-  lookAt: Vector3,
+  lookAt: Vector3
 } & Omit<JSX.IntrinsicElements["group"], "lookAt">,
   ref: React.ForwardedRef<THREE.Mesh>
 ) => {

@@ -12,7 +12,7 @@ export default (collapsed: boolean) => {
   /**
    * Leva related
    */
-  const [{ x, y, z, tx, ty, tz, angle, intensity, distance, color }, set] = useControls("useLevaControlLight", () => ({
+  const [{ x, y, z, tx, ty, tz, angle, intensity, distance, color }, set] = useControls("useControlSpotlight", () => ({
     x: { min: -10, max: 10, value: 0, step: 0.01 },
     y: { min: -10, max: 10, value: 0, step: 0.01 },
     z: { min: -10, max: 10, value: 0, step: 0.01 },
