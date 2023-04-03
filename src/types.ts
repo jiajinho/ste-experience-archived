@@ -9,7 +9,8 @@ export namespace Camera {
     "noticeBoard" |
     "chalkBoard" |
     "retroTV" |
-    "vecnaBoard";
+    "vecnaBoard" |
+    "faqBoard";
 
   export type MouseEvent = "rotate" | "pan" | undefined;
 

@@ -40,6 +40,7 @@ import RetroTVHotspot from './hotspots/RetroTVHotspot';
 import ShelfHotspot from './hotspots/ShelfHotspot';
 import DefaultViewHotspot from './hotspots/DefaultViewHotspot';
 import VecnaBoardHotspot from './hotspots/VecnaBoardHotspot';
+import FAQBoardHotspot from './hotspots/FAQBoardHotspot';
 
 
 export default () => {
@@ -77,7 +78,12 @@ export default () => {
       />
 
       <VecnaBoardHotspot
-        position={[0, 0.82, 0.2]}
+        position={[0, 0.825, 0.2]}
+      />
+
+      <FAQBoardHotspot
+        position={[0, 0.82, -0.42]}
+        rotation-y={0.08}
       />
 
       <RetroTVHotspot

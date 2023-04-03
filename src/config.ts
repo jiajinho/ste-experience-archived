@@ -31,6 +31,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   retroTV: {},
   noticeBoard: {},
   vecnaBoard: {},
+  faqBoard: {},
   chalkBoard: {},
   shelf: {}
 }
