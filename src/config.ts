@@ -32,6 +32,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   noticeBoard: {},
   vecnaBoard: {},
   faqBoard: {},
+  map: {},
   chalkBoard: {},
   shelf: {}
 }
