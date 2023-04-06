@@ -27,7 +27,10 @@ export function moveCamera({
   shadowCamera.up = up;
   shadowCamera.lookAt(lookAt);
 
-  const endRotation = new THREE.Euler().copy(shadowCamera.rotation);
+  const startQuaternion = camera.quaternion.clone();
+  const endQuaternion = new THREE.Quaternion().setFromEuler(shadowCamera.rotation);
+
+  const time = { t: 0 };
 
   const timeline = gsap.timeline({
     defaults: {
@@ -36,18 +39,17 @@ export function moveCamera({
     }
   });
 
-  console.log(endRotation);
-
   timeline
     .to(camera.position, {
       x: cameraPosition[0],
       y: cameraPosition[1],
       z: cameraPosition[2]
     })
-    .to(camera.rotation, {
-      x: endRotation.x,
-      y: endRotation.y,
-      z: endRotation.z
+    .to(time, {
+      t: 1,
+      onUpdate: () => {
+        camera.quaternion.slerpQuaternions(startQuaternion, endQuaternion, time.t);
+      }
     }, 0)
     .eventCallback("onComplete", () => {
       callback && callback();
@@ -55,16 +57,4 @@ export function moveCamera({
       camera.up = up;
       camera.lookAt(lookAt);
     });
-}
-
-function getShortestRadian(to: number, from: number) {
-  if (Math.abs(to - from) > Math.PI) {
-    if (to > 0) { // if to is positive we remove a full-circle, add it otherwise
-      return to - 2 * Math.PI;
-    } else {
-      return to + 2 * Math.PI;
-    }
-  }
-
-  return to;
 }
