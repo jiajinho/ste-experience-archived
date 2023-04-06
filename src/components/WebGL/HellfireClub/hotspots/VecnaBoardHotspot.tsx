@@ -20,7 +20,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   }
 
   return (
-    <group {...props}>
+    <group ref={ref} {...props}>
       <VecnaBoard onClick={handleClick} />
 
       <WireframeBox.Camera

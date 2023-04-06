@@ -36,6 +36,8 @@ export function moveCamera({
     }
   });
 
+  console.log(endRotation);
+
   timeline
     .to(camera.position, {
       x: cameraPosition[0],
@@ -53,4 +55,16 @@ export function moveCamera({
       camera.up = up;
       camera.lookAt(lookAt);
     });
+}
+
+function getShortestRadian(to: number, from: number) {
+  if (Math.abs(to - from) > Math.PI) {
+    if (to > 0) { // if to is positive we remove a full-circle, add it otherwise
+      return to - 2 * Math.PI;
+    } else {
+      return to + 2 * Math.PI;
+    }
+  }
+
+  return to;
 }

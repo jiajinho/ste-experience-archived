@@ -1,9 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
-
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/vecna-board.glb";
 const mapUrl = "/static/texture/vecna-faq-map.png";
@@ -16,25 +13,12 @@ type GLTFResult = GLTF & {
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
-
-  const triggerMover = useTriggerDebugModel(ref);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
 
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group {...props} dispose={null}>
       <mesh geometry={nodes.VecnaBoard.geometry}>
         <meshStandardMaterial
           map={map}
