@@ -8,6 +8,7 @@ import fonts from 'fonts';
 import useToggleEnv from 'hooks/useToggleEnv';
 import useEnvStore from 'stores/useEnvStore';
 import useResponsive from 'hooks/useResponsive';
+import Head from 'next/head';
 
 const App = styled.div`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
@@ -31,6 +32,11 @@ export default ({ Component, pageProps }: AppProps) => {
         hidden={env !== "development"}
         theme={{ sizes: { numberInputMinWidth: "50px" } }}
       />
+
+      <Head>
+        <link rel="shortcut icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+      </Head>
 
       <App>
         <Component {...pageProps} />

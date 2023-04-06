@@ -33,10 +33,13 @@ export function executeEvent(state: EventState, pageX: number) {
 
 function rotate(state: EventState, pageX: number, minAzimuth: number, maxAzimuth: number) {
   const { shadowCamera, camera, canvas, currentZoom } = useCameraStore.getState();
+  const setting = config.zoomSettings[currentZoom];
 
   if (!shadowCamera) return;
   if (!camera) return;
   if (!canvas) return;
+  if (!setting.allowEvent) return;
+  if (setting.allowEvent.name !== "rotate") return;
 
   const delta = pageX - state.anchorX;
   const scaleFactor = 0.001;
@@ -51,9 +54,9 @@ function rotate(state: EventState, pageX: number, minAzimuth: number, maxAzimuth
   }
 
   const vec3 = new THREE.Vector3(
-    -Math.sin(state.azimuth) * config.defaultLookAt.scale,
-    config.zoomSettings[currentZoom].lookAt!.y,
-    -Math.cos(state.azimuth) * config.defaultLookAt.scale
+    -Math.sin(state.azimuth) * setting.allowEvent.default.azimuthScaleFactor,
+    setting.allowEvent.default.lookAtY,
+    -Math.cos(state.azimuth) * setting.allowEvent.default.azimuthScaleFactor
   );
 
   shadowCamera.lookAt(vec3);

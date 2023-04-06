@@ -1,12 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import type { GLTF } from "three-stdlib";
-import type { ThreeEvent } from "@react-three/fiber";
 import { Html, useGLTF } from "@react-three/drei";
-
-import { Camera } from "types";
-import useDebug from "../hooks/useDebug";
-import useRegisterZoom from "../hooks/useRegisterHotspot";
 
 const gltfUrl = "/static/gltf/retro-tv.glb";
 const videoUrl = "/static/mightyverse-teaser.mp4#t=0.001";
@@ -36,34 +31,16 @@ const Screen = styled.div`
   }
 `;
 
-export default ({ hotspot, ...props }: {
-  hotspot: Camera.Hotspot
-} & JSX.IntrinsicElements["group"]
-) => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
-
-  const triggerMover = useDebug(ref);
-  const triggerZoom = useRegisterZoom(ref, hotspot);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerZoom();
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
 
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group {...props} dispose={null}>
       <Html
         occlude="blending"
         prepend
         transform
-        position={[0.165, 0, 0]}
+        position={[0.1, 0, 0]}
         rotation-y={Math.PI / 2}
         scale={0.01}
       >

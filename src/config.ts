@@ -1,10 +1,10 @@
 import * as THREE from "three";
 import { Camera, Viewport } from "types";
 
-const defaultLookAt = {
-  y: -20,
-  azimuth: 1.1,
-  scale: 100
+const viewport: Viewport = {
+  sm: "456px",
+  md: "768px",
+  lg: "1200px"
 }
 
 /**
@@ -13,12 +13,6 @@ const defaultLookAt = {
  */
 const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   default: {
-    cameraPosition: [3.81, 2.29, 2.26],
-    lookAt: new THREE.Vector3(
-      -Math.sin(defaultLookAt.azimuth) * defaultLookAt.scale,
-      defaultLookAt.y,
-      -Math.cos(defaultLookAt.azimuth) * defaultLookAt.scale
-    ),
     allowEvent: {
       name: "rotate",
       props: {
@@ -27,34 +21,30 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
           max: 2,
           vwMultiplier: 0.00045
         }
+      },
+      default: {
+        lookAtY: -20,
+        azimuth: 1.1,
+        azimuthScaleFactor: 100
       }
     }
   },
-  retroTV: {
-    cameraPosition: [-2.04, 1.07, 3.13]
+  retroTV: {},
+  noticeBoard: {},
+  vecnaBoard: {
+    cameraUp: new THREE.Vector3(-1, 0, 0)
   },
-  bulletinBoard: {
-    cameraPosition: [-1.7, 1.75, 0.15]
+  faqBoard: {
+    cameraUp: new THREE.Vector3(0.05, -1, 0.55)
   },
-  standingBoard: {
-    cameraPosition: [-1.28, 1.49, -1.81]
+  map: {
+    cameraUp: new THREE.Vector3(0, -1, 0)
   },
-  book: {
-    cameraPosition: [0, 1.2, -0.7]
-  },
-  shelf: {
-    cameraPosition: [2.07, 1.15, -3.01]
-  }
-}
-
-const viewport: Viewport = {
-  sm: "456px",
-  md: "768px",
-  lg: "1200px"
+  chalkBoard: {},
+  shelf: {}
 }
 
 export default {
-  defaultLookAt,
   zoomSettings,
   viewport
 }

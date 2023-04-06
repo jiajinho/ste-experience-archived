@@ -5,13 +5,14 @@ import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
 
-import useDebugModel from './useDebugModel';
-import useDebugLight from './useDebugLight';
+import useControlModel from '@webgl/debug/hooks/useControlModel';
+import useControlSpotlight from '@webgl/debug/hooks/useControlSpotlight';
+import useControlCamera from './debug/hooks/useControlCamera';
+
 import HellfireClub from './HellfireClub';
+import GlobalLight from './GlobalLight';
 import Camera from './Camera';
-import Lights from './Lights';
 
 export default () => {
   /**
@@ -20,12 +21,12 @@ export default () => {
   const env = useEnvStore(state => state.env);
   const outlineMeshes = useOutlineMeshStore(state => state.meshes);
   const setLoaderStore = useLoadProgressStore(state => state.set);
-  const setCameraStore = useCameraStore(state => state.set);
 
   const { total, loaded } = useProgress();
 
-  useDebugModel(true);
-  useDebugLight(true);
+  useControlModel(true);
+  useControlSpotlight(true);
+  useControlCamera();
 
   useEffect(() => {
     setLoaderStore("webgl", {
@@ -43,7 +44,7 @@ export default () => {
 
       <HellfireClub />
       <Camera />
-      <Lights />
+      <GlobalLight />
 
       <EffectComposer
         autoClear={false}

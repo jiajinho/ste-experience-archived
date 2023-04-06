@@ -14,9 +14,6 @@ import RiftFloor from './components/RiftFloor';
 import Standee from './components/Standee';
 import Box from './components/Box';
 import Ladder from './components/Ladder';
-import BulletinBoard from './components/BulletinBoard';
-import Shelf from './components/Shelf';
-import StandingBoard from './components/StandingBoard';
 import Lamp from './components/Lamp';
 import Coffin from './components/Coffin';
 import Tabletop from './components/Tabletop';
@@ -31,11 +28,20 @@ import HellfireBanner from './components/HellfireBanner';
 import CeilingLight from './components/CeilingLight';
 import Book from './components/Book';
 import Cup from './components/Cup';
-import Map from './components/Map';
 import Page from './components/Page';
 import Dossier from './components/Dossier';
 import Soda from './components/Soda';
 import Dice from './components/Dice';
+import TabletopGroup from './groups/TabletopGroup';
+
+import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
+import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
+import RetroTVHotspot from './hotspots/RetroTVHotspot';
+import ShelfHotspot from './hotspots/ShelfHotspot';
+import DefaultViewHotspot from './hotspots/DefaultViewHotspot';
+import VecnaBoardHotspot from './hotspots/VecnaBoardHotspot';
+import FAQBoardHotspot from './hotspots/FAQBoardHotspot';
+import MapHotspot from './hotspots/MapHotspot';
 
 
 export default () => {
@@ -61,36 +67,39 @@ export default () => {
         rotation={[Math.PI, 0.3, 0]}
       />
 
-      {/* <Ladder
-        position={[0.92, 0.86, -4.31]}
-        rotation-y={0.86}
-      /> */}
+      <DefaultViewHotspot />
 
-      <BulletinBoard
+      <NoticeBoardHotspot
         position={[-3.22, 1.75, 0.15]}
-        hotspot="bulletinBoard"
       />
 
-      <Shelf
+      <ShelfHotspot
         position={[2.07, 1.15, -4.29]}
-        hotspot="shelf"
+        rotation-y={-Math.PI / 2}
       />
 
-      <StandingBoard
-        position={[-2.07, 1.35, -3.06]}
-        rotation-y={2.19}
-        hotspot="standingBoard"
+      <VecnaBoardHotspot
+        position={[0, 0.83, 0.2]}
       />
 
-      {/* <Lamp
-        position={[-2.3, 1.26, -4.13]}
-        rotation-y={-3.08}
-      /> */}
+      <FAQBoardHotspot
+        position={[0, 0.825, -0.42]}
+        rotation-y={0.08}
+      />
 
-      {/* <Coffin
-        position={[-2.6, 0, -2.46]}
-        rotation-y={-0.34}
-      /> */}
+      <MapHotspot
+        position={[0.04, 0.82, -0.72]}
+        rotation-y={-0.06}
+      />
+
+      <RetroTVHotspot
+        position={[-2.61, 1.07, 3.13]}
+      />
+
+      <ChalkboardHotspot
+        position={[-2.13, 1.35, -3.11]}
+        rotation-y={0.63}
+      />
 
       <Tabletop.DShape
         position={[-2.7, 0.75, 3.06]}
@@ -99,21 +108,6 @@ export default () => {
       <Tabletop.Round
         position={[3.22, 0.52, -4.18]}
       />
-
-      <RetroTV
-        position={[-2.61, 1.07, 3.13]}
-        hotspot="retroTV"
-      />
-
-      {/* <QuadLightStand
-        position={[-2.38, 0, 1.63]}
-        lights={[
-          LightColor.Yellow,
-          LightColor.Cyan,
-          LightColor.Yellow,
-          LightColor.Cyan
-        ]}
-      /> */}
 
       <CeilingLight
         position={[-2.68, 4.13, 1.35]}
@@ -167,10 +161,6 @@ export default () => {
         light={LightColor.Yellow}
       />
 
-      <MeetingTable
-        position={[0, 0.68, 0]}
-      />
-
       <HellfireBanner.Welcome
         position={[-1.76, 2.5, -4.65]}
       />
@@ -179,16 +169,12 @@ export default () => {
         position={[1.45, 2.5, -4.65]}
       />
 
-      <Book
-        position={[0, 0.83, -0.73]}
-        hotspot="book"
-      />
 
-      <Cup
+      {/* <Cup
         position={[0.28, 0.89, -0.69]}
-      />
+      /> */}
 
-      <Map
+      {/* <Map
         position={[0, 0.815, 0.05]}
       />
 
@@ -249,29 +235,32 @@ export default () => {
       <Page.Rafflesia
         position={[0.21, 0.975, -0.50]}
         rotation={[0, 2.08, -Math.PI / 2]}
-      />
+      /> */}
 
-      <Soda
+      {/* <Soda
         position={[-0.23, 0.875, 0.06]}
       />
 
       <Soda
         position={[0.25, 0.845, -0.3]}
         rotation={[0, 2.05, Math.PI / 2]}
-      />
+      /> */}
 
-      <Dice
-        position={[0.18, 0.835, -0.1]}
-      />
+
+      <TabletopGroup />
 
       <CurtainGroup />
 
       <CandlestandGroup />
+
       <StandeeGroup />
+
       <ChairGroup />
 
       <RiftGroup />
+
       <PaperGroup />
+
       <WallGroup />
 
       <RiftFloor />

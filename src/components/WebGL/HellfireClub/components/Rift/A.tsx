@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 
 import { GLTFResult } from "./types";
-import useDebug from "@hellfire/hooks/useDebug";
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const url = "/static/gltf/rifts-mini.glb";
 
@@ -14,7 +14,7 @@ export default ({ material, ...props }: {
   const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useDebug(ref);
+  const triggerMover = useTriggerDebugModel(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();

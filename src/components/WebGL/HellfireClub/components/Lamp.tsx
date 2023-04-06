@@ -4,7 +4,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useDebug from "@hellfire/hooks/useDebug";
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/lamp.glb";
 const colorMapUrl = "/static/texture/lamp-color.jpg";
@@ -24,7 +24,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useDebug(ref);
+  const triggerMover = useTriggerDebugModel(ref);
 
   const { colorMap, normalMap } = useTexture({
     colorMap: colorMapUrl,

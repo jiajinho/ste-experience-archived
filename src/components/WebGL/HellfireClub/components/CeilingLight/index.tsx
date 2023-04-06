@@ -2,8 +2,9 @@ import React, { useRef } from 'react';
 import { ThreeEvent } from '@react-three/fiber';
 
 import { Tuple } from 'types';
-import { LightColor } from '../../config';
-import useDebug from '../../hooks/useDebug';
+import { LightColor } from '@hellfire/config';
+
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import Bar from './Bar';
 import Bulb from './Bulb';
 
@@ -13,7 +14,7 @@ export default ({ lights, ...props }: {
 ) => {
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useDebug(ref);
+  const triggerMover = useTriggerDebugModel(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();

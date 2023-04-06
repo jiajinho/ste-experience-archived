@@ -3,11 +3,20 @@ import gsap from "gsap";
 
 import { Vector3 } from "types";
 
-export function moveCamera({ camera, shadowCamera, lookAt, cameraPosition, animate, callback }: {
+export function moveCamera({
+  camera,
+  shadowCamera,
+  lookAt,
+  cameraPosition,
+  up = THREE.Object3D.DefaultUp,
+  animate,
+  callback
+}: {
   camera: THREE.Camera,
   shadowCamera: THREE.PerspectiveCamera,
   lookAt: THREE.Vector3,
   cameraPosition: Vector3,
+  up?: THREE.Vector3,
   animate: boolean,
   callback?: () => void
 }) {
@@ -15,9 +24,13 @@ export function moveCamera({ camera, shadowCamera, lookAt, cameraPosition, anima
   shadowCamera.position.y = cameraPosition[1];
   shadowCamera.position.z = cameraPosition[2];
 
+  shadowCamera.up = up;
   shadowCamera.lookAt(lookAt);
 
-  const endRotation = new THREE.Euler().copy(shadowCamera.rotation);
+  const startQuaternion = camera.quaternion.clone();
+  const endQuaternion = new THREE.Quaternion().setFromEuler(shadowCamera.rotation);
+
+  const time = { t: 0 };
 
   const timeline = gsap.timeline({
     defaults: {
@@ -32,13 +45,16 @@ export function moveCamera({ camera, shadowCamera, lookAt, cameraPosition, anima
       y: cameraPosition[1],
       z: cameraPosition[2]
     })
-    .to(camera.rotation, {
-      x: endRotation.x,
-      y: endRotation.y,
-      z: endRotation.z
+    .to(time, {
+      t: 1,
+      onUpdate: () => {
+        camera.quaternion.slerpQuaternions(startQuaternion, endQuaternion, time.t);
+      }
     }, 0)
     .eventCallback("onComplete", () => {
       callback && callback();
+
+      camera.up = up;
       camera.lookAt(lookAt);
     });
 }
