@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import config from 'config';
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
-import Card from './components/Card';
+import CardContainer from './components/CardContainer';
 import FrontTemplate from './components/FrontTemplate';
 import BackTemplate from './components/BackTemplate';
 
@@ -30,6 +30,15 @@ const Row = styled.div`
     font-weight: 700;
     font-size: calc(var(--card-width) / 24.5);
     color: #FFEDC8;
+    transition: 0.25s text-shadow;
+  }
+  
+  &:hover > p {
+    text-shadow: 0 0 6px red, 0 0 10px #f44;
+  }
+
+  &:hover ${$HexRing} {
+    filter: drop-shadow(0px 0px 6px red);
   }
 `;
 
@@ -41,6 +50,7 @@ const Icon = styled.div`
 
   ${$HexRing} {
     width: 100%;
+    transition: 0.25s filter;
   }
 
   & > *:not(${$HexRing}) {
@@ -58,7 +68,16 @@ export default ({ flipped, onClick }: {
   onClick?: () => void
 }) => {
   return (
-    <Card flipped={flipped} onClick={onClick}>
+    <CardContainer flipped={flipped} onClick={onClick}>
+      <div className="front">
+        <FrontTemplate />
+        <Image
+          src="/static/cards/the-encounter-front.png"
+          alt="The Encounter - Front"
+          fill
+        />
+      </div>
+
       <div className="back">
         <BackTemplate />
         <Image
@@ -69,7 +88,7 @@ export default ({ flipped, onClick }: {
 
         <Content>
           {config.cards.theEncounter.map((v, i) =>
-            <Row key={i}>
+            <Row key={i} onMouseOver={console.log}>
               <Icon>
                 <HexRing />
                 {v.icon}
@@ -82,15 +101,6 @@ export default ({ flipped, onClick }: {
           )}
         </Content>
       </div>
-
-      <div className="front">
-        <FrontTemplate />
-        <Image
-          src="/static/cards/the-encounter-front.png"
-          alt="The Encounter - Front"
-          fill
-        />
-      </div>
-    </Card>
+    </CardContainer>
   );
 }

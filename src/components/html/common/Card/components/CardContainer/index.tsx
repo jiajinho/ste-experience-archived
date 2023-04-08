@@ -8,7 +8,6 @@ export const Wrapper = styled.div(({ $width }: {
   --card-width: ${$width}px;
 
   display: inline-block;
-  user-select: none;
   perspective: 1000px;
 `);
 
@@ -36,7 +35,11 @@ const Container = styled.div`
     width: 100%;
   }
 
-  & > *.front { backface-visibility: hidden }
+  & > *.front { 
+    z-index: 2;
+    backface-visibility: hidden;
+  }
+  
   & > *.back { transform: rotateY(180deg) }
 `;
 

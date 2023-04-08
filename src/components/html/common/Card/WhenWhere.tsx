@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import Card from "./components/Card";
+import CardContainer from "./components/CardContainer";
 import FrontTemplate from "./components/FrontTemplate";
 import BackTemplate from "./components/BackTemplate";
 
@@ -10,7 +10,7 @@ export default ({ flipped, onClick }: {
   onClick?: () => void
 }) => {
   return (
-    <Card flipped={flipped} onClick={onClick}>
+    <CardContainer flipped={flipped} onClick={onClick}>
       <div className="back">
         <BackTemplate />
         <Image
@@ -28,6 +28,6 @@ export default ({ flipped, onClick }: {
           fill
         />
       </div>
-    </Card>
+    </CardContainer>
   )
 }
