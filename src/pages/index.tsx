@@ -9,6 +9,7 @@ import useCameraStore from 'stores/webgl/useCameraStore';
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
 import SceneOverlay from '@html/SceneOverlay';
+import CardOverlay from '@html/CardOverlay';
 
 const Wrapper = styled.main`
   position: relative;
@@ -45,6 +46,8 @@ export default () => {
     <Wrapper>
       {renderTutorial && <LoadingTutorial />}
       {renderOverlay && <SceneOverlay />}
+
+      <CardOverlay />
 
       <CanvasContainer ref={canvas}>
         <Canvas

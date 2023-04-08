@@ -79,7 +79,6 @@ export default () => {
 
       {md && <ArrowGroup />}
 
-
       <BottomRow>
         {!md && <ArrowGroup />}
         <Credit />
