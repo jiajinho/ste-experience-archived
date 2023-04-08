@@ -49,7 +49,7 @@ export default () => {
 
       <CardOverlay />
 
-      <CanvasContainer ref={canvas}>
+      {/* <CanvasContainer ref={canvas}>
         <Canvas
           shadows
           frameloop={env === "production" && loading ? "demand" : "always"}
@@ -57,7 +57,7 @@ export default () => {
         >
           <WebGL />
         </Canvas>
-      </CanvasContainer>
+      </CanvasContainer> */}
     </Wrapper>
   )
 }

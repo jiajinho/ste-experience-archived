@@ -1,5 +1,13 @@
 import * as THREE from "three";
+
+import locale from "locale";
 import { Camera, Viewport } from "types";
+
+import Puppet from "@html/common/svg/Puppet";
+import Star from "@html/common/svg/Star";
+import Ghost from "@html/common/svg/Ghost";
+import Gelato from "@html/common/svg/Gelato";
+
 
 const viewport: Viewport = {
   sm: "456px",
@@ -44,7 +52,29 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   shelf: {}
 }
 
+const cards = {
+  theEncounter: [
+    {
+      description: locale.card.theEncounter.star,
+      icon: <Star />
+    },
+    {
+      description: locale.card.theEncounter.puppet,
+      icon: <Puppet />
+    },
+    {
+      description: locale.card.theEncounter.ghost,
+      icon: <Ghost />
+    },
+    {
+      description: locale.card.theEncounter.gelato,
+      icon: <Gelato />
+    }
+  ]
+}
+
 export default {
   zoomSettings,
-  viewport
+  viewport,
+  cards
 }

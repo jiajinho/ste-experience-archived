@@ -1,20 +1,32 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import useAnimation from './useAnimation';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div(({ $width }: {
+  $width: number
+}) => `
+  --card-width: ${$width}px;
+
   display: inline-block;
+  user-select: none;
   perspective: 1000px;
-`;
+`);
 
 const Container = styled.div`
   position: relative;
   aspect-ratio: 2/3;
-  height: 500px;
-  width: auto;
+  height: auto;
+  width: 80vw;
+  max-width: 55vh;
 
   cursor: pointer;
   transform-style: preserve-3d;
+
+  @media screen and (min-aspect-ratio: 11/10) {
+    height: 85vh;
+    width: auto;
+    max-width: unset;
+  }
 
   & > * {
     position: absolute;
@@ -35,10 +47,27 @@ export default ({ children, flipped = false, onClick }: {
 }) => {
   const container = useRef<HTMLDivElement>(null);
 
+  const [width, setWidth] = useState(0);
+
   useAnimation(flipped, container);
 
+  useEffect(() => {
+    if (!container.current) return;
+
+    const ro = new ResizeObserver(e => {
+      setWidth(e[0].contentRect.width);
+    });
+
+    ro.observe(container.current);
+
+    return () => { ro.disconnect() }
+  }, []);
+
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper
+      onClick={onClick}
+      $width={width}
+    >
       <Container ref={container}>
         {children}
       </Container>

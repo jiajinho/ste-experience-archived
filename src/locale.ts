@@ -16,8 +16,18 @@ const overlayUI = {
   ticketBtn: "Tickets"
 }
 
+const card = {
+  theEncounter: {
+    star: "Immersive interactive retail experience",
+    puppet: "Purchase event-exclusive merchandise",
+    ghost: "Collect and customize digital collectibles",
+    gelato: "Reward youself for saving the day with some food and drinks at Scoops Ahoy"
+  }
+}
+
 export default {
   global,
   loading,
-  overlayUI
+  overlayUI,
+  card
 }

@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default () => (
   <Image
     src="/static/cards/front-template.jpg"
-    alt="Card back"
+    alt="Card front"
     priority
     fill
   />

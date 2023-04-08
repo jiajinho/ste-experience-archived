@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
-  const [flipA, setFlipA] = useState(false);
+  const [flipA, setFlipA] = useState(true);
   const [flipB, setFlipB] = useState(false);
 
   return (
