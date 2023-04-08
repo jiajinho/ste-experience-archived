@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Arrow, { Wrapper as $Arrow } from '@html/svg/Arrow';
+import Arrow, { Wrapper as $Arrow } from '@html/common/svg/Arrow';
 import useCameraStore from 'stores/webgl/useCameraStore';
 
 export const Wrapper = styled.div`

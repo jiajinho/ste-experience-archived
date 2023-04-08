@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import config from 'config';
 import useViewportStore from 'stores/useViewportStore';
 
-import STEncounter, { Wrapper as $STEncounter } from '@html/STEncounter';
+import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 import ArrowGroup, { Wrapper as $ArrowGroup } from './components/ArrowGroup';
 import TicketButton from './components/TicketButton';
 import HomeButton from './components/HomeButton';

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import locale from 'locale';
 
-import Netflix, { Wrapper as $Netflix } from '@html/svg/Netflix';
-import StrangerThings, { Wrapper as $StrangerThings } from '@html/svg/StrangerThings';
+import Netflix, { Wrapper as $Netflix } from '@html/common/svg/Netflix';
+import StrangerThings, { Wrapper as $StrangerThings } from '@html/common/svg/StrangerThings';
 
 export const Wrapper = styled.div`
   width: 160px;

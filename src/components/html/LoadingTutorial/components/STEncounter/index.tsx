@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 import useAnimation from './useAnimation';
-import STEncounter, { Wrapper as $STEncounter } from '@html/STEncounter';
+import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 
 const Wrapper = styled.div`
   ${$STEncounter} {
