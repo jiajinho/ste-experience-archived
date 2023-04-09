@@ -17,7 +17,7 @@ const Content = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: calc(var(--card-width) / 25)
+  gap: calc(var(--card-width) / 25);
 `;
 
 const Row = styled.div`
@@ -88,7 +88,7 @@ export default ({ flipped, onClick }: {
 
         <Content>
           {config.cards.theEncounter.map((v, i) =>
-            <Row key={i} onMouseOver={console.log}>
+            <Row key={i}>
               <Icon>
                 <HexRing />
                 {v.icon}

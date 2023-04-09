@@ -1,3 +1,8 @@
+export type IntrinsicHTML<T extends keyof JSX.IntrinsicElements> = Omit<
+  JSX.IntrinsicElements[T],
+  'ref'
+>;
+
 export type Tuple<T, N extends Number> = [T, ...T[]] & { length: N };
 
 export type Vector3 = [number, number, number];

@@ -13,14 +13,14 @@ const Wrapper = styled.div`
 
 export default () => {
   const [flipA, setFlipA] = useState(true);
-  const [flipB, setFlipB] = useState(false);
+  const [flipB, setFlipB] = useState(true);
 
   return (
     <Wrapper>
-      <Card.TheEncounter
+      {/* <Card.TheEncounter
         flipped={flipA}
         onClick={() => setFlipA(!flipA)}
-      />
+      /> */}
 
       <Card.WhenWhere
         flipped={flipB}

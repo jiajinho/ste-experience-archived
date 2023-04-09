@@ -7,6 +7,9 @@ import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";
 import Ghost from "@html/common/svg/Ghost";
 import Gelato from "@html/common/svg/Gelato";
+import Calendar from "@html/common/svg/Calendar";
+import Clock from "@html/common/svg/Clock";
+import School from "@html/common/svg/School";
 
 
 const viewport: Viewport = {
@@ -69,6 +72,20 @@ const cards = {
     {
       description: locale.card.theEncounter.gelato,
       icon: <Gelato />
+    }
+  ],
+  whenWhere: [
+    {
+      ...locale.card.whenWhere.date,
+      icon: <Calendar style={{ width: "55%" }} />
+    },
+    {
+      ...locale.card.whenWhere.time,
+      icon: <Clock style={{ width: "50%" }} />
+    },
+    {
+      ...locale.card.whenWhere.location,
+      icon: <School style={{ height: "45%" }} />
     }
   ]
 }
