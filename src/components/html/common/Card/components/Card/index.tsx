@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+
+import { IntrinsicHTML } from 'types';
 import useAnimation from './useAnimation';
 
 export const Wrapper = styled.div(({ $width }: {
@@ -43,11 +45,12 @@ const Container = styled.div`
   & > *.back { transform: rotateY(180deg) }
 `;
 
-export default ({ children, flipped = false, onClick }: {
+export default React.forwardRef(({ children, flipped = false, ...props }: {
   children: [JSX.Element, JSX.Element],
-  flipped?: boolean,
-  onClick?: () => void
-}) => {
+  flipped?: boolean
+} & IntrinsicHTML<"div">,
+  ref: React.ForwardedRef<HTMLDivElement>
+) => {
   const container = useRef<HTMLDivElement>(null);
 
   const [width, setWidth] = useState(0);
@@ -68,7 +71,8 @@ export default ({ children, flipped = false, onClick }: {
 
   return (
     <Wrapper
-      onClick={onClick}
+      ref={ref}
+      {...props}
       $width={width}
     >
       <Container ref={container}>
@@ -76,4 +80,4 @@ export default ({ children, flipped = false, onClick }: {
       </Container>
     </Wrapper>
   );
-}
+});

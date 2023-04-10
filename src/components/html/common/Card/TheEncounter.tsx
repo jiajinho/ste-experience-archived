@@ -3,6 +3,8 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import config from 'config';
+import { IntrinsicHTML } from 'types';
+
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
 import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';
@@ -63,44 +65,47 @@ const Icon = styled.div`
   }
 `;
 
-export default ({ flipped, onClick }: {
+export default React.forwardRef(({ flipped, ...props }: {
   flipped?: boolean,
-  onClick?: () => void
-}) => {
-  return (
-    <Card flipped={flipped} onClick={onClick}>
-      <div className="front">
-        <FrontTemplate />
-        <Image
-          src="/static/cards/the-encounter-front.png"
-          alt="The Encounter - Front"
-          fill
-        />
-      </div>
+} & IntrinsicHTML<"div">,
+  ref: React.ForwardedRef<HTMLDivElement>
+) => (
+  <Card
+    ref={ref}
+    flipped={flipped}
+    {...props}
+  >
+    <div className="front">
+      <FrontTemplate />
+      <Image
+        src="/static/cards/the-encounter-front.png"
+        alt="The Encounter - Front"
+        fill
+      />
+    </div>
 
-      <div className="back">
-        <BackTemplate />
-        <Image
-          src="/static/cards/the-encounter-back.png"
-          alt="The Encounter - Back"
-          fill
-        />
+    <div className="back">
+      <BackTemplate />
+      <Image
+        src="/static/cards/the-encounter-back.png"
+        alt="The Encounter - Back"
+        fill
+      />
 
-        <Content>
-          {config.cards.theEncounter.map((v, i) =>
-            <Row key={i}>
-              <Icon>
-                <HexRing />
-                {v.icon}
-              </Icon>
+      <Content>
+        {config.cards.theEncounter.map((v, i) =>
+          <Row key={i}>
+            <Icon>
+              <HexRing />
+              {v.icon}
+            </Icon>
 
-              <p key={i}>
-                {v.description}
-              </p>
-            </Row>
-          )}
-        </Content>
-      </div>
-    </Card>
-  );
-}
+            <p key={i}>
+              {v.description}
+            </p>
+          </Row>
+        )}
+      </Content>
+    </div>
+  </Card>
+));

@@ -2,11 +2,13 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 
+import config from "config";
+import { IntrinsicHTML } from "types";
+
 import Card from "./components/Card";
 import FrontTemplate from "./components/FrontTemplate";
 import BackTemplate from "./components/BackTemplate";
 import HexRing, { Wrapper as $HexRing } from "../svg/HexRing";
-import config from "config";
 
 const Content = styled.div`
   position: absolute;
@@ -83,50 +85,53 @@ const Value = styled.div`
   }
 `;
 
-export default ({ flipped, onClick }: {
+export default React.forwardRef(({ flipped, ...props }: {
   flipped?: boolean,
-  onClick?: () => void
-}) => {
-  return (
-    <Card flipped={flipped} onClick={onClick}>
-      <div className="front">
-        <FrontTemplate />
-        <Image
-          src="/static/cards/when-where-front.png"
-          alt="When Where - Front"
-          fill
-        />
-      </div>
+} & IntrinsicHTML<"div">,
+  ref: React.ForwardedRef<HTMLDivElement>
+) => (
+  <Card
+    ref={ref}
+    flipped={flipped}
+    {...props}
+  >
+    <div className="front">
+      <FrontTemplate />
+      <Image
+        src="/static/cards/when-where-front.png"
+        alt="When Where - Front"
+        fill
+      />
+    </div>
 
-      <div className="back">
-        <BackTemplate />
-        <Image
-          src="/static/cards/when-where-back.png"
-          alt="When Where - Back"
-          fill
-        />
+    <div className="back">
+      <BackTemplate />
+      <Image
+        src="/static/cards/when-where-back.png"
+        alt="When Where - Back"
+        fill
+      />
 
-        <Content>
-          {config.cards.whenWhere.map((v, i) =>
-            <Row key={i}>
-              <Icon>
-                <HexRing />
-                {v.icon}
-              </Icon>
+      <Content>
+        {config.cards.whenWhere.map((v, i) =>
+          <Row key={i}>
+            <Icon>
+              <HexRing />
+              {v.icon}
+            </Icon>
 
-              <InfoContainer>
-                <p>{v.title}:</p>
+            <InfoContainer>
+              <p>{v.title}:</p>
 
-                <Value>
-                  {v.value.map((u, i) =>
-                    <p key={i}>{u.trim()}</p>
-                  )}
-                </Value>
-              </InfoContainer>
-            </Row>
-          )}
-        </Content>
-      </div>
-    </Card>
-  )
-}
+              <Value>
+                {v.value.map((u, i) =>
+                  <p key={i}>{u.trim()}</p>
+                )}
+              </Value>
+            </InfoContainer>
+          </Row>
+        )}
+      </Content>
+    </div>
+  </Card>
+));
