@@ -22,7 +22,7 @@ export default (
           autoAlpha: 1
         }).to(whenWhere.current, {
           duration: 0.75,
-          y: "-50%"
+          top: "50%"
         });
         break;
       case 'the-encounter':
@@ -31,13 +31,13 @@ export default (
           autoAlpha: 1
         }).to(theEncounter.current, {
           duration: 0.75,
-          y: "-50%"
+          top: "50%"
         });
         break;
       default:
         timeline.to([theEncounter.current, whenWhere.current], {
           duration: 0.5,
-          y: "70%"
+          top: "150%"
         }).to(wrapper.current, {
           duration: 0.25,
           autoAlpha: 0
