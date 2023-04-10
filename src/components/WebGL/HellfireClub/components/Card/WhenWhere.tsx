@@ -3,6 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
+import { applyRef } from "@webgl/HellfireClub/utils";
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/card.glb";
@@ -14,14 +15,15 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default ({ flipped = false, ...props }: {
+export default React.forwardRef(({ flipped = false, ...props }: {
   flipped?: boolean
-} & JSX.IntrinsicElements["group"]
+} & JSX.IntrinsicElements["group"],
+  ref: React.ForwardedRef<THREE.Group>
 ) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
+  const _ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useTriggerDebugModel(ref);
+  const triggerMover = useTriggerDebugModel(_ref);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
@@ -35,7 +37,7 @@ export default ({ flipped = false, ...props }: {
 
   return (
     <group
-      ref={ref}
+      ref={r => applyRef([ref, _ref], r)}
       {...props}
       onClick={handleClick}
       dispose={null}
@@ -52,6 +54,6 @@ export default ({ flipped = false, ...props }: {
       </mesh>
     </group>
   );
-}
+});
 
 useGLTF.preload(gltfUrl);

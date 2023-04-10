@@ -1,21 +1,21 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { Event } from './types';
+import useCardStore from 'stores/html/useCardStore';
 
 export default (
-  event: Event,
   wrapper: React.RefObject<HTMLDivElement>,
   theEncounter: React.RefObject<HTMLDivElement>,
   whenWhere: React.RefObject<HTMLDivElement>
 ) => {
+  const htmlEvent = useCardStore(state => state.htmlEvent);
+  const setCardStore = useCardStore(state => state.set);
+
   useEffect(() => {
     const timeline = gsap.timeline({
-      defaults: {
-        ease: "power2.out"
-      }
+      defaults: { ease: "power2.out" }
     });
 
-    switch (event) {
+    switch (htmlEvent) {
       case "when-where":
         timeline.to(wrapper.current, {
           duration: 0.25,
@@ -41,7 +41,9 @@ export default (
         }).to(wrapper.current, {
           duration: 0.25,
           autoAlpha: 0
-        });
+        }).call(() => {
+          setCardStore("webglEvent", undefined);
+        }, [], 0.45);
     }
-  }, [event]);
+  }, [htmlEvent]);
 }

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import locale from "locale";
-import { Camera, Viewport } from "types";
+import { Camera, Vector3, Viewport } from "types";
 
 import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";
@@ -56,38 +56,46 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
 }
 
 const cards = {
-  theEncounter: [
-    {
-      description: locale.card.theEncounter.star,
-      icon: <Star />
-    },
-    {
-      description: locale.card.theEncounter.puppet,
-      icon: <Puppet />
-    },
-    {
-      description: locale.card.theEncounter.ghost,
-      icon: <Ghost />
-    },
-    {
-      description: locale.card.theEncounter.gelato,
-      icon: <Gelato />
-    }
-  ],
-  whenWhere: [
-    {
-      ...locale.card.whenWhere.date,
-      icon: <Calendar style={{ width: "55%" }} />
-    },
-    {
-      ...locale.card.whenWhere.time,
-      icon: <Clock style={{ width: "50%" }} />
-    },
-    {
-      ...locale.card.whenWhere.location,
-      icon: <School style={{ height: "45%" }} />
-    }
-  ]
+  theEncounter: {
+    position: [-0.1, 0.01, 0.17] satisfies Vector3,
+    rotateY: 0.31,
+    content: [
+      {
+        description: locale.card.theEncounter.star,
+        icon: <Star />
+      },
+      {
+        description: locale.card.theEncounter.puppet,
+        icon: <Puppet />
+      },
+      {
+        description: locale.card.theEncounter.ghost,
+        icon: <Ghost />
+      },
+      {
+        description: locale.card.theEncounter.gelato,
+        icon: <Gelato />
+      }
+    ]
+  },
+  whenWhere: {
+    position: [-0.05, 0.01, -0.18] satisfies Vector3,
+    rotateY: -0.38,
+    content: [
+      {
+        ...locale.card.whenWhere.date,
+        icon: <Calendar style={{ width: "55%" }} />
+      },
+      {
+        ...locale.card.whenWhere.time,
+        icon: <Clock style={{ width: "50%" }} />
+      },
+      {
+        ...locale.card.whenWhere.location,
+        icon: <School style={{ height: "45%" }} />
+      }
+    ]
+  }
 }
 
 export default {

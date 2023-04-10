@@ -93,7 +93,7 @@ export default React.forwardRef(({ flipped, ...props }: {
       />
 
       <Content>
-        {config.cards.theEncounter.map((v, i) =>
+        {config.cards.theEncounter.content.map((v, i) =>
           <Row key={i}>
             <Icon>
               <HexRing />

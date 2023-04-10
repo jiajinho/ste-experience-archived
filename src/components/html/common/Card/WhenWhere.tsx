@@ -113,7 +113,7 @@ export default React.forwardRef(({ flipped, ...props }: {
       />
 
       <Content>
-        {config.cards.whenWhere.map((v, i) =>
+        {config.cards.whenWhere.content.map((v, i) =>
           <Row key={i}>
             <Icon>
               <HexRing />

@@ -2,7 +2,8 @@ import { create } from "zustand";
 import type { Event } from "@html/CardOverlay/types";
 
 type State = {
-  event: Event,
+  htmlEvent: Event,
+  webglEvent: Event,
   flippedEncounter: boolean,
   flippedWhenWhere: boolean
 }
@@ -12,7 +13,8 @@ type Store = State & {
 }
 
 export default create<Store>((set) => ({
-  event: undefined,
+  htmlEvent: undefined,
+  webglEvent: undefined,
   flippedEncounter: false,
   flippedWhenWhere: false,
 

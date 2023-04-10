@@ -1,15 +1,17 @@
 import React, { useRef } from 'react';
 
+import config from 'config';
 import { Event } from '@html/CardOverlay/types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useRegisterHotspot from './hooks/useRegisterHotspot';
+import useRegisterHotspot from '../hooks/useRegisterHotspot';
+import useCameraStore from 'stores/webgl/useCameraStore';
+import useAnimation from './useAnimation';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import VecnaBoard from '@hellfire/components/VecnaBoard';
 import Card from '@hellfire/components/Card';
-import useCameraStore from 'stores/webgl/useCameraStore';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const env = useEnvStore(state => state.env);
@@ -24,8 +26,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
-  const triggerModelControl = useTriggerDebugModel(ref);
+  const encounterCard = useRef<THREE.Group>(null);
+  const whenWhereCard = useRef<THREE.Group>(null);
 
+  useAnimation(encounterCard, whenWhereCard);
+
+  const triggerModelControl = useTriggerDebugModel(ref);
   const triggerZoom = useRegisterHotspot("vecnaBoard", cameraBox, cameraTarget);
 
   const handleClick = () => {
@@ -37,7 +43,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     if (env === "development") return;
     if (currentZoom !== "vecnaBoard") return;
 
-    setCardStore("event", event);
+    setCardStore("webglEvent", event);
   }
 
   return (
@@ -45,15 +51,17 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <VecnaBoard onClick={handleClick} />
 
       <Card.TheEncounter
-        position={[-0.1, 0.01, 0.17]}
-        rotation={[0, 0.31, 0]}
+        ref={encounterCard}
+        position={config.cards.theEncounter.position}
+        rotation={[0, config.cards.theEncounter.rotateY, 0]}
         onClick={() => handleCardClick("the-encounter")}
         flipped={flippedEncounter}
       />
 
       <Card.WhenWhere
-        position={[-0.05, 0.01, -0.18]}
-        rotation={[0, -0.38, 0]}
+        ref={whenWhereCard}
+        position={config.cards.whenWhere.position}
+        rotation={[0, config.cards.whenWhere.rotateY, 0]}
         onClick={() => handleCardClick("when-where")}
         flipped={flippedWhenWhere}
       />
