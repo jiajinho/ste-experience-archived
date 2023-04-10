@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { button, useControls } from 'leva';
 
-import useCardEventStore from 'stores/html/useCardEventStore';
+import useCardStore from 'stores/html/useCardStore';
 import useAnimation from './useAnimation';
 import Card, { Wrapper as $Card } from '@html/common/Card';
 
@@ -26,41 +26,43 @@ export default () => {
   const theEncounter = useRef<HTMLDivElement>(null);
   const whenWhere = useRef<HTMLDivElement>(null);
 
-  const event = useCardEventStore(state => state.event);
-  const setCardEventStore = useCardEventStore(state => state.set);
+  const event = useCardStore(state => state.event);
+  const flippedEncounter = useCardStore(state => state.flippedEncounter);
+  const flippedWhenWhere = useCardStore(state => state.flippedWhenWhere);
+  const setCardStore = useCardStore(state => state.set);
 
   useAnimation(event, wrapper, theEncounter, whenWhere);
 
-  const [flipEncounter, setFlipEncounter] = useState(false);
-  const [flipWhenWhere, setFlipWhenWhere] = useState(false);
-
   useControls("test", {
-    noEvent: button(() => setCardEventStore(undefined)),
-    theEncounter: button(() => setCardEventStore('the-encounter')),
-    whenWhere: button(() => setCardEventStore('when-where'))
+    noEvent: button(() => setCardStore('event', undefined)),
+    theEncounter: button(() => setCardStore('event', 'the-encounter')),
+    whenWhere: button(() => setCardStore('event', 'when-where'))
   });
 
   const handleEncounterClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setFlipEncounter(!flipEncounter);
+    setCardStore('flippedEncounter', !flippedEncounter);
   }
 
   const handleWhenWhereClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setFlipWhenWhere(!flipWhenWhere);
+    setCardStore('flippedWhenWhere', !flippedWhenWhere);
   }
 
   return (
-    <Wrapper ref={wrapper} onClick={() => setCardEventStore(undefined)}>
+    <Wrapper
+      ref={wrapper}
+      onClick={() => setCardStore('event', undefined)}
+    >
       <Card.TheEncounter
         ref={theEncounter}
-        flipped={flipEncounter}
+        flipped={flippedEncounter}
         onClick={handleEncounterClick}
       />
 
       <Card.WhenWhere
         ref={whenWhere}
-        flipped={flipWhenWhere}
+        flipped={flippedWhenWhere}
         onClick={handleWhenWhereClick}
       />
     </Wrapper>

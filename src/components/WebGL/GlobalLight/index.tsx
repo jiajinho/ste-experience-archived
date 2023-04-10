@@ -5,7 +5,7 @@ import RiftLights from './components/RiftLights';
 
 export default () => (
   <>
-    <ambientLight intensity={0.1} />
+    <ambientLight intensity={1} />
 
     <RoomCrimsonLight />
     <RiftLights />
