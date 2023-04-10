@@ -6,7 +6,7 @@ import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotligh
 import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 
 import ChalkBoard from '@hellfire/components/ChalkBoard';
-import useRegisterHotspot from './useRegisterHotspot';
+import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 export default (props: JSX.IntrinsicElements["group"]) => {

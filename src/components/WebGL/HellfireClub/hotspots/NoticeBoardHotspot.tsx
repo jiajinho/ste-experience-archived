@@ -6,7 +6,7 @@ import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 import WireframeBox from '@webgl/debug/WireframeBox';
 
 import NoticeBoard from '@hellfire/components/NoticeBoard';
-import useRegisterHotspot from '@hellfire/hotspots/useRegisterHotspot';
+import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 export default (props: JSX.IntrinsicElements["group"]) => {

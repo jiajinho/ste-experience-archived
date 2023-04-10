@@ -4,7 +4,7 @@ import { Event } from '@html/CardOverlay/types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useRegisterHotspot from './useRegisterHotspot';
+import useRegisterHotspot from './hooks/useRegisterHotspot';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import VecnaBoard from '@hellfire/components/VecnaBoard';

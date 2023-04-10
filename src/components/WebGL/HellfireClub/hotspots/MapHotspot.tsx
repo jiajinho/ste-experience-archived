@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import Map from '@hellfire/components/Map';
 import WireframeBox from '@webgl/debug/WireframeBox';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useRegisterHotspot from './useRegisterHotspot';
+import useRegisterHotspot from './hooks/useRegisterHotspot';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const ref = useRef<THREE.Group>(null);
