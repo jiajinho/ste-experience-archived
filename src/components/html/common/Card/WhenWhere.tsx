@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 
-import CardContainer from "./components/Card";
+import Card from "./components/Card";
 import FrontTemplate from "./components/FrontTemplate";
 import BackTemplate from "./components/BackTemplate";
 import HexRing, { Wrapper as $HexRing } from "../svg/HexRing";
@@ -88,7 +88,7 @@ export default ({ flipped, onClick }: {
   onClick?: () => void
 }) => {
   return (
-    <CardContainer flipped={flipped} onClick={onClick}>
+    <Card flipped={flipped} onClick={onClick}>
       <div className="front">
         <FrontTemplate />
         <Image
@@ -127,6 +127,6 @@ export default ({ flipped, onClick }: {
           )}
         </Content>
       </div>
-    </CardContainer>
+    </Card>
   )
 }

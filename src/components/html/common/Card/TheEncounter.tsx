@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import config from 'config';
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
-import CardContainer from './components/Card';
+import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';
 import BackTemplate from './components/BackTemplate';
 
@@ -68,7 +68,7 @@ export default ({ flipped, onClick }: {
   onClick?: () => void
 }) => {
   return (
-    <CardContainer flipped={flipped} onClick={onClick}>
+    <Card flipped={flipped} onClick={onClick}>
       <div className="front">
         <FrontTemplate />
         <Image
@@ -101,6 +101,6 @@ export default ({ flipped, onClick }: {
           )}
         </Content>
       </div>
-    </CardContainer>
+    </Card>
   );
 }
