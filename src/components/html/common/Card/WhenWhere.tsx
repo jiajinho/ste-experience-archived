@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 
-import CardContainer from "./components/CardContainer";
+import CardContainer from "./components/Card";
 import FrontTemplate from "./components/FrontTemplate";
 import BackTemplate from "./components/BackTemplate";
 import HexRing, { Wrapper as $HexRing } from "../svg/HexRing";

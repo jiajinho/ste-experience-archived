@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import config from 'config';
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
-import CardContainer from './components/CardContainer';
+import CardContainer from './components/Card';
 import FrontTemplate from './components/FrontTemplate';
 import BackTemplate from './components/BackTemplate';
 
