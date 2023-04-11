@@ -92,7 +92,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <WireframeBox.Camera
         ref={cameraBox}
         target={cameraTarget}
-        position={[1, 0, 0]}
+        position={[2, 0, 0]}
         lookAt={[-1, 0, 0]}
       />
     </group>
