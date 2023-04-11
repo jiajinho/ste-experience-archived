@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import config from 'config';
 import WireframeBox from '@webgl/debug/WireframeBox';
-import useRegisterHotspot from '@hellfire/hotspots/useRegisterHotspot';
+import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 
 export default () => {
   /**

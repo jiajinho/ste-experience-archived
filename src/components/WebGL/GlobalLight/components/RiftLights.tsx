@@ -5,15 +5,13 @@ import { LightColor } from '../config';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
-import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 
 export default () => {
   const spotlight = useRef<THREE.SpotLight>(null);
   const lightBox = useRef<THREE.Mesh>(null);
 
-  const triggerControl = useTriggerDebugSpotlight(spotlight, lightBox);
+  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
 
-  useAlignWireframeBox(spotlight, lightBox);
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -39,7 +37,7 @@ export default () => {
       <WireframeBox.Light
         ref={lightBox}
         position={spotlight.current?.position}
-        onClick={triggerControl}
+        onClick={triggerSpotlightControl}
       />
     </>
   )

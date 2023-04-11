@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
-import MightyExperience, { Wrapper as $MightyExperience } from '@html/svg/MightyExperience';
-import Netflix, { Wrapper as $Netflix } from '@html/svg/Netflix';
+import MightyExperience, { Wrapper as $MightyExperience } from '@html/common/svg/MightyExperience';
+import Netflix, { Wrapper as $Netflix } from '@html/common/svg/Netflix';
 
 export const Wrapper = styled.div`
   display: flex;

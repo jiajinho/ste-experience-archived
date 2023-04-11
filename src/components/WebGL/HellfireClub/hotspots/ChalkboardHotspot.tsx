@@ -3,10 +3,9 @@ import { SpotLight } from 'three';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
-import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 
 import ChalkBoard from '@hellfire/components/ChalkBoard';
-import useRegisterHotspot from './useRegisterHotspot';
+import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
@@ -18,8 +17,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
-
-  useAlignWireframeBox(spotlight, lightBox);
 
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);

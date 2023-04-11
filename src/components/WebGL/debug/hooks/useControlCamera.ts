@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
+import * as THREE from 'three';
 import { useControls } from 'leva';
 
 import config from 'config';
@@ -18,9 +19,13 @@ export default () => {
     const mouseEvent = config.zoomSettings[currentZoom].allowEvent?.name;
     setCameraStore("mouseEvent", env === "development" ? undefined : mouseEvent);
 
-    if (env === "development") return;
+    if (env === "development") {
+      camera.up = THREE.Object3D.DefaultUp;
+      return;
+    };
 
     const cameraSetting = config.zoomSettings[currentZoom];
+    camera.up = cameraSetting.cameraUp || THREE.Object3D.DefaultUp;
 
     if (cameraSetting.cameraPosition) {
       camera.position.x = cameraSetting.cameraPosition[0];

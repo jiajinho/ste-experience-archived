@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
+import config from 'config';
 import glitch from './glitch';
 import useAnimation from './useAnimation';
 
@@ -12,8 +13,9 @@ const Wrapper = styled.div`
 `;
 
 const Percentage = styled.div(({ $content }: { $content: string }) => `
-  font-size: 160px;
+  font-size: 100px;
   font-family: var(--font-benguiat);
+  font-weight: 700;
   letter-spacing: -0.75px;
   color: var(--color-cherry);
   transform-origin: center;
@@ -28,6 +30,10 @@ const Percentage = styled.div(({ $content }: { $content: string }) => `
   ${glitch.core};
   &:before { ${glitch.bottom} }
   &:after { ${glitch.top} }
+
+  @media screen and (min-width: ${config.viewport.md}) {
+    font-size: 160px;
+  }
 `);
 
 export default ({ data }: { data: string }) => {

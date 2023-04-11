@@ -16,6 +16,7 @@ export const Wrapper = styled.svg`
   & > text {
     user-select: none;
     font-family: var(--font-benguiat);
+    font-weight: 700;
   }
 `;
 

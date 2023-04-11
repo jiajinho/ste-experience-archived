@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import config from 'config';
 import useViewportStore from 'stores/useViewportStore';
 
-import STEncounter, { Wrapper as $STEncounter } from '@html/STEncounter';
+import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 import ArrowGroup, { Wrapper as $ArrowGroup } from './components/ArrowGroup';
 import TicketButton from './components/TicketButton';
 import HomeButton from './components/HomeButton';
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 2;
+  z-index: 10;
   
   pointer-events: none;
   padding: 32px 16px;
@@ -78,7 +78,6 @@ export default () => {
       </TopRow>
 
       {md && <ArrowGroup />}
-
 
       <BottomRow>
         {!md && <ArrowGroup />}

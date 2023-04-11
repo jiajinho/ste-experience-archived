@@ -21,6 +21,7 @@ const Wrapper = styled.button`
 
   font-size: 20px;
   font-family: var(--font-benguiat);
+  font-weight: 700;
 
   opacity: 0;
   visibility: hidden;
