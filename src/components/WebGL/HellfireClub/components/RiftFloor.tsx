@@ -7,16 +7,15 @@ const url = "/static/gltf/rift-floor.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Sinew: THREE.Mesh;
     Tentacle: THREE.Mesh;
+    Sinew: THREE.Mesh;
     Floor: THREE.Mesh;
   };
   materials: {
-    Sinew: THREE.MeshStandardMaterial;
-    Tentacle: THREE.MeshStandardMaterial;
-    Floor: THREE.MeshPhysicalMaterial;
+    FloorRift: THREE.MeshStandardMaterial;
   };
 };
+
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
@@ -24,12 +23,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   useEffect(() => {
     if (!materials) return;
 
-    materials.Floor.emissiveIntensity = 8;
-    materials.Floor.toneMapped = false;
-    materials.Floor.metalness = 0.3;
-    materials.Floor.roughness = 0.6;
+    materials.FloorRift.emissiveIntensity = 8;
+    materials.FloorRift.toneMapped = false;
 
-    const tween = gsap.to(materials.Floor, {
+    const tween = gsap.to(materials.FloorRift, {
       duration: 2.5,
       ease: "power2.inOut",
       emissiveIntensity: 15,
@@ -45,17 +42,17 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Sinew.geometry}
-        material={materials.Sinew}
+        material={materials.FloorRift}
       />
       <mesh
         castShadow
         geometry={nodes.Tentacle.geometry}
-        material={materials.Tentacle}
+        material={materials.FloorRift}
       />
       <mesh
         receiveShadow
         geometry={nodes.Floor.geometry}
-        material={materials.Floor}
+        material={materials.FloorRift}
       />
     </group>
   );
