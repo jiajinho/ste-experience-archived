@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { button, useControls } from 'leva';
 
 import useCardStore from 'stores/html/useCardStore';
 import useAnimation from './useAnimation';
@@ -11,7 +10,7 @@ const Wrapper = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 10;
+  z-index: 11;
 
   ${$Card} {
     position: absolute;
