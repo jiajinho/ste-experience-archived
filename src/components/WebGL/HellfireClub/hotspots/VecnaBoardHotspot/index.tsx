@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import config from 'config';
 import { Event } from '@html/CardOverlay/types';
@@ -8,6 +8,7 @@ import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from '../hooks/useRegisterHotspot';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useAnimation from './useAnimation';
+import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import VecnaBoard from '@hellfire/components/VecnaBoard';
@@ -23,6 +24,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const currentZoom = useCameraStore(state => state.currentZoom);
 
   const ref = useRef<THREE.Group>(null);
+  const spotlight = useRef<THREE.SpotLight>(null);
+  const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
@@ -31,7 +34,17 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   useAnimation(encounterCard, whenWhereCard);
 
+  useEffect(() => {
+    if (!spotlight.current) return;
+    if (!lightBox.current) return;
+
+    spotlight.current.target.position.set(0, -15, -15);
+    spotlight.current.target.updateMatrixWorld();
+  }, []);
+
+  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
+
   const triggerZoom = useRegisterHotspot("vecnaBoard", cameraBox, cameraTarget);
 
   const handleClick = () => {
@@ -64,6 +77,22 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         rotation={[0, config.cards.whenWhere.rotateY, 0]}
         onClick={() => handleCardClick("when-where")}
         flipped={flippedWhenWhere}
+      />
+
+      <spotLight
+        ref={spotlight}
+        castShadow
+        penumbra={1}
+        position={[0, 1, 1]}
+        angle={0.47}
+        intensity={6}
+        distance={2}
+      />
+
+      <WireframeBox.Light
+        ref={lightBox}
+        position={spotlight.current?.position}
+        onClick={triggerSpotlightControl}
       />
 
       <WireframeBox.Camera

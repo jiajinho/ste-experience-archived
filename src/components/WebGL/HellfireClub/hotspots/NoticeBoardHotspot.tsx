@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { SpotLight } from 'three';
 
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
-import useAlignWireframeBox from '@webgl/debug/hooks/useAlignWireframeBox';
 import WireframeBox from '@webgl/debug/WireframeBox';
 
 import NoticeBoard from '@hellfire/components/NoticeBoard';
@@ -18,8 +17,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
-
-  useAlignWireframeBox(spotlight, lightBox);
 
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
