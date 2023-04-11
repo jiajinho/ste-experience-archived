@@ -1,34 +1,43 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import WireframeBox from '@webgl/debug/WireframeBox';
+import { LightColor } from '@hellfire/config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
-
-import Shelf from '@hellfire/components/Shelf';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+
+import WireframeBox from '@webgl/debug/WireframeBox';
+import Shelf from '@hellfire/components/Shelf';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Hooks
    */
   const ref = useRef<THREE.Group>(null);
-  const spotlight = useRef<THREE.SpotLight>(null);
-  const lightBox = useRef<THREE.Mesh>(null);
+  const topLight = useRef<THREE.SpotLight>(null);
+  const topLightBox = useRef<THREE.Mesh>(null);
+  const bottomLight = useRef<THREE.SpotLight>(null);
+  const bottomLightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
-  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
+  const triggerTopLightControl = useTriggerDebugSpotlight(topLight, topLightBox);
+  const triggerBottomLightControl = useTriggerDebugSpotlight(bottomLight, bottomLightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("shelf", cameraBox, cameraTarget);
 
   useEffect(() => {
-    if (!spotlight.current) return;
-    if (!lightBox.current) return;
+    if (!topLight.current) return;
+    if (!topLightBox.current) return;
+    if (!bottomLight.current) return;
+    if (!bottomLightBox.current) return;
 
-    spotlight.current.target.position.set(1, -35, -20);
-    spotlight.current.target.updateMatrixWorld();
+    topLight.current.target.position.set(1, -25, -20);
+    topLight.current.target.updateMatrixWorld();
+
+    bottomLight.current.target.position.set(1, -5, -20);
+    bottomLight.current.target.updateMatrixWorld();
   }, []);
 
   /**
@@ -47,18 +56,37 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <Shelf onClick={handleClick} />
 
       <spotLight
-        ref={spotlight}
+        ref={topLight}
         castShadow
         penumbra={1}
-        position={[1.02, 2, 0]}
-        angle={0.42}
-        intensity={0.5}
+        position={[1.47, 2, 0]}
+        angle={0.52}
+        intensity={2.9}
+        distance={4}
+        color={LightColor.Crimson}
       />
 
       <WireframeBox.Light
-        ref={lightBox}
-        position={spotlight.current?.position}
-        onClick={triggerSpotlightControl}
+        ref={topLightBox}
+        position={topLight.current?.position}
+        onClick={triggerTopLightControl}
+      />
+
+      <spotLight
+        ref={bottomLight}
+        castShadow
+        penumbra={1}
+        position={[1.47, 0, 0]}
+        angle={0.52}
+        intensity={7}
+        distance={2}
+        color={LightColor.Crimson}
+      />
+
+      <WireframeBox.Light
+        ref={bottomLightBox}
+        position={bottomLight.current?.position}
+        onClick={triggerBottomLightControl}
       />
 
       <WireframeBox.Camera

@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 
-import Map from '@hellfire/components/Map';
-import WireframeBox from '@webgl/debug/WireframeBox';
+import { LightColor } from '@hellfire/config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+
+import Map from '@hellfire/components/Map';
+import WireframeBox from '@webgl/debug/WireframeBox';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
@@ -52,7 +54,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         angle={0.47}
         intensity={2}
         distance={3}
-        color="#fecccc"
+        color={LightColor.Crimson}
       />
 
       <WireframeBox.Light
