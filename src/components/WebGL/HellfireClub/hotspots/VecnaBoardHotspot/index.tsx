@@ -83,10 +83,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         ref={spotlight}
         castShadow
         penumbra={1}
-        position={[0, 1, 1]}
+        position={[0, 1.61, 1.49]}
         angle={0.47}
-        intensity={6}
-        distance={2}
+        intensity={3.5}
+        distance={4}
+        color="#fecccc"
       />
 
       <WireframeBox.Light
