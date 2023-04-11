@@ -2,8 +2,10 @@ import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
+import useViewportStore from 'stores/useViewportStore';
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import useAnimation from './useAnimation';
+import useDoubleClick from './useDoubleClick';
 
 import Button from './Button';
 import Caret from './Caret';
@@ -13,24 +15,32 @@ const Wrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  width: 80%;
 `;
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 558px;
   justify-content: center;
 `;
 
-const Char = styled.p`
+const Word = styled.div`
+  display: flex;
+`;
+
+const Char = styled.p(({ $fontSize }: {
+  $fontSize: number
+}) => `
   font-family: var(--font-benguiat);
   color: var(--color-cherry);
-  font-size: 32px;
+  font-size: ${$fontSize}px;
+  font-weight: 700;
   white-space: pre;
 
   opacity: 0;
   visibility: hidden;
-`;
+`);
 
 export default () => {
   const set = useLoadAnimationStore(state => state.set);
@@ -40,30 +50,55 @@ export default () => {
   const caret = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
 
-  const data = useMemo(() => {
+  const md = useViewportStore(state => state.md);
+  const lg = useViewportStore(state => state.lg);
+
+  const words = useMemo(() => {
     return locale.loading.premise
       .trim()
       .replaceAll(/[\s]{2,}/g, " ")
-      .split("");
+      .split(" ");
   }, []);
 
   useAnimation(chars, caret, button, wrapper);
+  useDoubleClick();
+
+  let fontSize = 20;
+  if (md) fontSize = 28;
+  if (lg) fontSize = 32;
 
   chars.current.length = 0;
 
   return (
     <>
-      <Caret ref={caret} />
+      <Caret ref={caret} height={fontSize} />
 
       <Wrapper ref={wrapper}>
         <Container>
-          {data.map((s, i) =>
-            <Char
-              key={i}
-              ref={d => d && chars.current.push(d)}
-            >
-              {s}
-            </Char>
+          {words.map((w, i) =>
+            <React.Fragment key={i}>
+              <Word>
+                {w.split("").map((c, j) =>
+                  <Char
+                    key={j}
+                    ref={d => d && chars.current.push(d)}
+                    $fontSize={fontSize}
+                  >
+                    {c}
+                  </Char>
+                )}
+              </Word>
+
+              {i < words.length - 1 &&
+                <Char
+                  key={i + 100}
+                  ref={d => d && chars.current.push(d)}
+                  $fontSize={fontSize}
+                >
+                  &nbsp;
+                </Char>
+              }
+            </React.Fragment>
           )}
         </Container>
 

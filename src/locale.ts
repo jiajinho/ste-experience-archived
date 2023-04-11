@@ -4,9 +4,11 @@ const global = {
 
 const loading = {
   premise: `
-    Everyone from the Hellfire Club 
-    has been captured by the Vecna. 
-    Please help us to find them.
+    It’s game night and you’ve gathered with your Hellfire Club mates to 
+    continue your ventures into the Forgotten Realms. Just as the party was 
+    about to land the killing blow on the Lord of Darkness, Vecna makes an 
+    explosive entrance! Escape and make your way through iconic locations 
+    in Hawkins and the Upside Down.
   `,
   continueBtn: "Continue"
 }

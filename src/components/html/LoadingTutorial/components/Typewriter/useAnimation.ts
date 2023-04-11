@@ -28,7 +28,6 @@ export default (
 
 
       case "start":
-        const timeouts: NodeJS.Timeout[] = [];
         let count = 0;
 
         //Animate
@@ -72,10 +71,32 @@ export default (
           });
         });
 
-        return () => {
-          tween.kill();
-          timeouts.forEach(t => clearTimeout(t));
-        }
+        return () => { tween.kill() }
+
+
+      case "skipped":
+        gsap.to([chars.current, button.current], {
+          duration: 0.01,
+          autoAlpha: 1
+        }).eventCallback("onComplete", () => {
+          if (chars.current) {
+            const bound = chars.current[chars.current.length - 1].getBoundingClientRect();
+            caret.current!.style.left = `${bound.right + 1}px`;
+            caret.current!.style.top = `${bound.top}px`;
+          }
+
+          gsap.fromTo(caret.current, {
+            autoAlpha: 1
+          }, {
+            delay: 0.6,
+            duration: 0.01,
+            repeatDelay: 0.6,
+            autoAlpha: 0,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        break;
 
 
       case "end":
