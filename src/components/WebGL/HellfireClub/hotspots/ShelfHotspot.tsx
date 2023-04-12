@@ -5,6 +5,7 @@ import { LightColor } from '@hellfire/config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import useEnvStore from 'stores/useEnvStore';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import Shelf from '@hellfire/components/Shelf';
@@ -13,6 +14,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Hooks
    */
+  const env = useEnvStore(state => state.env);
+
   const ref = useRef<THREE.Group>(null);
   const topLight = useRef<THREE.SpotLight>(null);
   const topLightBox = useRef<THREE.Mesh>(null);
@@ -64,12 +67,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         color={LightColor.Crimson}
       />
 
-      <WireframeBox.Light
-        ref={topLightBox}
-        position={topLight.current?.position}
-        onClick={triggerTopLightControl}
-      />
-
       <spotLight
         ref={bottomLight}
         castShadow
@@ -81,18 +78,28 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         color={LightColor.Crimson}
       />
 
-      <WireframeBox.Light
-        ref={bottomLightBox}
-        position={bottomLight.current?.position}
-        onClick={triggerBottomLightControl}
-      />
+      {env === "development" &&
+        <>
+          <WireframeBox.Light
+            ref={topLightBox}
+            position={topLight.current?.position}
+            onClick={triggerTopLightControl}
+          />
 
-      <WireframeBox.Camera
-        ref={cameraBox}
-        target={cameraTarget}
-        position={[2, 0, 0]}
-        lookAt={[-1, 0, 0]}
-      />
+          <WireframeBox.Light
+            ref={bottomLightBox}
+            position={bottomLight.current?.position}
+            onClick={triggerBottomLightControl}
+          />
+
+          <WireframeBox.Camera
+            ref={cameraBox}
+            target={cameraTarget}
+            position={[2, 0, 0]}
+            lookAt={[-1, 0, 0]}
+          />
+        </>
+      }
     </group>
   )
 }

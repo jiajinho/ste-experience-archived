@@ -7,7 +7,6 @@ import Tabletop from './components/Tabletop';
 import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
-import HellfireBanner from './components/HellfireBanner';
 import CeilingLight from './components/CeilingLight';
 
 import PaperGroup from './groups/PaperGroup';
@@ -124,15 +123,6 @@ export default () => (
       rotation={[0.45, -0.21, 0.1]}
       light={LightColor.Yellow}
     />
-
-    <HellfireBanner.Welcome
-      position={[-1.76, 2.5, -4.65]}
-    />
-
-    <HellfireBanner.Hellfire
-      position={[1.45, 2.5, -4.65]}
-    />
-
 
     {/* <Cup
         position={[0.28, 0.89, -0.69]}

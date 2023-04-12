@@ -1,13 +1,16 @@
 import React, { useRef } from 'react';
 
 import config from 'config';
-import WireframeBox from '@webgl/debug/WireframeBox';
+import useEnvStore from 'stores/useEnvStore';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
+import WireframeBox from '@webgl/debug/WireframeBox';
 
 export default () => {
   /**
    * Hooks
    */
+  const env = useEnvStore(state => state.env);
+
   const ref = useRef<THREE.Group>(null);
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
@@ -29,16 +32,18 @@ export default () => {
    */
   return (
     <group ref={ref}>
-      <WireframeBox.Camera
-        ref={cameraBox}
-        target={cameraTarget}
-        position={[3.81, 2.29, 2.26]}
-        lookAt={[
-          -Math.sin(azimuth) * azimuthScaleFactor,
-          lookAtY,
-          -Math.cos(azimuth) * azimuthScaleFactor
-        ]}
-      />
+      {env === "development" &&
+        <WireframeBox.Camera
+          ref={cameraBox}
+          target={cameraTarget}
+          position={[3.81, 2.29, 2.26]}
+          lookAt={[
+            -Math.sin(azimuth) * azimuthScaleFactor,
+            lookAtY,
+            -Math.cos(azimuth) * azimuthScaleFactor
+          ]}
+        />
+      }
     </group>
   )
 }

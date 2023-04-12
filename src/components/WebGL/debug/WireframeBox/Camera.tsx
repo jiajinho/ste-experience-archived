@@ -10,7 +10,7 @@ import Box from "./Box";
 
 export default React.forwardRef(({ target, lookAt, ...props }: {
   target: React.RefObject<THREE.Group>,
-  lookAt: Vector3
+  lookAt: Vector3,
 } & Omit<JSX.IntrinsicElements["group"], "lookAt">,
   ref: React.ForwardedRef<THREE.Mesh>
 ) => {

@@ -90,18 +90,22 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         color={LightColor.Crimson}
       />
 
-      <WireframeBox.Light
-        ref={lightBox}
-        position={spotlight.current?.position}
-        onClick={triggerSpotlightControl}
-      />
+      {env === "development" &&
+        <>
+          <WireframeBox.Light
+            ref={lightBox}
+            position={spotlight.current?.position}
+            onClick={triggerSpotlightControl}
+          />
 
-      <WireframeBox.Camera
-        ref={cameraBox}
-        target={cameraTarget}
-        position={[0, 1, 0]}
-        lookAt={[0, -1, 0]}
-      />
+          <WireframeBox.Camera
+            ref={cameraBox}
+            target={cameraTarget}
+            position={[0, 1, 0]}
+            lookAt={[0, -1, 0]}
+          />
+        </>
+      }
     </group>
   )
 }

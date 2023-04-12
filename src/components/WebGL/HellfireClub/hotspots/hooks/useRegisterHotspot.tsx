@@ -22,10 +22,6 @@ export default (
   }
 
   useEffect(() => {
-    setupZoomConfig();
-  }, [JSON.stringify(debug.cameraBox?.position), JSON.stringify(debug.cameraTarget?.position)]);
-
-  const setupZoomConfig = () => {
     if (!cameraBox.current) return;
     if (!cameraTarget.current) return;
 
@@ -36,13 +32,19 @@ export default (
     cameraTarget.current.getWorldPosition(lookAt);
 
     config.zoomSettings[hotspot].cameraPosition = [position.x, position.y, position.z];
-    config.zoomSettings[hotspot].lookAt = lookAt;
-  }
+    config.zoomSettings[hotspot].lookAt = [lookAt.x, lookAt.y, lookAt.z];
+  }, [JSON.stringify(debug.cameraBox?.position), JSON.stringify(debug.cameraTarget?.position)]);
 
   const triggerZoom = () => {
     if (env === "development") return;
 
-    setupZoomConfig();
+    if (env === "staging") {
+      console.log(hotspot, {
+        cameraPosition: config.zoomSettings[hotspot].cameraPosition,
+        lookAt: config.zoomSettings[hotspot].lookAt
+      });
+    }
+
     setCameraStore("currentZoom", hotspot);
   }
 

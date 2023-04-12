@@ -14,18 +14,20 @@ export function moveCamera({
 }: {
   camera: THREE.Camera,
   shadowCamera: THREE.PerspectiveCamera,
-  lookAt: THREE.Vector3,
+  lookAt: Vector3,
   cameraPosition: Vector3,
   up?: THREE.Vector3,
   animate: boolean,
   callback?: () => void
 }) {
+  const cameraLookAt = new THREE.Vector3(lookAt[0], lookAt[1], lookAt[2]);
+
   shadowCamera.position.x = cameraPosition[0];
   shadowCamera.position.y = cameraPosition[1];
   shadowCamera.position.z = cameraPosition[2];
 
   shadowCamera.up = up;
-  shadowCamera.lookAt(lookAt);
+  shadowCamera.lookAt(cameraLookAt);
 
   const startQuaternion = camera.quaternion.clone();
   const endQuaternion = new THREE.Quaternion().setFromEuler(shadowCamera.rotation);
@@ -55,6 +57,6 @@ export function moveCamera({
       callback && callback();
 
       camera.up = up;
-      camera.lookAt(lookAt);
+      camera.lookAt(cameraLookAt);
     });
 }

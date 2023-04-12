@@ -34,7 +34,7 @@ export default () => {
     }
 
     if (cameraSetting.lookAt) {
-      camera.lookAt(cameraSetting.lookAt);
+      camera.lookAt(new THREE.Vector3(...cameraSetting.lookAt));
     }
   }, [env]);
 
