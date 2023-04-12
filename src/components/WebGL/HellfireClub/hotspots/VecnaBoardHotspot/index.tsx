@@ -37,7 +37,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   useEffect(() => {
     if (!spotlight.current) return;
-    if (!lightBox.current) return;
 
     spotlight.current.target.position.set(0, -15, -15);
     spotlight.current.target.updateMatrixWorld();
@@ -48,7 +47,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const triggerZoom = useRegisterHotspot("vecnaBoard", cameraBox, cameraTarget);
 
-  const handleClick = () => {
+  const handleModelClick = () => {
     triggerModelControl();
     triggerZoom();
   }
@@ -62,7 +61,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   return (
     <group ref={ref} {...props}>
-      <VecnaBoard onClick={handleClick} />
+      <VecnaBoard onClick={handleModelClick} />
 
       <Card.TheEncounter
         ref={encounterCard}

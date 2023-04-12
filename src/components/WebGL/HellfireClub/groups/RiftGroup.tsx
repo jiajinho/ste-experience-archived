@@ -1,32 +1,17 @@
-import React, { useEffect } from 'react';
-import gsap from 'gsap';
-
-import Rift from '@hellfire/components/Rift';
+import React, { useMemo } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { GLTFResult } from '@hellfire/components/Rift/types';
 
+import { GLTFResult } from '@hellfire/components/Rift/types';
+import Rift from '@hellfire/components/Rift';
 
 const url = "/static/gltf/rifts-mini.glb";
 
 export default () => {
-
   const { materials } = useGLTF(url) as any as GLTFResult;
 
-  useEffect(() => {
-    if (!materials) return;
-
+  useMemo(() => {
     materials.Rift.toneMapped = false;
     materials.Rift.emissiveIntensity = 8;
-
-    const tween = gsap.to(materials.Rift, {
-      duration: 2.5,
-      ease: "power2.inOut",
-      emissiveIntensity: 15,
-      yoyo: true,
-      repeat: -1,
-    });
-
-    return () => { tween.kill() }
   }, [materials]);
 
   return (

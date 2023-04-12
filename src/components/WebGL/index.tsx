@@ -5,10 +5,10 @@ import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
-
 import useControlModel from '@webgl/debug/hooks/useControlModel';
 import useControlSpotlight from '@webgl/debug/hooks/useControlSpotlight';
-import useControlCamera from './debug/hooks/useControlCamera';
+import useControlCamera from '@webgl/debug/hooks/useControlCamera';
+import useRendererInfo from '@webgl/debug/hooks/useRendererInfo';
 
 import HellfireClub from './HellfireClub';
 import GlobalLight from './GlobalLight';
@@ -27,6 +27,7 @@ export default () => {
   useControlModel(true);
   useControlSpotlight(true);
   useControlCamera();
+  useRendererInfo();
 
   useEffect(() => {
     setLoaderStore("webgl", {
