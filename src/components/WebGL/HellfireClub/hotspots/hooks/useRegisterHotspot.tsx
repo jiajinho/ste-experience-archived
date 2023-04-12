@@ -32,7 +32,7 @@ export default (
     cameraTarget.current.getWorldPosition(lookAt);
 
     config.zoomSettings[hotspot].cameraPosition = [position.x, position.y, position.z];
-    config.zoomSettings[hotspot].lookAt = lookAt;
+    config.zoomSettings[hotspot].lookAt = [lookAt.x, lookAt.y, lookAt.z];
   }, [JSON.stringify(debug.cameraBox?.position), JSON.stringify(debug.cameraTarget?.position)]);
 
   const triggerZoom = () => {

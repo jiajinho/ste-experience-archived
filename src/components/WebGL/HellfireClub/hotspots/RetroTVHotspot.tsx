@@ -5,6 +5,7 @@ import { LightColor } from '@hellfire/config';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+import useEnvStore from 'stores/useEnvStore';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import RetroTV from '@hellfire/components/RetroTV';
@@ -13,6 +14,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Hooks
    */
+  const env = useEnvStore(state => state.env);
+
   const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
   const lightBox = useRef<THREE.Mesh>(null);
@@ -57,18 +60,22 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         color={LightColor.Crimson}
       />
 
-      <WireframeBox.Light
-        ref={lightBox}
-        position={spotlight.current?.position}
-        onClick={triggerSpotlightControl}
-      />
+      {env === "development" &&
+        <>
+          <WireframeBox.Light
+            ref={lightBox}
+            position={spotlight.current?.position}
+            onClick={triggerSpotlightControl}
+          />
 
-      <WireframeBox.Camera
-        ref={cameraBox}
-        target={cameraTarget}
-        position={[1, 0, 0]}
-        lookAt={[-1, 0, 0]}
-      />
+          <WireframeBox.Camera
+            ref={cameraBox}
+            target={cameraTarget}
+            position={[1, 0, 0]}
+            lookAt={[-1, 0, 0]}
+          />
+        </>
+      }
     </group>
   )
 }
