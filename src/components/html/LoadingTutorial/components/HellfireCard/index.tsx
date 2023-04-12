@@ -1,52 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import useAnimation from './useAnimation';
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
-import useLoadProgressStore from 'stores/useLoadProgressStore';
+import Card, { Wrapper as $Card } from '@html/common/Card';
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  ${$Card} {
+    position: fixed;
+    top: 200vh;
+    left: 50%;
 
-  opacity: 0;
-  visibility: hidden;
-  perspective: 1000px;
-`;
-
-const Card = styled.div`
-  aspect-ratio: 2/3;
-  height: 500px;
-  width: auto;
-
-  cursor: pointer;
-  transform-style: preserve-3d;
-
-  img { backface-visibility: hidden }
-  img#back { transform: rotateY(180deg) }
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+  }
 `;
 
 export default () => {
-  /**
-   * Hooks
-   */
-  const clicked = useRef(false);
-
   const phase = useLoadAnimationStore(state => state.card);
   const setLoadAnimateStore = useLoadAnimationStore(state => state.set);
 
-  const setLoaderStore = useLoadProgressStore(state => state.set);
+  const clicked = useRef(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const wrapper = useRef<HTMLDivElement>(null);
-  const card = useRef<HTMLDivElement>(null);
-
-  const [frontLoaded, setFrontLoaded] = useState(false);
-  const [backLoaded, setBackLoaded] = useState(false);
-
-  useAnimation(wrapper, card);
+  useAnimation(ref);
 
   useEffect(() => {
     if (phase === "standby") {
@@ -54,15 +32,6 @@ export default () => {
     }
   }, [phase]);
 
-  useEffect(() => {
-    if (frontLoaded && backLoaded) {
-      setLoaderStore("html", { card: true });
-    }
-  }, [frontLoaded, backLoaded]);
-
-  /**
-   * Not hook
-   */
   const handleClick = () => {
     if (!clicked.current) {
       setLoadAnimateStore("card", "flip");
@@ -73,29 +42,13 @@ export default () => {
     }
   }
 
-  /**
-   * Render
-   */
   return (
-    <Wrapper ref={wrapper}>
-      <Card ref={card} onClick={handleClick}>
-        <Image
-          src="/static/texture/hellfire-card-front.png"
-          alt="Card front invitation"
-          onLoadingComplete={() => setFrontLoaded(true)}
-          priority
-          fill
-        />
-
-        <Image
-          id="back"
-          src="/static/texture/hellfire-card-back.png"
-          alt="Card back enter club room"
-          onLoadingComplete={() => setBackLoaded(true)}
-          priority
-          fill
-        />
-      </Card>
+    <Wrapper>
+      <Card.Hellfire
+        ref={ref}
+        flipped={phase === 'flip' || phase === 'end'}
+        onClick={handleClick}
+      />
     </Wrapper>
   )
 }
