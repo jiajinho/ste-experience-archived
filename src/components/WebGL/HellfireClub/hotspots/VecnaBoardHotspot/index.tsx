@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import config from 'config';
+import { LightColor } from '@hellfire/config';
 import { Event } from '@html/CardOverlay/types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';
@@ -87,7 +88,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         angle={0.47}
         intensity={3.5}
         distance={4}
-        color="#fecccc"
+        color={LightColor.Crimson}
       />
 
       <WireframeBox.Light

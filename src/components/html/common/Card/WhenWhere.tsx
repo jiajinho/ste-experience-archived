@@ -4,6 +4,9 @@ import styled from "styled-components";
 
 import config from "config";
 import { IntrinsicHTML } from "types";
+import whenWhereFront from "/public/static/cards/when-where-front.png";
+import whenWhereBack from "/public/static/cards/when-where-back.png";
+import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 import Card from "./components/Card";
 import FrontTemplate from "./components/FrontTemplate";
@@ -89,49 +92,55 @@ export default React.forwardRef(({ flipped, ...props }: {
   flipped?: boolean,
 } & IntrinsicHTML<"div">,
   ref: React.ForwardedRef<HTMLDivElement>
-) => (
-  <Card
-    ref={ref}
-    flipped={flipped}
-    {...props}
-  >
-    <div className="front">
-      <FrontTemplate />
-      <Image
-        src="/static/cards/when-where-front.png"
-        alt="When Where - Front"
-        fill
-      />
-    </div>
+) => {
+  const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
-    <div className="back">
-      <BackTemplate />
-      <Image
-        src="/static/cards/when-where-back.png"
-        alt="When Where - Back"
-        fill
-      />
+  return (
+    <Card
+      ref={ref}
+      flipped={flipped}
+      {...props}
+    >
+      <div className="front">
+        <FrontTemplate />
+        <Image
+          src={whenWhereFront}
+          alt="When Where - Front"
+          fill
+          onLoadingComplete={() => setLoadProgressStore("html", { whenWhereFront: true })}
+        />
+      </div>
 
-      <Content>
-        {config.cards.whenWhere.content.map((v, i) =>
-          <Row key={i}>
-            <Icon>
-              <HexRing />
-              {v.icon}
-            </Icon>
+      <div className="back">
+        <BackTemplate />
+        <Image
+          src={whenWhereBack}
+          alt="When Where - Back"
+          fill
+          onLoadingComplete={() => setLoadProgressStore("html", { whenWhereBack: true })}
+        />
 
-            <InfoContainer>
-              <p>{v.title}:</p>
+        <Content>
+          {config.cards.whenWhere.content.map((v, i) =>
+            <Row key={i}>
+              <Icon>
+                <HexRing />
+                {v.icon}
+              </Icon>
 
-              <Value>
-                {v.value.map((u, i) =>
-                  <p key={i}>{u.trim()}</p>
-                )}
-              </Value>
-            </InfoContainer>
-          </Row>
-        )}
-      </Content>
-    </div>
-  </Card>
-));
+              <InfoContainer>
+                <p>{v.title}:</p>
+
+                <Value>
+                  {v.value.map((u, i) =>
+                    <p key={i}>{u.trim()}</p>
+                  )}
+                </Value>
+              </InfoContainer>
+            </Row>
+          )}
+        </Content>
+      </div>
+    </Card>
+  )
+});

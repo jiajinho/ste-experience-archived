@@ -1,6 +1,15 @@
 import React from 'react';
 
 import { LightColor } from './config';
+
+import RiftFloor from './components/RiftFloor';
+import Tabletop from './components/Tabletop';
+import HellfireSignStand from './components/HellfireSignStand';
+import WallLight from './components/WallLight';
+import Chandelier from './components/Chandelier';
+import HellfireBanner from './components/HellfireBanner';
+import CeilingLight from './components/CeilingLight';
+
 import PaperGroup from './groups/PaperGroup';
 import CurtainGroup from './groups/CurtainGroup';
 import CandlestandGroup from './groups/CandlestandGroup';
@@ -8,31 +17,8 @@ import RiftGroup from './groups/RiftGroup';
 import WallGroup from './groups/WallGroup';
 import ChairGroup from './groups/ChairGroup';
 import StandeeGroup from './groups/StandeeGroup';
-
-import Wall from './components/Wall';
-import RiftFloor from './components/RiftFloor';
-import Standee from './components/Standee';
-import Box from './components/Box';
-import Ladder from './components/Ladder';
-import Lamp from './components/Lamp';
-import Coffin from './components/Coffin';
-import Tabletop from './components/Tabletop';
-import Chair from './components/Chair';
-import RetroTV from './components/RetroTV';
-import QuadLightStand from './components/QuadLightStand';
-import HellfireSignStand from './components/HellfireSignStand';
-import WallLight from './components/WallLight';
-import Chandelier from './components/Chandelier';
-import MeetingTable from './components/MeetingTable';
-import HellfireBanner from './components/HellfireBanner';
-import CeilingLight from './components/CeilingLight';
-import Book from './components/Book';
-import Cup from './components/Cup';
-import Page from './components/Page';
-import Dossier from './components/Dossier';
-import Soda from './components/Soda';
-import Dice from './components/Dice';
 import TabletopGroup from './groups/TabletopGroup';
+import BoxGroup from './groups/BoxGroup';
 
 import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
 import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
@@ -43,138 +29,116 @@ import VecnaBoardHotspot from './hotspots/VecnaBoardHotspot';
 import FAQBoardHotspot from './hotspots/FAQBoardHotspot';
 import MapHotspot from './hotspots/MapHotspot';
 
+export default () => (
+  <>
+    <DefaultViewHotspot />
 
-export default () => {
-  return (
-    <>
-      <Box
-        position={[-1.3, 0.38, 4.44]}
-        rotation={[0.1, -0.29, -1.53]}
-      />
+    <NoticeBoardHotspot
+      position={[-3.22, 1.75, 0.15]}
+    />
 
-      <Box
-        position={[3.54, 0.23, -0.9]}
-        rotation={[Math.PI / 2, 0, 0.56]}
-      />
+    <ShelfHotspot
+      position={[2.07, 1.15, -4.29]}
+      rotation-y={-Math.PI / 2}
+    />
 
-      <Box
-        position={[2.77, 0.18, 1.84]}
-        rotation={[Math.PI / 2, 0, 1.25]}
-      />
+    <VecnaBoardHotspot
+      position={[0, 0.83, 0.2]}
+    />
 
-      <Box
-        position={[-1.23, 0.2, 3.98]}
-        rotation={[Math.PI, 0.3, 0]}
-      />
+    <FAQBoardHotspot
+      position={[0, 0.825, -0.42]}
+      rotation-y={0.08}
+    />
 
-      <DefaultViewHotspot />
+    <MapHotspot
+      position={[0.04, 0.82, -0.72]}
+      rotation-y={-0.06}
+    />
 
-      <NoticeBoardHotspot
-        position={[-3.22, 1.75, 0.15]}
-      />
+    <RetroTVHotspot
+      position={[-2.61, 1.07, 3.13]}
+    />
 
-      <ShelfHotspot
-        position={[2.07, 1.15, -4.29]}
-        rotation-y={-Math.PI / 2}
-      />
+    <ChalkboardHotspot
+      position={[-2.13, 1.35, -3.11]}
+      rotation-y={0.63}
+    />
 
-      <VecnaBoardHotspot
-        position={[0, 0.83, 0.2]}
-      />
+    <Tabletop.DShape
+      position={[-2.7, 0.75, 3.06]}
+    />
 
-      <FAQBoardHotspot
-        position={[0, 0.825, -0.42]}
-        rotation-y={0.08}
-      />
+    <Tabletop.Round
+      position={[3.22, 0.52, -4.18]}
+    />
 
-      <MapHotspot
-        position={[0.04, 0.82, -0.72]}
-        rotation-y={-0.06}
-      />
+    <CeilingLight
+      position={[-2.68, 4.13, 1.35]}
+      lights={[
+        LightColor.Yellow,
+        undefined,
+        LightColor.Cyan,
+        undefined,
+        LightColor.Teal,
+        undefined,
+        LightColor.Cyan,
+        LightColor.Tangerine,
+        LightColor.Cyan,
+        undefined,
+        LightColor.Tangerine
+      ]}
+    />
 
-      <RetroTVHotspot
-        position={[-2.61, 1.07, 3.13]}
-      />
+    <CeilingLight
+      position={[-2.68, 4.13, -1.35]}
+      lights={[
+        LightColor.Yellow,
+        LightColor.Teal,
+        LightColor.Yellow,
+        LightColor.Cyan,
+        undefined,
+        undefined,
+        undefined,
+        LightColor.Yellow,
+        LightColor.Cyan,
+        LightColor.Tangerine,
+        undefined
+      ]}
+    />
 
-      <ChalkboardHotspot
-        position={[-2.13, 1.35, -3.11]}
-        rotation-y={0.63}
-      />
+    <HellfireSignStand
+      position={[0, 0, -4.52]}
+    />
 
-      <Tabletop.DShape
-        position={[-2.7, 0.75, 3.06]}
-      />
+    <WallLight
+      position={[0, 0, -5]}
+      lights={[
+        LightColor.Cyan,
+        LightColor.Cyan
+      ]}
+    />
 
-      <Tabletop.Round
-        position={[3.22, 0.52, -4.18]}
-      />
+    <Chandelier
+      position={[3.31, 0.92, -4.24]}
+      rotation={[0.45, -0.21, 0.1]}
+      light={LightColor.Yellow}
+    />
 
-      <CeilingLight
-        position={[-2.68, 4.13, 1.35]}
-        lights={[
-          LightColor.Yellow,
-          undefined,
-          LightColor.Cyan,
-          undefined,
-          LightColor.Teal,
-          undefined,
-          LightColor.Cyan,
-          LightColor.Tangerine,
-          LightColor.Cyan,
-          undefined,
-          LightColor.Tangerine
-        ]}
-      />
+    <HellfireBanner.Welcome
+      position={[-1.76, 2.5, -4.65]}
+    />
 
-      <CeilingLight
-        position={[-2.68, 4.13, -1.35]}
-        lights={[
-          LightColor.Yellow,
-          LightColor.Teal,
-          LightColor.Yellow,
-          LightColor.Cyan,
-          undefined,
-          undefined,
-          undefined,
-          LightColor.Yellow,
-          LightColor.Cyan,
-          LightColor.Tangerine,
-          undefined
-        ]}
-      />
-
-      <HellfireSignStand
-        position={[0, 0, -4.52]}
-      />
-
-      <WallLight
-        position={[0, 0, -5]}
-        lights={[
-          LightColor.Cyan,
-          LightColor.Cyan
-        ]}
-      />
-
-      <Chandelier
-        position={[3.31, 0.92, -4.24]}
-        rotation={[0.45, -0.21, 0.1]}
-        light={LightColor.Yellow}
-      />
-
-      <HellfireBanner.Welcome
-        position={[-1.76, 2.5, -4.65]}
-      />
-
-      <HellfireBanner.Hellfire
-        position={[1.45, 2.5, -4.65]}
-      />
+    <HellfireBanner.Hellfire
+      position={[1.45, 2.5, -4.65]}
+    />
 
 
-      {/* <Cup
+    {/* <Cup
         position={[0.28, 0.89, -0.69]}
       /> */}
 
-      {/* <Map
+    {/* <Map
         position={[0, 0.815, 0.05]}
       />
 
@@ -237,7 +201,7 @@ export default () => {
         rotation={[0, 2.08, -Math.PI / 2]}
       /> */}
 
-      {/* <Soda
+    {/* <Soda
         position={[-0.23, 0.875, 0.06]}
       />
 
@@ -246,24 +210,24 @@ export default () => {
         rotation={[0, 2.05, Math.PI / 2]}
       /> */}
 
+    <BoxGroup />
 
-      <TabletopGroup />
+    <TabletopGroup />
 
-      <CurtainGroup />
+    <CurtainGroup />
 
-      <CandlestandGroup />
+    <CandlestandGroup />
 
-      <StandeeGroup />
+    <StandeeGroup />
 
-      <ChairGroup />
+    <ChairGroup />
 
-      <RiftGroup />
+    <RiftGroup />
 
-      <PaperGroup />
+    <PaperGroup />
 
-      <WallGroup />
+    <WallGroup />
 
-      <RiftFloor />
-    </>
-  );
-}
+    <RiftFloor />
+  </>
+);

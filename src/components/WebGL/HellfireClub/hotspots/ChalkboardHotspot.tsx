@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { SpotLight } from 'three';
 
-import WireframeBox from '@webgl/debug/WireframeBox';
+import { LightColor } from '@hellfire/config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
-
-import ChalkBoard from '@hellfire/components/ChalkBoard';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+
+import WireframeBox from '@webgl/debug/WireframeBox';
+import ChalkBoard from '@hellfire/components/ChalkBoard';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
@@ -27,7 +28,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     if (!spotlight.current) return;
     if (!lightBox.current) return;
 
-    spotlight.current.target.position.set(-10, -10, -15);
+    spotlight.current.target.position.set(-10, -25, -15);
     spotlight.current.target.updateMatrixWorld();
   }, []);
 
@@ -50,8 +51,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         ref={spotlight}
         castShadow
         penumbra={1}
-        position={[0, 1, 1]}
+        position={[0, 1.77, 1]}
         angle={0.47}
+        intensity={3.7}
+        distance={4}
+        color={LightColor.Crimson}
       />
 
       <WireframeBox.Light
@@ -63,7 +67,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <WireframeBox.Camera
         ref={cameraBox}
         target={cameraTarget}
-        position={[0, 0, 1]}
+        position={[0, 0, 1.5]}
         lookAt={[0, 0, -1]}
       />
     </group>

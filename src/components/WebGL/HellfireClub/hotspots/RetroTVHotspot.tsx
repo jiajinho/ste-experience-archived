@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import WireframeBox from '@webgl/debug/WireframeBox';
-import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
-
-import RetroTV from '@hellfire/components/RetroTV';
+import { LightColor } from '@hellfire/config';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+
+import WireframeBox from '@webgl/debug/WireframeBox';
+import RetroTV from '@hellfire/components/RetroTV';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
@@ -27,7 +28,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     if (!spotlight.current) return;
     if (!lightBox.current) return;
 
-    spotlight.current.target.position.set(-30, -45, 0);
+    spotlight.current.target.position.set(-30, -50, 0);
     spotlight.current.target.updateMatrixWorld();
   }, []);
 
@@ -51,8 +52,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         castShadow
         penumbra={1}
         position={[1.52, 2.68, 0]}
-        angle={0.38}
-        intensity={0.35}
+        angle={0.24}
+        intensity={3.6}
+        distance={5}
+        color={LightColor.Crimson}
       />
 
       <WireframeBox.Light

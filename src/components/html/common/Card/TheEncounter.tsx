@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 import config from 'config';
 import { IntrinsicHTML } from 'types';
+import theEncounterFront from "/public/static/cards/the-encounter-front.png";
+import theEncounterBack from "/public/static/cards/the-encounter-back.png";
+import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
 import Card from './components/Card';
@@ -69,43 +72,49 @@ export default React.forwardRef(({ flipped, ...props }: {
   flipped?: boolean,
 } & IntrinsicHTML<"div">,
   ref: React.ForwardedRef<HTMLDivElement>
-) => (
-  <Card
-    ref={ref}
-    flipped={flipped}
-    {...props}
-  >
-    <div className="front">
-      <FrontTemplate />
-      <Image
-        src="/static/cards/the-encounter-front.png"
-        alt="The Encounter - Front"
-        fill
-      />
-    </div>
+) => {
+  const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
-    <div className="back">
-      <BackTemplate />
-      <Image
-        src="/static/cards/the-encounter-back.png"
-        alt="The Encounter - Back"
-        fill
-      />
+  return (
+    <Card
+      ref={ref}
+      flipped={flipped}
+      {...props}
+    >
+      <div className="front">
+        <FrontTemplate />
+        <Image
+          src={theEncounterFront}
+          alt="The Encounter - Front"
+          fill
+          onLoadingComplete={() => setLoadProgressStore("html", { theEncounterFront: true })}
+        />
+      </div>
 
-      <Content>
-        {config.cards.theEncounter.content.map((v, i) =>
-          <Row key={i}>
-            <Icon>
-              <HexRing />
-              {v.icon}
-            </Icon>
+      <div className="back">
+        <BackTemplate />
+        <Image
+          src={theEncounterBack}
+          alt="The Encounter - Back"
+          fill
+          onLoadingComplete={() => setLoadProgressStore("html", { theEncounterBack: true })}
+        />
 
-            <p key={i}>
-              {v.description}
-            </p>
-          </Row>
-        )}
-      </Content>
-    </div>
-  </Card>
-));
+        <Content>
+          {config.cards.theEncounter.content.map((v, i) =>
+            <Row key={i}>
+              <Icon>
+                <HexRing />
+                {v.icon}
+              </Icon>
+
+              <p key={i}>
+                {v.description}
+              </p>
+            </Row>
+          )}
+        </Content>
+      </div>
+    </Card>
+  )
+});
