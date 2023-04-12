@@ -50,7 +50,7 @@ export default () => {
 
     canvas.addEventListener("touchstart", handleTouchStart, { passive: true });
     canvas.addEventListener("touchend", disableEvent, { passive: true });
-    canvas.addEventListener("touchmove", handleTouchMove);
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
 
     return () => {
       canvas.removeEventListener("mousedown", handleMouseDown);
