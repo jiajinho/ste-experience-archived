@@ -26,7 +26,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   useEffect(() => {
     if (!spotlight.current) return;
-    if (!lightBox.current) return;
 
     spotlight.current.target.position.set(-30, -50, 0);
     spotlight.current.target.updateMatrixWorld();

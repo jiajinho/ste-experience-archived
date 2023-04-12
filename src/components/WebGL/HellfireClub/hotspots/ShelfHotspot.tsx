@@ -29,9 +29,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   useEffect(() => {
     if (!topLight.current) return;
-    if (!topLightBox.current) return;
     if (!bottomLight.current) return;
-    if (!bottomLightBox.current) return;
 
     topLight.current.target.position.set(1, -25, -20);
     topLight.current.target.updateMatrixWorld();
