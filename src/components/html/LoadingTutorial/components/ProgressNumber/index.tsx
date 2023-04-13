@@ -39,9 +39,8 @@ const Percentage = styled.div(({ $content }: { $content: string }) => `
 export default ({ data }: { data: string }) => {
   const wrapper = useRef<HTMLDivElement>(null);
 
-  useAnimation(wrapper);
-
-  const content = `${data}%`;
+  const progress = useAnimation(wrapper, data);
+  const content = `${progress}%`;
 
   return (
     <Wrapper ref={wrapper}>
