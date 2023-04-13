@@ -8,7 +8,7 @@ import useLoadProgressStore from 'stores/useLoadProgressStore';
 import useControlModel from '@webgl/debug/hooks/useControlModel';
 import useControlSpotlight from '@webgl/debug/hooks/useControlSpotlight';
 import useControlCamera from '@webgl/debug/hooks/useControlCamera';
-import useRendererInfo from '@webgl/debug/hooks/useRendererInfo';
+import useGLRenderer from '@webgl/useGLRenderer';
 
 import HellfireClub from './HellfireClub';
 import GlobalLight from './GlobalLight';
@@ -27,7 +27,7 @@ export default () => {
   useControlModel(true);
   useControlSpotlight(true);
   useControlCamera();
-  useRendererInfo();
+  useGLRenderer();
 
   useEffect(() => {
     setLoaderStore("webgl", {
