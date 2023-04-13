@@ -19,7 +19,6 @@ export default ({ Component, pageProps }: AppProps) => {
   const env = useEnvStore(state => state.env);
 
   // useThemeSong();
-
   useResponsive();
   useToggleEnv();
 

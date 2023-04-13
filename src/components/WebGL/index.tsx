@@ -9,6 +9,7 @@ import useControlModel from '@webgl/debug/hooks/useControlModel';
 import useControlSpotlight from '@webgl/debug/hooks/useControlSpotlight';
 import useControlCamera from '@webgl/debug/hooks/useControlCamera';
 import useGLRenderer from '@webgl/useGLRenderer';
+import useCalibrateFPS from '@webgl/useCalibrateFPS';
 
 import HellfireClub from './HellfireClub';
 import GlobalLight from './GlobalLight';
@@ -28,6 +29,7 @@ export default () => {
   useControlSpotlight(true);
   useControlCamera();
   useGLRenderer();
+  useCalibrateFPS();
 
   useEffect(() => {
     setLoaderStore("webgl", {

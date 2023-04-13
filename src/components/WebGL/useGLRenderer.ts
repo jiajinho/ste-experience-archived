@@ -14,8 +14,6 @@ export default () => {
   });
 
   useEffect(() => {
-    gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
     gl.shadowMap.autoUpdate = false;
     gl.shadowMap.needsUpdate = true;
   }, []);

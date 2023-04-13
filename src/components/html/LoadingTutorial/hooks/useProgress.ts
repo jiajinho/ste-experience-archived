@@ -7,19 +7,24 @@ export default () => {
   const [progress, setProgress] = useState(0);
 
   const set = useLoadAnimationStore(state => state.set);
-  const { webgl, html } = useLoadProgressStore(state => state);
+  const { webgl, html, fps } = useLoadProgressStore(state => state);
 
   useEffect(() => {
-    const total = (webgl.total || 0) + Object.keys(html).length;
+    let total = (webgl.total || 0)
+    total += Object.keys(html).length;
+    total += 1; //fps.completed
 
     const htmlLoaded = Object.entries(html).reduce((prev, current) => {
       if (current[1]) return prev + 1;
       return prev;
     }, 0);
 
-    const loaded = webgl.loaded + htmlLoaded;
-    setProgress((loaded / total) * 100);
-  }, [webgl, html]);
+    let loaded = webgl.loaded + htmlLoaded;
+    fps.completed && loaded++;
+
+    const progress = (loaded / total) * 100;
+    setProgress(progress);
+  }, [webgl, html, fps]);
 
   useEffect(() => {
     if (progress >= 100) {
