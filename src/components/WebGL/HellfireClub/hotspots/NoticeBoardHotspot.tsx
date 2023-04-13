@@ -50,7 +50,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
       <spotLight
         ref={spotlight}
-        castShadow
         penumbra={1}
         position={[1.52, 1.91, 0]}
         angle={0.49}
