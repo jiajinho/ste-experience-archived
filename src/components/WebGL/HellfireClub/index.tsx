@@ -51,7 +51,7 @@ export default () => (
     />
 
     <MapHotspot
-      position={[0.04, 0.82, -0.72]}
+      position={[0, 0.82, -0.73]}
       rotation-y={-0.06}
     />
 

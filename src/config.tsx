@@ -20,7 +20,8 @@ const viewport: Viewport = {
 
 const link = {
   faq: "https://google.com",
-  ticketing: "https://google.com"
+  ticketing: "https://google.com",
+  eventLocation: "https://goo.gl/maps/zM7E26fDeZR5RJ7d8"
 }
 
 /**

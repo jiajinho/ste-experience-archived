@@ -81,10 +81,16 @@ const faq = {
   cta: "Read More"
 }
 
+const map = {
+  title: "Directions",
+  cta: "Read more"
+}
+
 export default {
   global,
   loading,
   overlayUI,
   card,
-  faq
+  faq,
+  map
 }
