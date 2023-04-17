@@ -18,6 +18,11 @@ const viewport: Viewport = {
   lg: "1200px"
 }
 
+const link = {
+  faq: "https://google.com",
+  ticketing: "https://google.com"
+}
+
 /**
  * Order sensitive, initially set the zoom props of the hotspots to be empty, which 
  * will be filler in the useZoom later
@@ -122,8 +127,17 @@ const cards = {
   }
 }
 
+const faq = [
+  locale.faq.xPass,
+  locale.faq.where,
+  locale.faq.ticketType,
+  locale.faq.ticketCost
+];
+
 export default {
+  link,
   zoomSettings,
   viewport,
-  cards
+  cards,
+  faq
 }

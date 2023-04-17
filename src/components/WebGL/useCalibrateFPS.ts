@@ -3,11 +3,13 @@ import { useFrame } from '@react-three/fiber';
 
 import useGLStore from 'stores/webgl/useGLStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
+import useEnvStore from 'stores/useEnvStore';
 
 export default () => {
   /**
    * Hooks
    */
+  const env = useEnvStore(state => state.env);
   const setGLStore = useGLStore(state => state.set);
   const fps = useLoadProgressStore(state => state.fps);
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
@@ -26,6 +28,7 @@ export default () => {
   }, [window]);
 
   useFrame(() => {
+    if (env === 'development') return;
     if (fps.completed) return;
 
     begin();

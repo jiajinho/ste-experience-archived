@@ -4,9 +4,10 @@ import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import HtmlContent from "./HtmlContent";
 
 const gltfUrl = "/static/gltf/faq-board.glb";
-const mapUrl = "/static/texture/vecna-faq-map.png";
+const mapUrl = "/static/texture/faq-texture.png";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -35,7 +36,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.FAQBoard.geometry}>
+      <HtmlContent />
+
+      <mesh geometry={nodes.FAQBoard.geometry} rotation-y={Math.PI}>
         <meshStandardMaterial
           map={map}
           metalness={0.1}
