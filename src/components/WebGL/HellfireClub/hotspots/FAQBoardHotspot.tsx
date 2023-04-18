@@ -1,13 +1,16 @@
 import React, { useRef } from 'react';
 
+import config from 'config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useEnvStore from 'stores/useEnvStore';
+import useCameraStore from 'stores/webgl/useCameraStore';
 
 import FAQBoard from '../components/FAQBoard';
 import WireframeBox from '@webgl/debug/WireframeBox';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  const currentZoom = useCameraStore(state => state.currentZoom);
   const env = useEnvStore(state => state.env);
 
   const ref = useRef<THREE.Group>(null);
@@ -23,9 +26,21 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     triggerZoom();
   }
 
+  const handleCallToAction = () => {
+    if (currentZoom !== "faqBoard") {
+      triggerZoom();
+    }
+    else {
+      window.open(config.link.faq, "_blank");
+    }
+  }
+
   return (
     <group {...props}>
-      <FAQBoard onClick={handleClick} />
+      <FAQBoard
+        onClick={handleClick}
+        onCallToAction={handleCallToAction}
+      />
 
       {env === "development" &&
         <WireframeBox.Camera

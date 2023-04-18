@@ -41,8 +41,8 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export default ({ onReadMore }: {
-  onReadMore?: () => void
+export default ({ onCallToAction }: {
+  onCallToAction?: () => void
 }) => {
   return (
     <Html
@@ -59,7 +59,7 @@ export default ({ onReadMore }: {
           <h1>{locale.map.title}</h1>
         </TitleContainer>
 
-        <HexButton onClick={onReadMore}>
+        <HexButton onClick={onCallToAction}>
           {locale.map.cta}
         </HexButton>
       </Wrapper>

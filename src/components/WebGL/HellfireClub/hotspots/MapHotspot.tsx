@@ -44,12 +44,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     triggerZoom();
   }
 
-  const handleRedirect = () => {
+  const handleCallToAction = () => {
     if (currentZoom !== 'map') {
       triggerZoom();
     }
     else {
-      window.open(config.link.eventLocation);
+      window.open(config.link.eventLocation, "_blank");
     }
   }
 
@@ -58,7 +58,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    */
   return (
     <group ref={ref} {...props}>
-      <Map onClick={handleClick} onReadMore={handleRedirect} />
+      <Map
+        onClick={handleClick}
+        onCallToAction={handleCallToAction}
+      />
 
       <spotLight
         ref={spotlight}

@@ -63,41 +63,37 @@ const TextContainer = styled.div`
   }
 `;
 
-export default () => {
-  const goToFAQPage = () => {
-    window.open(config.link.faq, "__blank");
-  }
+export default ({ onCallToAction }: {
+  onCallToAction?: () => void
+}) => (
+  <Html
+    occlude={false}
+    prepend
+    transform
+    position={[0.005, 0.0018, -0.005]}
+    scale={0.009}
+    rotation={[Math.PI / 2, Math.PI, 0]}
+  >
+    <Wrapper>
+      <Content>
+        {config.faq.map((v, i) =>
+          <Row key={i}>
+            <Icon>
+              <HexRing background="transparent" color="var(--color-blood)" />
+              <p>{i + 1}</p>
+            </Icon>
 
-  return (
-    <Html
-      occlude={false}
-      prepend
-      transform
-      position={[0.005, 0.0018, -0.005]}
-      scale={0.009}
-      rotation={[Math.PI / 2, Math.PI, 0]}
-    >
-      <Wrapper>
-        <Content>
-          {config.faq.map((v, i) =>
-            <Row key={i}>
-              <Icon>
-                <HexRing background="transparent" color="var(--color-blood)" />
-                <p>{i + 1}</p>
-              </Icon>
+            <TextContainer>
+              <h1>{v.question}</h1>
+              <p>{v.answer}</p>
+            </TextContainer>
+          </Row>
+        )}
+      </Content>
 
-              <TextContainer>
-                <h1>{v.question}</h1>
-                <p>{v.answer}</p>
-              </TextContainer>
-            </Row>
-          )}
-        </Content>
-
-        <HexButton onClick={goToFAQPage}>
-          {locale.faq.cta}
-        </HexButton>
-      </Wrapper>
-    </Html>
-  )
-}
+      <HexButton onClick={onCallToAction}>
+        {locale.faq.cta}
+      </HexButton>
+    </Wrapper>
+  </Html>
+);

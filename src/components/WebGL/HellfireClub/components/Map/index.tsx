@@ -15,8 +15,8 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ onReadMore, ...props }: {
-  onReadMore?: () => void
+export default ({ onCallToAction, ...props }: {
+  onCallToAction?: () => void
 } & JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
@@ -38,7 +38,7 @@ export default ({ onReadMore, ...props }: {
       onClick={handleClick}
       dispose={null}
     >
-      <HtmlContent onReadMore={onReadMore} />
+      <HtmlContent onCallToAction={onCallToAction} />
 
       <mesh geometry={nodes.Map.geometry} rotation-y={Math.PI}>
         <meshStandardMaterial
