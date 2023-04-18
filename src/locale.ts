@@ -86,11 +86,22 @@ const map = {
   cta: "Read more"
 }
 
+const vecnaBoard = {
+  title: `
+    Visit Asia's first-ever
+    Stranger Things: The Encounter
+    Coming to Singapore!
+  `,
+  cta: "Book Now",
+  sponsors: "Sponsors"
+}
+
 export default {
   global,
   loading,
   overlayUI,
   card,
   faq,
-  map
+  map,
+  vecnaBoard
 }

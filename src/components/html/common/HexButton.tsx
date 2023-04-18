@@ -8,6 +8,7 @@ export const Wrapper = styled.button((props: IntrinsicHTML<"button">) => `
   padding: 20px 60px;
   font-size: 32px;
   background: var(--color-blood);
+  color: #aaa;
 
   outline: none;
   border: none;
@@ -18,10 +19,9 @@ export const Wrapper = styled.button((props: IntrinsicHTML<"button">) => `
 `);
 
 const Text = styled.p`
-  transform: translateY(5px);
+  transform: translateY(3px);
   text-transform: uppercase;
   font-weight: 700;
-  color: #aaa;
   font-family: var(--font-benguiat);
   white-space: nowrap;
 `;

@@ -14,6 +14,7 @@ import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotligh
 import WireframeBox from '@webgl/debug/WireframeBox';
 import VecnaBoard from '@hellfire/components/VecnaBoard';
 import Card from '@hellfire/components/Card';
+import { useThree } from '@react-three/fiber';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const env = useEnvStore(state => state.env);
@@ -59,9 +60,18 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     setCardStore("webglEvent", event);
   }
 
+  const handleCallToAction = () => {
+    if (currentZoom !== "vecnaBoard") return;
+
+    window.open(config.link.ticketing, "_blank");
+  }
+
   return (
     <group ref={ref} {...props}>
-      <VecnaBoard onClick={handleModelClick} />
+      <VecnaBoard
+        onClick={handleModelClick}
+        onCallToAction={handleCallToAction}
+      />
 
       <Card.TheEncounter
         ref={encounterCard}

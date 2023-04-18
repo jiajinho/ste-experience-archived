@@ -87,7 +87,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
 
 const cards = {
   theEncounter: {
-    position: [-0.1, 0.01, 0.17]satisfies Vector3,
+    position: [-0.1, 0.01, 0.17] satisfies Vector3,
     rotateY: 0.31,
     content: [
       {
@@ -109,7 +109,7 @@ const cards = {
     ]
   },
   whenWhere: {
-    position: [-0.05, 0.01, -0.18]satisfies Vector3,
+    position: [-0.05, 0.01, -0.18] satisfies Vector3,
     rotateY: -0.38,
     content: [
       {
