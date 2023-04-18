@@ -62,9 +62,10 @@ export default ({ onCallToAction }: {
 
   return (
     <Html
-      occlude
+      occlude={false}
+      prepend
       transform
-      position={[0.17, 0.0018, 0]}
+      position={[0.17, 0.002, 0]}
       scale={0.015}
       rotation={[-Math.PI / 2, 0, Math.PI / 2]}
     >
