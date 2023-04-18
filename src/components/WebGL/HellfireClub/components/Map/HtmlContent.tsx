@@ -32,6 +32,7 @@ export const TitleContainer = styled.div`
   }
 
   h1 {
+    transform: translateY(-3px);
     font-family: var(--font-benguiat);
     font-weight: 700;
     font-size: 25px;
@@ -48,7 +49,7 @@ export default ({ onReadMore }: {
       occlude={false}
       prepend
       transform
-      position={[0.005, 0.0018, -0.005]}
+      position={[0.005, 0.002, -0.005]}
       scale={0.05}
       rotation={[Math.PI / 2, Math.PI, 0]}
     >
