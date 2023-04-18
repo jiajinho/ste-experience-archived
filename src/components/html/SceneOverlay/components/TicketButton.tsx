@@ -1,7 +1,8 @@
-import locale from 'locale';
-import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
+
+import locale from 'locale';
+import config from 'config';
 
 export const Wrapper = styled.svg`
   aspect-ratio: 98/40;
@@ -21,10 +22,8 @@ export const Wrapper = styled.svg`
 `;
 
 export default () => {
-  const router = useRouter();
-
-  const goToTicketPage = () => {
-    router.push("https://www.google.com/");
+  const handleClick = () => {
+    window.open(config.link.ticketing, "_blank");
   }
 
   return (
@@ -34,6 +33,7 @@ export default () => {
       viewBox="0 0 98 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      onClick={handleClick}
     >
       <path
         d="M97.4 39.18H0V0H97.4V39.18ZM1.2 37.98H96.21V1.2H1.2V37.99V37.98Z"
