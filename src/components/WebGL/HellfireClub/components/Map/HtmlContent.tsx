@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Html } from '@react-three/drei';
 
 import locale from 'locale';
-import config from 'config';
 import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 import HexButton, { Wrapper as $HexButton } from '@html/common/HexButton';
 
@@ -41,11 +40,9 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export default () => {
-  const goToGoogleMap = () => {
-    window.open(config.link.eventLocation, "_blank");
-  }
-
+export default ({ onReadMore }: {
+  onReadMore?: () => void
+}) => {
   return (
     <Html
       occlude={false}
@@ -61,7 +58,7 @@ export default () => {
           <h1>{locale.map.title}</h1>
         </TitleContainer>
 
-        <HexButton onClick={goToGoogleMap}>
+        <HexButton onClick={onReadMore}>
           {locale.map.cta}
         </HexButton>
       </Wrapper>
