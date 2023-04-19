@@ -5,18 +5,21 @@ import { LightColor } from '@hellfire/config';
 import { Event } from '@html/CardOverlay/types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useRegisterHotspot from '../hooks/useRegisterHotspot';
+import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
-import useAnimation from './useAnimation';
+import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+import useRegisterHotspot from '../hooks/useRegisterHotspot';
+import useAnimation from './useAnimation';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import VecnaBoard from '@hellfire/components/VecnaBoard';
 import Card from '@hellfire/components/Card';
-import { useThree } from '@react-three/fiber';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  /**
+   * Hooks
+   */
   const env = useEnvStore(state => state.env);
 
   const flippedEncounter = useCardStore(state => state.flippedEncounter);
@@ -24,6 +27,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const setCardStore = useCardStore(state => state.set);
 
   const currentZoom = useCameraStore(state => state.currentZoom);
+
+  const setOutlineMeshStore = useOutlineMeshStore(state => state.set);
 
   const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
@@ -43,11 +48,25 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     spotlight.current.target.updateMatrixWorld();
   }, []);
 
+  useEffect(() => {
+    if (env === "development") return;
+    if (!encounterCard.current) return;
+    if (!whenWhereCard.current) return;
+
+    setOutlineMeshStore([
+      encounterCard.current.children[0] as THREE.Mesh,
+      whenWhereCard.current.children[0] as THREE.Mesh
+    ]);
+  }, [env]);
+
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("vecnaBoard", cameraBox, cameraTarget);
 
+  /**
+   * Not hook
+   */
   const handleModelClick = () => {
     triggerModelControl();
     triggerZoom();
@@ -66,6 +85,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     window.open(config.link.ticketing, "_blank");
   }
 
+  /**
+   * Render
+   */
   return (
     <group ref={ref} {...props}>
       <VecnaBoard
