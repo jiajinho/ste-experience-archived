@@ -18,23 +18,19 @@ export const Wrapper = styled.div`
 
 export default ({ onCallToAction }: {
   onCallToAction?: () => void
-}) => {
-
-
-  return (
-    <Html
-      occlude={false}
-      prepend
-      transform
-      position={[0.005, 0.002, -0.12]}
-      scale={0.01}
-      rotation={[Math.PI / 2, Math.PI, 0]}
-    >
-      <Wrapper>
-        <OctaButton onClick={onCallToAction}>
-          {locale.map.cta}
-        </OctaButton>
-      </Wrapper>
-    </Html>
-  );
-}
+}) => (
+  <Html
+    occlude={false}
+    prepend
+    transform
+    position={[0.005, 0.002, -0.12]}
+    scale={0.025}
+    rotation={[Math.PI / 2, Math.PI, 0]}
+  >
+    <Wrapper>
+      <OctaButton onClick={onCallToAction}>
+        {locale.map.cta}
+      </OctaButton>
+    </Wrapper>
+  </Html>
+);
