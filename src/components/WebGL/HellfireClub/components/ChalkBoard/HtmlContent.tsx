@@ -42,37 +42,36 @@ const TextContainer = styled.div`
   }
 `;
 
-export default () => {
+export default ({ onCallToAction }: {
+  onCallToAction?: () => void
+}) => (
+  <Html
+    occlude={false}
+    prepend
+    transform
+    position={[0, -0.25, 0]}
+    scale={0.09}
+  >
+    <Wrapper>
+      <ImageContainer>
+        <Image
+          src={theXPass}
+          fill
+          alt="The XPass"
+        />
+      </ImageContainer>
 
-  return (
-    <Html
-      occlude={false}
-      prepend
-      transform
-      position={[0, -0.25, 0]}
-      scale={0.09}
-    >
-      <Wrapper>
-        <ImageContainer>
-          <Image
-            src={theXPass}
-            fill
-            alt="The XPass"
-          />
-        </ImageContainer>
+      <TextContainer>
+        {locale.chalkBoard.description.map((v, i) =>
+          <p key={i}>
+            {v.trim()}
+          </p>
+        )}
+      </TextContainer>
 
-        <TextContainer>
-          {locale.chalkBoard.description.map((v, i) =>
-            <p key={i}>
-              {v.trim()}
-            </p>
-          )}
-        </TextContainer>
-
-        <OctaButton>
-          {locale.chalkBoard.cta}
-        </OctaButton>
-      </Wrapper>
-    </Html>
-  )
-}
+      <OctaButton onClick={onCallToAction}>
+        {locale.chalkBoard.cta}
+      </OctaButton>
+    </Wrapper>
+  </Html>
+);

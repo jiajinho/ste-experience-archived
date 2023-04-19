@@ -15,12 +15,15 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default ({ onCallToAction, ...props }: {
+  onCallToAction?: () => void
+} & JSX.IntrinsicElements["group"]
+) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
     <group {...props} dispose={null}>
-      <HtmlContent />
+      <HtmlContent onCallToAction={onCallToAction} />
 
       <mesh
         castShadow
