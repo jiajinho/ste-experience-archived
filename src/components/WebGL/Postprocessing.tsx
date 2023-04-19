@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
 import { KernelSize } from 'postprocessing';
 
@@ -34,8 +33,8 @@ export default () => {
         selection={outlineMeshes}
         visibleEdgeColor={0xff0000}
         hiddenEdgeColor={0xffffff}
-        edgeStrength={0.7}
-        kernelSize={KernelSize.LARGE}
+        edgeStrength={env === "development" ? 2.5 : 0.7}
+        kernelSize={env === "development" ? undefined : KernelSize.LARGE}
         xRay={true}
         blur
       />
