@@ -87,8 +87,8 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
 
 const cards = {
   theEncounter: {
-    position: [-0.1, 0.01, 0.17] satisfies Vector3,
-    rotateY: 0.31,
+    position: [-0.2, 0.01, 0.11] satisfies Vector3,
+    rotateY: -0.43,
     content: [
       {
         description: locale.card.theEncounter.star,
@@ -109,8 +109,8 @@ const cards = {
     ]
   },
   whenWhere: {
-    position: [-0.05, 0.01, -0.18] satisfies Vector3,
-    rotateY: -0.38,
+    position: [-0.05, 0.01, -0.15] satisfies Vector3,
+    rotateY: 0.15,
     content: [
       {
         ...locale.card.whenWhere.date,
