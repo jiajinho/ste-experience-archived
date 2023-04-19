@@ -8,30 +8,29 @@ import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
 import HexButton from '@html/common/HexButton';
 
 const Wrapper = styled.div`
+  width: 350px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   background: transparent;
-  gap: 30px;
+  gap: 24px;
 
   & * {
     font-family: var(--font-benguiat);
   }
 `;
 
-const Content = styled.div`
+const TextGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  
-  width: 741px;
+  gap: 14px;
 `;
 
 const Row = styled.div`
   display: flex;
   align-items: start;
-  gap: 5px;
-  gap: 18px;
+  gap: 12px;
 `;
 
 const Icon = styled.div`
@@ -39,7 +38,7 @@ const Icon = styled.div`
 
   ${$HexRing} {
     flex-shrink: 0;
-    width: 55px;
+    width: 20px;
   }
 
   p {
@@ -47,19 +46,19 @@ const Icon = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -40%);
-    font-size: 36px;
+    font-size: 12px;
     color: var(--color-blood);
   }
 `;
 
 const TextContainer = styled.div`
   h1 {
-    font-size: 32px;
+    font-size: 14px;
   }
 
   p {
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 12px;
+    line-height: 14px;
   }
 `;
 
@@ -71,11 +70,11 @@ export default ({ onCallToAction }: {
     prepend
     transform
     position={[0.005, 0.0018, -0.005]}
-    scale={0.009}
+    scale={0.02}
     rotation={[Math.PI / 2, Math.PI, 0]}
   >
     <Wrapper>
-      <Content>
+      <TextGroup>
         {config.faq.map((v, i) =>
           <Row key={i}>
             <Icon>
@@ -89,7 +88,7 @@ export default ({ onCallToAction }: {
             </TextContainer>
           </Row>
         )}
-      </Content>
+      </TextGroup>
 
       <HexButton onClick={onCallToAction}>
         {locale.faq.cta}
