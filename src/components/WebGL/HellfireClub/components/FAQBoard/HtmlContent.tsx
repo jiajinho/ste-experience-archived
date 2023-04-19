@@ -5,7 +5,7 @@ import { Html } from '@react-three/drei';
 import config from 'config';
 import locale from 'locale';
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
-import HexButton from '@html/common/HexButton';
+import OctaButton from '@html/common/OctaButton';
 
 const Wrapper = styled.div`
   width: 350px;
@@ -90,9 +90,9 @@ export default ({ onCallToAction }: {
         )}
       </TextGroup>
 
-      <HexButton onClick={onCallToAction}>
+      <OctaButton onClick={onCallToAction}>
         {locale.faq.cta}
-      </HexButton>
+      </OctaButton>
     </Wrapper>
   </Html>
 );

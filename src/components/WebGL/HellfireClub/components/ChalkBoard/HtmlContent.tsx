@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import locale from 'locale';
 import theXPass from "/public/static/images/the-xpass.png";
-import HexButton, { Wrapper as $HexButton } from '@html/common/HexButton';
+import OctaButton, { Wrapper as $OctaButton } from '@html/common/OctaButton';
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 8px;
 
-  ${$HexButton} {
+  ${$OctaButton} {
     margin-top: 24px;
   }
 `;
@@ -69,9 +69,9 @@ export default () => {
           )}
         </TextContainer>
 
-        <HexButton>
+        <OctaButton>
           {locale.chalkBoard.cta}
-        </HexButton>
+        </OctaButton>
       </Wrapper>
     </Html>
   )

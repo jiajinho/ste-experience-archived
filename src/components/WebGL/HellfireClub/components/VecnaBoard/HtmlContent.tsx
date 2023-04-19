@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Html } from '@react-three/drei';
 
 import locale from 'locale';
-import HexButton, { Wrapper as $HexButton } from '@html/common/HexButton';
+import OctaButton, { Wrapper as $OctaButton } from '@html/common/OctaButton';
 import Netflix, { Wrapper as $Netflix } from '@html/common/svg/Netflix';
 import SGTourism, { Wrapper as $SGTourism } from '@html/common/SGTourism';
 
@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
     font-family: var(--font-benguiat);
   }
 
-  ${$HexButton} {
+  ${$OctaButton} {
     align-self: center;
     background: var(--color-frosted-lemon);
     color: black;
@@ -74,9 +74,9 @@ export default ({ onCallToAction }: {
           {locale.vecnaBoard.title.trim()}
         </Title>
 
-        <HexButton onClick={onCallToAction}>
+        <OctaButton onClick={onCallToAction}>
           {locale.vecnaBoard.cta}
-        </HexButton>
+        </OctaButton>
 
         <Sponsors>
           <p>{locale.vecnaBoard.sponsors}</p>

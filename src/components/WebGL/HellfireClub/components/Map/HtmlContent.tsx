@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { Html } from '@react-three/drei';
 
 import locale from 'locale';
-import HexButton, { Wrapper as $HexButton } from '@html/common/HexButton';
+import OctaButton, { Wrapper as $OctaButton } from '@html/common/OctaButton';
 
 export const Wrapper = styled.div`
   position: relative;
 
-  ${$HexButton} {
+  ${$OctaButton} {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,9 +31,9 @@ export default ({ onCallToAction }: {
       rotation={[Math.PI / 2, Math.PI, 0]}
     >
       <Wrapper>
-        <HexButton onClick={onCallToAction}>
+        <OctaButton onClick={onCallToAction}>
           {locale.map.cta}
-        </HexButton>
+        </OctaButton>
       </Wrapper>
     </Html>
   );
