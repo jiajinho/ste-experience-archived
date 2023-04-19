@@ -2,6 +2,8 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
+import HtmlContent from "./HtmlContent";
+
 const url = "/static/gltf/chalkboard.glb";
 
 type GLTFResult = GLTF & {
@@ -18,6 +20,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   return (
     <group {...props} dispose={null}>
+      <HtmlContent />
+
       <mesh
         castShadow
         geometry={nodes.ChalkBoard.geometry}

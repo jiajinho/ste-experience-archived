@@ -16,10 +16,13 @@ const benguiat = localFont({
   ]
 });
 
+const chalkiez = localFont({ src: "../public/static/fonts/chalkiez-400.woff2" });
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default {
   benguiat,
+  chalkiez,
   inter
 }
 

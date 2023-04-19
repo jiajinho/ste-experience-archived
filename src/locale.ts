@@ -96,6 +96,19 @@ const vecnaBoard = {
   sponsors: "Sponsors"
 }
 
+const chalkBoard = {
+  description: [`
+    Acquire unique digital collectibles as you 
+    progress through your adventure!
+    `, `
+    Customize your XPass with the special digital 
+    collectibles you earn throughout the Encounter and 
+    print out the unique design on a T-Shirt or Tote Bag!
+    `
+  ],
+  cta: "Book now"
+}
+
 export default {
   global,
   loading,
@@ -103,5 +116,6 @@ export default {
   card,
   faq,
   map,
-  vecnaBoard
+  vecnaBoard,
+  chalkBoard
 }

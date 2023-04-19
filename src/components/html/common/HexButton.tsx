@@ -5,8 +5,8 @@ import { IntrinsicHTML } from 'types';
 import { applyStyleIf } from 'utils';
 
 export const Wrapper = styled.button((props: IntrinsicHTML<"button">) => `
-  padding: 20px 60px;
-  font-size: 32px;
+  padding: 8px 28px;
+  font-size: 16px;
   background: var(--color-blood);
   color: #aaa;
 
@@ -19,7 +19,7 @@ export const Wrapper = styled.button((props: IntrinsicHTML<"button">) => `
 `);
 
 const Text = styled.p`
-  transform: translateY(3px);
+  transform: translateY(1px);
   text-transform: uppercase;
   font-weight: 700;
   font-family: var(--font-benguiat);
