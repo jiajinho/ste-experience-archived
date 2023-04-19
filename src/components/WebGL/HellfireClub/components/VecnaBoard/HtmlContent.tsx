@@ -10,7 +10,7 @@ import SGTourism, { Wrapper as $SGTourism } from '@html/common/SGTourism';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
 
   & * {
     font-family: var(--font-benguiat);
@@ -28,7 +28,7 @@ const Title = styled.h1`
   text-transform: uppercase;
   white-space: pre;
   text-align: center;
-  font-size: 60px;
+  font-size: 22px;
 `;
 
 const Sponsors = styled.div`
@@ -36,23 +36,23 @@ const Sponsors = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 3px;
 
   p { 
     color: var(--color-blood);
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 10px;
   }
 `;
 
 const IconGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 
-  ${$Netflix} { width: 130px }
-  ${$SGTourism} { width: 140px}
+  ${$Netflix} { width: 40px }
+  ${$SGTourism} { width: 50px}
 `;
 
 export default ({ onCallToAction }: {
@@ -66,7 +66,7 @@ export default ({ onCallToAction }: {
       prepend
       transform
       position={[0.17, 0.002, 0]}
-      scale={0.015}
+      scale={0.045}
       rotation={[-Math.PI / 2, 0, Math.PI / 2]}
     >
       <Wrapper onClick={e => e.stopPropagation()}>
