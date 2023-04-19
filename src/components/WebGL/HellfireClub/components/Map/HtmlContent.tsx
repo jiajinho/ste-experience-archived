@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Html } from '@react-three/drei';
 
 import locale from 'locale';
-import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 import HexButton, { Wrapper as $HexButton } from '@html/common/HexButton';
 
 export const Wrapper = styled.div`
@@ -11,54 +10,27 @@ export const Wrapper = styled.div`
 
   ${$HexButton} {
     position: absolute;
-    top: 90px;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.25);
-  }
-`;
-
-export const TitleContainer = styled.div`
-  position: absolute;
-  top: -96px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  ${$STEncounter} {
-    --width: 45px;
-  }
-
-  h1 {
-    transform: translateY(-3px);
-    font-family: var(--font-benguiat);
-    font-weight: 700;
-    font-size: 25px;
-    text-transform: uppercase;
-    color: var(--color-blood);
+    transform: translate(-50%, -50%);
   }
 `;
 
 export default ({ onCallToAction }: {
   onCallToAction?: () => void
 }) => {
+
+
   return (
     <Html
       occlude={false}
       prepend
       transform
-      position={[0.005, 0.002, -0.005]}
-      scale={0.05}
+      position={[0.005, 0.002, -0.12]}
+      scale={0.01}
       rotation={[Math.PI / 2, Math.PI, 0]}
     >
       <Wrapper>
-        <TitleContainer>
-          <STEncounter color="var(--color-blood)" altColor='black' />
-          <h1>{locale.map.title}</h1>
-        </TitleContainer>
-
         <HexButton onClick={onCallToAction}>
           {locale.map.cta}
         </HexButton>
