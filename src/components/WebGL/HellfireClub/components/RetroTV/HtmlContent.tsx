@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Tiktok, { Wrapper as $Tiktok } from '@html/common/svg/Tiktok';
 
-const videoUrl = "/static/mightyverse-teaser.mp4#t=0.001";
+const videoUrl = "/static/ste-encounter.mp4#t=0.001";
 
 const VideoContainer = styled.div`
   position: relative;
