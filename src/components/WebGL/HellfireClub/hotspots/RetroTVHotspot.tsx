@@ -42,11 +42,14 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   }, []);
 
   useEffect(() => {
+    if (env === "development") return;
     if (currentZoom !== "retroTV") return;
     if (!knob.current) return;
 
     setOutlineMeshStore([knob.current]);
-  }, [currentZoom]);
+
+    return () => { setOutlineMeshStore([]) }
+  }, [currentZoom, env]);
 
   /**
    * Not hook

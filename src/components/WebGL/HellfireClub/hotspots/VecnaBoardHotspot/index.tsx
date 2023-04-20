@@ -52,12 +52,15 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     if (env === "development") return;
     if (!encounterCard.current) return;
     if (!whenWhereCard.current) return;
+    if (currentZoom !== "vecnaBoard") return;
 
     setOutlineMeshStore([
       encounterCard.current.children[0] as THREE.Mesh,
       whenWhereCard.current.children[0] as THREE.Mesh
     ]);
-  }, [env]);
+
+    return () => { setOutlineMeshStore([]) }
+  }, [currentZoom, env]);
 
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
