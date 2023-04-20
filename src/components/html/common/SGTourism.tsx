@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
-import sgTourism from '/public/static/sg-tourism.png';
+import sgTourism from '/public/static/images/sg-tourism.png';
 
 export const Wrapper = styled.picture`
   position: relative;
