@@ -59,7 +59,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     triggerZoom();
   }
 
-  const handleTiktokClick = () => {
+  const handleKnobClick = () => {
     if (currentZoom !== "retroTV") {
       triggerZoom();
     }
@@ -76,7 +76,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <RetroTV
         knob={knob}
         onClick={handleClick}
-        onTiktokClick={handleTiktokClick}
+        onKnobClick={handleKnobClick}
       />
 
       <spotLight
