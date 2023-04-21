@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
-import HtmlContent from "./HtmlContent";
 
 const gltfUrl = "/static/gltf/vecna-board.glb";
 const mapUrl = "/static/texture/vecna-texture.png";
@@ -24,10 +23,6 @@ export default ({ onCallToAction, ...props }: {
 
   return (
     <group {...props} dispose={null}>
-      <HtmlContent
-        onCallToAction={onCallToAction}
-      />
-
       <mesh
         ref={ref}
         geometry={nodes.VecnaBoard.geometry}
@@ -35,8 +30,6 @@ export default ({ onCallToAction, ...props }: {
       >
         <meshStandardMaterial
           map={map}
-          metalness={0.1}
-          roughness={0.6}
         />
       </mesh>
     </group>
