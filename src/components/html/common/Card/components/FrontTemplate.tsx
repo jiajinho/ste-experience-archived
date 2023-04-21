@@ -11,7 +11,6 @@ export default () => {
     <Image
       src={frontTemplate}
       alt="Card front"
-      priority
       fill
       onLoadingComplete={() => setLoadProgressStore("html", { cardTemplateFront: true })}
     />
