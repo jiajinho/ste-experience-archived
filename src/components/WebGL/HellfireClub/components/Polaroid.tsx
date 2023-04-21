@@ -33,6 +33,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       {...props}
       onClick={handleClick}
       dispose={null}
+      scale={1.2}
     >
       <mesh
         geometry={nodes.Polaroid.geometry}
@@ -44,6 +45,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         scale={0.21}
         position-y={0.02}
         rotation-y={Math.PI / 2}
+        color="#5C4A46"
       />
     </group>
   );

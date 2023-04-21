@@ -8,6 +8,8 @@ import useEnvStore from 'stores/useEnvStore';
 
 import NoticeBoard from '@hellfire/components/NoticeBoard';
 import WireframeBox from '@webgl/debug/WireframeBox';
+import Polaroid from '../components/Polaroid';
+import Sticker from '../components/Sticker';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
@@ -47,6 +49,69 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group ref={ref} {...props}>
       <NoticeBoard onClick={handleClick} />
+
+      <Polaroid
+        position={[0, 0.33, 0.44]}
+      />
+
+      <Polaroid
+        position={[0, 0.3, 0.16]}
+        rotation={[0.09, 0, 0]}
+      />
+
+      <Polaroid
+        position={[0.015, 0.32, -0.15]}
+        rotation={[-0.03, 0, 0]}
+      />
+
+      <Polaroid
+        position={[0, 0.31, -0.45]}
+        rotation={[0.14, 0, 0]}
+      />
+
+      <Polaroid
+        position={[0.01, 0.02, 0.27]}
+        rotation={[0.15, 0, 0]}
+      />
+
+      <Polaroid position={[0.02, 0.04, -0.09]} />
+
+      <Polaroid
+        position={[0.01, 0.06, -0.38]}
+        rotation={[0.12, 0, 0]}
+      />
+
+      <Polaroid
+        position={[0.015, -0.23, 0.07]}
+        rotation={[-0.04, 0, 0]}
+      />
+
+      <Polaroid
+        position={[0.025, -0.22, -0.22]}
+        rotation={[-0.02, 0, 0]}
+      />
+
+      <Sticker.Cap position={[0.04, 0.45, -0.32]} />
+
+      <Sticker.Hamburger
+        position={[0.04, 0.16, 0.56]}
+        rotation={[-0.2, 0, 0]}
+      />
+
+      <Sticker.ChocoCan
+        position={[0.03, 0.37, 0.02]}
+      />
+
+      <Sticker.Flower
+        position={[0.04, -0.36, 0.2]}
+      />
+
+      <Sticker.Camp
+        position={[0, -0.03, -0.62]}
+        rotation={[0.37, 0, 0]}
+      />
+
+
 
       <spotLight
         ref={spotlight}
