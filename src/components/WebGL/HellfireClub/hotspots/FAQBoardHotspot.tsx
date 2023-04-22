@@ -40,6 +40,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <FAQBoard
         onClick={handleClick}
         onCallToAction={handleCallToAction}
+        rotation-y={Math.PI}
       />
 
       {env === "development" &&
