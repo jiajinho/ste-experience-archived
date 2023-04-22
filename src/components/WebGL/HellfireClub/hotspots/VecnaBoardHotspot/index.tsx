@@ -96,6 +96,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <VecnaBoard
         onClick={handleModelClick}
         onCallToAction={handleCallToAction}
+        rotation={[0, Math.PI / 2, 0]}
       />
 
       <Card.TheEncounter
