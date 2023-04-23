@@ -48,74 +48,9 @@ const card = {
   }
 }
 
-const faq = {
-  xPass: {
-    question: "What is an XPass?",
-    answer: `
-      It is your admission ticket to the event that can be customized with digital collectibles 
-      (frgmnts) that you collect as you journey through The Encounter. In addition, collecting
-      these frgmnts may allow you to redeem special benefits in our retail area.
-    `
-  },
-  where: {
-    question: "Where can I purchase my ticket?",
-    answer: `
-      You can purchase the tickets by clicking the buy now button on this screen, or our onsite 
-      POS system on level 2. We encourage you to buy the tickets online due to limited availability.
-    `
-  },
-  ticketType: {
-    question: "What type of tickets are there?",
-    answer: `
-      You can get Regular or VIP tickets. For Regular tickets, you get access to the experience and a 
-      5% discount when you spend over 60 SGD in the retail space. For the VIP tickets, you get access 
-      to the experience, the Hellfire Club Capsule Collection, consisting of a Hat and a T-shirt 
-      (one size) and Priority Event Access.
-    `
-  },
-  ticketCost: {
-    question: "How much are the tickets?",
-    answer: `
-      The Regular and VIP tickets are normally 39 SGD and 109 SGD respectively.`
-  },
-  cta: "Read More"
-}
-
-const map = {
-  title: "Directions",
-  cta: "Read more"
-}
-
-const vecnaBoard = {
-  title: `
-    Visit Asia's first-ever
-    Stranger Things: The Encounter
-    Coming to Singapore!
-  `,
-  cta: "Book Now",
-  sponsors: "Sponsors"
-}
-
-const chalkBoard = {
-  description: [`
-    Acquire unique digital collectibles as you 
-    progress through your adventure!
-    `, `
-    Customize your XPass with the special digital 
-    collectibles you earn throughout the Encounter and 
-    print out the unique design on a T-Shirt or Tote Bag!
-    `
-  ],
-  cta: "Book now"
-}
-
 export default {
   global,
   loading,
   overlayUI,
-  card,
-  faq,
-  map,
-  vecnaBoard,
-  chalkBoard
+  card
 }

@@ -129,17 +129,9 @@ const cards = {
   }
 }
 
-const faq = [
-  locale.faq.xPass,
-  locale.faq.where,
-  locale.faq.ticketType,
-  locale.faq.ticketCost
-];
-
 export default {
   link,
   zoomSettings,
   viewport,
-  cards,
-  faq
+  cards
 }
