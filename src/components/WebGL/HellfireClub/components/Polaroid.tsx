@@ -12,7 +12,7 @@ type GLTFResult = GLTF & {
     Polaroid: THREE.Mesh;
   };
   materials: {
-    polaroid: THREE.MeshStandardMaterial;
+    Polaroid: THREE.MeshStandardMaterial;
   };
 };
 
@@ -37,13 +37,13 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     >
       <mesh
         geometry={nodes.Polaroid.geometry}
-        material={materials.polaroid}
+        material={materials.Polaroid}
       />
 
       <Image
         url='https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg'
-        scale={0.21}
-        position-y={0.02}
+        scale={0.19}
+        position={[0.001, 0.015, 0]}
         rotation-y={Math.PI / 2}
         color="#5C4A46"
       />
