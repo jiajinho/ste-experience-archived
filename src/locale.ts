@@ -1,5 +1,6 @@
 const global = {
-  stEncounter: "The Encounter"
+  stEncounter: "The Encounter",
+  title: "Stranger Things - The Encounter"
 }
 
 const loading = {
