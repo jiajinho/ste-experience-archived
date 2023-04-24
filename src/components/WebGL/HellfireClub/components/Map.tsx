@@ -4,6 +4,7 @@ import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import useCursorPointer from "../useCursorPointer";
 
 const gltfUrl = "/static/gltf/map.glb";
 
@@ -26,6 +27,8 @@ export default ({ onCallToAction, ...props }: {
 
   const triggerMover = useTriggerDebugModel(ref);
 
+  const pointerEvents = useCursorPointer();
+
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
     props.onClick && props.onClick(e);
@@ -43,6 +46,7 @@ export default ({ onCallToAction, ...props }: {
         material={materials.cta}
         position={[0, 0.005, 0]}
         onClick={onCallToAction}
+        {...pointerEvents}
       />
 
       <mesh

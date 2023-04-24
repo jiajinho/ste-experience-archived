@@ -1,6 +1,7 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
+import useCursorPointer from "../useCursorPointer";
 
 const gltfUrl = "/static/gltf/vecna-board.glb";
 
@@ -21,12 +22,15 @@ export default ({ onCallToAction, ...props }: {
 ) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
 
+  const pointerEvents = useCursorPointer();
+
   return (
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.CTA.geometry}
         material={materials.cta}
         onClick={onCallToAction}
+        {...pointerEvents}
       />
 
       <mesh
