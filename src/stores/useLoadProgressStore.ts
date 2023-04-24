@@ -1,6 +1,10 @@
 import { create } from "zustand";
 
 type LoadObject = {
+  fps: {
+    calibrating: boolean,
+    completed: boolean
+  }
   webgl: {
     total?: number,
     loaded: number
@@ -23,6 +27,10 @@ type Store = LoadObject & {
 
 
 export default create<Store>((set) => ({
+  fps: {
+    calibrating: true,
+    completed: false
+  },
   webgl: {
     total: undefined,
     loaded: 0

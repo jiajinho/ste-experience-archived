@@ -5,7 +5,7 @@ import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
-const url = "/static/gltf/noticeboard.glb";
+const url = "/static/gltf/notice-board.glb";
 
 type GLTFResult = GLTF & {
   nodes: {

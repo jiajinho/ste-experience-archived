@@ -13,13 +13,13 @@ import Head from 'next/head';
 const App = styled.div`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
   --font-inter: ${fonts.inter.style.fontFamily};
+  --font-chalkiez: ${fonts.chalkiez.style.fontFamily};
 `;
 
 export default ({ Component, pageProps }: AppProps) => {
   const env = useEnvStore(state => state.env);
 
   // useThemeSong();
-
   useResponsive();
   useToggleEnv();
 

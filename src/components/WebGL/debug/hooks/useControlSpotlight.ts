@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { useThree } from '@react-three/fiber';
 import { useHelper } from '@react-three/drei';
 import { useControls } from 'leva';
 
 import useDebugLightStore from 'stores/webgl/useDebugLightStore';
 
 export default (collapsed: boolean) => {
+  const gl = useThree(state => state.gl);
+
   const light = useDebugLightStore(state => state.light);
   const box = useDebugLightStore(state => state.box);
 
@@ -73,6 +76,10 @@ export default (collapsed: boolean) => {
     light.distance = distance;
     light.color.set(color);
   }, [angle, distance, color, intensity]);
+
+  useEffect(() => {
+    gl.shadowMap.needsUpdate = true;
+  }, [x, y, z, tx, ty, tz, angle, distance, color, intensity]);
 
 
   /**

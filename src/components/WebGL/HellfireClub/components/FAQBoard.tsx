@@ -1,27 +1,31 @@
 import React, { useRef } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
-const gltfUrl = "/static/gltf/faq-board.glb";
-const mapUrl = "/static/texture/vecna-faq-map.png";
+const url = "/static/gltf/faq-board.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
+    cta: THREE.Mesh;
     FAQBoard: THREE.Mesh;
+  };
+  materials: {
+    cta: THREE.MeshStandardMaterial;
+    FAQBoard: THREE.MeshStandardMaterial;
   };
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
+export default ({ onCallToAction, ...props }: {
+  onCallToAction?: () => void
+} & JSX.IntrinsicElements["group"]
+) => {
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useTriggerDebugModel(ref);
-
-  const { map } = useTexture({ map: mapUrl });
-  map.flipY = false;
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
@@ -35,15 +39,17 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.FAQBoard.geometry}>
-        <meshStandardMaterial
-          map={map}
-          metalness={0.1}
-          roughness={0.6}
-        />
-      </mesh>
+      <mesh
+        geometry={nodes.cta.geometry}
+        material={materials.cta}
+        onClick={onCallToAction}
+      />
+      <mesh
+        geometry={nodes.FAQBoard.geometry}
+        material={materials.FAQBoard}
+      />
     </group>
   );
 }
 
-useGLTF.preload(gltfUrl);
+useGLTF.preload(url);

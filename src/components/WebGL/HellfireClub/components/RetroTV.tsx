@@ -1,64 +1,70 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useMemo } from "react";
+import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
-import { Html, useGLTF } from "@react-three/drei";
+import { useGLTF, useVideoTexture } from "@react-three/drei";
 
 const gltfUrl = "/static/gltf/retro-tv.glb";
-const videoUrl = "/static/mightyverse-teaser.mp4#t=0.001";
+const videoUrl = "/static/ste-encounter.mp4";
+
 
 type GLTFResult = GLTF & {
   nodes: {
+    Tiktok: THREE.Mesh;
     RetroTV: THREE.Mesh;
+    RetroTVKnob: THREE.Mesh;
+    // RetroTVScreen: THREE.Mesh;
   };
   materials: {
+    tiktok: THREE.MeshStandardMaterial;
     RetroTV: THREE.MeshStandardMaterial;
   };
 };
 
-const Screen = styled.div`
-  position: relative;
-  background: black;
-  width: 1160px;
-  height: 910px;
-
-  & > video {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 80%;
-  }
-`;
-
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default ({ knob, onKnobClick, ...props }: {
+  knob?: React.RefObject<THREE.Mesh>,
+  onKnobClick?: () => void
+} & JSX.IntrinsicElements["group"]
+) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
+
+  const texture = useVideoTexture(videoUrl, {
+    unsuspend: 'canplay'
+  });
+
+  const videoMaterial = useMemo(() => {
+    if (!texture) return;
+
+    return new THREE.MeshBasicMaterial({
+      map: texture
+    })
+  }, [texture]);
 
   return (
     <group {...props} dispose={null}>
-      <Html
-        occlude="blending"
-        prepend
-        transform
-        position={[0.1, 0, 0]}
-        rotation-y={Math.PI / 2}
-        scale={0.01}
-      >
-        <Screen>
-          <video controls autoPlay={false}>
-            <source
-              src={videoUrl}
-              type="video/mp4"
-            />
-          </video>
-        </Screen>
-      </Html>
-
+      <mesh
+        geometry={nodes.Tiktok.geometry}
+        material={materials.tiktok}
+      />
       <mesh
         castShadow
         geometry={nodes.RetroTV.geometry}
         material={materials.RetroTV}
       />
+      <mesh
+        ref={knob}
+        geometry={nodes.RetroTVKnob.geometry}
+        material={materials.RetroTV}
+        onClick={onKnobClick}
+      />
+
+      <mesh
+        material={videoMaterial}
+        rotation={[0, Math.PI / 2, 0]}
+        scale={[0.3, 0.24, 1]}
+        position={[0.098, 0, 0]}
+      >
+        <planeGeometry />
+      </mesh>
     </group >
   );
 }

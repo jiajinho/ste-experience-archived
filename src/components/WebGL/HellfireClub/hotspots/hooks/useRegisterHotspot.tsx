@@ -14,6 +14,7 @@ export default (
   cameraTarget: React.RefObject<THREE.Group>
 ) => {
   const env = useEnvStore(state => state.env);
+  const currentZoom = useCameraStore(state => state.currentZoom);
   const setCameraStore = useCameraStore(state => state.set);
 
   const debug = {
@@ -37,6 +38,7 @@ export default (
 
   const triggerZoom = () => {
     if (env === "development") return;
+    if (currentZoom === hotspot) return;
 
     if (env === "staging") {
       console.log(hotspot, {

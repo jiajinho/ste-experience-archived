@@ -1,15 +1,10 @@
 import { useEffect } from 'react';
 import { useControls } from 'leva';
 
-import useEnvStore from 'stores/useEnvStore';
 import useDebugModelStore from 'stores/webgl/useDebugModelStore';
-import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 
 export default (collapsed: boolean) => {
-  const env = useEnvStore(state => state.env);
-
   const group = useDebugModelStore(state => state.group);
-  const setOutline = useOutlineMeshStore(state => state.set);
 
   const [{ x, y, z, rx, ry, rz }, set] = useControls("useControlModel", () => ({
     x: { min: -5, max: 5, step: 0.01, value: 0 },
@@ -22,11 +17,7 @@ export default (collapsed: boolean) => {
     collapsed
   });
 
-  useEffect(() => {
-    if (env !== "development") {
-      setOutline([]);
-    }
-  }, [env, setOutline]);
+
 
   useEffect(() => {
     if (!group) return;

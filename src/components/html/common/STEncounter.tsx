@@ -7,12 +7,14 @@ import Netflix, { Wrapper as $Netflix } from '@html/common/svg/Netflix';
 import StrangerThings, { Wrapper as $StrangerThings } from '@html/common/svg/StrangerThings';
 
 export const Wrapper = styled.div`
-  width: 160px;
+  --width: 160px;
+
+  width: var(--width);
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: calc(var(--width) / 20);
 
   user-select: none;
 
@@ -20,24 +22,26 @@ export const Wrapper = styled.div`
   ${$StrangerThings} { width: 100% }
 `;
 
-const Footer = styled.p`
-  margin-top: 4px;
-
+const Footer = styled.p(({ $color }: {
+  $color: string
+}) => `
   text-transform: uppercase;
   font-family: var(--font-inter);
   font-weight: 900;
-  font-size: 16px;
+  font-size: calc(var(--width) / 13);
 
-  color: white;
-`;
+  color: ${$color};
+`);
 
-export default React.forwardRef(({ }, ref: React.ForwardedRef<HTMLDivElement>) => (
+export default React.forwardRef(({ color, altColor = 'white' }: {
+  color?: string,
+  altColor?: string
+}, ref: React.ForwardedRef<HTMLDivElement>) => (
   <Wrapper ref={ref}>
-    <Netflix />
+    <Netflix color={color} />
+    <StrangerThings color={color} />
 
-    <StrangerThings />
-
-    <Footer>
+    <Footer $color={altColor}>
       {locale.global.stEncounter}
     </Footer>
   </Wrapper>

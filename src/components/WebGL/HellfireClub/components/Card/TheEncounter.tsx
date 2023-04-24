@@ -45,6 +45,7 @@ export default React.forwardRef(({ flipped = false, ...props }: {
       <mesh
         geometry={nodes.Card.geometry}
         rotation={[rotateX, 0, 0]}
+        scale={0.9}
       >
         <meshStandardMaterial
           map={map}

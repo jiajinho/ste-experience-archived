@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
+import config from 'config';
 import { LightColor } from '@hellfire/config';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useEnvStore from 'stores/useEnvStore';
+import useCameraStore from 'stores/webgl/useCameraStore';
+import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import RetroTV from '@hellfire/components/RetroTV';
@@ -15,6 +18,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Hooks
    */
   const env = useEnvStore(state => state.env);
+  const currentZoom = useCameraStore(state => state.currentZoom);
+  const setOutlineMeshStore = useOutlineMeshStore(state => state.set);
+
+  const knob = useRef<THREE.Mesh>(null);
 
   const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
@@ -34,6 +41,16 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     spotlight.current.target.updateMatrixWorld();
   }, []);
 
+  useEffect(() => {
+    if (env === "development") return;
+    if (currentZoom !== "retroTV") return;
+    if (!knob.current) return;
+
+    setOutlineMeshStore([knob.current]);
+
+    return () => { setOutlineMeshStore([]) }
+  }, [currentZoom, env]);
+
   /**
    * Not hook
    */
@@ -42,12 +59,25 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     triggerZoom();
   }
 
+  const handleKnobClick = () => {
+    if (currentZoom !== "retroTV") {
+      triggerZoom();
+    }
+    else {
+      window.open(config.link.tiktok, "_blank");
+    }
+  }
+
   /**
    * Render
    */
   return (
     <group ref={ref} {...props}>
-      <RetroTV onClick={handleClick} />
+      <RetroTV
+        knob={knob}
+        onClick={handleClick}
+        onKnobClick={handleKnobClick}
+      />
 
       <spotLight
         ref={spotlight}

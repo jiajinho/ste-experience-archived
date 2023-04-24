@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import { useControls } from 'leva';
 
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useEnvStore from 'stores/useEnvStore';
@@ -21,6 +22,10 @@ export default () => {
   const env = useEnvStore(state => state.env);
   const setCameraStore = useCameraStore(state => state.set);
 
+  const { cameraPosition } = useControls("log", {
+    cameraPosition: false
+  });
+
   useMouseEvent();
   useZoomHotspot();
 
@@ -38,6 +43,8 @@ export default () => {
    */
   const handleOrbitChange = () => {
     if (env !== "development") return;
+    if (!cameraPosition) return;
+
     console.log({ cameraPosition: camera.position });
   }
 

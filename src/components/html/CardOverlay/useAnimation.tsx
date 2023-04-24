@@ -37,7 +37,8 @@ export default (
       default:
         timeline.to([theEncounter.current, whenWhere.current], {
           duration: 0.5,
-          top: "150%"
+          top: "150%",
+          overwrite: true
         }).to(wrapper.current, {
           duration: 0.25,
           autoAlpha: 0

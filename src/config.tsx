@@ -18,6 +18,13 @@ const viewport: Viewport = {
   lg: "1200px"
 }
 
+const link = {
+  faq: "https://google.com",
+  ticketing: "https://google.com",
+  eventLocation: "https://goo.gl/maps/zM7E26fDeZR5RJ7d8",
+  tiktok: "https://google.com"
+}
+
 /**
  * Order sensitive, initially set the zoom props of the hotspots to be empty, which 
  * will be filler in the useZoom later
@@ -81,8 +88,8 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
 
 const cards = {
   theEncounter: {
-    position: [-0.1, 0.01, 0.17]satisfies Vector3,
-    rotateY: 0.31,
+    position: [-0.2, 0.01, 0.11] satisfies Vector3,
+    rotateY: -0.43,
     content: [
       {
         description: locale.card.theEncounter.star,
@@ -103,8 +110,8 @@ const cards = {
     ]
   },
   whenWhere: {
-    position: [-0.05, 0.01, -0.18]satisfies Vector3,
-    rotateY: -0.38,
+    position: [-0.05, 0.01, -0.15] satisfies Vector3,
+    rotateY: 0.15,
     content: [
       {
         ...locale.card.whenWhere.date,
@@ -123,6 +130,7 @@ const cards = {
 }
 
 export default {
+  link,
   zoomSettings,
   viewport,
   cards

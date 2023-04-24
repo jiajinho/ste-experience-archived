@@ -5,6 +5,8 @@ import { Canvas } from '@react-three/fiber';
 import useEnvStore from 'stores/useEnvStore';
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
+import useGLStore from 'stores/webgl/useGLStore';
+import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
@@ -28,20 +30,37 @@ const CanvasContainer = styled.div`
 `;
 
 export default () => {
+  /**
+   * Hooks
+   */
   const canvas = useRef<HTMLDivElement>(null);
 
   const env = useEnvStore(state => state.env);
+  const dpr = useGLStore(state => state.dpr);
+  const fps = useLoadProgressStore(state => state.fps);
   const loading = useLoadAnimationStore(state => state.loading);
   const setCameraStore = useCameraStore(state => state.set);
-
-  const renderTutorial = loading && env === "production";
-  const renderOverlay = env !== "development";
 
   useEffect(() => {
     if (!canvas.current) return;
     setCameraStore("canvas", canvas.current);
   }, []);
 
+  /**
+   * Not hook
+   */
+  const renderTutorial = loading && env === "production";
+  const renderOverlay = env !== "development";
+
+  let frameloop: "demand" | "always" = "demand";
+
+  if (!loading || fps.calibrating || env === "development" || env === "staging") {
+    frameloop = "always";
+  }
+
+  /**
+   * Render
+   */
   return (
     <Wrapper>
       {renderTutorial && <LoadingTutorial />}
@@ -52,8 +71,9 @@ export default () => {
       <CanvasContainer ref={canvas}>
         <Canvas
           shadows
-          frameloop={env === "production" && loading ? "demand" : "always"}
+          frameloop={frameloop}
           camera={{ fov: 50 }}
+          dpr={dpr}
         >
           <WebGL />
         </Canvas>

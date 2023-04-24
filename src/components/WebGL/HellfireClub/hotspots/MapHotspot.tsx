@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 
+import config from 'config';
 import { LightColor } from '@hellfire/config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useEnvStore from 'stores/useEnvStore';
+import useCameraStore from 'stores/webgl/useCameraStore';
 
 import Map from '@hellfire/components/Map';
 import WireframeBox from '@webgl/debug/WireframeBox';
@@ -13,6 +15,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Hooks
    */
+  const currentZoom = useCameraStore(state => state.currentZoom);
   const env = useEnvStore(state => state.env);
 
   const ref = useRef<THREE.Group>(null);
@@ -41,12 +44,24 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     triggerZoom();
   }
 
+  const handleCallToAction = () => {
+    if (currentZoom !== 'map') {
+      triggerZoom();
+    }
+    else {
+      window.open(config.link.eventLocation, "_blank");
+    }
+  }
+
   /**
    * Render
    */
   return (
     <group ref={ref} {...props}>
-      <Map onClick={handleClick} />
+      <Map
+        onClick={handleClick}
+        onCallToAction={handleCallToAction}
+      />
 
       <spotLight
         ref={spotlight}
