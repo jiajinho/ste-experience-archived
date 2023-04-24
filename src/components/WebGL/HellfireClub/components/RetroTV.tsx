@@ -3,11 +3,8 @@ import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
 import { useGLTF, useVideoTexture } from "@react-three/drei";
 
-import useCursorPointer from "../useCursorPointer";
-
 const gltfUrl = "/static/gltf/retro-tv.glb";
 const videoUrl = "/static/ste-encounter.mp4";
-
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -28,8 +25,6 @@ export default ({ knob, onKnobClick, ...props }: {
 } & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
-
-  const pointerEvents = useCursorPointer();
 
   const texture = useVideoTexture(videoUrl, {
     unsuspend: 'canplay'
@@ -59,7 +54,6 @@ export default ({ knob, onKnobClick, ...props }: {
         geometry={nodes.RetroTVKnob.geometry}
         material={materials.RetroTV}
         onClick={onKnobClick}
-        {...pointerEvents}
       />
 
       <mesh

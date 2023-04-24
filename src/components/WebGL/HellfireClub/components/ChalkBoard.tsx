@@ -2,8 +2,6 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useCursorPointer from "../useCursorPointer";
-
 const url = "/static/gltf/chalk-board.glb";
 
 type GLTFResult = GLTF & {
@@ -25,8 +23,6 @@ export default ({ onCallToAction, ...props }: {
 ) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
-  const pointerEvents = useCursorPointer();
-
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -34,7 +30,6 @@ export default ({ onCallToAction, ...props }: {
         material={materials.cta}
         position={[0, 0, 0.005]}
         onClick={onCallToAction}
-        {...pointerEvents}
       />
       <mesh
         castShadow
