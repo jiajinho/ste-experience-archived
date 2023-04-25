@@ -17,7 +17,6 @@ import CandlestandGroup from './groups/CandlestandGroup';
 import RiftGroup from './groups/RiftGroup';
 import WallGroup from './groups/WallGroup';
 import ChairGroup from './groups/ChairGroup';
-import StandeeGroup from './groups/StandeeGroup';
 import TabletopGroup from './groups/TabletopGroup';
 import BoxGroup from './groups/BoxGroup';
 
@@ -29,6 +28,7 @@ import DefaultViewHotspot from './hotspots/DefaultViewHotspot';
 import VecnaBoardHotspot from './hotspots/VecnaBoardHotspot';
 import FAQBoardHotspot from './hotspots/FAQBoardHotspot';
 import MapHotspot from './hotspots/MapHotspot';
+import Standee from './components/Standee';
 
 export default () => (
   <>
@@ -124,6 +124,11 @@ export default () => (
       position={[3.31, 0.92, -4.24]}
       rotation={[0.45, -0.21, 0.1]}
       light={LightColor.Yellow}
+    />
+
+    <Standee.CastleWall
+      position={[-2.11, 0.92, 4.42]}
+      rotation={[0.19, -0.36, 0.1]}
     />
 
     {/* <Cup
@@ -223,8 +228,6 @@ export default () => (
     <CurtainGroup />
 
     <CandlestandGroup />
-
-    <StandeeGroup />
 
     <ChairGroup />
 
