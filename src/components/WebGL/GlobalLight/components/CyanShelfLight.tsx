@@ -3,6 +3,7 @@ import * as THREE from 'three';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+import { LightColor } from '@webgl/config';
 
 export default () => {
   const spotlight = useRef<THREE.SpotLight>(null);
@@ -14,7 +15,7 @@ export default () => {
     if (!spotlight.current) return;
     if (!lightBox.current) return;
 
-    spotlight.current.target.position.set(-5, -45, 0);
+    spotlight.current.target.position.set(-15, -100, 20);
     spotlight.current.target.updateMatrixWorld();
   }, []);
 
@@ -23,12 +24,12 @@ export default () => {
       <spotLight
         ref={spotlight}
         castShadow
-        angle={0.41}
+        angle={0.38}
         penumbra={1}
-        distance={17}
-        position={[-2.42, 4.43, -2.05]}
-        intensity={2.9}
-        color="#2caec1"
+        position={[2.42, 4.43, -2.05]}
+        intensity={2}
+        distance={8}
+        color={LightColor.Cyan}
       />
 
       <WireframeBox.Light
