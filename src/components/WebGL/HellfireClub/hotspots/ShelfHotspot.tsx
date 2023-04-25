@@ -54,7 +54,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    */
   return (
     <group ref={ref} {...props}>
-      <Shelf onClick={handleClick} />
+      <Shelf
+        onClick={handleClick}
+        rotation-y={Math.PI / 2}
+        scale={1.1}
+      />
 
       <spotLight
         ref={topLight}
@@ -71,7 +75,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         penumbra={1}
         position={[1.47, 0, 0]}
         angle={0.52}
-        intensity={7}
+        intensity={3.5}
         distance={2}
         color={LightColor.Crimson}
       />

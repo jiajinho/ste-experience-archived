@@ -4,31 +4,31 @@ import type { GLTF } from "three-stdlib";
 
 const url = "/static/gltf/shelf.glb";
 
-
 type GLTFResult = GLTF & {
   nodes: {
-    ["Stranger_Things-_Soundtrack_From_Season_4_Vinyl_Record_main_(1)"]: THREE.Mesh;
+    eleven: THREE.Mesh;
+    cap: THREE.Mesh;
+    cup: THREE.Mesh;
+    tape: THREE.Mesh;
+    ["tote-bag"]: THREE.Mesh;
+    shirt: THREE.Mesh;
+    vecna: THREE.Mesh;
+    vinyl: THREE.Mesh;
+    denim: THREE.Mesh;
     Shelf: THREE.Mesh;
-    ["STR025A_STARCOURT_MALL_TOTE_(1)"]: THREE.Mesh;
-    ["Merch_-_shirt"]: THREE.Mesh;
-    ST_Cap: THREE.Mesh;
-    StrangerThings_EntryLine_Eleven_BattleReady_Turnarounds_230403_: THREE.Mesh;
-    ST_Tape: THREE.Mesh;
-    Netflix_Vecna_CW02_turnarounds_01: THREE.Mesh;
-    ["merchArtboard-1"]: THREE.Mesh;
-    ST_Cup: THREE.Mesh;
+    Sign: THREE.Mesh;
   };
   materials: {
-    ["Stranger Things- Soundtrack From Season 4 Vinyl Record main (1)"]: THREE.MeshStandardMaterial;
+    eleven: THREE.MeshStandardMaterial;
+    cap: THREE.MeshStandardMaterial;
+    cup: THREE.MeshStandardMaterial;
+    tape: THREE.MeshStandardMaterial;
+    ["tote-bag"]: THREE.MeshStandardMaterial;
+    shirt: THREE.MeshStandardMaterial;
+    vecna: THREE.MeshStandardMaterial;
+    vinyl: THREE.MeshStandardMaterial;
+    denim: THREE.MeshStandardMaterial;
     Shelf: THREE.MeshStandardMaterial;
-    ["STR025A_STARCOURT MALL TOTE (1)"]: THREE.MeshStandardMaterial;
-    ["Merch - shirt"]: THREE.MeshStandardMaterial;
-    ST_Cap: THREE.MeshStandardMaterial;
-    StrangerThings_EntryLine_Eleven_BattleReady_Turnarounds_230403_: THREE.MeshStandardMaterial;
-    ST_Tape: THREE.MeshStandardMaterial;
-    Netflix_Vecna_CW02_turnarounds_01: THREE.MeshStandardMaterial;
-    ["merchArtboard-1"]: THREE.MeshStandardMaterial;
-    ST_Cup: THREE.MeshStandardMaterial;
   };
 };
 
@@ -38,57 +38,49 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group {...props} dispose={null}>
       <mesh
-        geometry={
-          nodes[
-            "Stranger_Things-_Soundtrack_From_Season_4_Vinyl_Record_main_(1)"
-          ].geometry
-        }
-        material={
-          materials[
-          "Stranger Things- Soundtrack From Season 4 Vinyl Record main (1)"
-          ]
-        }
+        geometry={nodes.eleven.geometry}
+        material={materials.eleven}
       />
       <mesh
+        geometry={nodes.cap.geometry}
+        material={materials.cap}
+      />
+      <mesh
+        geometry={nodes.cup.geometry}
+        material={materials.cup}
+      />
+      <mesh
+        geometry={nodes.tape.geometry}
+        material={materials.tape}
+      />
+      <mesh
+        geometry={nodes["tote-bag"].geometry}
+        material={materials["tote-bag"]}
+      />
+      <mesh
+        geometry={nodes.shirt.geometry}
+        material={materials.shirt}
+      />
+      <mesh
+        geometry={nodes.vecna.geometry}
+        material={materials.vecna}
+      />
+      <mesh
+        geometry={nodes.vinyl.geometry}
+        material={materials.vinyl}
+      />
+      <mesh
+        geometry={nodes.denim.geometry}
+        material={materials.denim}
+      />
+      <mesh
+        castShadow
         geometry={nodes.Shelf.geometry}
         material={materials.Shelf}
       />
       <mesh
-        geometry={nodes["STR025A_STARCOURT_MALL_TOTE_(1)"].geometry}
-        material={materials["STR025A_STARCOURT MALL TOTE (1)"]}
-      />
-      <mesh
-        geometry={nodes["Merch_-_shirt"].geometry}
-        material={materials["Merch - shirt"]}
-      />
-      <mesh
-        geometry={nodes.ST_Cap.geometry}
-        material={materials.ST_Cap}
-      />
-      <mesh
-        geometry={
-          nodes.StrangerThings_EntryLine_Eleven_BattleReady_Turnarounds_230403_
-            .geometry
-        }
-        material={
-          materials.StrangerThings_EntryLine_Eleven_BattleReady_Turnarounds_230403_
-        }
-      />
-      <mesh
-        geometry={nodes.ST_Tape.geometry}
-        material={materials.ST_Tape}
-      />
-      <mesh
-        geometry={nodes.Netflix_Vecna_CW02_turnarounds_01.geometry}
-        material={materials.Netflix_Vecna_CW02_turnarounds_01}
-      />
-      <mesh
-        geometry={nodes["merchArtboard-1"].geometry}
-        material={materials["merchArtboard-1"]}
-      />
-      <mesh
-        geometry={nodes.ST_Cup.geometry}
-        material={materials.ST_Cup}
+        geometry={nodes.Sign.geometry}
+        material={materials.Shelf}
       />
     </group>
   );

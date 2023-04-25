@@ -39,7 +39,7 @@ export default () => (
     />
 
     <ShelfHotspot
-      position={[2.07, 1.15, -4.29]}
+      position={[2.07, 1.45, -4.29]}
       rotation-y={-Math.PI / 2}
     />
 
