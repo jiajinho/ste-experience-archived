@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import config from 'config';
-import { LightColor } from '@hellfire/config';
+import { LightColor } from '@webgl/config';
 import { Event } from '@html/CardOverlay/types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';

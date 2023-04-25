@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { SpotLight } from 'three';
 
 import config from 'config';
-import { LightColor } from '@hellfire/config';
+import { LightColor } from '@webgl/config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';

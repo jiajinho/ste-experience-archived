@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { LightColor } from './config';
-
+import { LightColor } from '@webgl/config';
 import RiftFloor from './components/RiftFloor';
 import Tabletop from './components/Tabletop';
 import HellfireSignStand from './components/HellfireSignStand';

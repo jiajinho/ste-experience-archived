@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
 import config from 'config';
-import { LightColor } from '@hellfire/config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';

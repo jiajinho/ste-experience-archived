@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { ThreeEvent } from '@react-three/fiber';
 
 import { Tuple } from 'types';
-import { LightColor } from '@hellfire/config';
+import { LightColor } from '@webgl/config';
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import Bar from './Bar';

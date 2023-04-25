@@ -4,7 +4,8 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import config, { LightColor } from "@hellfire/config";
+import config from "@hellfire/config";
+import { LightColor } from "@webgl/config";
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/chandelier.glb";
