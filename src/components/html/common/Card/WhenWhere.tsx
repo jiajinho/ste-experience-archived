@@ -18,7 +18,7 @@ const Content = styled.div`
   top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 73%;
+  width: 77%;
 
   display: flex;
   flex-direction: column;
@@ -28,12 +28,11 @@ const Content = styled.div`
 const Row = styled.div`
   display: flex;
   align-items: center;
-  gap: calc(var(--card-width) / 20);
+  gap: calc(var(--card-width) / 30);
 
   p {
     font-family: var(--font-benguiat);
-    font-weight: 700;
-    font-size: calc(var(--card-width) / 24.5);
+    font-size: calc(var(--card-width) / 30);
     color: #FFEDC8;
     transition: 0.25s text-shadow;
     letter-spacing: 0.5px;
@@ -71,21 +70,16 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
-
-  & > p {
-    text-transform: uppercase;
-  }
 `;
 
-const Value = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto;
-  column-gap: 6px;
+const Title = styled.p`
+  text-transform: uppercase;
+  font-weight: 700;
+`;
 
-  & > p {
-    font-weight: 400;
-    white-space: pre-line;
-  }
+const Value = styled.p`
+  text-transform: 400;
+  white-space: pre-line;
 `;
 
 export default React.forwardRef(({ flipped, ...props }: {
@@ -123,19 +117,15 @@ export default React.forwardRef(({ flipped, ...props }: {
         <Content>
           {config.cards.whenWhere.content.map((v, i) =>
             <Row key={i}>
-              <Icon>
+              <Icon style={v.style}>
                 <HexRing />
                 {v.icon}
               </Icon>
 
               <InfoContainer>
-                <p>{v.title}:</p>
+                <Title>{v.title}:</Title>
 
-                <Value>
-                  {v.value.map((u, i) =>
-                    <p key={i}>{u.trim()}</p>
-                  )}
-                </Value>
+                <Value dangerouslySetInnerHTML={{ __html: v.value.trim() }} />
               </InfoContainer>
             </Row>
           )}

@@ -115,15 +115,18 @@ const cards = {
     content: [
       {
         ...locale.card.whenWhere.date,
-        icon: <Calendar style={{ width: "55%" }} />
+        icon: <Calendar style={{ width: "55%" }} />,
+        style: undefined
       },
       {
         ...locale.card.whenWhere.time,
-        icon: <Clock style={{ width: "50%" }} />
+        icon: <Clock style={{ width: "50%" }} />,
+        style: { alignSelf: "start" }
       },
       {
         ...locale.card.whenWhere.location,
-        icon: <School style={{ height: "45%" }} />
+        icon: <School style={{ height: "45%" }} />,
+        style: undefined
       }
     ]
   }

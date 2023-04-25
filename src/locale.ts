@@ -29,22 +29,26 @@ const card = {
   whenWhere: {
     date: {
       title: "Date",
-      value: ["30 Jun to 1 Oct"]
+      value: "30th June to 1st October 2023"
     },
     time: {
       title: "Time",
-      value: [
-        "Mon to Thu", "|", "2PM-10PM",
-        "Fri to Sun", "|", "10AM-10PM"
-      ]
+      value: `
+        <b>L2:</b> Open daily | 10am to 10pm
+
+        <b>L7:</b> Open Monday to Thursday from
+        2pm to 10pm (last entry at 8pm)
+
+        Friday to Sunday from
+        10am to 10pm (last entry at 8pm)
+      `
     },
     location: {
       title: "Location",
-      value: [`       
-        Bugis+, Level 7,
-        201 Victoria St, #07 - 01,
-        Singapore 188067
-      `]
+      value: `
+        Bugis+, Level 2
+        (201 Victoria St, Singapore 188067)
+      `
     }
   }
 }
