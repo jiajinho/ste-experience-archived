@@ -16,7 +16,10 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default ({ color, ...props }: {
+  color?: number
+} & JSX.IntrinsicElements["group"]
+) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
@@ -35,17 +38,16 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       dispose={null}
       scale={1.2}
     >
-      <mesh
-        geometry={nodes.Polaroid.geometry}
-        material={materials.Polaroid}
-      />
+      <mesh geometry={nodes.Polaroid.geometry} >
+        <meshStandardMaterial color={color} />
+      </mesh>
 
       <Image
-        url='https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg'
+        url="/static/test.png"
         scale={0.19}
         position={[0.001, 0.015, 0]}
         rotation-y={Math.PI / 2}
-        color="#5C4A46"
+        color="#af9696"
       />
     </group>
   );

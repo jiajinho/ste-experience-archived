@@ -122,7 +122,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0, 1.61, 1.49]}
         angle={0.47}
         intensity={3.5}
-        distance={4}
+        distance={6.6}
         color={LightColor.Crimson}
       />
 

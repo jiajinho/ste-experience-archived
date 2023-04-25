@@ -67,7 +67,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(-1, 0, 0)
   },
   faqBoard: {
-    cameraPosition: [0, 1.825, -0.42],
+    cameraPosition: [0, 1.215, -0.42],
     lookAt: [0, 0.825, -0.42],
     cameraUp: new THREE.Vector3(0.05, -1, 0.55)
   },

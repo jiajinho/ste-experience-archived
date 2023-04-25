@@ -8,6 +8,9 @@ import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
 import CeilingLight from './components/CeilingLight';
+import Ladder from './components/Ladder';
+import Lamp from './components/Lamp';
+import Coffin from './components/Coffin';
 
 import PaperGroup from './groups/PaperGroup';
 import CurtainGroup from './groups/CurtainGroup';
@@ -199,6 +202,20 @@ export default () => (
         position={[0.25, 0.845, -0.3]}
         rotation={[0, 2.05, Math.PI / 2]}
       /> */}
+
+    <Ladder
+      position={[0.83, 0.85, -3.93]}
+      rotation-y={0.62}
+    />
+
+    <Lamp
+      position={[-1.89, 1.19, -4.39]}
+    />
+
+    <Coffin
+      position={[-0.59, 0, -3.97]}
+      rotation-y={-1.36}
+    />
 
     <BoxGroup />
 

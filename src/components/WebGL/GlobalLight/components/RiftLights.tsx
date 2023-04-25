@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import { LightColor } from '../config';
-
 import WireframeBox from '@webgl/debug/WireframeBox';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 
@@ -30,8 +28,8 @@ export default () => {
         penumbra={1}
         distance={15}
         position={[0, 0.7, 0]}
-        intensity={1.5}
-        color={LightColor.Coral}
+        intensity={10}
+        color="#b16c5f"
       />
 
       <WireframeBox.Light

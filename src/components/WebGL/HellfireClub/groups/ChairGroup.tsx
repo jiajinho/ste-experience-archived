@@ -5,8 +5,9 @@ export default () => {
   return (
     <>
       <Chair.Ornamental
-        position={[-2.75, 0.19, 1.4]}
+        position={[-2.75, 0.27, 1.4]}
         rotation={[1.54, -3.05, 0.32]}
+        scale={1.35}
       />
 
       <Chair.Ornamental

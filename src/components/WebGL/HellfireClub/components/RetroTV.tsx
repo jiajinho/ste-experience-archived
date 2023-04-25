@@ -12,6 +12,7 @@ type GLTFResult = GLTF & {
     RetroTV: THREE.Mesh;
     RetroTVKnob: THREE.Mesh;
     // RetroTVScreen: THREE.Mesh;
+    RetroTVKnob1: THREE.Mesh;
   };
   materials: {
     tiktok: THREE.MeshStandardMaterial;
@@ -50,8 +51,12 @@ export default ({ knob, onKnobClick, ...props }: {
         material={materials.RetroTV}
       />
       <mesh
-        ref={knob}
         geometry={nodes.RetroTVKnob.geometry}
+        material={materials.RetroTV}
+      />
+      <mesh
+        ref={knob}
+        geometry={nodes.RetroTVKnob1.geometry}
         material={materials.RetroTV}
         onClick={onKnobClick}
       />
@@ -59,7 +64,7 @@ export default ({ knob, onKnobClick, ...props }: {
       <mesh
         material={videoMaterial}
         rotation={[0, Math.PI / 2, 0]}
-        scale={[0.3, 0.24, 1]}
+        scale={[0.3, 0.25, 1]}
         position={[0.098, 0, 0]}
       >
         <planeGeometry />

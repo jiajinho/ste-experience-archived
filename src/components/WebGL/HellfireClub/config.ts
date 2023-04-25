@@ -19,6 +19,12 @@ export enum LightColor {
   Crimson = 0xfecccc
 }
 
+export enum PolaroidColor {
+  Bottom = 0x8e8d8d,
+  Middle = 0x7f7c7c,
+  Top = 0x756d6d
+}
+
 export default {
   bulbMaterialProps,
   lightStandMaterial,

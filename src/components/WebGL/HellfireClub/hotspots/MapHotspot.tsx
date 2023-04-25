@@ -63,32 +63,13 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         onCallToAction={handleCallToAction}
       />
 
-      <spotLight
-        ref={spotlight}
-        castShadow
-        penumbra={1}
-        position={[0, 1, -1.14]}
-        angle={0.47}
-        intensity={2}
-        distance={3}
-        color={LightColor.Crimson}
-      />
-
       {env === "development" &&
-        <>
-          <WireframeBox.Light
-            ref={lightBox}
-            position={spotlight.current?.position}
-            onClick={triggerSpotlightControl}
-          />
-
-          <WireframeBox.Camera
-            ref={cameraBox}
-            target={cameraTarget}
-            position={[0, 1, 0]}
-            lookAt={[0, -1, 0]}
-          />
-        </>
+        <WireframeBox.Camera
+          ref={cameraBox}
+          target={cameraTarget}
+          position={[0, 1, 0]}
+          lookAt={[0, -1, 0]}
+        />
       }
     </group>
   )

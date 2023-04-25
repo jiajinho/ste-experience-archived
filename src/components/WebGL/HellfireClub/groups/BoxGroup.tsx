@@ -11,7 +11,7 @@ export default () => {
       />
 
       <Box
-        position={[3.54, 0.23, -0.9]}
+        position={[-2.51, 0.13, -1.23]}
         rotation={[Math.PI / 2, 0, 0.56]}
       />
 
