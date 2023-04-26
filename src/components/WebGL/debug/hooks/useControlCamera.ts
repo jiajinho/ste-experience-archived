@@ -22,7 +22,7 @@ export default () => {
     if (env === "development") {
       camera.up = THREE.Object3D.DefaultUp;
       return;
-    };
+    }
 
     const cameraSetting = config.zoomSettings[currentZoom];
     camera.up = cameraSetting.cameraUp || THREE.Object3D.DefaultUp;
@@ -43,6 +43,7 @@ export default () => {
   const debug = {
     box: useDebugCameraStore(state => state.box),
     target: useDebugCameraStore(state => state.target),
+    hotspot: useDebugCameraStore(state => state.hotspot)
   }
 
   const setDebugCameraStore = useDebugCameraStore(state => state.set)
@@ -74,12 +75,26 @@ export default () => {
 
   useEffect(() => {
     if (!debug.box) return;
+    if (!debug.hotspot) return;
+
     debug.box.position.set(x, y, z);
+
+    const position = new THREE.Vector3();
+    debug.box.getWorldPosition(position);
+
+    config.zoomSettings[debug.hotspot].cameraPosition = [position.x, position.y, position.z];
   }, [x, y, z]);
 
   useEffect(() => {
     if (!debug.target) return;
+    if (!debug.hotspot) return;
+
     debug.target.position.set(tx, ty, tz);
+
+    const lookAt = new THREE.Vector3();
+    debug.target.getWorldPosition(lookAt);
+
+    config.zoomSettings[debug.hotspot].lookAt = [lookAt.x, lookAt.y, lookAt.z];
   }, [tx, ty, tz]);
 
   useEffect(() => {

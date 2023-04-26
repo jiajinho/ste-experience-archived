@@ -32,7 +32,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("retroTV", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("retroTV");
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -103,6 +103,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             target={cameraTarget}
             position={[1, 0, 0]}
             lookAt={[-1, 0, 0]}
+            hotspot="retroTV"
           />
         </>
       }

@@ -27,7 +27,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("noticeBoard", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("noticeBoard");
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -150,6 +150,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             target={cameraTarget}
             position={[1.5, 0, 0]}
             lookAt={[-1, 0, 0]}
+            hotspot="noticeBoard"
           />
         </>
       }

@@ -28,7 +28,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("chalkBoard", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("chalkBoard");
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -88,6 +88,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             target={cameraTarget}
             position={[0, 0, 1.5]}
             lookAt={[0, 0, -1]}
+            hotspot="chalkBoard"
           />
         </>
       }

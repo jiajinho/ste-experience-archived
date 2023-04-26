@@ -28,7 +28,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerBottomLightControl = useTriggerDebugSpotlight(bottomLight, bottomLightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("shelf", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("shelf");
 
   useEffect(() => {
     if (!topLight.current) return;
@@ -99,6 +99,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             target={cameraTarget}
             position={[2, 0, 0]}
             lookAt={[-1, 0, 0]}
+            hotspot="shelf"
           />
         </>
       }

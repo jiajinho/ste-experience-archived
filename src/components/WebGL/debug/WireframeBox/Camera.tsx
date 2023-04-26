@@ -1,16 +1,17 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import * as THREE from "three";
 import { Line } from "@react-three/drei";
 
-import { Vector3 } from "types";
+import { Camera, Vector3 } from "types";
 import useEnvStore from "stores/useEnvStore";
 import useDebugCameraStore from "stores/webgl/useDebugCameraStore";
 import useTriggerDebugCamera from "@webgl/debug/hooks/useTriggerDebugCamera";
 import Box from "./Box";
 
-export default React.forwardRef(({ target, lookAt, ...props }: {
+export default React.forwardRef(({ target, lookAt, hotspot, ...props }: {
   target: React.RefObject<THREE.Group>,
   lookAt: Vector3,
+  hotspot: Camera.Hotspot
 } & Omit<JSX.IntrinsicElements["group"], "lookAt">,
   ref: React.ForwardedRef<THREE.Mesh>
 ) => {
@@ -24,7 +25,7 @@ export default React.forwardRef(({ target, lookAt, ...props }: {
     set: useDebugCameraStore(state => state.set)
   }
 
-  const triggerControl = useTriggerDebugCamera(box, target);
+  const triggerControl = useTriggerDebugCamera(box, target, hotspot);
 
   const visibleLine = env === "development" && debug.box?.uuid === box.current?.uuid;
 

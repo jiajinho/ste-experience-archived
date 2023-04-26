@@ -15,7 +15,7 @@ export default () => {
   const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
-  useRegisterHotspot("default", cameraBox, cameraTarget);
+  useRegisterHotspot("default");
 
   /**
    * Not hook
@@ -42,6 +42,7 @@ export default () => {
             lookAtY,
             -Math.cos(azimuth) * azimuthScaleFactor
           ]}
+          hotspot="default"
         />
       }
     </group>

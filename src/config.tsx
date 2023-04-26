@@ -72,9 +72,9 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(0.05, -1, 0.55)
   },
   map: {
-    cameraPosition: [0.04, 1.82, -0.72],
-    lookAt: [0.04, 0.82, -0.72],
-    cameraUp: new THREE.Vector3(0, -1, 0)
+    cameraPosition: [0, 1.22, -0.73],
+    lookAt: [0.0, 0.219, -0.73],
+    cameraUp: new THREE.Vector3(-0.082, 0, 1)
   },
   chalkBoard: {
     cameraPosition: [-1.246, 1.35, -1.898],
