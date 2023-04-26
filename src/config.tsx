@@ -82,7 +82,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   },
   shelf: {
     cameraPosition: [2.07, 1.45, -2.29],
-    lookAt: [2.07, 1.15, -3.29]
+    lookAt: [2.07, 1.45, -3.29]
   }
 }
 
