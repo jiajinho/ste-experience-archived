@@ -23,7 +23,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerMover = useTriggerDebugModel(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
+    // triggerMover();
     props.onClick && props.onClick(e);
   }
 

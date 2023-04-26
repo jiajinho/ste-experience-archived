@@ -37,7 +37,7 @@ export default ({ material, ...props }: {
       <mesh
         geometry={nodes.CrumpledPaper.geometry}
         material={material}
-        scale={1.5}
+        scale={1.7}
       />
     </group>
   );

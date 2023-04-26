@@ -61,14 +61,13 @@ export default () => {
 
       <Paper.Empty
         material={paperMaterial}
-        position={[-2.3, 0, 0]}
+        position={[-2.3, 0, 0.53]}
         rotation-y={1.83}
       />
 
       <Paper.Scribbled
         material={paperMaterial}
-
-        position={[-2.3, 0.005, -0.02]}
+        position={[-2.3, 0.005, 0.48]}
         rotation-y={2.02}
       />
 

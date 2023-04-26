@@ -5,19 +5,14 @@ export default () => {
   return (
     <>
       <Chair.Ornamental
-        position={[-2.75, 0.19, 1.4]}
+        position={[-2.75, 0.27, 1.4]}
         rotation={[1.54, -3.05, 0.32]}
-      />
-
-      <Chair.Ornamental
-        position={[3.52, 0.38, 0.48]}
-        rotation-y={0.2}
+        scale={1.35}
       />
 
       <Chair.Throne
         position={[0, 0.68, -1.57]}
       />
-
 
       <Chair.Classic
         position={[-0.7, 0.25, 1.6]}
@@ -42,6 +37,11 @@ export default () => {
       <Chair.Classic
         position={[-1.1, 0.45, 0.15]}
         rotation-y={-3.4}
+      />
+
+      <Chair.Classic
+        position={[-0.92, 0.42, -0.86]}
+        rotation={[0, 2.54, 0]}
       />
     </>
   )

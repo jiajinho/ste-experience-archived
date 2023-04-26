@@ -11,8 +11,9 @@ export default () => {
   const setOutlineMeshStore = useOutlineMeshStore(state => state.set);
 
   useEffect(() => {
-    if (env !== "development") return;
-    setOutlineMeshStore([]);
+    if (env === "development") {
+      setOutlineMeshStore([]);
+    }
   }, [env]);
 
   return (

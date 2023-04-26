@@ -21,7 +21,7 @@ const viewport: Viewport = {
 const link = {
   faq: "https://google.com",
   ticketing: "https://google.com",
-  eventLocation: "https://goo.gl/maps/zM7E26fDeZR5RJ7d8",
+  eventLocation: "https://www.google.com/maps/place/201+Victoria+St,+%2302-01+Bugis%2B,+Singapore+188067/@1.2994132,103.8517561,17z/data=!3m1!4b1!4m6!3m5!1s0x31da19badc34bef9:0x1a2a8c1ca9bcd5e9!8m2!3d1.2994132!4d103.8539448!16s%2Fg%2F11pvcvfy68?coh=164777&entry=tt&shorturl=1",
   tiktok: "https://google.com"
 }
 
@@ -67,21 +67,21 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(-1, 0, 0)
   },
   faqBoard: {
-    cameraPosition: [0, 1.825, -0.42],
+    cameraPosition: [0, 1.215, -0.42],
     lookAt: [0, 0.825, -0.42],
     cameraUp: new THREE.Vector3(0.05, -1, 0.55)
   },
   map: {
-    cameraPosition: [0.04, 1.82, -0.72],
-    lookAt: [0.04, 0.82, -0.72],
-    cameraUp: new THREE.Vector3(0, -1, 0)
+    cameraPosition: [0, 1.22, -0.73],
+    lookAt: [0.0, 0.219, -0.73],
+    cameraUp: new THREE.Vector3(-0.082, 0, 1)
   },
   chalkBoard: {
     cameraPosition: [-1.246, 1.35, -1.898],
     lookAt: [-1.835, 1.35, -2.706]
   },
   shelf: {
-    cameraPosition: [2.07, 1.15, -2.29],
+    cameraPosition: [2.07, 1.45, -2.29],
     lookAt: [2.07, 1.15, -3.29]
   }
 }
@@ -115,15 +115,18 @@ const cards = {
     content: [
       {
         ...locale.card.whenWhere.date,
-        icon: <Calendar style={{ width: "55%" }} />
+        icon: <Calendar style={{ width: "55%" }} />,
+        style: undefined
       },
       {
         ...locale.card.whenWhere.time,
-        icon: <Clock style={{ width: "50%" }} />
+        icon: <Clock style={{ width: "50%" }} />,
+        style: { alignSelf: "start" }
       },
       {
         ...locale.card.whenWhere.location,
-        icon: <School style={{ height: "45%" }} />
+        icon: <School style={{ height: "45%" }} />,
+        style: undefined
       }
     ]
   }

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import { LightColor } from '@hellfire/config';
+import { LightColor } from '@webgl/config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
@@ -28,7 +28,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerBottomLightControl = useTriggerDebugSpotlight(bottomLight, bottomLightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("shelf", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("shelf");
 
   useEffect(() => {
     if (!topLight.current) return;
@@ -54,7 +54,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    */
   return (
     <group ref={ref} {...props}>
-      <Shelf onClick={handleClick} />
+      <Shelf
+        onClick={handleClick}
+        rotation-y={Math.PI / 2}
+        scale={1.1}
+      />
 
       <spotLight
         ref={topLight}
@@ -71,7 +75,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         penumbra={1}
         position={[1.47, 0, 0]}
         angle={0.52}
-        intensity={7}
+        intensity={3.5}
         distance={2}
         color={LightColor.Crimson}
       />
@@ -95,6 +99,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             target={cameraTarget}
             position={[2, 0, 0]}
             lookAt={[-1, 0, 0]}
+            hotspot="shelf"
           />
         </>
       }

@@ -6,13 +6,14 @@ import useDebugModelStore from 'stores/webgl/useDebugModelStore';
 export default (collapsed: boolean) => {
   const group = useDebugModelStore(state => state.group);
 
-  const [{ x, y, z, rx, ry, rz }, set] = useControls("useControlModel", () => ({
+  const [{ x, y, z, rx, ry, rz, scale }, set] = useControls("useControlModel", () => ({
     x: { min: -5, max: 5, step: 0.01, value: 0 },
     y: { min: -5, max: 5, step: 0.01, value: 0 },
     z: { min: -5, max: 5, step: 0.01, value: 0 },
     rx: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
     ry: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
-    rz: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 }
+    rz: { min: -2 * Math.PI, max: 2 * Math.PI, step: 0.01, value: 0 },
+    scale: { min: 0.1, max: 2, step: 0.01, value: 1 }
   }), {
     collapsed
   });
@@ -28,7 +29,10 @@ export default (collapsed: boolean) => {
     group.rotation.x = rx;
     group.rotation.y = ry;
     group.rotation.z = rz;
-  }, [x, y, z, rx, ry, rz]);
+    group.scale.x = scale;
+    group.scale.y = scale;
+    group.scale.z = scale;
+  }, [x, y, z, rx, ry, rz, scale]);
 
   useEffect(() => {
     if (!group) return;
@@ -40,6 +44,7 @@ export default (collapsed: boolean) => {
       rx: group.rotation.x,
       ry: group.rotation.y,
       rz: group.rotation.z,
+      scale: group.scale.x
     });
   }, [group, set]);
 }

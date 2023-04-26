@@ -24,7 +24,7 @@ export default (collapsed: boolean) => {
     tz: { min: -100, max: 100, value: 0, step: 5 },
     angle: { min: 0, max: Math.PI / 2, value: 0, step: 0.01 },
     intensity: { min: 0, max: 10, step: 0.1, value: 1 },
-    distance: { min: 0, max: 30, step: 1, value: 15 },
+    distance: { min: 0, max: 30, step: 0.01, value: 15 },
     color: "#ffffff"
   }), {
     collapsed

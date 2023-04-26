@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { Stats } from '@react-three/drei';
 import { Leva } from 'leva';
 
 import '../globals.css';
+import locale from 'locale';
 import fonts from 'fonts';
 import useToggleEnv from 'hooks/useToggleEnv';
 import useEnvStore from 'stores/useEnvStore';
 import useResponsive from 'hooks/useResponsive';
-import Head from 'next/head';
 
 const App = styled.div`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
@@ -34,6 +35,8 @@ export default ({ Component, pageProps }: AppProps) => {
       />
 
       <Head>
+        <title>{locale.global.title}</title>
+
         <link rel="shortcut icon" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
       </Head>

@@ -19,7 +19,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("faqBoard", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("faqBoard");
 
   const handleClick = () => {
     triggerModelControl();
@@ -47,8 +47,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         <WireframeBox.Camera
           ref={cameraBox}
           target={cameraTarget}
-          position={[0, 1, 0]}
+          position={[0, 0.4, 0]}
           lookAt={[0, -1, 0]}
+          hotspot="faqBoard"
         />
       }
     </group>

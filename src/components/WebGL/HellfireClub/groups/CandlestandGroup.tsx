@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import * as THREE from 'three';
 import { useTexture } from '@react-three/drei';
 
-import { LightColor } from '@hellfire/config';
+import { LightColor } from '@webgl/config';
 import Candlestand from '@hellfire/components/Candlestand';
 
 const colorMapUrl = "/static/texture/lamp-color.jpg";

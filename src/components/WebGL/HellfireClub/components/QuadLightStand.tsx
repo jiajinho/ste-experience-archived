@@ -5,7 +5,8 @@ import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import { Tuple } from "types";
-import config, { LightColor } from "@hellfire/config";
+import config from "@hellfire/config";
+import { LightColor } from "@webgl/config";
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const url = "/static/gltf/quad-lightstand.glb";

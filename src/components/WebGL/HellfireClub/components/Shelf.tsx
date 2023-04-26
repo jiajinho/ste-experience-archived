@@ -6,9 +6,28 @@ const url = "/static/gltf/shelf.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
+    eleven: THREE.Mesh;
+    cap: THREE.Mesh;
+    cup: THREE.Mesh;
+    tape: THREE.Mesh;
+    ["tote-bag"]: THREE.Mesh;
+    shirt: THREE.Mesh;
+    vecna: THREE.Mesh;
+    vinyl: THREE.Mesh;
+    denim: THREE.Mesh;
     Shelf: THREE.Mesh;
+    Sign: THREE.Mesh;
   };
   materials: {
+    eleven: THREE.MeshStandardMaterial;
+    cap: THREE.MeshStandardMaterial;
+    cup: THREE.MeshStandardMaterial;
+    tape: THREE.MeshStandardMaterial;
+    ["tote-bag"]: THREE.MeshStandardMaterial;
+    shirt: THREE.MeshStandardMaterial;
+    vecna: THREE.MeshStandardMaterial;
+    vinyl: THREE.MeshStandardMaterial;
+    denim: THREE.MeshStandardMaterial;
     Shelf: THREE.MeshStandardMaterial;
   };
 };
@@ -19,7 +38,48 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group {...props} dispose={null}>
       <mesh
+        geometry={nodes.eleven.geometry}
+        material={materials.eleven}
+      />
+      <mesh
+        geometry={nodes.cap.geometry}
+        material={materials.cap}
+      />
+      <mesh
+        geometry={nodes.cup.geometry}
+        material={materials.cup}
+      />
+      <mesh
+        geometry={nodes.tape.geometry}
+        material={materials.tape}
+      />
+      <mesh
+        geometry={nodes["tote-bag"].geometry}
+        material={materials["tote-bag"]}
+      />
+      <mesh
+        geometry={nodes.shirt.geometry}
+        material={materials.shirt}
+      />
+      <mesh
+        geometry={nodes.vecna.geometry}
+        material={materials.vecna}
+      />
+      <mesh
+        geometry={nodes.vinyl.geometry}
+        material={materials.vinyl}
+      />
+      <mesh
+        geometry={nodes.denim.geometry}
+        material={materials.denim}
+      />
+      <mesh
+        castShadow
         geometry={nodes.Shelf.geometry}
+        material={materials.Shelf}
+      />
+      <mesh
+        geometry={nodes.Sign.geometry}
         material={materials.Shelf}
       />
     </group>

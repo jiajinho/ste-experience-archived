@@ -4,8 +4,9 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import { ThreeEvent } from "@react-three/fiber";
 
+import config from "@hellfire/config";
+import { LightColor } from "@webgl/config";
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import config, { LightColor } from "@hellfire/config";
 
 const url = "/static/gltf/candlestand.glb";
 

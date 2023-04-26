@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
-import { LightColor } from '@hellfire/config';
+import { LightColor } from '@webgl/config';
+import { PolaroidColor } from '@hellfire/config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
@@ -26,7 +27,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("noticeBoard", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("noticeBoard");
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -39,7 +40,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Not hook
    */
   const handleClick = () => {
-    triggerModelControl();
+    // triggerModelControl();
     triggerZoom();
   }
 
@@ -51,44 +52,56 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <NoticeBoard onClick={handleClick} />
 
       <Polaroid
-        position={[0, 0.33, 0.44]}
+        position={[0, 0.3, 0.48]}
+        rotation-x={-0.15}
+        color={PolaroidColor.Top}
       />
 
       <Polaroid
         position={[0, 0.3, 0.16]}
         rotation={[0.09, 0, 0]}
+        color={PolaroidColor.Top}
       />
 
       <Polaroid
-        position={[0.015, 0.32, -0.15]}
+        position={[0.01, 0.28, -0.15]}
         rotation={[-0.03, 0, 0]}
+        color={PolaroidColor.Top}
       />
 
       <Polaroid
         position={[0, 0.31, -0.45]}
         rotation={[0.14, 0, 0]}
+        color={PolaroidColor.Top}
       />
 
       <Polaroid
-        position={[0.01, 0.02, 0.27]}
+        position={[0.02, -0.01, 0.35]}
         rotation={[0.15, 0, 0]}
+        color={PolaroidColor.Middle}
       />
 
-      <Polaroid position={[0.02, 0.04, -0.09]} />
+      <Polaroid
+        position={[0.02, 0.04, 0.04]}
+        color={PolaroidColor.Middle}
+      />
 
       <Polaroid
-        position={[0.01, 0.06, -0.38]}
+        position={[0.02, 0.02, -0.3]}
+        rotation={[-0.11, 0, 0]}
+        color={PolaroidColor.Middle}
+      />
+
+      <Polaroid
+        position={[0.03, -0.24, -0.07]}
+        rotation={[-0.08, 0, 0]}
+        color={PolaroidColor.Bottom}
+      />
+
+      <Polaroid
+        position={[0.03, -0.22, -0.38]}
         rotation={[0.12, 0, 0]}
-      />
-
-      <Polaroid
-        position={[0.015, -0.23, 0.07]}
-        rotation={[-0.04, 0, 0]}
-      />
-
-      <Polaroid
-        position={[0.025, -0.22, -0.22]}
-        rotation={[-0.02, 0, 0]}
+        color={PolaroidColor.Bottom}
       />
 
       <Sticker.Cap position={[0.04, 0.45, -0.32]} />
@@ -103,7 +116,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       />
 
       <Sticker.Flower
-        position={[0.04, -0.36, 0.2]}
+        position={[0.02, -0.15, 0.56]}
+        rotation-x={0.04}
       />
 
       <Sticker.Camp
@@ -118,7 +132,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         penumbra={1}
         position={[1.52, 1.91, 0]}
         angle={0.49}
-        intensity={2.6}
+        intensity={8.2}
         distance={4}
         color={LightColor.Crimson}
       />
@@ -136,6 +150,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             target={cameraTarget}
             position={[1.5, 0, 0]}
             lookAt={[-1, 0, 0]}
+            hotspot="noticeBoard"
           />
         </>
       }

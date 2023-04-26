@@ -1,13 +1,15 @@
 import React from 'react';
 
-import { LightColor } from './config';
-
+import { LightColor } from '@webgl/config';
 import RiftFloor from './components/RiftFloor';
 import Tabletop from './components/Tabletop';
 import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
 import CeilingLight from './components/CeilingLight';
+import Ladder from './components/Ladder';
+import Lamp from './components/Lamp';
+import Coffin from './components/Coffin';
 
 import PaperGroup from './groups/PaperGroup';
 import CurtainGroup from './groups/CurtainGroup';
@@ -15,7 +17,6 @@ import CandlestandGroup from './groups/CandlestandGroup';
 import RiftGroup from './groups/RiftGroup';
 import WallGroup from './groups/WallGroup';
 import ChairGroup from './groups/ChairGroup';
-import StandeeGroup from './groups/StandeeGroup';
 import TabletopGroup from './groups/TabletopGroup';
 import BoxGroup from './groups/BoxGroup';
 
@@ -27,6 +28,7 @@ import DefaultViewHotspot from './hotspots/DefaultViewHotspot';
 import VecnaBoardHotspot from './hotspots/VecnaBoardHotspot';
 import FAQBoardHotspot from './hotspots/FAQBoardHotspot';
 import MapHotspot from './hotspots/MapHotspot';
+import Standee from './components/Standee';
 
 export default () => (
   <>
@@ -37,7 +39,7 @@ export default () => (
     />
 
     <ShelfHotspot
-      position={[2.07, 1.15, -4.29]}
+      position={[2.07, 1.45, -4.29]}
       rotation-y={-Math.PI / 2}
     />
 
@@ -124,6 +126,11 @@ export default () => (
       light={LightColor.Yellow}
     />
 
+    <Standee.CastleWall
+      position={[-2.11, 0.92, 4.42]}
+      rotation={[0.19, -0.36, 0.1]}
+    />
+
     {/* <Cup
         position={[0.28, 0.89, -0.69]}
       /> */}
@@ -200,6 +207,20 @@ export default () => (
         rotation={[0, 2.05, Math.PI / 2]}
       /> */}
 
+    <Ladder
+      position={[0.83, 0.85, -3.93]}
+      rotation-y={0.62}
+    />
+
+    <Lamp
+      position={[-1.89, 1.19, -4.39]}
+    />
+
+    <Coffin
+      position={[-0.59, 0, -3.97]}
+      rotation-y={-1.36}
+    />
+
     <BoxGroup />
 
     <TabletopGroup />
@@ -207,8 +228,6 @@ export default () => (
     <CurtainGroup />
 
     <CandlestandGroup />
-
-    <StandeeGroup />
 
     <ChairGroup />
 

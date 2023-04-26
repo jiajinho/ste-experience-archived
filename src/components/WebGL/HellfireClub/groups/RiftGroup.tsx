@@ -18,16 +18,16 @@ export default () => {
     <>
       <Rift.A
         material={materials.Rift}
-        position={[-3.1, 0.75, -0.62]}
+        position={[-3.15, 1.17, -0.7]}
         rotation={[-0.85, -Math.PI / 2, 0]}
-        scale={1.2}
+        scale={0.57}
       />
 
       <Rift.B
         material={materials.Rift}
-        position={[0.76, 2.44, -4.8]}
+        position={[1.32, 2.03, -4.8]}
         rotation={[0, Math.PI, -0.53]}
-        scale={2}
+        scale={1.38}
       />
 
       <Rift.B
@@ -39,9 +39,9 @@ export default () => {
 
       <Rift.A
         material={materials.Rift}
-        position={[-1.26, 3.54, -4.4]}
-        rotation={[0, Math.PI, 1.11]}
-        scale={0.5}
+        position={[-2.85, 2.05, -3.13]}
+        rotation={[0, 4.7, 1.83]}
+        scale={0.81}
       />
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import config from 'config';
-import { LightColor } from '@hellfire/config';
+import { LightColor } from '@webgl/config';
 import { Event } from '@html/CardOverlay/types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';
@@ -33,7 +33,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
   const lightBox = useRef<THREE.Mesh>(null);
-  const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
   const encounterCard = useRef<THREE.Group>(null);
@@ -65,7 +64,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("vecnaBoard", cameraBox, cameraTarget);
+  const triggerZoom = useRegisterHotspot("vecnaBoard");
 
   /**
    * Not hook
@@ -122,7 +121,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0, 1.61, 1.49]}
         angle={0.47}
         intensity={3.5}
-        distance={4}
+        distance={6.6}
         color={LightColor.Crimson}
       />
 
@@ -135,10 +134,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
           />
 
           <WireframeBox.Camera
-            ref={cameraBox}
             target={cameraTarget}
             position={[0, 1, 0]}
             lookAt={[0, -1, 0]}
+            hotspot="vecnaBoard"
           />
         </>
       }
