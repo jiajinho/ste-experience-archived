@@ -65,7 +65,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         penumbra={1}
         position={[1.47, 2, 0]}
         angle={0.52}
-        intensity={2.9}
+        intensity={4.3}
         distance={4}
         color={LightColor.Crimson}
       />
@@ -75,7 +75,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         penumbra={1}
         position={[1.47, 0, 0]}
         angle={0.52}
-        intensity={3.5}
+        intensity={4.7}
         distance={2}
         color={LightColor.Crimson}
       />

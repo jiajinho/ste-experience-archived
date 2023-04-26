@@ -9,11 +9,11 @@ type GLTFResult = GLTF & {
     eleven: THREE.Mesh;
     cap: THREE.Mesh;
     cup: THREE.Mesh;
-    tape: THREE.Mesh;
     ["tote-bag"]: THREE.Mesh;
+    tape: THREE.Mesh;
+    vinyl: THREE.Mesh;
     shirt: THREE.Mesh;
     vecna: THREE.Mesh;
-    vinyl: THREE.Mesh;
     denim: THREE.Mesh;
     Shelf: THREE.Mesh;
     Sign: THREE.Mesh;
@@ -22,11 +22,11 @@ type GLTFResult = GLTF & {
     eleven: THREE.MeshStandardMaterial;
     cap: THREE.MeshStandardMaterial;
     cup: THREE.MeshStandardMaterial;
-    tape: THREE.MeshStandardMaterial;
     ["tote-bag"]: THREE.MeshStandardMaterial;
+    tape: THREE.MeshStandardMaterial;
+    vinyl: THREE.MeshStandardMaterial;
     shirt: THREE.MeshStandardMaterial;
     vecna: THREE.MeshStandardMaterial;
-    vinyl: THREE.MeshStandardMaterial;
     denim: THREE.MeshStandardMaterial;
     Shelf: THREE.MeshStandardMaterial;
   };
