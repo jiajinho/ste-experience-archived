@@ -21,6 +21,7 @@ import ChairGroup from './groups/ChairGroup';
 import TabletopGroup from './groups/TabletopGroup';
 import BoxGroup from './groups/BoxGroup';
 import SodaGroup from './groups/SodaGroup';
+import CupGroup from './groups/CupGroup';
 
 import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
 import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
@@ -241,5 +242,7 @@ export default () => (
     <RiftFloor />
 
     <SodaGroup />
+
+    <CupGroup />
   </>
 );

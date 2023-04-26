@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
@@ -6,13 +7,15 @@ import type { GLTF } from "three-stdlib";
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/cup.glb";
-const mapUrl = "/static/texture/dnd.jpg";
+const mapUrl = "/static/texture/cup.jpg";
 
 type GLTFResult = GLTF & {
   nodes: {
     Cup: THREE.Mesh;
-  }
+  };
 };
+
+const material = new THREE.MeshPhongMaterial();
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
@@ -20,8 +23,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const triggerMover = useTriggerDebugModel(ref);
 
-  const { map } = useTexture({ map: mapUrl });
-  map.flipY = false;
+  useTexture(mapUrl, t => {
+    const _t = t as THREE.Texture;
+    _t.flipY = false;
+    material.map = _t;
+  });
+
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
@@ -35,13 +42,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.Cup.geometry}>
-        <meshStandardMaterial
-          map={map}
-          metalness={0.2}
-          roughness={0.5}
-        />
-      </mesh>
+      <mesh
+        geometry={nodes.Cup.geometry}
+        material={material}
+      />
     </group>
   );
 }
