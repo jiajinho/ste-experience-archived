@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import type { ThreeEvent } from "@react-three/fiber";
@@ -12,8 +13,11 @@ type GLTFResult = GLTF & {
   nodes: {
     WoodChair: THREE.Mesh;
   };
-  materials: {};
 };
+
+const material = new THREE.MeshStandardMaterial({
+  roughness: 0.8
+});
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
@@ -21,8 +25,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const triggerMover = useTriggerDebugModel(ref);
 
-  const { map } = useTexture({ map: mapUrl });
-  map.flipY = false;
+  useTexture(mapUrl, t => {
+    const _t = t as THREE.Texture;
+    _t.flipY = false;
+    material.map = _t;
+  });
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
@@ -39,12 +46,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <mesh
         castShadow
         geometry={nodes.WoodChair.geometry}
-      >
-        <meshStandardMaterial
-          roughness={0.8}
-          map={map}
-        />
-      </mesh>
+        material={material}
+      />
     </group>
   );
 }
