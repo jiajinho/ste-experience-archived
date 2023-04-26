@@ -220,7 +220,7 @@ export default () => (
 
     <Coffin
       position={[-0.59, 0, -3.97]}
-      rotation-y={-1.36}
+      rotation={[-0.31, -1.36, 0]}
     />
 
     <BoxGroup />
