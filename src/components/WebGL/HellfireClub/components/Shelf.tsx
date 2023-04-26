@@ -11,8 +11,8 @@ type GLTFResult = GLTF & {
     cup: THREE.Mesh;
     ["tote-bag"]: THREE.Mesh;
     tape: THREE.Mesh;
-    vinyl: THREE.Mesh;
     shirt: THREE.Mesh;
+    vinyl: THREE.Mesh;
     vecna: THREE.Mesh;
     denim: THREE.Mesh;
     Shelf: THREE.Mesh;
@@ -24,8 +24,8 @@ type GLTFResult = GLTF & {
     cup: THREE.MeshStandardMaterial;
     ["tote-bag"]: THREE.MeshStandardMaterial;
     tape: THREE.MeshStandardMaterial;
-    vinyl: THREE.MeshStandardMaterial;
     shirt: THREE.MeshStandardMaterial;
+    vinyl: THREE.MeshStandardMaterial;
     vecna: THREE.MeshStandardMaterial;
     denim: THREE.MeshStandardMaterial;
     Shelf: THREE.MeshStandardMaterial;
@@ -50,24 +50,24 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         material={materials.cup}
       />
       <mesh
-        geometry={nodes.tape.geometry}
-        material={materials.tape}
-      />
-      <mesh
         geometry={nodes["tote-bag"].geometry}
         material={materials["tote-bag"]}
+      />
+      <mesh
+        geometry={nodes.tape.geometry}
+        material={materials.tape}
       />
       <mesh
         geometry={nodes.shirt.geometry}
         material={materials.shirt}
       />
       <mesh
-        geometry={nodes.vecna.geometry}
-        material={materials.vecna}
-      />
-      <mesh
         geometry={nodes.vinyl.geometry}
         material={materials.vinyl}
+      />
+      <mesh
+        geometry={nodes.vecna.geometry}
+        material={materials.vecna}
       />
       <mesh
         geometry={nodes.denim.geometry}
