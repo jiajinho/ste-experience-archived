@@ -25,13 +25,8 @@ export default () => {
       />
 
       <Chair.Classic
-        position={[1.0, 0.45, 0.56]}
-        rotation-y={-0.38}
-      />
-
-      <Chair.Classic
-        position={[0.83, 0.45, 1.43]}
-        rotation-y={-0.97}
+        position={[0.99, 0.45, 1.44]}
+        rotation-y={-0.67}
       />
 
       <Chair.Classic

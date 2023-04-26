@@ -22,7 +22,6 @@ export default () => {
 
   return (
     <>
-      {/**Cabinet */}
       <Paper.Scribbled
         material={paperMaterial}
         position={[2.08, 0, -3.4]}
@@ -41,21 +40,20 @@ export default () => {
         rotation-y={-2.07}
       />
 
-      {/**BulletinBoard */}
       <Paper.Crumpled
         material={paperMaterial}
-        position={[-2.42, 0.02, -0.84]}
+        position={[2.13, 0.02, -0.84]}
       />
 
       <Paper.Yellow
         material={paperMaterial}
-        position={[-2.66, 0, -1.2]}
+        position={[2.42, 0, -1.48]}
         rotation-y={1.92}
       />
 
       <Paper.Crumpled
         material={paperMaterial}
-        position={[-2.53, 0.02, -0.96]}
+        position={[2.06, 0.02, -1.14]}
         rotation-y={1.83}
       />
 
@@ -71,7 +69,6 @@ export default () => {
         rotation-y={2.02}
       />
 
-      {/**RetroTV */}
       <Paper.Crumpled
         material={paperMaterial}
         position={[-2.91, 0.02, 2.14]}
@@ -94,7 +91,6 @@ export default () => {
         rotation-y={-1.73}
       />
 
-      {/**Lamp */}
       <Paper.Scribbled
         material={paperMaterial}
         position={[-1.76, 0, -4.28]}

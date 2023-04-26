@@ -36,7 +36,8 @@ export default () => {
         hiddenEdgeColor={0xffffff}
         edgeStrength={env === "development" ? 2.5 : 1.5}
         kernelSize={env === "development" ? undefined : KernelSize.MEDIUM}
-        xRay={true}
+        xRay={env === "development" ? false : true}
+        pulseSpeed={env === "development" ? 0 : 0.5}
         blur
       />
     </EffectComposer>

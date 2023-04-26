@@ -10,6 +10,7 @@ import CeilingLight from './components/CeilingLight';
 import Ladder from './components/Ladder';
 import Lamp from './components/Lamp';
 import Coffin from './components/Coffin';
+import Standee from './components/Standee';
 
 import PaperGroup from './groups/PaperGroup';
 import CurtainGroup from './groups/CurtainGroup';
@@ -19,6 +20,8 @@ import WallGroup from './groups/WallGroup';
 import ChairGroup from './groups/ChairGroup';
 import TabletopGroup from './groups/TabletopGroup';
 import BoxGroup from './groups/BoxGroup';
+import SodaGroup from './groups/SodaGroup';
+import CupGroup from './groups/CupGroup';
 
 import ChalkboardHotspot from './hotspots/ChalkboardHotspot';
 import NoticeBoardHotspot from './hotspots/NoticeBoardHotspot';
@@ -28,7 +31,6 @@ import DefaultViewHotspot from './hotspots/DefaultViewHotspot';
 import VecnaBoardHotspot from './hotspots/VecnaBoardHotspot';
 import FAQBoardHotspot from './hotspots/FAQBoardHotspot';
 import MapHotspot from './hotspots/MapHotspot';
-import Standee from './components/Standee';
 
 export default () => (
   <>
@@ -238,5 +240,9 @@ export default () => (
     <WallGroup />
 
     <RiftFloor />
+
+    <SodaGroup />
+
+    <CupGroup />
   </>
 );
