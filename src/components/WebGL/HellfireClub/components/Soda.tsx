@@ -1,27 +1,26 @@
 import React, { useRef } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
-const gltfUrl = "/static/gltf/soda.glb";
-const mapUrl = "/static/texture/soda-dice-paper.jpg";
+const url = "/static/gltf/soda-crushed.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Soda: THREE.Mesh;
-  }
+    SodaCrushed: THREE.Mesh;
+  };
+  materials: {
+    Soda: THREE.MeshPhysicalMaterial;
+  };
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useTriggerDebugModel(ref);
-
-  const { map } = useTexture({ map: mapUrl });
-  map.flipY = false;
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
@@ -35,15 +34,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.Soda.geometry}>
-        <meshStandardMaterial
-          map={map}
-          metalness={0.3}
-          roughness={0.2}
-        />
-      </mesh>
+      <mesh
+        geometry={nodes.SodaCrushed.geometry}
+        material={materials.Soda}
+      />
     </group>
   );
 }
 
-useGLTF.preload(gltfUrl);
+useGLTF.preload(url);
