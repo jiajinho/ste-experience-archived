@@ -7,7 +7,7 @@ export default () => {
       <Soda position={[2.15, 0.01, -2.01]} />
 
       <Soda
-        position={[-1.94, 0.01, 2.75]}
+        position={[-1.94, 0.02, 2.75]}
         rotation={[0, -1.15, 0]}
       />
     </>

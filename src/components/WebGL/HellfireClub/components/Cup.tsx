@@ -29,7 +29,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     material.map = _t;
   });
 
-
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
     props.onClick && props.onClick(e);
