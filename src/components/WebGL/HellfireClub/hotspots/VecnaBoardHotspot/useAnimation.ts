@@ -27,7 +27,8 @@ export default (encounterCard: React.RefObject<THREE.Group>, whenWhereCard: Reac
           })
           .to(encounterCard.current.rotation, {
             duration: 0.75,
-            y: 0,
+            x: Math.PI,
+            y: 0
           }, 0)
           .call(() => {
             setCardStore("htmlEvent", "the-encounter");
@@ -43,6 +44,7 @@ export default (encounterCard: React.RefObject<THREE.Group>, whenWhereCard: Reac
           })
           .to(whenWhereCard.current.rotation, {
             duration: 0.75,
+            x: Math.PI,
             y: 0,
           }, 0)
           .call(() => {
@@ -59,6 +61,7 @@ export default (encounterCard: React.RefObject<THREE.Group>, whenWhereCard: Reac
           })
           .to(encounterCard.current.rotation, {
             duration: 1,
+            x: 0,
             y: config.cards.theEncounter.rotateY
           }, 0)
           .to(whenWhereCard.current.position, {
@@ -69,6 +72,7 @@ export default (encounterCard: React.RefObject<THREE.Group>, whenWhereCard: Reac
           }, 0)
           .to(whenWhereCard.current.rotation, {
             duration: 1,
+            x: 0,
             y: config.cards.whenWhere.rotateY
           }, 0);
     }

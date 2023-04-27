@@ -25,38 +25,17 @@ export default () => {
   const theEncounter = useRef<HTMLDivElement>(null);
   const whenWhere = useRef<HTMLDivElement>(null);
 
-  const flippedEncounter = useCardStore(state => state.flippedEncounter);
-  const flippedWhenWhere = useCardStore(state => state.flippedWhenWhere);
   const setCardStore = useCardStore(state => state.set);
 
   useAnimation(wrapper, theEncounter, whenWhere);
-
-  const handleEncounterClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCardStore('flippedEncounter', !flippedEncounter);
-  }
-
-  const handleWhenWhereClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCardStore('flippedWhenWhere', !flippedWhenWhere);
-  }
 
   return (
     <Wrapper
       ref={wrapper}
       onClick={() => setCardStore('htmlEvent', undefined)}
     >
-      <Card.TheEncounter
-        ref={theEncounter}
-        flipped={flippedEncounter}
-        onClick={handleEncounterClick}
-      />
-
-      <Card.WhenWhere
-        ref={whenWhere}
-        flipped={flippedWhenWhere}
-        onClick={handleWhenWhereClick}
-      />
+      <Card.TheEncounter ref={theEncounter} />
+      <Card.WhenWhere ref={whenWhere} />
     </Wrapper>
   )
 }

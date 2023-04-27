@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
+import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import { applyRef } from "@webgl/HellfireClub/utils";
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import { applyRef } from "@webgl/HellfireClub/utils";
 
 const gltfUrl = "/static/gltf/card.glb";
 const mapUrl = "/static/texture/the-encounter-texture.jpg";
@@ -15,9 +16,8 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default React.forwardRef(({ flipped = false, ...props }: {
-  flipped?: boolean
-} & JSX.IntrinsicElements["group"],
+export default React.forwardRef((
+  props: JSX.IntrinsicElements["group"],
   ref: React.ForwardedRef<THREE.Group>
 ) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
@@ -25,7 +25,7 @@ export default React.forwardRef(({ flipped = false, ...props }: {
 
   const triggerMover = useTriggerDebugModel(_ref);
 
-  const { map } = useTexture({ map: mapUrl });
+  const map = useTexture(mapUrl);
   map.flipY = false;
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
@@ -33,18 +33,15 @@ export default React.forwardRef(({ flipped = false, ...props }: {
     props.onClick && props.onClick(e);
   }
 
-  const rotateX = flipped ? Math.PI : 0;
-
   return (
     <group
-      ref={r => applyRef([_ref, ref], r)}
+      ref={r => applyRef([ref, _ref], r)}
       {...props}
       onClick={handleClick}
       dispose={null}
     >
       <mesh
         geometry={nodes.Card.geometry}
-        rotation={[rotateX, 0, 0]}
         scale={0.9}
       >
         <meshStandardMaterial

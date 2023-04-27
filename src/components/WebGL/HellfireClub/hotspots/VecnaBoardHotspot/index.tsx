@@ -21,13 +21,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Hooks
    */
   const env = useEnvStore(state => state.env);
-
-  const flippedEncounter = useCardStore(state => state.flippedEncounter);
-  const flippedWhenWhere = useCardStore(state => state.flippedWhenWhere);
   const setCardStore = useCardStore(state => state.set);
-
   const currentZoom = useCameraStore(state => state.currentZoom);
-
   const setOutlineMeshStore = useOutlineMeshStore(state => state.set);
 
   const ref = useRef<THREE.Group>(null);
@@ -103,7 +98,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={config.cards.theEncounter.position}
         rotation={[0, config.cards.theEncounter.rotateY, 0]}
         onClick={() => handleCardClick("the-encounter")}
-        flipped={flippedEncounter}
       />
 
       <Card.WhenWhere
@@ -111,7 +105,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={config.cards.whenWhere.position}
         rotation={[0, config.cards.whenWhere.rotateY, 0]}
         onClick={() => handleCardClick("when-where")}
-        flipped={flippedWhenWhere}
       />
 
       <spotLight

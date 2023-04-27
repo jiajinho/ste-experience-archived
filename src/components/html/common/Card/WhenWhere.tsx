@@ -4,12 +4,10 @@ import styled from "styled-components";
 
 import config from "config";
 import { IntrinsicHTML } from "types";
-import whenWhereFront from "/public/static/cards/when-where-front.png";
 import whenWhereBack from "/public/static/cards/when-where-back.png";
 import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 import Card from "./components/Card";
-import FrontTemplate from "./components/FrontTemplate";
 import BackTemplate from "./components/BackTemplate";
 import HexRing, { Wrapper as $HexRing } from "../svg/HexRing";
 
@@ -82,28 +80,15 @@ const Value = styled.p`
   white-space: pre-line;
 `;
 
-export default React.forwardRef(({ flipped, ...props }: {
-  flipped?: boolean,
-} & IntrinsicHTML<"div">,
+export default React.forwardRef((
+  props: IntrinsicHTML<"div">,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
   return (
-    <Card
-      ref={ref}
-      flipped={flipped}
-      {...props}
-    >
-      <div className="front">
-        <FrontTemplate />
-        <Image
-          src={whenWhereFront}
-          alt="When Where - Front"
-          fill
-          onLoadingComplete={() => setLoadProgressStore("html", { whenWhereFront: true })}
-        />
-      </div>
+    <Card ref={ref} flipped {...props}>
+      <div className="front" />
 
       <div className="back">
         <BackTemplate />

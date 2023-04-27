@@ -14,9 +14,7 @@ type LoadObject = {
     cardTemplateFront?: boolean,
     hellfireFront?: boolean,
     hellfireBack?: boolean,
-    theEncounterFront?: boolean,
     theEncounterBack?: boolean,
-    whenWhereFront?: boolean,
     whenWhereBack?: boolean
   }
 }
@@ -40,10 +38,8 @@ export default create<Store>((set) => ({
     cardTemplateFront: false,
     hellfireFront: false,
     hellfireBack: false,
-    theEncounterFront: false,
     theEncounterBack: false,
-    whenWhereFront: false,
-    whenWhereBack: false
+    whenWhereBack: false,
   },
 
   set: (k, v) => set((state) => {
