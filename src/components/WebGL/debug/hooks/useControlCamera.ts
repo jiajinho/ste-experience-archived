@@ -75,6 +75,7 @@ export default () => {
 
   useEffect(() => {
     if (!debug.box) return;
+    if (!debug.target) return;
     if (!debug.hotspot) return;
 
     debug.box.position.set(x, y, z);
@@ -82,20 +83,14 @@ export default () => {
     const position = new THREE.Vector3();
     debug.box.getWorldPosition(position);
 
-    config.zoomSettings[debug.hotspot].cameraPosition = [position.x, position.y, position.z];
-  }, [x, y, z]);
-
-  useEffect(() => {
-    if (!debug.target) return;
-    if (!debug.hotspot) return;
-
     debug.target.position.set(tx, ty, tz);
 
     const lookAt = new THREE.Vector3();
     debug.target.getWorldPosition(lookAt);
 
+    config.zoomSettings[debug.hotspot].cameraPosition = [position.x, position.y, position.z];
     config.zoomSettings[debug.hotspot].lookAt = [lookAt.x, lookAt.y, lookAt.z];
-  }, [tx, ty, tz]);
+  }, [x, y, z, tx, ty, tz]);
 
   useEffect(() => {
     if (env === "development") return;

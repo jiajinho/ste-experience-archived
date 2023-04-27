@@ -80,7 +80,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         color={LightColor.Crimson}
       />
 
-      {env === "development" &&
+      {(env === "development" || env === "staging") &&
         <>
           <WireframeBox.Light
             ref={topLightBox}
@@ -97,7 +97,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
           <WireframeBox.Camera
             ref={cameraBox}
             target={cameraTarget}
-            position={[2, 0, 0]}
+            position={[2.3, 0.13, 0]}
             lookAt={[-1, 0, 0]}
             hotspot="shelf"
           />
