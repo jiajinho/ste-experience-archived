@@ -16,7 +16,7 @@ type GLTFResult = GLTF & {
   materials: {
     Metal: THREE.MeshStandardMaterial;
     tiktok: THREE.MeshStandardMaterial;
-    CTV: THREE.MeshPhysicalMaterial;
+    RetroTV: THREE.MeshPhysicalMaterial;
   };
 };
 
@@ -58,14 +58,14 @@ export default ({ knob, onKnobClick, ...props }: {
       <mesh
         castShadow
         geometry={nodes.RetroTV.geometry}
-        material={materials.CTV}
+        material={materials.RetroTV}
       />
 
       <mesh
         material={videoMaterial}
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.3, 0.25, 1]}
-        position={[0.098, 0, 0]}
+        position={[0.08, 0, 0]}
       >
         <planeGeometry />
       </mesh>

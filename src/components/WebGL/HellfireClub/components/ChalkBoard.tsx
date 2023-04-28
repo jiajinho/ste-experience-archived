@@ -28,7 +28,7 @@ export default ({ onCallToAction, ...props }: {
       <mesh
         geometry={nodes.cta.geometry}
         material={materials.cta}
-        position={[0, 0, 0.005]}
+        position={[0, 0, 0.01]}
         onClick={onCallToAction}
       />
       <mesh
