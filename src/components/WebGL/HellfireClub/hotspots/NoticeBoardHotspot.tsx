@@ -125,6 +125,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         rotation={[0.37, 0, 0]}
       />
 
+      <Sticker.Instagram
+        position={[0.025, 0, 0]}
+      />
 
 
       <spotLight
