@@ -2,12 +2,18 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 import { LightColor } from '@webgl/config';
+import useEnvStore from 'stores/useEnvStore';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import WireframeBox from '@webgl/debug/WireframeBox';
+import useAnimation from './useAnimation';
 
 export default () => {
+  const env = useEnvStore(state => state.env);
+
   const spotlight = useRef<THREE.SpotLight>(null);
   const lightBox = useRef<THREE.Mesh>(null);
+
+  useAnimation(spotlight);
 
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
 
@@ -32,11 +38,13 @@ export default () => {
         color={LightColor.Cyan}
       />
 
-      <WireframeBox.Light
-        ref={lightBox}
-        position={spotlight.current?.position}
-        onClick={triggerSpotlightControl}
-      />
+      {(env === "development" || env === "staging") &&
+        <WireframeBox.Light
+          ref={lightBox}
+          position={spotlight.current?.position}
+          onClick={triggerSpotlightControl}
+        />
+      }
     </>
   )
 }
