@@ -8,23 +8,23 @@ export default (light: React.RefObject<THREE.SpotLight>) => {
 
     const ogIntensity = light.current.intensity;
 
-    const timeline = gsap.timeline({ repeat: -1, repeatDelay: 6 });
+    const timeline = gsap.timeline({ repeat: -1, repeatDelay: 5 });
 
     timeline
       .to(light.current, {
-        duration: 0.15,
-        intensity: 0
+        duration: 0.1,
+        intensity: 2
       })
       .to(light.current, {
-        duration: 0.15,
+        duration: 0.1,
         intensity: ogIntensity
       })
       .to(light.current, {
-        duration: 0.15,
-        intensity: 0
+        duration: 0.05,
+        intensity: 2
       })
       .to(light.current, {
-        duration: 0.15,
+        duration: 0.05,
         intensity: ogIntensity
       });
 

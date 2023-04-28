@@ -46,7 +46,7 @@ export default () => (
     />
 
     <VecnaBoardHotspot
-      position={[0, 0.83, 0.2]}
+      position={[0, 0.835, 0.2]}
     />
 
     <FAQBoardHotspot

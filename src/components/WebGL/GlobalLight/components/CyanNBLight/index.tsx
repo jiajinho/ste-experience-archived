@@ -33,8 +33,8 @@ export default () => {
         angle={0.41}
         penumbra={1}
         position={[-2.42, 4.43, -2.05]}
-        intensity={2.6}
-        distance={7}
+        intensity={5.5}
+        distance={9.66}
         color={LightColor.Cyan}
       />
 

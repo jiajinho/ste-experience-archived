@@ -38,7 +38,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   useEffect(() => {
     if (!spotlight.current) return;
 
-    spotlight.current.target.position.set(0, -15, -15);
+    spotlight.current.target.position.set(-1, -9, -19);
     spotlight.current.target.updateMatrixWorld();
   }, []);
 
@@ -111,10 +111,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         ref={spotlight}
         castShadow
         penumbra={1}
-        position={[0, 1.61, 1.49]}
-        angle={0.47}
-        intensity={3.5}
-        distance={6.6}
+        position={[0.22, 1.32, 2.95]}
+        angle={0.32}
+        intensity={6.6}
+        distance={7.8}
         color={LightColor.Crimson}
       />
 
