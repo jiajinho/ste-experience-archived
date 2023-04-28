@@ -138,7 +138,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       />
 
       <Sticker.Instagram
-        position={[0.025, 0, 0]}
+        position={[0.025, -0.16, 0.18]}
         onClick={handleIGPinClick}
       />
 
