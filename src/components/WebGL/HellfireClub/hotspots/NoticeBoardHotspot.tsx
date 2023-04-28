@@ -104,10 +104,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         color={PolaroidColor.Bottom}
       />
 
-      <Sticker.Cap position={[0.04, 0.45, -0.32]} />
+      <Sticker.Cap position={[0.02, 0.45, -0.32]} />
 
       <Sticker.Hamburger
-        position={[0.04, 0.16, 0.56]}
+        position={[0.02, 0.16, 0.56]}
         rotation={[-0.2, 0, 0]}
       />
 
