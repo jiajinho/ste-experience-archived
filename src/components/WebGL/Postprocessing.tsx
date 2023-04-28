@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Bloom, EffectComposer, Outline } from '@react-three/postprocessing';
-import { KernelSize } from 'postprocessing';
+import { Bloom, EffectComposer, Noise, Outline } from '@react-three/postprocessing';
+import { KernelSize, BlendFunction } from 'postprocessing';
 
 import useEnvStore from 'stores/useEnvStore';
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
@@ -39,6 +39,10 @@ export default () => {
         xRay={env === "development" ? false : true}
         pulseSpeed={env === "development" ? 0 : 0.5}
         blur
+      />
+      <Noise
+        premultiply // enables or disables noise premultiplication
+        blendFunction={BlendFunction.ADD} // blend mode
       />
     </EffectComposer>
   )
