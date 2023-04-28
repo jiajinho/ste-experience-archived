@@ -11,12 +11,15 @@ import NoticeBoard from '@hellfire/components/NoticeBoard';
 import WireframeBox from '@webgl/debug/WireframeBox';
 import Polaroid from '../components/Polaroid';
 import Sticker from '../components/Sticker';
+import config from 'config';
+import useCameraStore from 'stores/webgl/useCameraStore';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Hooks
    */
   const env = useEnvStore(state => state.env);
+  const currentZoom = useCameraStore(state => state.currentZoom);
 
   const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
@@ -42,6 +45,15 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const handleClick = () => {
     // triggerModelControl();
     triggerZoom();
+  }
+
+  const handleIGPinClick = () => {
+    if (currentZoom !== "noticeBoard") {
+      triggerZoom();
+    }
+    else {
+      window.open(config.link.instagram, "_blank");
+    }
   }
 
   /**
@@ -127,6 +139,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
       <Sticker.Instagram
         position={[0.025, 0, 0]}
+        onClick={handleIGPinClick}
       />
 
 
