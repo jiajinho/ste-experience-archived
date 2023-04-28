@@ -13,8 +13,8 @@ type GLTFResult = GLTF & {
     FAQBoard: THREE.Mesh;
   };
   materials: {
-    ["cta.001"]: THREE.MeshStandardMaterial;
-    ["FAQBoard.001"]: THREE.MeshStandardMaterial;
+    cta: THREE.MeshStandardMaterial;
+    FAQBoard: THREE.MeshStandardMaterial;
   };
 };
 
@@ -41,12 +41,12 @@ export default ({ onCallToAction, ...props }: {
     >
       <mesh
         geometry={nodes.cta.geometry}
-        material={materials["cta.001"]}
+        material={materials.cta}
         onClick={onCallToAction}
       />
       <mesh
         geometry={nodes.FAQBoard.geometry}
-        material={materials["FAQBoard.001"]}
+        material={materials.FAQBoard}
       />
     </group>
   );
