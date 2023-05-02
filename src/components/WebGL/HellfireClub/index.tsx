@@ -7,7 +7,6 @@ import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
 import CeilingLight from './components/CeilingLight';
-import Ladder from './components/Ladder';
 import Lamp from './components/Lamp';
 import Coffin from './components/Coffin';
 import Standee from './components/Standee';
