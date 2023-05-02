@@ -72,7 +72,7 @@ export default () => (
     />
 
     <Tabletop.Round
-      position={[2.46, 0.52, -4.18]}
+      position={[2.62, 0.52, -4.18]}
     />
 
     <CeilingLight
@@ -122,7 +122,7 @@ export default () => (
     />
 
     <Chandelier
-      position={[2.47, 0.92, -4.24]}
+      position={[2.64, 0.92, -4.24]}
       rotation={[0.45, -0.21, 0.1]}
       light={LightColor.Yellow}
     />
