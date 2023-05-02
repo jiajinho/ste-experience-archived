@@ -34,22 +34,23 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   default: {
     cameraPosition: [3.81, 2.29, 2.26],
     lookAt: [
-      -Math.sin(1.1) * 100, //-Math.sin(default.azimuth) * default.azimuthScaleFactor
+      -Math.sin(1.05) * 100, //-Math.sin(default.azimuth) * default.azimuthScaleFactor
       -20, //default.lookAtY
-      -Math.cos(1.1) * 100 //-Math.cos(default.azimuth) * default.azimuthScaleFactor
+      -Math.cos(1.05) * 100 //-Math.cos(default.azimuth) * default.azimuthScaleFactor
     ],
     allowEvent: {
       name: "rotate",
       props: {
         azimuth: {
-          min: -0.05,
-          max: 2,
-          vwMultiplier: 0.00045
+          min: 0.35,
+          max: 1.73,
+          constant: 0.4,
+          maxAspect: 2.25
         }
       },
       default: {
         lookAtY: -20,
-        azimuth: 1.1,
+        azimuth: 1.05,
         azimuthScaleFactor: 100
       }
     }

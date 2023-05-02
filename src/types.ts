@@ -33,7 +33,8 @@ export namespace Camera {
       azimuth: {
         min: number,
         max: number,
-        vwMultiplier: number
+        constant: number,
+        maxAspect: number
       }
     },
     default: {

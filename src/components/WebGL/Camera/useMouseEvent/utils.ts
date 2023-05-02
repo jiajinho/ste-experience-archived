@@ -10,7 +10,7 @@ export function enableEvent(state: EventState, pageX: number) {
   state.anchorX = pageX;
 }
 
-export function executeEvent(state: EventState, pageX: number) {
+export function executeEvent(state: EventState, pageX: number, aspect: number) {
   const { currentZoom, canvas } = useCameraStore.getState();
   const setting = config.zoomSettings[currentZoom];
 
@@ -18,8 +18,15 @@ export function executeEvent(state: EventState, pageX: number) {
   if (!setting.allowEvent) return;
   if (!canvas) return;
 
-  const minAzimuth = setting.allowEvent.props.azimuth.min + (setting.allowEvent.props.azimuth.vwMultiplier * canvas.clientWidth);
-  const maxAzimuth = setting.allowEvent.props.azimuth.max - (setting.allowEvent.props.azimuth.vwMultiplier * canvas.clientWidth);
+  let minAzimuth = setting.allowEvent.default.azimuth;
+  let maxAzimuth = setting.allowEvent.default.azimuth;
+
+  if (aspect <= setting.allowEvent.props.azimuth.maxAspect) {
+    const range = setting.allowEvent.props.azimuth.constant / aspect;
+
+    minAzimuth -= range;
+    maxAzimuth += range;
+  }
 
   if (setting.allowEvent.name === "rotate") {
     rotate(
@@ -46,11 +53,14 @@ function rotate(state: EventState, pageX: number, minAzimuth: number, maxAzimuth
 
   let newAzimuth = state.anchorAzimuth + delta * scaleFactor;
 
-  if (newAzimuth >= maxAzimuth) {
-    newAzimuth = maxAzimuth;
+  const maxLimit = Math.min(maxAzimuth, setting.allowEvent.props.azimuth.max);
+  const minLimit = Math.max(minAzimuth, setting.allowEvent.props.azimuth.min);
+
+  if (newAzimuth >= maxLimit) {
+    newAzimuth = maxLimit;
   }
-  else if (newAzimuth <= minAzimuth) {
-    newAzimuth = minAzimuth;
+  else if (newAzimuth <= minLimit) {
+    newAzimuth = minLimit;
   }
 
   const vec3 = new THREE.Vector3(

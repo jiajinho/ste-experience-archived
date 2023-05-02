@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useThree } from '@react-three/fiber';
 
 import config from 'config';
 import { EventState } from './types';
@@ -7,6 +8,7 @@ import useCameraStore from 'stores/webgl/useCameraStore';
 
 export default () => {
   const { canvas, mouseEvent, camera, shadowCamera, currentZoom } = useCameraStore(state => state);
+  const { aspect } = useThree(state => state.viewport);
 
   useEffect(() => {
     if (!canvas) return;
@@ -37,11 +39,11 @@ export default () => {
     }
 
     function handleMouseMove(e: MouseEvent) {
-      executeEvent(state, e.pageX);
+      executeEvent(state, e.pageX, aspect);
     }
 
     function handleTouchMove(e: TouchEvent) {
-      executeEvent(state, e.targetTouches[0].pageX);
+      executeEvent(state, e.targetTouches[0].pageX, aspect);
     }
 
     canvas.addEventListener("mousedown", handleMouseDown);
@@ -61,5 +63,5 @@ export default () => {
       canvas.removeEventListener("touchend", disableEvent);
       canvas.removeEventListener("touchmove", handleTouchMove);
     }
-  }, [camera, mouseEvent, currentZoom]);
+  }, [camera, mouseEvent, currentZoom, aspect]);
 }
