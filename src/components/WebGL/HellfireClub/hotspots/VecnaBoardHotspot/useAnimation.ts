@@ -27,7 +27,6 @@ export default (encounterCard: React.RefObject<THREE.Group>, whenWhereCard: Reac
           })
           .to(encounterCard.current.rotation, {
             duration: 0.75,
-            x: Math.PI,
             y: 0
           }, 0)
           .call(() => {
@@ -44,7 +43,6 @@ export default (encounterCard: React.RefObject<THREE.Group>, whenWhereCard: Reac
           })
           .to(whenWhereCard.current.rotation, {
             duration: 0.75,
-            x: Math.PI,
             y: 0,
           }, 0)
           .call(() => {
