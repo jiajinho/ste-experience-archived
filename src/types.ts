@@ -7,6 +7,12 @@ export type Tuple<T, N extends Number> = [T, ...T[]] & { length: N };
 
 export type Vector3 = [number, number, number];
 
+export enum VectorIndex {
+  x = 0,
+  y = 1,
+  z = 2
+}
+
 export namespace Camera {
   export type Hotspot =
     "default" |
@@ -24,7 +30,13 @@ export namespace Camera {
     cameraPosition: Vector3,
     lookAt: Vector3,
     cameraUp?: THREE.Vector3,
-    allowEvent?: RotateEvent
+    allowEvent?: RotateEvent,
+    aspect?: {
+      minAspect: number,
+      maxAspect: number,
+      vectorIndex: VectorIndex,
+      constant: number
+    }
   }
 
   type RotateEvent = {

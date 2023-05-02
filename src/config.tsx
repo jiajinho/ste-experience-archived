@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import locale from "locale";
-import { Camera, Vector3, Viewport } from "types";
+import { Camera, Vector3, VectorIndex, Viewport } from "types";
 
 import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";
@@ -57,7 +57,13 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   },
   retroTV: {
     cameraPosition: [-1.61, 1.07, 3.13],
-    lookAt: [-2.61, 1.07, 3.13]
+    lookAt: [-2.61, 1.07, 3.13],
+    aspect: {
+      minAspect: 0.5,
+      maxAspect: 1.4,
+      vectorIndex: VectorIndex.x,
+      constant: -0.3
+    }
   },
   noticeBoard: {
     cameraPosition: [-1.72, 1.75, 0.15],
