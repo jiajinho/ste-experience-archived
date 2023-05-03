@@ -29,6 +29,7 @@ export default () => {
 
   useFrame(() => {
     if (env === 'development') return;
+    if (env === 'staging') return;
     if (fps.completed) return;
 
     begin();
