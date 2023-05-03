@@ -23,7 +23,7 @@ export default () => {
   const setCameraStore = useCameraStore(state => state.set);
 
   const { cameraPosition } = useControls("log", {
-    cameraPosition: false
+    cameraPosition: false,
   });
 
   useMouseEvent();
