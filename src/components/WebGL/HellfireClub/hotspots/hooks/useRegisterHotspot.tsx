@@ -8,7 +8,6 @@ import useCameraStore from 'stores/webgl/useCameraStore';
 import { useThree } from '@react-three/fiber';
 
 export default (hotspot: Camera.Hotspot, cameraBox: React.RefObject<THREE.Mesh>, cameraTarget: React.RefObject<THREE.Group>) => {
-  // const env = useEnvStore(state => state.env);
   const currentZoom = useCameraStore(state => state.currentZoom);
   const setCameraStore = useCameraStore(state => state.set);
 

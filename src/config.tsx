@@ -83,15 +83,27 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   },
   vecnaBoard: {
     cameraBox: {
-      position: [0, 1, 0],
+      position: [0, 1.2, 0],
       lookAt: [0, -1, 0]
+    },
+    aspect: {
+      minAspect: 1.15,
+      maxAspect: 1.58,
+      vectorIndex: VectorIndex.y,
+      constant: -1
     },
     cameraUp: new THREE.Vector3(-1, 0, 0)
   },
   faqBoard: {
     cameraBox: {
-      position: [0, 0.4, 0],
+      position: [0, 0.45, 0],
       lookAt: [0, -1, 0]
+    },
+    aspect: {
+      minAspect: 0.55,
+      maxAspect: 0.92,
+      vectorIndex: VectorIndex.y,
+      constant: -0.5
     },
     cameraUp: new THREE.Vector3(0.05, -1, 0.55)
   },

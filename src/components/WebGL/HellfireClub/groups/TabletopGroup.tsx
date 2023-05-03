@@ -52,13 +52,13 @@ export default () => {
       />
 
       <Dossier
-        position={[-0.24, 0.82, 0.73]}
-        rotation-y={Math.PI}
+        position={[-0.25, 0.82, 0.76]}
+        rotation-y={3.16}
       />
 
       <Dossier
-        position={[0.22, 0.82, 0.73]}
-        rotation-y={Math.PI}
+        position={[0.26, 0.82, 0.72]}
+        rotation-y={6.2}
       />
     </>
   )
