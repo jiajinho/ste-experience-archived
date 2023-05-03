@@ -45,7 +45,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const setting = config.zoomSettings["noticeBoard"];
 
   const handleClick = () => {
-    // triggerModelControl();
+    triggerModelControl();
     triggerZoom();
   }
 

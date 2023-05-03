@@ -11,14 +11,14 @@ export default () => {
 
   useMemo(() => {
     materials.Rift.toneMapped = false;
-    materials.Rift.emissiveIntensity = 8;
+    materials.Rift.emissiveIntensity = 2;
   }, [materials]);
 
   return (
     <>
       <Rift.A
         material={materials.Rift}
-        position={[-3.15, 1.17, -0.7]}
+        position={[-3.19, 1.3, -0.7]}
         rotation={[-0.85, -Math.PI / 2, 0]}
         scale={0.57}
       />
@@ -32,7 +32,7 @@ export default () => {
 
       <Rift.B
         material={materials.Rift}
-        position={[-3.11, 1.52, 2.35]}
+        position={[-3.11, 0.77, 2.5]}
         rotation={[0, -Math.PI / 2, -0.83]}
         scale={0.6}
       />

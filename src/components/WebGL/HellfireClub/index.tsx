@@ -36,7 +36,7 @@ export default () => (
     <DefaultViewHotspot />
 
     <NoticeBoardHotspot
-      position={[-3.22, 1.75, 0.15]}
+      position={[-3.16, 1.84, 0.15]}
     />
 
     <ShelfHotspot
