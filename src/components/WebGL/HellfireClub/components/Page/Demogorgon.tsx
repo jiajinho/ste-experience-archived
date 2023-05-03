@@ -1,19 +1,23 @@
 import React, { useRef } from "react";
+import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
-import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
-const gltfUrl = "/static/gltf/page-demogorgon.glb";
-const mapUrl = "/static/texture/dnd.jpg";
+const gltfUrl = "/static/gltf/page.glb";
+const mapUrl = "/static/texture/page/demogorgon.jpg"
 
 type GLTFResult = GLTF & {
   nodes: {
-    PageDemogorgon: THREE.Mesh;
+    Page: THREE.Mesh;
   };
-  materials: {};
 };
+
+const material = new THREE.MeshStandardMaterial({
+  metalness: 0.2,
+  roughness: 0.8
+});
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
@@ -21,12 +25,15 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const triggerMover = useTriggerDebugModel(ref);
 
-  const { map } = useTexture({ map: mapUrl });
-  map.flipY = false;
+  useTexture(mapUrl, t => {
+    const _t = t as THREE.Texture;
 
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
+    _t.flipY = false;
+    material.map = _t;
+  });
+
+  const handleClick = () => {
     triggerMover();
-    props.onClick && props.onClick(e);
   }
 
   return (
@@ -36,13 +43,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       onClick={handleClick}
       dispose={null}
     >
-      <mesh geometry={nodes.PageDemogorgon.geometry}>
-        <meshStandardMaterial
-          map={map}
-          metalness={0.1}
-          roughness={0.3}
-        />
-      </mesh>
+      <mesh
+        geometry={nodes.Page.geometry}
+        material={material}
+      />
     </group>
   );
 }
