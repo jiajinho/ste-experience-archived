@@ -8,15 +8,14 @@ const videoUrl = "/static/ste-encounter.mp4";
 
 type GLTFResult = GLTF & {
   nodes: {
-    RetroTVKnob: THREE.Mesh;
-    RetroTVKnob1: THREE.Mesh;
     Tiktok: THREE.Mesh;
     RetroTV: THREE.Mesh;
+    RetroTVKnob: THREE.Mesh;
+    RetroTVKnob1: THREE.Mesh;
   };
   materials: {
-    Metal: THREE.MeshStandardMaterial;
     tiktok: THREE.MeshStandardMaterial;
-    RetroTV: THREE.MeshPhysicalMaterial;
+    CTV: THREE.MeshPhysicalMaterial;
   };
 };
 
@@ -43,12 +42,12 @@ export default ({ knob, onKnobClick, ...props }: {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.RetroTVKnob.geometry}
-        material={materials.Metal}
+        material={materials.CTV}
       />
       <mesh
         ref={knob}
         geometry={nodes.RetroTVKnob1.geometry}
-        material={materials.Metal}
+        material={materials.CTV}
         onClick={onKnobClick}
       />
       <mesh
@@ -58,7 +57,7 @@ export default ({ knob, onKnobClick, ...props }: {
       <mesh
         castShadow
         geometry={nodes.RetroTV.geometry}
-        material={materials.RetroTV}
+        material={materials.CTV}
       />
 
       <mesh

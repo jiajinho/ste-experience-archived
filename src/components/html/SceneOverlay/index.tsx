@@ -41,20 +41,11 @@ const TopRow = styled.div`
   align-items: start;
 
   ${$STEncounter} {
+    --width: max(100px, 15vmin);
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-
-    p { font-size: 8px }
-  }
-
-  @media screen and (min-width: ${config.viewport.md}) {
-    ${$STEncounter} {
-      width: 160px;
-      p { font-size: 16px }
-    }
   }
 `;
 

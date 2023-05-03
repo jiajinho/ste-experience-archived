@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(var(--width) / 20);
+  gap: calc(var(--width) / 16);
 
   user-select: none;
 

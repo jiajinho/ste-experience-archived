@@ -29,8 +29,15 @@ const BrandGroup = styled.div`
   align-items: center;
   gap: 12px;
 
-  ${$MightyExperience} { width: 110px }
-  ${$Netflix} { width: 70px }
+  ${$MightyExperience} { 
+    width: 10vmin;
+    min-width: 95px; 
+  }
+
+  ${$Netflix} { 
+    width: 9vmin;
+    min-width: 70px;
+  }
 `;
 
 export default () => (
@@ -40,7 +47,7 @@ export default () => (
     </p>
 
     <BrandGroup>
-      <Netflix color="white" />
+      <Netflix color="var(--color-cherry)" />
       <MightyExperience />
     </BrandGroup>
   </Wrapper>
