@@ -28,6 +28,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
   const lightBox = useRef<THREE.Mesh>(null);
+  const cameraBox = useRef<THREE.Mesh>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
   const encounterCard = useRef<THREE.Group>(null);
@@ -59,11 +60,13 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("vecnaBoard");
+  const triggerZoom = useRegisterHotspot("vecnaBoard", cameraBox, cameraTarget);
 
   /**
    * Not hook
    */
+  const setting = config.zoomSettings["vecnaBoard"];
+
   const handleModelClick = () => {
     triggerModelControl();
     triggerZoom();
@@ -118,22 +121,21 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         color={LightColor.Crimson}
       />
 
-      {env === "development" &&
-        <>
-          <WireframeBox.Light
-            ref={lightBox}
-            position={spotlight.current?.position}
-            onClick={triggerSpotlightControl}
-          />
-
-          <WireframeBox.Camera
-            target={cameraTarget}
-            position={[0, 1, 0]}
-            lookAt={[0, -1, 0]}
-            hotspot="vecnaBoard"
-          />
-        </>
+      {(env === "development" || env === "staging") &&
+        <WireframeBox.Light
+          ref={lightBox}
+          position={spotlight.current?.position}
+          onClick={triggerSpotlightControl}
+        />
       }
+
+      <WireframeBox.Camera
+        ref={cameraBox}
+        target={cameraTarget}
+        position={setting.cameraBox.position}
+        lookAt={setting.cameraBox.lookAt}
+        hotspot="vecnaBoard"
+      />
     </group>
   )
 }

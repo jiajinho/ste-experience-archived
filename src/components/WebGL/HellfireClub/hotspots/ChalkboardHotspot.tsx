@@ -28,7 +28,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("chalkBoard");
+  const triggerZoom = useRegisterHotspot("chalkBoard", cameraBox, cameraTarget);
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -40,6 +40,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Not hook
    */
+  const setting = config.zoomSettings["chalkBoard"];
+
   const handleClick = () => {
     triggerModelControl();
     triggerZoom();
@@ -75,23 +77,21 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         color={LightColor.Crimson}
       />
 
-      {env === "development" &&
-        <>
-          <WireframeBox.Light
-            ref={lightBox}
-            position={spotlight.current?.position}
-            onClick={triggerSpotlightControl}
-          />
-
-          <WireframeBox.Camera
-            ref={cameraBox}
-            target={cameraTarget}
-            position={[0, 0, 1.5]}
-            lookAt={[0, 0, -1]}
-            hotspot="chalkBoard"
-          />
-        </>
+      {(env === "development" || env === "staging") &&
+        <WireframeBox.Light
+          ref={lightBox}
+          position={spotlight.current?.position}
+          onClick={triggerSpotlightControl}
+        />
       }
+
+      <WireframeBox.Camera
+        ref={cameraBox}
+        target={cameraTarget}
+        position={setting.cameraBox.position}
+        lookAt={setting.cameraBox.lookAt}
+        hotspot="chalkBoard"
+      />
     </group>
   )
 }

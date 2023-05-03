@@ -32,12 +32,14 @@ const link = {
  */
 const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   default: {
-    cameraPosition: [3.81, 2.29, 2.26],
-    lookAt: [
-      -Math.sin(1.05) * 100, //-Math.sin(default.azimuth) * default.azimuthScaleFactor
-      -20, //default.lookAtY
-      -Math.cos(1.05) * 100 //-Math.cos(default.azimuth) * default.azimuthScaleFactor
-    ],
+    cameraBox: {
+      position: [3.81, 2.29, 2.26],
+      lookAt: [
+        -Math.sin(1.05) * 100, //-Math.sin(default.azimuth) * default.azimuthScaleFactor
+        -20, //default.lookAtY
+        -Math.cos(1.05) * 100 //-Math.cos(default.azimuth) * default.azimuthScaleFactor
+      ]
+    },
     allowEvent: {
       name: "rotate",
       props: {
@@ -56,41 +58,61 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   retroTV: {
-    cameraPosition: [-1.61, 1.07, 3.13],
-    lookAt: [-2.61, 1.07, 3.13],
+    cameraBox: {
+      position: [1, 0, 0],
+      lookAt: [-1, 0, 0]
+    },
     aspect: {
       minAspect: 0.5,
-      maxAspect: 1.4,
+      maxAspect: 0.78,
       vectorIndex: VectorIndex.x,
-      constant: -0.3
+      constant: -1.8
     }
   },
   noticeBoard: {
-    cameraPosition: [-1.72, 1.75, 0.15],
-    lookAt: [-2.72, 1.75, 0.15]
+    cameraBox: {
+      position: [1.5, 0, 0],
+      lookAt: [-1, 0, 0]
+    },
+    aspect: {
+      minAspect: 0.5,
+      maxAspect: 1.3,
+      vectorIndex: VectorIndex.x,
+      constant: -1
+    }
   },
   vecnaBoard: {
-    cameraPosition: [0, 1.83, 0.2],
-    lookAt: [0, 0.83, 0.2],
+    cameraBox: {
+      position: [0, 1, 0],
+      lookAt: [0, -1, 0]
+    },
     cameraUp: new THREE.Vector3(-1, 0, 0)
   },
   faqBoard: {
-    cameraPosition: [0, 1.215, -0.42],
-    lookAt: [0, 0.825, -0.42],
+    cameraBox: {
+      position: [0, 0.4, 0],
+      lookAt: [0, -1, 0]
+    },
     cameraUp: new THREE.Vector3(0.05, -1, 0.55)
   },
   map: {
-    cameraPosition: [0, 1.22, -0.73],
-    lookAt: [0.0, 0.219, -0.73],
+    cameraBox: {
+      position: [0, 0.4, 0],
+      lookAt: [0, -1, 0]
+    },
     cameraUp: new THREE.Vector3(-0.082, 0, 1)
   },
   chalkBoard: {
-    cameraPosition: [-1.246, 1.35, -1.898],
-    lookAt: [-1.835, 1.35, -2.706]
+    cameraBox: {
+      position: [0, 0, 1.5],
+      lookAt: [0, 0, -1]
+    }
   },
   shelf: {
-    cameraPosition: [2.07, 1.58, -1.99],
-    lookAt: [2.07, 1.58, -2.99]
+    cameraBox: {
+      position: [2.4, 0.13, 0],
+      lookAt: [-1, 0, 0]
+    }
   }
 }
 

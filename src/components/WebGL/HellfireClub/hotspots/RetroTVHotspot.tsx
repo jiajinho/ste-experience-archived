@@ -32,7 +32,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("retroTV");
+  const triggerZoom = useRegisterHotspot("retroTV", cameraBox, cameraTarget);
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -54,6 +54,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Not hook
    */
+  const setting = config.zoomSettings["retroTV"];
+
   const handleClick = () => {
     triggerModelControl();
     triggerZoom();
@@ -91,22 +93,20 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       />
 
       {env === "development" &&
-        <>
-          <WireframeBox.Light
-            ref={lightBox}
-            position={spotlight.current?.position}
-            onClick={triggerSpotlightControl}
-          />
-
-          <WireframeBox.Camera
-            ref={cameraBox}
-            target={cameraTarget}
-            position={[1, 0, 0]}
-            lookAt={[-1, 0, 0]}
-            hotspot="retroTV"
-          />
-        </>
+        <WireframeBox.Light
+          ref={lightBox}
+          position={spotlight.current?.position}
+          onClick={triggerSpotlightControl}
+        />
       }
+
+      <WireframeBox.Camera
+        ref={cameraBox}
+        target={cameraTarget}
+        position={setting.cameraBox.position}
+        lookAt={setting.cameraBox.lookAt}
+        hotspot="retroTV"
+      />
     </group>
   )
 }

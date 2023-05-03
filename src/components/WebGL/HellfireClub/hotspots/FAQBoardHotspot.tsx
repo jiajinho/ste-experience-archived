@@ -3,15 +3,16 @@ import React, { useRef } from 'react';
 import config from 'config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
-import useEnvStore from 'stores/useEnvStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
 
 import FAQBoard from '../components/FAQBoard';
 import WireframeBox from '@webgl/debug/WireframeBox';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  /**
+   * Hooks
+   */
   const currentZoom = useCameraStore(state => state.currentZoom);
-  const env = useEnvStore(state => state.env);
 
   const ref = useRef<THREE.Group>(null);
   const cameraBox = useRef<THREE.Mesh>(null);
@@ -19,7 +20,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("faqBoard");
+  const triggerZoom = useRegisterHotspot("faqBoard", cameraBox, cameraTarget);
+
+  /**
+   * Not hook
+   */
+  const setting = config.zoomSettings["faqBoard"];
 
   const handleClick = () => {
     triggerModelControl();
@@ -35,6 +41,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     }
   }
 
+  /**
+   * Render
+   */
   return (
     <group {...props}>
       <FAQBoard
@@ -43,15 +52,13 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         rotation-y={Math.PI}
       />
 
-      {env === "development" &&
-        <WireframeBox.Camera
-          ref={cameraBox}
-          target={cameraTarget}
-          position={[0, 0.4, 0]}
-          lookAt={[0, -1, 0]}
-          hotspot="faqBoard"
-        />
-      }
+      <WireframeBox.Camera
+        ref={cameraBox}
+        target={cameraTarget}
+        position={setting.cameraBox.position}
+        lookAt={setting.cameraBox.lookAt}
+        hotspot="faqBoard"
+      />
     </group>
   )
 }

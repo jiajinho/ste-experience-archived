@@ -2,21 +2,23 @@ import { useEffect, useRef } from 'react';
 import { useThree } from '@react-three/fiber';
 
 import config from 'config';
-import { Vector3 } from 'types';
 import { moveCamera } from './utils';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useCardStore from 'stores/html/useCardStore';
+import useEnvStore from 'stores/useEnvStore';
 
 export default () => {
   const firstTime = useRef(true);
   const { aspect } = useThree(state => state.viewport);
 
+  const env = useEnvStore(state => state.env);
   const cardHtmlEvent = useCardStore(state => state.htmlEvent);
   const cardWebglEvent = useCardStore(state => state.webglEvent);
   const { shadowCamera, currentZoom, camera } = useCameraStore(state => state);
   const setCameraStore = useCameraStore(state => state.set);
 
   useEffect(() => {
+    if (env === "development") return;
     if (!shadowCamera) return;
     if (!camera) return;
     if (!!cardHtmlEvent) return;
@@ -26,21 +28,13 @@ export default () => {
 
     if (!setting.lookAt || !setting.cameraPosition) return;
 
-    const cameraPosition: Vector3 = [...setting.cameraPosition];
-
-    if (setting.aspect && aspect > setting.aspect.minAspect) {
-      const change = Math.min(aspect, setting.aspect.maxAspect) * setting.aspect.constant;
-      cameraPosition[setting.aspect.vectorIndex] += change;
-    }
-
-
     setCameraStore("mouseEvent", undefined);
 
     moveCamera({
       camera,
       shadowCamera: shadowCamera,
       lookAt: setting.lookAt,
-      cameraPosition: cameraPosition,
+      cameraPosition: setting.cameraPosition,
       up: setting.cameraUp,
       animate: !firstTime.current,
       callback: () => {
@@ -49,6 +43,6 @@ export default () => {
     });
 
     firstTime.current = false;
-  }, [currentZoom, camera, shadowCamera, aspect]);
+  }, [currentZoom, camera, shadowCamera, aspect, env]);
 
 }

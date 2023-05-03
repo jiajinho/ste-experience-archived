@@ -9,6 +9,7 @@ import useEnvStore from 'stores/useEnvStore';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import Shelf from '@hellfire/components/Shelf';
+import config from 'config';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
@@ -28,7 +29,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerBottomLightControl = useTriggerDebugSpotlight(bottomLight, bottomLightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("shelf");
+  const triggerZoom = useRegisterHotspot("shelf", cameraBox, cameraTarget);
 
   useEffect(() => {
     if (!topLight.current) return;
@@ -44,6 +45,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Not hook
    */
+  const setting = config.zoomSettings["shelf"];
+
   const handleClick = () => {
     triggerModelControl();
     triggerZoom();
@@ -93,16 +96,16 @@ export default (props: JSX.IntrinsicElements["group"]) => {
             position={bottomLight.current?.position}
             onClick={triggerBottomLightControl}
           />
-
-          <WireframeBox.Camera
-            ref={cameraBox}
-            target={cameraTarget}
-            position={[2.3, 0.13, 0]}
-            lookAt={[-1, 0, 0]}
-            hotspot="shelf"
-          />
         </>
       }
+
+      <WireframeBox.Camera
+        ref={cameraBox}
+        target={cameraTarget}
+        position={setting.cameraBox.position}
+        lookAt={setting.cameraBox.lookAt}
+        hotspot="shelf"
+      />
     </group>
   )
 }

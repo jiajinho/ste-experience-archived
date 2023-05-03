@@ -27,8 +27,12 @@ export namespace Camera {
   export type MouseEvent = "rotate" | "pan" | undefined;
 
   export type Zoom = {
-    cameraPosition: Vector3,
-    lookAt: Vector3,
+    cameraBox: {
+      position: Vector3,
+      lookAt: Vector3
+    }
+    cameraPosition?: Vector3,
+    lookAt?: Vector3,
     cameraUp?: THREE.Vector3,
     allowEvent?: RotateEvent,
     aspect?: {
