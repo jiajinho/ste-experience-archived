@@ -64,21 +64,21 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     },
     aspect: {
       minAspect: 0.5,
-      maxAspect: 0.78,
+      maxAspect: 1.05,
       vectorIndex: VectorIndex.x,
-      constant: -1.8
+      constant: -0.4
     }
   },
   noticeBoard: {
     cameraBox: {
-      position: [1.5, 0, 0],
+      position: [3, 0, 0],
       lookAt: [-1, 0, 0]
     },
     aspect: {
       minAspect: 0.5,
-      maxAspect: 1.3,
+      maxAspect: 1.5,
       vectorIndex: VectorIndex.x,
-      constant: -1
+      constant: -0.95
     }
   },
   vecnaBoard: {
@@ -90,7 +90,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       minAspect: 1.15,
       maxAspect: 1.58,
       vectorIndex: VectorIndex.y,
-      constant: -1
+      constant: -0.15
     },
     cameraUp: new THREE.Vector3(-1, 0, 0)
   },
@@ -103,13 +103,13 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       minAspect: 0.55,
       maxAspect: 0.92,
       vectorIndex: VectorIndex.y,
-      constant: -0.5
+      constant: -0.1
     },
-    cameraUp: new THREE.Vector3(0.05, -1, 0.55)
+    cameraUp: new THREE.Vector3(0.08, 0, 1)
   },
   map: {
     cameraBox: {
-      position: [0, 0.4, -0.015],
+      position: [0, 0.48, -0.015],
       lookAt: [0, -1, 0]
     },
     cameraUp: new THREE.Vector3(-0.063, 0, 1)

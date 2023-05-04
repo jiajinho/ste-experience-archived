@@ -9,7 +9,7 @@ export default () => {
    * Hooks
    */
   const ref = useRef<THREE.Group>(null);
-  const cameraBox = useRef<THREE.Mesh>(null);
+  const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
   useRegisterHotspot("default", cameraBox, cameraTarget);

@@ -22,7 +22,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const topLightBox = useRef<THREE.Mesh>(null);
   const bottomLight = useRef<THREE.SpotLight>(null);
   const bottomLightBox = useRef<THREE.Mesh>(null);
-  const cameraBox = useRef<THREE.Mesh>(null);
+  const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
   const triggerTopLightControl = useTriggerDebugSpotlight(topLight, topLightBox);

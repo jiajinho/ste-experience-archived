@@ -15,7 +15,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const currentZoom = useCameraStore(state => state.currentZoom);
 
   const ref = useRef<THREE.Group>(null);
-  const cameraBox = useRef<THREE.Mesh>(null);
+  const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
   const triggerModelControl = useTriggerDebugModel(ref);
