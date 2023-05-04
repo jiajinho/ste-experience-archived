@@ -9,6 +9,8 @@ import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotligh
 import useEnvStore from 'stores/useEnvStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
+import useHoverHomeEvent from './hooks/useHoverHomeEvent';
+import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import RetroTV from '@hellfire/components/RetroTV';
@@ -33,6 +35,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("retroTV", cameraBox, cameraTarget);
+
+  const hoverEvent = {
+    home: useHoverHomeEvent("layer1"),
+    hotspot: useHoverHotspotEvent("layer1")
+  }
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -79,6 +86,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         knob={knob}
         onClick={handleClick}
         onKnobClick={handleKnobClick}
+        onKnobPointerEnter={hoverEvent.hotspot.onPointerEnter}
+        onKnobPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        {...hoverEvent.home}
       />
 
       <spotLight

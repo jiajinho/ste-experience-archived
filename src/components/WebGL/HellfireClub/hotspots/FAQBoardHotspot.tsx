@@ -4,6 +4,8 @@ import config from 'config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useCameraStore from 'stores/webgl/useCameraStore';
+import useHoverHomeEvent from './hooks/useHoverHomeEvent';
+import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 
 import FAQBoard from '../components/FAQBoard';
 import WireframeBox from '@webgl/debug/WireframeBox';
@@ -21,6 +23,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("faqBoard", cameraBox, cameraTarget);
+
+  const hoverEvent = {
+    home: useHoverHomeEvent("layer2"),
+    hotspot: useHoverHotspotEvent("layer1")
+  }
 
   /**
    * Not hook
@@ -50,6 +57,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         onClick={handleClick}
         onCallToAction={handleCallToAction}
         rotation-y={Math.PI}
+        onCTAPointerEnter={hoverEvent.hotspot.onPointerEnter}
+        onCTAPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        {...hoverEvent.home}
       />
 
       <WireframeBox.Camera

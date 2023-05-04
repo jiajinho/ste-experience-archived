@@ -8,6 +8,8 @@ import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useEnvStore from 'stores/useEnvStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
+import useHoverHomeEvent from './hooks/useHoverHomeEvent';
+import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import ChalkBoard from '@hellfire/components/ChalkBoard';
@@ -29,6 +31,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("chalkBoard", cameraBox, cameraTarget);
+
+  const hoverEvent = {
+    home: useHoverHomeEvent("layer1"),
+    hotspot: useHoverHotspotEvent("layer1")
+  }
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -64,6 +71,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <ChalkBoard
         onClick={handleClick}
         onCallToAction={handleCallToAction}
+        onCTAPointerEnter={hoverEvent.hotspot.onPointerEnter}
+        onCTAPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        {...hoverEvent.home}
       />
 
       <spotLight

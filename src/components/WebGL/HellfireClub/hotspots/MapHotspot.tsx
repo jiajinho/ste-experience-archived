@@ -4,6 +4,8 @@ import config from 'config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useCameraStore from 'stores/webgl/useCameraStore';
+import useHoverHomeEvent from './hooks/useHoverHomeEvent';
+import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 
 import Map from '@hellfire/components/Map';
 import WireframeBox from '@webgl/debug/WireframeBox';
@@ -21,6 +23,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("map", cameraBox, cameraTarget);
+
+  const hoverEvent = {
+    home: useHoverHomeEvent("layer1"),
+    hotspot: useHoverHotspotEvent("layer1")
+  }
 
   /**
    * Not hook
@@ -49,6 +56,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <Map
         onClick={handleClick}
         onCallToAction={handleCallToAction}
+        onCTAPointerEnter={hoverEvent.hotspot.onPointerEnter}
+        onCTAPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        {...hoverEvent.home}
       />
 
       <WireframeBox.Camera

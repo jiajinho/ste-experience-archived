@@ -19,8 +19,10 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ knob, onKnobClick, ...props }: {
+export default ({ knob, onKnobClick, onKnobPointerEnter, onKnobPointerLeave, ...props }: {
   knob?: React.RefObject<THREE.Mesh>,
+  onKnobPointerEnter?: () => void,
+  onKnobPointerLeave?: () => void
   onKnobClick?: () => void
 } & JSX.IntrinsicElements["group"]
 ) => {
@@ -49,6 +51,8 @@ export default ({ knob, onKnobClick, ...props }: {
         geometry={nodes.RetroTVKnob1.geometry}
         material={materials.CTV}
         onClick={onKnobClick}
+        onPointerEnter={onKnobPointerEnter}
+        onPointerLeave={onKnobPointerLeave}
       />
       <mesh
         geometry={nodes.Tiktok.geometry}

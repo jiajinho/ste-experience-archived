@@ -10,6 +10,8 @@ import useCameraStore from 'stores/webgl/useCameraStore';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from '../hooks/useRegisterHotspot';
+import useHoverHomeEvent from '../hooks/useHoverHomeEvent';
+import useHoverHotspotEvent from '../hooks/useHoverHotspotEvent';
 import useAnimation from './useAnimation';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
@@ -33,6 +35,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const encounterCard = useRef<THREE.Group>(null);
   const whenWhereCard = useRef<THREE.Group>(null);
+
+  const hoverEvent = {
+    home: useHoverHomeEvent("layer1"),
+    hotspot: useHoverHotspotEvent("layer1")
+  }
 
   useAnimation(encounterCard, whenWhereCard);
 
@@ -94,6 +101,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         onClick={handleModelClick}
         onCallToAction={handleCallToAction}
         rotation={[0, Math.PI / 2, 0]}
+        onCTAPointerEnter={hoverEvent.hotspot.onPointerEnter}
+        onCTAPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        {...hoverEvent.home}
       />
 
       <Card.TheEncounter
@@ -101,6 +111,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={config.cards.theEncounter.position}
         rotation={[0, config.cards.theEncounter.rotateY, 0]}
         onClick={() => handleCardClick("the-encounter")}
+        {...hoverEvent.hotspot}
       />
 
       <Card.WhenWhere
@@ -108,6 +119,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={config.cards.whenWhere.position}
         rotation={[0, config.cards.whenWhere.rotateY, 0]}
         onClick={() => handleCardClick("when-where")}
+        {...hoverEvent.hotspot}
       />
 
       <spotLight

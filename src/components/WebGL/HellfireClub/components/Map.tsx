@@ -18,8 +18,10 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ onCallToAction, ...props }: {
-  onCallToAction?: () => void
+export default ({ onCallToAction, onCTAPointerEnter, onCTAPointerLeave, ...props }: {
+  onCallToAction?: () => void,
+  onCTAPointerEnter?: () => void,
+  onCTAPointerLeave?: () => void
 } & JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
@@ -43,6 +45,8 @@ export default ({ onCallToAction, ...props }: {
         material={materials.cta}
         position={[0, 0.005, 0]}
         onClick={onCallToAction}
+        onPointerEnter={onCTAPointerEnter}
+        onPointerLeave={onCTAPointerLeave}
       />
 
       <mesh

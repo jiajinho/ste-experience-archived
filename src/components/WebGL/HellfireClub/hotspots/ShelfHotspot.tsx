@@ -1,15 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
+import config from 'config';
 import { LightColor } from '@webgl/config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useEnvStore from 'stores/useEnvStore';
+import useHoverHomeEvent from './hooks/useHoverHomeEvent';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import Shelf from '@hellfire/components/Shelf';
-import config from 'config';
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
@@ -30,6 +31,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("shelf", cameraBox, cameraTarget);
+
+  const hoverEvent = useHoverHomeEvent("shelf");
 
   useEffect(() => {
     if (!topLight.current) return;
@@ -61,6 +64,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         onClick={handleClick}
         rotation-y={Math.PI / 2}
         scale={1.1}
+        {...hoverEvent}
       />
 
       <spotLight

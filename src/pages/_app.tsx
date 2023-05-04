@@ -10,6 +10,7 @@ import fonts from 'fonts';
 import useToggleEnv from 'hooks/useToggleEnv';
 import useEnvStore from 'stores/useEnvStore';
 import useResponsive from 'hooks/useResponsive';
+import useCursorPointer from 'hooks/useCursorPointer';
 
 const App = styled.div`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
@@ -23,6 +24,7 @@ export default ({ Component, pageProps }: AppProps) => {
   // useThemeSong();
   useResponsive();
   useToggleEnv();
+  useCursorPointer();
 
   return (
     <>
