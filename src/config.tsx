@@ -112,6 +112,12 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       position: [0, 0.48, -0.015],
       lookAt: [0, -1, 0]
     },
+    aspect: {
+      minAspect: 1.34,
+      maxAspect: 1.47,
+      vectorIndex: VectorIndex.y,
+      constant: -0.06
+    },
     cameraUp: new THREE.Vector3(-0.063, 0, 1)
   },
   chalkBoard: {
