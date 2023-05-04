@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SpotLight } from 'three';
 
 import config from 'config';
@@ -26,6 +26,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
+
+  const [ctaGlow, setCTAGlow] = useState(false);
 
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
@@ -63,6 +65,16 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     }
   }
 
+  const handleCTAPointerEnter = () => {
+    hoverEvent.hotspot.onPointerEnter();
+    setCTAGlow(true);
+  }
+
+  const handleCTAPointerLeave = () => {
+    hoverEvent.hotspot.onPointerLeave();
+    setCTAGlow(false);
+  }
+
   /**
    * Render
    */
@@ -70,9 +82,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     <group ref={ref} {...props}>
       <ChalkBoard
         onClick={handleClick}
-        onCallToAction={handleCallToAction}
-        onCTAPointerEnter={hoverEvent.hotspot.onPointerEnter}
-        onCTAPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        cta={{
+          onClick: handleCallToAction,
+          onPointerEnter: handleCTAPointerEnter,
+          onPointerLeave: handleCTAPointerLeave
+        }}
+        buttonGlow={ctaGlow}
         {...hoverEvent.home}
       />
 
