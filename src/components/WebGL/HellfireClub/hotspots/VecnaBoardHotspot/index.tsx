@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import config from 'config';
 import { LightColor } from '@webgl/config';
@@ -35,6 +35,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const encounterCard = useRef<THREE.Group>(null);
   const whenWhereCard = useRef<THREE.Group>(null);
+
+  const [ctaGlow, setCTAGlow] = useState(false);
 
   const hoverEvent = {
     home: useHoverHomeEvent("layer1"),
@@ -92,6 +94,16 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     window.open(config.link.ticketing, "_blank");
   }
 
+  const handleCTAPointerEnter = () => {
+    hoverEvent.hotspot.onPointerEnter();
+    setCTAGlow(true);
+  }
+
+  const handleCTAPointerLeave = () => {
+    hoverEvent.hotspot.onPointerLeave();
+    setCTAGlow(false);
+  }
+
   /**
    * Render
    */
@@ -99,10 +111,13 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     <group ref={ref} {...props}>
       <VecnaBoard
         onClick={handleModelClick}
-        onCallToAction={handleCallToAction}
         rotation={[0, Math.PI / 2, 0]}
-        onCTAPointerEnter={hoverEvent.hotspot.onPointerEnter}
-        onCTAPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        cta={{
+          onClick: handleCallToAction,
+          onPointerEnter: handleCTAPointerEnter,
+          onPointerLeave: handleCTAPointerLeave
+        }}
+        buttonGlow={ctaGlow}
         {...hoverEvent.home}
       />
 

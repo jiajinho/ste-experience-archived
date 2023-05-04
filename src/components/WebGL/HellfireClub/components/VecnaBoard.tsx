@@ -1,8 +1,11 @@
 import React from "react";
+import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-const gltfUrl = "/static/gltf/vecna-board.glb";
+import useGlowAnimation from "../hooks/useGlowAnimation";
+
+const url = "/static/gltf/vecna-board.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -15,22 +18,21 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ onCallToAction, onCTAPointerEnter, onCTAPointerLeave, ...props }: {
-  onCallToAction?: () => void,
-  onCTAPointerEnter?: () => void,
-  onCTAPointerLeave?: () => void
+export default ({ cta, buttonGlow = false, ...props }: {
+  cta?: JSX.IntrinsicElements["mesh"],
+  buttonGlow?: boolean
 } & JSX.IntrinsicElements["group"]
 ) => {
-  const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
+
+  useGlowAnimation(materials.cta, buttonGlow, 0xEC1C24);
 
   return (
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.CTA.geometry}
         material={materials.cta}
-        onClick={onCallToAction}
-        onPointerEnter={onCTAPointerEnter}
-        onPointerLeave={onCTAPointerLeave}
+        {...cta}
       />
 
       <mesh
@@ -42,4 +44,4 @@ export default ({ onCallToAction, onCTAPointerEnter, onCTAPointerLeave, ...props
   );
 }
 
-useGLTF.preload(gltfUrl);
+useGLTF.preload(url);
