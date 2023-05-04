@@ -19,7 +19,6 @@ export default () => {
 
   useEffect(() => {
     if (!spotlight.current) return;
-    if (!lightBox.current) return;
 
     spotlight.current.target.position.set(-5, -45, 0);
     spotlight.current.target.updateMatrixWorld();

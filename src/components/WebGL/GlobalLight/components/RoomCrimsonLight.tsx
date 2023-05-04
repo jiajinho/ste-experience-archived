@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import WireframeBox from '@webgl/debug/WireframeBox';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+import useEnvStore from 'stores/useEnvStore';
+import WireframeBox from '@webgl/debug/WireframeBox';
 
 export default () => {
+  const env = useEnvStore(state => state.env);
+
   const spotlight = useRef<THREE.SpotLight>(null);
   const lightBox = useRef<THREE.Mesh>(null);
 
@@ -12,7 +15,6 @@ export default () => {
 
   useEffect(() => {
     if (!spotlight.current) return;
-    if (!lightBox.current) return;
 
     spotlight.current.target.position.set(0, 0, 0);
     spotlight.current.target.updateMatrixWorld();
@@ -31,11 +33,13 @@ export default () => {
         color="#ff927c"
       />
 
-      <WireframeBox.Light
-        ref={lightBox}
-        position={spotlight.current?.position}
-        onClick={triggerSpotlightControl}
-      />
+      {(env === "development" || env === "staging") &&
+        <WireframeBox.Light
+          ref={lightBox}
+          position={spotlight.current?.position}
+          onClick={triggerSpotlightControl}
+        />
+      }
     </>
   )
 }
