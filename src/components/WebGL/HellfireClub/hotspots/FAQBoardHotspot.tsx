@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import config from 'config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
@@ -19,6 +19,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const ref = useRef<THREE.Group>(null);
   const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
+
+  const [ctaGlow, setCTAGlow] = useState(false);
 
   const triggerModelControl = useTriggerDebugModel(ref);
 
@@ -48,6 +50,16 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     }
   }
 
+  const handleCTAPointerEnter = () => {
+    hoverEvent.hotspot.onPointerEnter();
+    setCTAGlow(true);
+  }
+
+  const handleCTAPointerLeave = () => {
+    hoverEvent.hotspot.onPointerLeave();
+    setCTAGlow(false);
+  }
+
   /**
    * Render
    */
@@ -55,10 +67,13 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     <group {...props}>
       <FAQBoard
         onClick={handleClick}
-        onCallToAction={handleCallToAction}
         rotation-y={Math.PI}
-        onCTAPointerEnter={hoverEvent.hotspot.onPointerEnter}
-        onCTAPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        cta={{
+          onClick: handleCallToAction,
+          onPointerEnter: handleCTAPointerEnter,
+          onPointerLeave: handleCTAPointerLeave
+        }}
+        buttonGlow={ctaGlow}
         {...hoverEvent.home}
       />
 
