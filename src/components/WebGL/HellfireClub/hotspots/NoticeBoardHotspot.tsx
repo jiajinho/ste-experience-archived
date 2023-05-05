@@ -80,6 +80,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0, 0.3, 0.48]}
         rotation-x={-0.15}
         color={PolaroidColor.Top}
+        imgUrl="/static/insta/1.jpg"
         {...hoverEvent.hotspot1}
       />
 
@@ -87,6 +88,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0, 0.3, 0.16]}
         rotation={[0.09, 0, 0]}
         color={PolaroidColor.Top}
+        imgUrl="/static/insta/2.jpg"
         {...hoverEvent.hotspot1}
       />
 
@@ -94,6 +96,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0.01, 0.28, -0.15]}
         rotation={[-0.03, 0, 0]}
         color={PolaroidColor.Top}
+        imgUrl="/static/insta/3.jpg"
         {...hoverEvent.hotspot1}
       />
 
@@ -101,6 +104,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0, 0.31, -0.45]}
         rotation={[0.14, 0, 0]}
         color={PolaroidColor.Top}
+        imgUrl="/static/insta/4.jpg"
         {...hoverEvent.hotspot1}
       />
 
@@ -108,12 +112,14 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0.02, -0.01, 0.35]}
         rotation={[0.15, 0, 0]}
         color={PolaroidColor.Middle}
+        imgUrl="/static/insta/5.jpg"
         {...hoverEvent.hotspot2}
       />
 
       <Polaroid
         position={[0.02, 0.04, 0.04]}
         color={PolaroidColor.Middle}
+        imgUrl="/static/insta/6.jpg"
         {...hoverEvent.hotspot2}
       />
 
@@ -121,6 +127,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0.02, 0.02, -0.3]}
         rotation={[-0.11, 0, 0]}
         color={PolaroidColor.Middle}
+        imgUrl="/static/insta/7.jpg"
         {...hoverEvent.hotspot2}
       />
 
@@ -128,6 +135,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0.03, -0.24, -0.07]}
         rotation={[-0.08, 0, 0]}
         color={PolaroidColor.Bottom}
+        imgUrl="/static/insta/10.jpg"
         {...hoverEvent.hotspot1}
       />
 
@@ -135,6 +143,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         position={[0.03, -0.22, -0.38]}
         rotation={[0.12, 0, 0]}
         color={PolaroidColor.Bottom}
+        imgUrl="/static/insta/8.jpg"
         {...hoverEvent.hotspot1}
       />
 
