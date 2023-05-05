@@ -16,11 +16,12 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ color, ...props }: {
-  color?: number
+export default ({ color, imgUrl, ...props }: {
+  color?: number,
+  imgUrl: string
 } & JSX.IntrinsicElements["group"]
 ) => {
-  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
+  const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useTriggerDebugModel(ref);
@@ -35,7 +36,6 @@ export default ({ color, ...props }: {
       ref={ref}
       {...props}
       onClick={handleClick}
-      dispose={null}
       scale={1.2}
     >
       <mesh geometry={nodes.Polaroid.geometry} >
@@ -43,7 +43,7 @@ export default ({ color, ...props }: {
       </mesh>
 
       <Image
-        url="/static/test.png"
+        url={imgUrl}
         scale={0.19}
         position={[0.001, 0.015, 0]}
         rotation-y={Math.PI / 2}
