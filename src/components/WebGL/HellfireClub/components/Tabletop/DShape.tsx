@@ -25,7 +25,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   map.flipY = false;
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
+    // triggerMover();
     props.onClick && props.onClick(e);
   }
 

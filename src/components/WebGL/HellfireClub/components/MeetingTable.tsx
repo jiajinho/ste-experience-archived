@@ -27,6 +27,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     props.onClick && props.onClick(e);
   }
 
+  materials.DNDTable.metalness = 0.5;
+  materials.DNDTable.roughness = 1;
+
   return (
     <group
       ref={ref}

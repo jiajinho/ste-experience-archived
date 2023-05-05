@@ -4,6 +4,7 @@ import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import useGlowAnimation from "../hooks/useGlowAnimation";
 
 const url = "/static/gltf/faq-board.glb";
 
@@ -13,17 +14,20 @@ type GLTFResult = GLTF & {
     FAQBoard: THREE.Mesh;
   };
   materials: {
-    ["cta.001"]: THREE.MeshStandardMaterial;
-    ["FAQBoard.001"]: THREE.MeshStandardMaterial;
+    cta: THREE.MeshStandardMaterial;
+    FAQBoard: THREE.MeshStandardMaterial;
   };
 };
 
-export default ({ onCallToAction, ...props }: {
-  onCallToAction?: () => void
+export default ({ cta, buttonGlow = false, ...props }: {
+  cta?: JSX.IntrinsicElements["mesh"],
+  buttonGlow?: boolean,
 } & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
+
+  useGlowAnimation(materials.cta, buttonGlow, 0xED1B30);
 
   const triggerMover = useTriggerDebugModel(ref);
 
@@ -41,12 +45,12 @@ export default ({ onCallToAction, ...props }: {
     >
       <mesh
         geometry={nodes.cta.geometry}
-        material={materials["cta.001"]}
-        onClick={onCallToAction}
+        material={materials.cta}
+        {...cta}
       />
       <mesh
         geometry={nodes.FAQBoard.geometry}
-        material={materials["FAQBoard.001"]}
+        material={materials.FAQBoard}
       />
     </group>
   );

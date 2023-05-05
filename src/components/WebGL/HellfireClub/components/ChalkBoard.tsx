@@ -2,6 +2,8 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
+import useGlowAnimation from "../hooks/useGlowAnimation";
+
 const url = "/static/gltf/chalk-board.glb";
 
 type GLTFResult = GLTF & {
@@ -17,19 +19,22 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ onCallToAction, ...props }: {
-  onCallToAction?: () => void
+export default ({ cta, buttonGlow = false, ...props }: {
+  cta: JSX.IntrinsicElements["mesh"],
+  buttonGlow?: boolean,
 } & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
+
+  useGlowAnimation(materials.cta, buttonGlow, 0xED1B30);
 
   return (
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.cta.geometry}
         material={materials.cta}
-        position={[0, 0, 0.005]}
-        onClick={onCallToAction}
+        position={[0, 0, 0.01]}
+        {...cta}
       />
       <mesh
         castShadow

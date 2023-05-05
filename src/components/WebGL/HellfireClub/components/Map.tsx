@@ -4,6 +4,7 @@ import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import useGlowAnimation from "../hooks/useGlowAnimation";
 
 const url = "/static/gltf/map.glb";
 
@@ -18,11 +19,14 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ onCallToAction, ...props }: {
-  onCallToAction?: () => void
+export default ({ cta, buttonGlow = false, ...props }: {
+  cta?: JSX.IntrinsicElements["mesh"],
+  buttonGlow?: boolean
 } & JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
+
+  useGlowAnimation(materials.cta, buttonGlow, 0xED1B30);
 
   const triggerMover = useTriggerDebugModel(ref);
 
@@ -42,7 +46,7 @@ export default ({ onCallToAction, ...props }: {
         geometry={nodes.cta.geometry}
         material={materials.cta}
         position={[0, 0.005, 0]}
-        onClick={onCallToAction}
+        {...cta}
       />
 
       <mesh

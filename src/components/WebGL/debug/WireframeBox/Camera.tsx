@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { Line } from "@react-three/drei";
 
 import { Camera, Vector3 } from "types";
+import { applyRef } from "@webgl/HellfireClub/utils";
 import useEnvStore from "stores/useEnvStore";
 import useDebugCameraStore from "stores/webgl/useDebugCameraStore";
 import useTriggerDebugCamera from "@webgl/debug/hooks/useTriggerDebugCamera";
@@ -13,7 +14,7 @@ export default React.forwardRef(({ target, lookAt, hotspot, ...props }: {
   lookAt: Vector3,
   hotspot: Camera.Hotspot
 } & Omit<JSX.IntrinsicElements["group"], "lookAt">,
-  ref: React.ForwardedRef<THREE.Mesh>
+  ref: React.ForwardedRef<THREE.Group>
 ) => {
   const box = useRef<THREE.Group>(null);
 
@@ -31,11 +32,11 @@ export default React.forwardRef(({ target, lookAt, hotspot, ...props }: {
 
   return (
     <group
-      ref={box}
+      ref={r => applyRef([ref, box], r)}
       {...props}
       onClick={triggerControl}
     >
-      <Box ref={ref} color="hotpink" />
+      <Box color="hotpink" />
 
       <Line
         color="hotpink"

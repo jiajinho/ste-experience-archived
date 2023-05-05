@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import locale from "locale";
-import { Camera, Vector3, Viewport } from "types";
+import { Camera, Vector3, VectorIndex, Viewport } from "types";
 
 import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";
@@ -22,7 +22,8 @@ const link = {
   faq: "https://google.com",
   ticketing: "https://google.com",
   eventLocation: "https://www.google.com/maps/place/201+Victoria+St,+%2302-01+Bugis%2B,+Singapore+188067/@1.2994132,103.8517561,17z/data=!3m1!4b1!4m6!3m5!1s0x31da19badc34bef9:0x1a2a8c1ca9bcd5e9!8m2!3d1.2994132!4d103.8539448!16s%2Fg%2F11pvcvfy68?coh=164777&entry=tt&shorturl=1",
-  tiktok: "https://google.com"
+  tiktok: "https://google.com",
+  instagram: "https://google.com"
 }
 
 /**
@@ -31,58 +32,105 @@ const link = {
  */
 const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   default: {
-    cameraPosition: [3.81, 2.29, 2.26],
-    lookAt: [
-      -Math.sin(1.1) * 100, //-Math.sin(default.azimuth) * default.azimuthScaleFactor
-      -20, //default.lookAtY
-      -Math.cos(1.1) * 100 //-Math.cos(default.azimuth) * default.azimuthScaleFactor
-    ],
+    cameraBox: {
+      position: [3.81, 2.29, 2.26],
+      lookAt: [
+        -Math.sin(1.05) * 100, //-Math.sin(default.azimuth) * default.azimuthScaleFactor
+        -20, //default.lookAtY
+        -Math.cos(1.05) * 100 //-Math.cos(default.azimuth) * default.azimuthScaleFactor
+      ]
+    },
     allowEvent: {
       name: "rotate",
       props: {
         azimuth: {
-          min: -0.05,
-          max: 2,
-          vwMultiplier: 0.00045
+          min: 0.35,
+          max: 1.73,
+          constant: 0.4,
+          maxAspect: 2.25
         }
       },
       default: {
         lookAtY: -20,
-        azimuth: 1.1,
+        azimuth: 1.05,
         azimuthScaleFactor: 100
       }
     }
   },
   retroTV: {
-    cameraPosition: [-1.61, 1.07, 3.13],
-    lookAt: [-2.61, 1.07, 3.13]
+    cameraBox: {
+      position: [1, 0, 0],
+      lookAt: [-1, 0, 0]
+    },
+    aspect: {
+      minAspect: 0.5,
+      maxAspect: 1.05,
+      vectorIndex: VectorIndex.x,
+      constant: -0.4
+    }
   },
   noticeBoard: {
-    cameraPosition: [-1.72, 1.75, 0.15],
-    lookAt: [-2.72, 1.75, 0.15]
+    cameraBox: {
+      position: [3, 0, 0],
+      lookAt: [-1, 0, 0]
+    },
+    aspect: {
+      minAspect: 0.5,
+      maxAspect: 1.5,
+      vectorIndex: VectorIndex.x,
+      constant: -0.95
+    }
   },
   vecnaBoard: {
-    cameraPosition: [0, 1.83, 0.2],
-    lookAt: [0, 0.83, 0.2],
+    cameraBox: {
+      position: [0, 1.2, 0],
+      lookAt: [0, -1, 0]
+    },
+    aspect: {
+      minAspect: 1.15,
+      maxAspect: 1.58,
+      vectorIndex: VectorIndex.y,
+      constant: -0.15
+    },
     cameraUp: new THREE.Vector3(-1, 0, 0)
   },
   faqBoard: {
-    cameraPosition: [0, 1.215, -0.42],
-    lookAt: [0, 0.825, -0.42],
-    cameraUp: new THREE.Vector3(0.05, -1, 0.55)
+    cameraBox: {
+      position: [0, 0.45, 0],
+      lookAt: [0, -1, 0]
+    },
+    aspect: {
+      minAspect: 0.55,
+      maxAspect: 0.92,
+      vectorIndex: VectorIndex.y,
+      constant: -0.1
+    },
+    cameraUp: new THREE.Vector3(0.08, 0, 1)
   },
   map: {
-    cameraPosition: [0, 1.22, -0.73],
-    lookAt: [0.0, 0.219, -0.73],
-    cameraUp: new THREE.Vector3(-0.082, 0, 1)
+    cameraBox: {
+      position: [0, 0.48, -0.015],
+      lookAt: [0, -1, 0]
+    },
+    aspect: {
+      minAspect: 1.34,
+      maxAspect: 1.47,
+      vectorIndex: VectorIndex.y,
+      constant: -0.06
+    },
+    cameraUp: new THREE.Vector3(-0.063, 0, 1)
   },
   chalkBoard: {
-    cameraPosition: [-1.246, 1.35, -1.898],
-    lookAt: [-1.835, 1.35, -2.706]
+    cameraBox: {
+      position: [0, 0, 1.5],
+      lookAt: [0, 0, -1]
+    }
   },
   shelf: {
-    cameraPosition: [2.07, 1.45, -2.29],
-    lookAt: [2.07, 1.45, -3.29]
+    cameraBox: {
+      position: [2.4, 0.13, 0],
+      lookAt: [-1, 0, 0]
+    }
   }
 }
 

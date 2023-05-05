@@ -44,6 +44,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <mesh
         geometry={nodes.Cup.geometry}
         material={material}
+        castShadow
       />
     </group>
   );

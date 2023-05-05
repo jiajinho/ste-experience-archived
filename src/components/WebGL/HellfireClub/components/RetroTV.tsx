@@ -11,17 +11,18 @@ type GLTFResult = GLTF & {
     Tiktok: THREE.Mesh;
     RetroTV: THREE.Mesh;
     RetroTVKnob: THREE.Mesh;
-    // RetroTVScreen: THREE.Mesh;
     RetroTVKnob1: THREE.Mesh;
   };
   materials: {
     tiktok: THREE.MeshStandardMaterial;
-    RetroTV: THREE.MeshStandardMaterial;
+    CTV: THREE.MeshPhysicalMaterial;
   };
 };
 
-export default ({ knob, onKnobClick, ...props }: {
+export default ({ knob, onKnobClick, onKnobPointerEnter, onKnobPointerLeave, ...props }: {
   knob?: React.RefObject<THREE.Mesh>,
+  onKnobPointerEnter?: () => void,
+  onKnobPointerLeave?: () => void
   onKnobClick?: () => void
 } & JSX.IntrinsicElements["group"]
 ) => {
@@ -42,30 +43,32 @@ export default ({ knob, onKnobClick, ...props }: {
   return (
     <group {...props} dispose={null}>
       <mesh
+        geometry={nodes.RetroTVKnob.geometry}
+        material={materials.CTV}
+      />
+      <mesh
+        ref={knob}
+        geometry={nodes.RetroTVKnob1.geometry}
+        material={materials.CTV}
+        onClick={onKnobClick}
+        onPointerEnter={onKnobPointerEnter}
+        onPointerLeave={onKnobPointerLeave}
+      />
+      <mesh
         geometry={nodes.Tiktok.geometry}
         material={materials.tiktok}
       />
       <mesh
         castShadow
         geometry={nodes.RetroTV.geometry}
-        material={materials.RetroTV}
-      />
-      <mesh
-        geometry={nodes.RetroTVKnob.geometry}
-        material={materials.RetroTV}
-      />
-      <mesh
-        ref={knob}
-        geometry={nodes.RetroTVKnob1.geometry}
-        material={materials.RetroTV}
-        onClick={onKnobClick}
+        material={materials.CTV}
       />
 
       <mesh
         material={videoMaterial}
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.3, 0.25, 1]}
-        position={[0.098, 0, 0]}
+        position={[0.08, 0, 0]}
       >
         <planeGeometry />
       </mesh>

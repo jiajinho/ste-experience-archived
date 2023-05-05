@@ -4,13 +4,11 @@ import styled from 'styled-components';
 
 import config from 'config';
 import { IntrinsicHTML } from 'types';
-import theEncounterFront from "/public/static/cards/the-encounter-front.png";
 import theEncounterBack from "/public/static/cards/the-encounter-back.png";
 import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
 import Card from './components/Card';
-import FrontTemplate from './components/FrontTemplate';
 import BackTemplate from './components/BackTemplate';
 
 const Content = styled.div`
@@ -68,28 +66,16 @@ const Icon = styled.div`
   }
 `;
 
-export default React.forwardRef(({ flipped, ...props }: {
-  flipped?: boolean,
+export default React.forwardRef(({ onRowHover, ...props }: {
+  onRowHover?: (index: number) => void
 } & IntrinsicHTML<"div">,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
   return (
-    <Card
-      ref={ref}
-      flipped={flipped}
-      {...props}
-    >
-      <div className="front">
-        <FrontTemplate />
-        <Image
-          src={theEncounterFront}
-          alt="The Encounter - Front"
-          fill
-          onLoadingComplete={() => setLoadProgressStore("html", { theEncounterFront: true })}
-        />
-      </div>
+    <Card ref={ref} flipped {...props}>
+      <div className="front" />
 
       <div className="back">
         <BackTemplate />
@@ -102,7 +88,7 @@ export default React.forwardRef(({ flipped, ...props }: {
 
         <Content>
           {config.cards.theEncounter.content.map((v, i) =>
-            <Row key={i}>
+            <Row key={i} onPointerMove={() => onRowHover && onRowHover(i)}>
               <Icon>
                 <HexRing />
                 {v.icon}

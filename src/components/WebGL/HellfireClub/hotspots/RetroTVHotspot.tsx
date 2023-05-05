@@ -9,6 +9,8 @@ import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotligh
 import useEnvStore from 'stores/useEnvStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
+import useHoverHomeEvent from './hooks/useHoverHomeEvent';
+import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import RetroTV from '@hellfire/components/RetroTV';
@@ -26,13 +28,18 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
   const lightBox = useRef<THREE.Mesh>(null);
-  const cameraBox = useRef<THREE.Mesh>(null);
+  const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
   const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
   const triggerModelControl = useTriggerDebugModel(ref);
 
-  const triggerZoom = useRegisterHotspot("retroTV");
+  const triggerZoom = useRegisterHotspot("retroTV", cameraBox, cameraTarget);
+
+  const hoverEvent = {
+    home: useHoverHomeEvent("layer1"),
+    hotspot: useHoverHotspotEvent("layer1")
+  }
 
   useEffect(() => {
     if (!spotlight.current) return;
@@ -54,6 +61,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Not hook
    */
+  const setting = config.zoomSettings["retroTV"];
+
   const handleClick = () => {
     triggerModelControl();
     triggerZoom();
@@ -77,6 +86,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         knob={knob}
         onClick={handleClick}
         onKnobClick={handleKnobClick}
+        onKnobPointerEnter={hoverEvent.hotspot.onPointerEnter}
+        onKnobPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        {...hoverEvent.home}
       />
 
       <spotLight
@@ -91,22 +103,20 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       />
 
       {env === "development" &&
-        <>
-          <WireframeBox.Light
-            ref={lightBox}
-            position={spotlight.current?.position}
-            onClick={triggerSpotlightControl}
-          />
-
-          <WireframeBox.Camera
-            ref={cameraBox}
-            target={cameraTarget}
-            position={[1, 0, 0]}
-            lookAt={[-1, 0, 0]}
-            hotspot="retroTV"
-          />
-        </>
+        <WireframeBox.Light
+          ref={lightBox}
+          position={spotlight.current?.position}
+          onClick={triggerSpotlightControl}
+        />
       }
+
+      <WireframeBox.Camera
+        ref={cameraBox}
+        target={cameraTarget}
+        position={setting.cameraBox.position}
+        lookAt={setting.cameraBox.lookAt}
+        hotspot="retroTV"
+      />
     </group>
   )
 }

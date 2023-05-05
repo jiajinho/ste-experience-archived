@@ -5,11 +5,8 @@ const global = {
 
 const loading = {
   premise: `
-    It’s game night and you’ve gathered with your Hellfire Club mates to 
-    continue your ventures into the Forgotten Realms. Just as the party was 
-    about to land the killing blow on the Lord of Darkness, Vecna makes an 
-    explosive entrance! Escape and make your way through iconic locations 
-    in Hawkins and the Upside Down.
+    A typical game night with your Hellfire Club mates is interrupted by the opening of 
+    rifts! Can you brave the dangers, and escape Vecna before it's too late?
   `,
   continueBtn: "Continue"
 }

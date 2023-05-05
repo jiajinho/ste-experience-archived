@@ -15,9 +15,8 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default React.forwardRef(({ flipped = false, ...props }: {
-  flipped?: boolean
-} & JSX.IntrinsicElements["group"],
+export default React.forwardRef((
+  props: JSX.IntrinsicElements["group"],
   ref: React.ForwardedRef<THREE.Group>
 ) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
@@ -33,8 +32,6 @@ export default React.forwardRef(({ flipped = false, ...props }: {
     props.onClick && props.onClick(e);
   }
 
-  const rotateX = flipped ? Math.PI : 0;
-
   return (
     <group
       ref={r => applyRef([ref, _ref], r)}
@@ -44,7 +41,6 @@ export default React.forwardRef(({ flipped = false, ...props }: {
     >
       <mesh
         geometry={nodes.Card.geometry}
-        rotation={[rotateX, 0, 0]}
         scale={0.9}
       >
         <meshStandardMaterial

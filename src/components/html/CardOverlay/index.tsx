@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import useCardStore from 'stores/html/useCardStore';
 import useAnimation from './useAnimation';
 import Card, { Wrapper as $Card } from '@html/common/Card';
+import TheEncounter from './components/TheEncounter';
 
 const Wrapper = styled.div`
   background: #000a;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
   width: 100%;
   z-index: 11;
 
-  ${$Card} {
+  & > * {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,38 +26,18 @@ export default () => {
   const theEncounter = useRef<HTMLDivElement>(null);
   const whenWhere = useRef<HTMLDivElement>(null);
 
-  const flippedEncounter = useCardStore(state => state.flippedEncounter);
-  const flippedWhenWhere = useCardStore(state => state.flippedWhenWhere);
   const setCardStore = useCardStore(state => state.set);
 
   useAnimation(wrapper, theEncounter, whenWhere);
-
-  const handleEncounterClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCardStore('flippedEncounter', !flippedEncounter);
-  }
-
-  const handleWhenWhereClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCardStore('flippedWhenWhere', !flippedWhenWhere);
-  }
 
   return (
     <Wrapper
       ref={wrapper}
       onClick={() => setCardStore('htmlEvent', undefined)}
     >
-      <Card.TheEncounter
-        ref={theEncounter}
-        flipped={flippedEncounter}
-        onClick={handleEncounterClick}
-      />
+      <TheEncounter ref={theEncounter} />
 
-      <Card.WhenWhere
-        ref={whenWhere}
-        flipped={flippedWhenWhere}
-        onClick={handleWhenWhereClick}
-      />
+      <Card.WhenWhere ref={whenWhere} />
     </Wrapper>
   )
 }

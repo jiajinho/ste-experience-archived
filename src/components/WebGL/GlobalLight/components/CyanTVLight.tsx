@@ -3,9 +3,12 @@ import * as THREE from 'three';
 
 import { LightColor } from '@webgl/config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+import useEnvStore from 'stores/useEnvStore';
 import WireframeBox from '@webgl/debug/WireframeBox';
 
 export default () => {
+  const env = useEnvStore(state => state.env);
+
   const spotlight = useRef<THREE.SpotLight>(null);
   const lightBox = useRef<THREE.Mesh>(null);
 
@@ -13,7 +16,6 @@ export default () => {
 
   useEffect(() => {
     if (!spotlight.current) return;
-    if (!lightBox.current) return;
 
     spotlight.current.target.position.set(5, -95, 55);
     spotlight.current.target.updateMatrixWorld();
@@ -27,16 +29,18 @@ export default () => {
         angle={0.38}
         penumbra={1}
         position={[-2.24, 3.32, 1.26]}
-        intensity={3}
+        intensity={6}
         distance={5}
         color={LightColor.Cyan}
       />
 
-      <WireframeBox.Light
-        ref={lightBox}
-        position={spotlight.current?.position}
-        onClick={triggerSpotlightControl}
-      />
+      {(env === "development" || env === "staging") &&
+        <WireframeBox.Light
+          ref={lightBox}
+          position={spotlight.current?.position}
+          onClick={triggerSpotlightControl}
+        />
+      }
     </>
   )
 }
