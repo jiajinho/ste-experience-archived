@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 import config from 'config';
 import useViewportStore from 'stores/useViewportStore';
+import useCameraStore from 'stores/webgl/useCameraStore';
 
 import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 import ArrowGroup, { Wrapper as $ArrowGroup } from './components/ArrowGroup';
 import TicketButton from './components/TicketButton';
-import HomeButton from './components/HomeButton';
+import MuteButton from './components/MuteButton';
 import Credit from './components/Credit';
 
 const Wrapper = styled.div`
@@ -46,6 +47,9 @@ const TopRow = styled.div`
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    
+    cursor: pointer;
+    pointer-events: auto;
   }
 `;
 
@@ -59,12 +63,17 @@ const BottomRow = styled(TopRow)`
 
 export default () => {
   const md = useViewportStore(state => state.md);
+  const setCameraStore = useCameraStore(state => state.set);
+
+  const goToDefaultView = () => {
+    setCameraStore("currentZoom", "default");
+  }
 
   return (
     <Wrapper>
       <TopRow>
-        <HomeButton />
-        <STEncounter />
+        <MuteButton />
+        <STEncounter onClick={goToDefaultView} />
         <TicketButton />
       </TopRow>
 
