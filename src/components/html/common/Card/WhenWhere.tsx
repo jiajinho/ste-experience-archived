@@ -80,8 +80,9 @@ const Value = styled.p`
   white-space: pre-line;
 `;
 
-export default React.forwardRef((
-  props: IntrinsicHTML<"div">,
+export default React.forwardRef(({ onRowHover, ...props }: {
+  onRowHover?: (index: number) => void,
+} & IntrinsicHTML<"div">,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
@@ -101,7 +102,7 @@ export default React.forwardRef((
 
         <Content>
           {config.cards.whenWhere.content.map((v, i) =>
-            <Row key={i}>
+            <Row key={i} onPointerMove={() => onRowHover && onRowHover(i)}>
               <Icon style={v.style}>
                 <HexRing />
                 {v.icon}

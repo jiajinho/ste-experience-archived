@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 export default (images: React.RefObject<HTMLPictureElement[]>, active: boolean) => {
   useEffect(() => {
     if (!images.current) return;
+    if (!images.current.length) return;
 
     gsap.fromTo([...images.current], {
       autoAlpha: active ? 0 : 1,

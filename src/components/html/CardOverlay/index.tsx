@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 import useCardStore from 'stores/html/useCardStore';
 import useAnimation from './useAnimation';
-import Card, { Wrapper as $Card } from '@html/common/Card';
+
 import TheEncounter from './components/TheEncounter';
+import WhenWhere from './components/WhenWhere';
 
 const Wrapper = styled.div`
   background: #000a;
@@ -36,8 +37,7 @@ export default () => {
       onClick={() => setCardStore('htmlEvent', undefined)}
     >
       <TheEncounter ref={theEncounter} />
-
-      <Card.WhenWhere ref={whenWhere} />
+      <WhenWhere ref={whenWhere} />
     </Wrapper>
   )
 }
