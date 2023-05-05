@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
+import { IntrinsicHTML } from 'types';
 
 import Netflix, { Wrapper as $Netflix } from '@html/common/svg/Netflix';
 import StrangerThings, { Wrapper as $StrangerThings } from '@html/common/svg/StrangerThings';
@@ -33,11 +34,13 @@ const Footer = styled.p(({ $color }: {
   color: ${$color};
 `);
 
-export default React.forwardRef(({ color, altColor = 'white' }: {
+export default React.forwardRef(({ color, altColor = 'white', ...props }: {
   color?: string,
   altColor?: string
-}, ref: React.ForwardedRef<HTMLDivElement>) => (
-  <Wrapper ref={ref}>
+} & IntrinsicHTML<"div">,
+  ref: React.ForwardedRef<HTMLDivElement>
+) => (
+  <Wrapper ref={ref} {...props}>
     <Netflix color={color} />
     <StrangerThings color={color} />
 
