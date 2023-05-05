@@ -31,7 +31,7 @@ const Row = styled.div`
   p {
     font-family: var(--font-benguiat);
     font-weight: 700;
-    font-size: calc(var(--card-width) / 24.5);
+    font-size: calc(var(--card-width) / 26.5);
     color: #FFEDC8;
     transition: 0.25s text-shadow;
   }
