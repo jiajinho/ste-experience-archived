@@ -32,7 +32,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const triggerZoom = useRegisterHotspot("shelf", cameraBox, cameraTarget);
 
-  const hoverEvent = useHoverHomeEvent("shelf");
+  const hoverEvent = useHoverHomeEvent("layer1");
 
   useEffect(() => {
     if (!topLight.current) return;
