@@ -21,7 +21,7 @@ const card = {
     star: "Immersive interactive retail experience",
     puppet: "Purchase event-exclusive merchandise",
     ghost: "Collect and customize digital collectibles",
-    gelato: "Reward youself for saving the day with some food and drinks at Scoops Ahoy"
+    gelato: "Visit Unique Stranger Things Themed F&B Establishments"
   },
   whenWhere: {
     date: {
