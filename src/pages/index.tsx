@@ -71,6 +71,7 @@ export default () => {
       <CanvasContainer ref={canvas}>
         <Canvas
           shadows
+          gl={{ alpha: false }}
           frameloop={frameloop}
           camera={{ fov: 50 }}
           dpr={dpr}
