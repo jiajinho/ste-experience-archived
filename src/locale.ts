@@ -8,7 +8,8 @@ const loading = {
     A typical game night with your Hellfire Club mates is interrupted by the opening of 
     rifts! Can you brave the dangers, and escape Vecna before it's too late?
   `,
-  continueBtn: "Continue"
+  continueBtn: "Continue",
+  skipBtn: "Skip"
 }
 
 const overlayUI = {

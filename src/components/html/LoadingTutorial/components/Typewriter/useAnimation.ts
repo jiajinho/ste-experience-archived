@@ -7,7 +7,8 @@ export default (
   chars: React.RefObject<HTMLParagraphElement[]>,
   caret: React.RefObject<HTMLDivElement>,
   button: React.RefObject<HTMLButtonElement>,
-  wrapper: React.RefObject<HTMLDivElement>
+  wrapper: React.RefObject<HTMLDivElement>,
+  skip: React.RefObject<HTMLButtonElement>
 ) => {
   const phase = useLoadAnimationStore(state => state.typewriter);
   const set = useLoadAnimationStore(state => state.set);
@@ -20,7 +21,7 @@ export default (
           autoAlpha: 1
         });
 
-        gsap.to([chars.current, caret.current, button.current], {
+        gsap.to([chars.current, caret.current, button.current, skip.current], {
           duration: 0.01,
           autoAlpha: 0
         });
@@ -29,6 +30,13 @@ export default (
 
       case "start":
         let count = 0;
+
+        gsap.fromTo(skip.current, {
+          autoAlpha: 0
+        }, {
+          duration: 0.01,
+          autoAlpha: 1
+        });
 
         //Animate
         const tween = gsap
@@ -96,6 +104,11 @@ export default (
             repeat: -1
           });
         });
+
+        gsap.to(skip.current, {
+          duration: 0.01,
+          autoAlpha: 0
+        });
         break;
 
 
@@ -114,6 +127,11 @@ export default (
           t = setTimeout(() => {
             set("card", "slide");
           }, 750);
+        });
+
+        gsap.to(skip.current, {
+          duration: 0.01,
+          autoAlpha: 0
         });
 
         return () => { clearTimeout(t) }

@@ -42,13 +42,31 @@ const Char = styled.p(({ $fontSize }: {
   visibility: hidden;
 `);
 
+const SkipButton = styled.button`
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+
+  font-size: 16px;
+  color: white;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: var(--font-benguiat);
+  font-weight: 700;
+`;
+
 export default () => {
-  const set = useLoadAnimationStore(state => state.set);
+  const phase = useLoadAnimationStore(state => state.typewriter);
+  const setLoadAnimationStore = useLoadAnimationStore(state => state.set);
 
   const wrapper = useRef<HTMLDivElement>(null);
   const chars = useRef<HTMLParagraphElement[]>([]);
   const caret = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
+  const skip = useRef<HTMLButtonElement>(null);
 
   const md = useViewportStore(state => state.md);
   const lg = useViewportStore(state => state.lg);
@@ -60,8 +78,14 @@ export default () => {
       .split(" ");
   }, []);
 
-  useAnimation(chars, caret, button, wrapper);
+  useAnimation(chars, caret, button, wrapper, skip);
   useDoubleClick();
+
+  const handleSkipClick = () => {
+    if (phase !== "start") return;
+
+    setLoadAnimationStore("typewriter", "skipped");
+  }
 
   let fontSize = 20;
   if (md) fontSize = 28;
@@ -69,9 +93,17 @@ export default () => {
 
   chars.current.length = 0;
 
+
   return (
     <>
       <Caret ref={caret} height={fontSize} />
+
+      <SkipButton
+        ref={skip}
+        onClick={handleSkipClick}
+      >
+        {locale.loading.skipBtn}
+      </SkipButton>
 
       <Wrapper ref={wrapper}>
         <Container>
@@ -104,7 +136,7 @@ export default () => {
 
         <Button
           ref={button}
-          onClick={() => set("typewriter", "end")}
+          onClick={() => setLoadAnimationStore("typewriter", "end")}
         >
           {locale.loading.continueBtn}
         </Button>

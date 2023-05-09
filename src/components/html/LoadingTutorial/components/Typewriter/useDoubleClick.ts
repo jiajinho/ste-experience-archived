@@ -25,8 +25,8 @@ export default () => {
         prevTap = now;
     }
 
-    window.addEventListener("dblclick", skipToEnd);
-    window.addEventListener("touchstart", checkDoubleTap);
+    window.addEventListener("dblclick", skipToEnd, { once: true });
+    window.addEventListener("touchstart", checkDoubleTap, { once: true });
 
     return () => {
       window.removeEventListener("dblclick", skipToEnd);
