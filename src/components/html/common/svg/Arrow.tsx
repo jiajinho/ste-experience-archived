@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IntrinsicHTML } from 'types';
 
 export const Wrapper = styled.svg(({ $deg }: {
   $deg: number
@@ -16,16 +17,13 @@ export const Wrapper = styled.svg(({ $deg }: {
   }
 `);
 
-type Direction = {
-  left: true,
-  right?: never
-} | {
-  right: true,
-  left?: never
-}
+export type Direction = "left" | "right";
 
-export default ({ ...props }: Direction & Omit<JSX.IntrinsicElements["svg"], "ref">) => {
-  const deg = props.left ? 180 : 0;
+export default ({ direction, ...props }: {
+  direction: Direction
+} & IntrinsicHTML<"svg">
+) => {
+  const deg = direction === "left" ? 180 : 0;
 
   return (
     <Wrapper

@@ -1,6 +1,16 @@
 const global = {
   stEncounter: "The Encounter",
-  title: "Stranger Things - The Encounter"
+  title: "Stranger Things - The Encounter",
+  hotspot: {
+    default: "Club Room",
+    retroTV: "Event Video",
+    noticeBoard: "Fan Gallery",
+    vecnaBoard: "Event Summary",
+    faqBoard: "Key Questions",
+    map: "Event Location",
+    chalkBoard: "About XPASS",
+    shelf: "Event Exclusives"
+  }
 }
 
 const loading = {

@@ -85,10 +85,10 @@ export default () => {
         <TicketButton />
       </TopRow>
 
-      {md && <ArrowGroup />}
+      {md && <ArrowGroup viewport="desktop" />}
 
       <BottomRow>
-        {!md && <ArrowGroup />}
+        {!md && <ArrowGroup viewport="mobile" />}
         <Credit />
       </BottomRow>
     </Wrapper>
