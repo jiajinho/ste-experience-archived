@@ -51,8 +51,8 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     bottomLight.current.target.updateMatrixWorld();
   }, []);
 
-  const elevenClick = useCardEvent("merchEleven");
-  const vecnaClick = useCardEvent("merchVecna");
+  const elevenClick = useCardEvent("merchEleven", triggerZoom);
+  const vecnaClick = useCardEvent("merchVecna", triggerZoom);
 
   /**
    * Not hook
