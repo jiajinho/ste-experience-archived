@@ -20,8 +20,8 @@ const viewport: Viewport = {
 
 const link = {
   faq: "https://mightyexperiences.com/support",
-  ticketing: "https://mightyexperiences.com/tickets/ste-sg",
-  eventLocation: "https://www.google.com/maps/place/201+Victoria+St,+%2302-01+Bugis%2B,+Singapore+188067/@1.2994132,103.8517561,17z/data=!3m1!4b1!4m6!3m5!1s0x31da19badc34bef9:0x1a2a8c1ca9bcd5e9!8m2!3d1.2994132!4d103.8539448!16s%2Fg%2F11pvcvfy68?coh=164777&entry=tt&shorturl=1",
+  ticketing: "https://mightyexperiences.com?source=body",
+  eventLocation: "https://goo.gl/maps/4af3VHoxSw7bPVsi9",
   tiktok: "https://www.tiktok.com/@strangerthingsencounter",
   instagram: "https://www.instagram.com/strangerthings.encounter/"
 }
