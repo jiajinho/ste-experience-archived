@@ -13,6 +13,14 @@ export enum VectorIndex {
   z = 2
 }
 
+export namespace Card {
+  export type Event =
+    "the-encounter" |
+    "when-where" |
+    "merch" |
+    undefined;
+}
+
 export namespace Camera {
   export type Hotspot =
     "default" |

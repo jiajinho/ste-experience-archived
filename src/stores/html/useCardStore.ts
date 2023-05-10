@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import type { Event } from "@html/CardOverlay/types";
+import type { Card } from "types";
 
 type State = {
-  htmlEvent: Event,
-  webglEvent: Event,
+  htmlEvent: Card.Event,
+  webglEvent: Card.Event,
   flippedEncounter: boolean,
   flippedWhenWhere: boolean
 }
