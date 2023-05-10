@@ -7,7 +7,9 @@ import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotligh
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useEnvStore from 'stores/useEnvStore';
-import useHoverHomeEvent from './hooks/useHoverHomeEvent';
+import useHoverHomeEvent from '../hooks/useHoverHomeEvent';
+import useHoverHotspotEvent from '../hooks/useHoverHotspotEvent';
+import useCardEvent from './useCardEvent';
 
 import WireframeBox from '@webgl/debug/WireframeBox';
 import Shelf from '@hellfire/components/Shelf';
@@ -32,7 +34,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const triggerZoom = useRegisterHotspot("shelf", cameraBox, cameraTarget);
 
-  const hoverEvent = useHoverHomeEvent("layer1");
+  const hoverEvent = {
+    home: useHoverHomeEvent("layer1"),
+    hotspot1: useHoverHotspotEvent("layer1"),
+    hotspot2: useHoverHotspotEvent("layer2")
+  }
 
   useEffect(() => {
     if (!topLight.current) return;
@@ -44,6 +50,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     bottomLight.current.target.position.set(1, -5, -20);
     bottomLight.current.target.updateMatrixWorld();
   }, []);
+
+  const elevenClick = useCardEvent("merchEleven");
+  const vecnaClick = useCardEvent("merchVecna");
 
   /**
    * Not hook
@@ -64,7 +73,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         onClick={handleClick}
         rotation-y={Math.PI / 2}
         scale={1.1}
-        {...hoverEvent}
+        eleven={{ ...elevenClick, ...hoverEvent.hotspot1 }}
+        vecna={{ ...vecnaClick, ...hoverEvent.hotspot2 }}
+        {...hoverEvent.home}
       />
 
       <spotLight

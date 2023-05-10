@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import config from 'config';
 import { LightColor } from '@webgl/config';
-import { Event } from '@html/CardOverlay/types';
+import { Card as CardType } from 'types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';
 import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
@@ -81,7 +81,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     triggerZoom();
   }
 
-  const handleCardClick = (event: Event) => {
+  const handleCardClick = (event: CardType.Event) => {
     if (env === "development") return;
     if (currentZoom !== "vecnaBoard") return;
 

@@ -13,6 +13,14 @@ export enum VectorIndex {
   z = 2
 }
 
+export namespace Asset {
+  export type Image = Merch;
+
+  export type Merch =
+    "merchVecna" |
+    "merchEleven";
+}
+
 export namespace Card {
   export type Event =
     "the-encounter" |

@@ -1,22 +1,24 @@
 import { create } from "zustand";
-import type { Asset, Card } from "types";
+import type { Asset } from "types";
 
 type State = {
-  htmlEvent: Card.Event,
-  webglEvent: Card.Event,
-
-  merch?: Asset.Merch
+  [k in Asset.Image]: boolean;
 }
 
 type Store = State & {
+  loaded: number,
+  incrementLoaded: () => void,
   set: <T extends keyof State>(key: T, value: State[T]) => void
 }
 
 export default create<Store>((set) => ({
-  htmlEvent: undefined,
-  webglEvent: undefined,
+  merchVecna: false,
+  merchEleven: false,
 
-  merch: undefined,
+  loaded: 0,
+  incrementLoaded: () => set((state) => ({
+    loaded: state.loaded + 1
+  })),
 
   set: (k, v) => set((state) => {
     const clone = { ...state };

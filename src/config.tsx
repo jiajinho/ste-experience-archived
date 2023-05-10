@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import locale from "locale";
-import { Camera, Vector3, VectorIndex, Viewport } from "types";
+import { Asset, Camera, Vector3, VectorIndex, Viewport } from "types";
 
 import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";
@@ -24,6 +24,15 @@ const link = {
   eventLocation: "https://goo.gl/maps/4af3VHoxSw7bPVsi9",
   tiktok: "https://www.tiktok.com/@strangerthingsencounter",
   instagram: "https://www.instagram.com/strangerthings.encounter/"
+}
+
+const assetUrl: {
+  image: { [k in Asset.Image]: string }
+} = {
+  image: {
+    merchVecna: "/static/cards/merch/vecna.png",
+    merchEleven: "/static/cards/merch/eleven.png"
+  }
 }
 
 /**
@@ -189,6 +198,7 @@ const cards = {
 }
 
 export default {
+  assetUrl,
   link,
   zoomSettings,
   viewport,

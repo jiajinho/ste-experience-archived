@@ -39,7 +39,7 @@ export default (
         timeline.to(wrapper.current, {
           duration: 0.25,
           autoAlpha: 1
-        }).to(theEncounter.current, {
+        }).to(merch.current, {
           duration: 0.75,
           top: "50%"
         });

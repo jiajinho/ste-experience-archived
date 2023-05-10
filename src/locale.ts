@@ -1,3 +1,5 @@
+import { Asset } from "types";
+
 const global = {
   stEncounter: "The Encounter",
   title: "Stranger Things - The Encounter",
@@ -58,6 +60,19 @@ const card = {
         (201 Victoria St, Singapore 188067)
       `
     }
+  },
+  merch: {
+    item: {
+      merchVecna: [
+        `<b>Vecna</b>`,
+        `Upside Down Edition`
+      ],
+      merchEleven: [
+        `<b>Eleven's Greatest Looks:</b>`,
+        `Season 4`
+      ]
+    } satisfies { [k in Asset.Merch]: [string, string] },
+    closeBtn: "Close"
   }
 }
 
@@ -65,5 +80,5 @@ export default {
   global,
   loading,
   overlayUI,
-  card
+  card,
 }

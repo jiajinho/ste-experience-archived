@@ -32,7 +32,11 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
+export default ({ eleven, vecna, ...props }: {
+  eleven?: JSX.IntrinsicElements["mesh"],
+  vecna?: JSX.IntrinsicElements["mesh"]
+} & JSX.IntrinsicElements["group"]
+) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
@@ -40,6 +44,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <mesh
         geometry={nodes.eleven.geometry}
         material={materials.eleven}
+        {...eleven}
       />
       <mesh
         geometry={nodes.cap.geometry}
@@ -68,6 +73,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       <mesh
         geometry={nodes.vecna.geometry}
         material={materials.vecna}
+        {...vecna}
       />
       <mesh
         geometry={nodes.denim.geometry}
