@@ -56,6 +56,8 @@ const SkipButton = styled.button`
   cursor: pointer;
   font-family: var(--font-benguiat);
   font-weight: 700;
+
+  visibility: hidden;
 `;
 
 export default () => {
