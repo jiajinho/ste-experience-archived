@@ -52,12 +52,6 @@ export default () => {
   const renderTutorial = loading && env === "production";
   const renderOverlay = env !== "development";
 
-  let frameloop: "demand" | "always" = "demand";
-
-  if (!loading || fps.calibrating || env === "development" || env === "staging") {
-    frameloop = "always";
-  }
-
   /**
    * Render
    */
@@ -72,7 +66,6 @@ export default () => {
         <Canvas
           shadows
           gl={{ alpha: false }}
-          frameloop={frameloop}
           camera={{ fov: 50 }}
           dpr={dpr}
         >

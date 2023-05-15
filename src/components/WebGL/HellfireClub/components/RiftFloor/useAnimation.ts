@@ -15,7 +15,7 @@ export default (material: THREE.MeshStandardMaterial, spotlight: React.RefObject
       ease: "power2.out",
       yoyo: true,
       repeat: -1,
-      repeatDelay: 3
+      repeatDelay: 1.5
     });
 
     timeline.to(material, {
