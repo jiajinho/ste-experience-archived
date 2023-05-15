@@ -50,7 +50,7 @@ export default () => {
 
       <text
         x={18} y={25}
-        fill="var(--color-bone)"
+        fill="white"
       >
         {locale.overlayUI.ticketBtn}
       </text>

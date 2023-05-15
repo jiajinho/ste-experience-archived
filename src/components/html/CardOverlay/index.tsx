@@ -6,6 +6,7 @@ import useAnimation from './useAnimation';
 
 import TheEncounter from './components/TheEncounter';
 import WhenWhere from './components/WhenWhere';
+import Merch from '@html/common/Card/Merch';
 
 const Wrapper = styled.div`
   background: #000a;
@@ -26,10 +27,11 @@ export default () => {
   const wrapper = useRef<HTMLDivElement>(null);
   const theEncounter = useRef<HTMLDivElement>(null);
   const whenWhere = useRef<HTMLDivElement>(null);
+  const merch = useRef<HTMLDivElement>(null);
 
   const setCardStore = useCardStore(state => state.set);
 
-  useAnimation(wrapper, theEncounter, whenWhere);
+  useAnimation(wrapper, theEncounter, whenWhere, merch);
 
   return (
     <Wrapper
@@ -38,6 +40,7 @@ export default () => {
     >
       <TheEncounter ref={theEncounter} />
       <WhenWhere ref={whenWhere} />
+      <Merch ref={merch} />
     </Wrapper>
   )
 }

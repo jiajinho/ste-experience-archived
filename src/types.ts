@@ -13,6 +13,29 @@ export enum VectorIndex {
   z = 2
 }
 
+export namespace Asset {
+  export type Image = Merch;
+
+  export type Merch =
+    "merchVecna" |
+    "merchEleven" |
+    "merchVHS" |
+    "merchMug" |
+    "merchCap" |
+    "merchVinyl" |
+    "merchBag" |
+    "merchShirt" |
+    "merchDenim"
+}
+
+export namespace Card {
+  export type Event =
+    "the-encounter" |
+    "when-where" |
+    "merch" |
+    undefined;
+}
+
 export namespace Camera {
   export type Hotspot =
     "default" |
@@ -27,6 +50,7 @@ export namespace Camera {
   export type MouseEvent = "rotate" | "pan" | undefined;
 
   export type Zoom = {
+    name: string,
     cameraBox: {
       position: Vector3,
       lookAt: Vector3

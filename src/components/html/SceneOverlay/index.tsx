@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import config from 'config';
 import useViewportStore from 'stores/useViewportStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
+import useBGMStore from 'stores/useBGMStore';
 
 import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 import ArrowGroup, { Wrapper as $ArrowGroup } from './components/ArrowGroup';
@@ -65,22 +66,29 @@ export default () => {
   const md = useViewportStore(state => state.md);
   const setCameraStore = useCameraStore(state => state.set);
 
+  const mute = useBGMStore(state => state.mute);
+  const setBGMStore = useBGMStore(state => state.set);
+
   const goToDefaultView = () => {
     setCameraStore("currentZoom", "default");
+  }
+
+  const toggleMute = () => {
+    setBGMStore(!mute);
   }
 
   return (
     <Wrapper>
       <TopRow>
-        <MuteButton />
+        <MuteButton onClick={toggleMute} />
         <STEncounter onClick={goToDefaultView} />
         <TicketButton />
       </TopRow>
 
-      {md && <ArrowGroup />}
+      {md && <ArrowGroup viewport="desktop" />}
 
       <BottomRow>
-        {!md && <ArrowGroup />}
+        {!md && <ArrowGroup viewport="mobile" />}
         <Credit />
       </BottomRow>
     </Wrapper>

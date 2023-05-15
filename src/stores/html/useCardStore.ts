@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import type { Event } from "@html/CardOverlay/types";
+import type { Asset, Card } from "types";
 
 type State = {
-  htmlEvent: Event,
-  webglEvent: Event,
-  flippedEncounter: boolean,
-  flippedWhenWhere: boolean
+  htmlEvent: Card.Event,
+  webglEvent: Card.Event,
+
+  merch?: Asset.Merch
 }
 
 type Store = State & {
@@ -15,8 +15,8 @@ type Store = State & {
 export default create<Store>((set) => ({
   htmlEvent: undefined,
   webglEvent: undefined,
-  flippedEncounter: false,
-  flippedWhenWhere: false,
+
+  merch: undefined,
 
   set: (k, v) => set((state) => {
     const clone = { ...state };

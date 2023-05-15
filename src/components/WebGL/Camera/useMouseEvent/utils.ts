@@ -78,7 +78,7 @@ function rotate(state: EventState, pageX: number, minAzimuth: number, maxAzimuth
 
   gsap.to(time, {
     t: 1,
-    duration: 1,
+    duration: 0.5,
     ease: "power2.out",
     overwrite: true,
     onUpdate: () => {

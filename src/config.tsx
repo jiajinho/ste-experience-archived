@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import locale from "locale";
-import { Camera, Vector3, VectorIndex, Viewport } from "types";
+import { Asset, Camera, Vector3, VectorIndex, Viewport } from "types";
 
 import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";
@@ -20,10 +20,26 @@ const viewport: Viewport = {
 
 const link = {
   faq: "https://mightyexperiences.com/support",
-  ticketing: "https://mightyexperiences.com/tickets/ste-sg",
-  eventLocation: "https://www.google.com/maps/place/201+Victoria+St,+%2302-01+Bugis%2B,+Singapore+188067/@1.2994132,103.8517561,17z/data=!3m1!4b1!4m6!3m5!1s0x31da19badc34bef9:0x1a2a8c1ca9bcd5e9!8m2!3d1.2994132!4d103.8539448!16s%2Fg%2F11pvcvfy68?coh=164777&entry=tt&shorturl=1",
+  ticketing: "https://mightyexperiences.com?source=body",
+  eventLocation: "https://goo.gl/maps/4af3VHoxSw7bPVsi9",
   tiktok: "https://www.tiktok.com/@strangerthingsencounter",
   instagram: "https://www.instagram.com/strangerthings.encounter/"
+}
+
+const assetUrl: {
+  image: { [k in Asset.Image]: string }
+} = {
+  image: {
+    merchVecna: "/static/cards/merch/vecna.png",
+    merchEleven: "/static/cards/merch/eleven.png",
+    merchVHS: "/static/cards/merch/vhs.png",
+    merchMug: "/static/cards/merch/mug.png",
+    merchCap: "/static/cards/merch/cap.png",
+    merchVinyl: "/static/cards/merch/vinyl.png",
+    merchBag: "/static/cards/merch/tote-bag.png",
+    merchShirt: "/static/cards/merch/shirt.png",
+    merchDenim: "/static/cards/merch/denim.png"
+  }
 }
 
 /**
@@ -32,6 +48,7 @@ const link = {
  */
 const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   default: {
+    name: locale.global.hotspot.default,
     cameraBox: {
       position: [3.81, 2.29, 2.26],
       lookAt: [
@@ -58,6 +75,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   retroTV: {
+    name: locale.global.hotspot.retroTV,
     cameraBox: {
       position: [1, 0, 0],
       lookAt: [-1, 0, 0]
@@ -70,6 +88,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   noticeBoard: {
+    name: locale.global.hotspot.noticeBoard,
     cameraBox: {
       position: [3, 0, 0],
       lookAt: [-1, 0, 0]
@@ -82,6 +101,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   vecnaBoard: {
+    name: locale.global.hotspot.vecnaBoard,
     cameraBox: {
       position: [0, 1.2, 0],
       lookAt: [0, -1, 0]
@@ -95,6 +115,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(-1, 0, 0)
   },
   faqBoard: {
+    name: locale.global.hotspot.faqBoard,
     cameraBox: {
       position: [0, 0.45, 0],
       lookAt: [0, -1, 0]
@@ -108,6 +129,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(0.08, 0, 1)
   },
   map: {
+    name: locale.global.hotspot.map,
     cameraBox: {
       position: [0, 0.48, -0.015],
       lookAt: [0, -1, 0]
@@ -121,12 +143,14 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(-0.063, 0, 1)
   },
   chalkBoard: {
+    name: locale.global.hotspot.chalkBoard,
     cameraBox: {
       position: [0, 0, 1.5],
       lookAt: [0, 0, -1]
     }
   },
   shelf: {
+    name: locale.global.hotspot.shelf,
     cameraBox: {
       position: [2.4, 0.13, 0],
       lookAt: [-1, 0, 0]
@@ -180,9 +204,61 @@ const cards = {
   }
 }
 
+const merchCard: {
+  [k in Asset.Merch]: {
+    content: [string, string],
+    heightRatio?: number,
+    top?: number,
+    left?: number
+  }
+} = {
+  merchVecna: {
+    content: locale.card.merch.item.merchVecna,
+  },
+  merchEleven: {
+    content: locale.card.merch.item.merchEleven,
+    heightRatio: 0.55
+  },
+  merchVHS: {
+    content: locale.card.merch.item.merchVHS,
+    heightRatio: 0.7,
+    top: 44
+  },
+  merchMug: {
+    content: locale.card.merch.item.merchMug,
+    heightRatio: 0.55,
+    top: 42,
+    left: 44
+  },
+  merchCap: {
+    content: locale.card.merch.item.merchCap,
+    heightRatio: 0.55,
+    top: 41
+  },
+  merchVinyl: {
+    content: locale.card.merch.item.merchVinyl,
+    heightRatio: 0.65,
+    top: 38
+  },
+  merchBag: {
+    content: locale.card.merch.item.merchBag,
+    heightRatio: 0.7,
+    top: 32
+  },
+  merchShirt: {
+    content: locale.card.merch.item.merchShirt,
+  },
+  merchDenim: {
+    content: locale.card.merch.item.merchDenim,
+    heightRatio: 0.7
+  },
+}
+
 export default {
+  assetUrl,
   link,
   zoomSettings,
   viewport,
-  cards
+  cards,
+  merchCard
 }

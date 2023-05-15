@@ -15,7 +15,9 @@ type LoadObject = {
     hellfireFront?: boolean,
     hellfireBack?: boolean,
     theEncounterBack?: boolean,
-    whenWhereBack?: boolean
+    whenWhereBack?: boolean,
+
+    bgm?: boolean,
   }
 }
 
@@ -40,6 +42,7 @@ export default create<Store>((set) => ({
     hellfireBack: false,
     theEncounterBack: false,
     whenWhereBack: false,
+    bgm: false
   },
 
   set: (k, v) => set((state) => {
