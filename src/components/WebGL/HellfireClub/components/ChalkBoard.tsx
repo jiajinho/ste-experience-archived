@@ -10,12 +10,12 @@ type GLTFResult = GLTF & {
   nodes: {
     cta: THREE.Mesh;
     ChalkBoard: THREE.Mesh;
-    ["xpass-texture"]: THREE.Mesh;
+    xpass: THREE.Mesh;
   };
   materials: {
     cta: THREE.MeshStandardMaterial;
     ChalkBoard: THREE.MeshStandardMaterial;
-    ["xpass-texture"]: THREE.MeshStandardMaterial;
+    xpass: THREE.MeshStandardMaterial;
   };
 };
 
@@ -33,7 +33,6 @@ export default ({ cta, buttonGlow = false, ...props }: {
       <mesh
         geometry={nodes.cta.geometry}
         material={materials.cta}
-        position={[0, 0, 0.01]}
         {...cta}
       />
       <mesh
@@ -42,8 +41,8 @@ export default ({ cta, buttonGlow = false, ...props }: {
         material={materials.ChalkBoard}
       />
       <mesh
-        geometry={nodes["xpass-texture"].geometry}
-        material={materials["xpass-texture"]}
+        geometry={nodes.xpass.geometry}
+        material={materials.xpass}
       />
     </group>
   );
