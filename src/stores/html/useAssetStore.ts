@@ -14,6 +14,13 @@ type Store = State & {
 export default create<Store>((set) => ({
   merchVecna: false,
   merchEleven: false,
+  merchBag: false,
+  merchCap: false,
+  merchDenim: false,
+  merchMug: false,
+  merchShirt: false,
+  merchVHS: false,
+  merchVinyl: false,
 
   loaded: 0,
   incrementLoaded: () => set((state) => ({
