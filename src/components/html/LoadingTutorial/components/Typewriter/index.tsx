@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   transform: translate(-50%, -50%);
 
   width: 80%;
+  max-width: 1000px;
 `;
 
 const Container = styled.div`
