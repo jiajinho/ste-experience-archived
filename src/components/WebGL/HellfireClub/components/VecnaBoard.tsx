@@ -9,7 +9,7 @@ const url = "/static/gltf/vecna-board.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    CTA: THREE.Mesh;
+    cta: THREE.Mesh;
     VecnaBoard: THREE.Mesh;
   };
   materials: {
@@ -30,7 +30,7 @@ export default ({ cta, buttonGlow = false, ...props }: {
   return (
     <group {...props} dispose={null}>
       <mesh
-        geometry={nodes.CTA.geometry}
+        geometry={nodes.cta.geometry}
         material={materials.cta}
         {...cta}
       />
