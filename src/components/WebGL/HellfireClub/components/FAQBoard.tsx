@@ -11,10 +11,12 @@ const url = "/static/gltf/faq-board.glb";
 type GLTFResult = GLTF & {
   nodes: {
     cta: THREE.Mesh;
+    content: THREE.Mesh;
     FAQBoard: THREE.Mesh;
   };
   materials: {
     cta: THREE.MeshStandardMaterial;
+    content: THREE.MeshStandardMaterial;
     FAQBoard: THREE.MeshStandardMaterial;
   };
 };
@@ -47,6 +49,10 @@ export default ({ cta, buttonGlow = false, ...props }: {
         geometry={nodes.cta.geometry}
         material={materials.cta}
         {...cta}
+      />
+      <mesh
+        geometry={nodes.content.geometry}
+        material={materials.content}
       />
       <mesh
         geometry={nodes.FAQBoard.geometry}
