@@ -45,7 +45,7 @@ export default () => {
 
     const handleWindowFocus = () => {
       if (mute) return;
-      else unmuteAudio();
+      unmuteAudio();
     }
 
     window.addEventListener("blur", handleWindowBlur);
@@ -55,7 +55,7 @@ export default () => {
       window.removeEventListener("blur", handleWindowBlur);
       window.removeEventListener("focus", handleWindowFocus);
     }
-  }, [mute, loading]);
+  }, [mute, audio]);
 
   useEffect(() => {
     if (!audio) return;
