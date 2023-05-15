@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { gsap } from 'gsap';
 
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import useBGMStore from 'stores/useBGMStore';
@@ -11,53 +12,97 @@ export default () => {
   const env = useEnvStore(state => state.env);
 
   const loading = useLoadAnimationStore(state => state.loading);
+  const typewriter = useLoadAnimationStore(state => state.typewriter);
 
-  const loadProgress = useLoadProgressStore(state => state.html);
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
-
   const mute = useBGMStore(state => state.mute);
 
+  const [interacted, setInteracted] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement>();
 
   useEffect(() => {
     const audio = new Audio(url);
+    audio.muted = true;
+    audio.loop = true;
+    audio.volume = 0.2;
+    audio.pause();
 
-    audio.addEventListener("canplaythrough", () => {
+    const handleAudioCanPlayThrough = () => {
       setLoadProgressStore("html", { bgm: true });
-    });
+      setAudio(audio);
+    }
 
-    setAudio(audio);
+    audio.addEventListener("canplaythrough", handleAudioCanPlayThrough);
+    window.addEventListener("click", () => { setInteracted(true), { once: true } });
+
+    return () => { audio.removeEventListener("canplaythrough", handleAudioCanPlayThrough) }
   }, []);
 
   useEffect(() => {
-    if (!audio) return;
-    if (!loadProgress.bgm) return;
-
-    const play = () => {
-      audio.loop = true;
-      audio.volume = 0.2;
-      audio.play();
+    const handleWindowBlur = () => {
+      muteAudio();
     }
 
-    window.addEventListener("click", play, { once: true });
-  }, [audio, loadProgress]);
+    const handleWindowFocus = () => {
+      if (mute) return;
+      else unmuteAudio();
+    }
+
+    window.addEventListener("blur", handleWindowBlur);
+    window.addEventListener("focus", handleWindowFocus);
+
+    return () => {
+      window.removeEventListener("blur", handleWindowBlur);
+      window.removeEventListener("focus", handleWindowFocus);
+    }
+  }, [mute, loading]);
 
   useEffect(() => {
     if (!audio) return;
+    if (!interacted) return;
+    if (typewriter === "standby") return;
 
-    audio.volume = loading ? 0.2 : 0.5;
+    audio.muted = false;
+    audio.play();
+
+  }, [audio, typewriter, interacted]);
+
+  useEffect(() => {
+    if (!audio) return;
+    if (loading) return;
+
+    gsap.to(audio, {
+      duration: loading ? 0 : 0.5,
+      ease: "power2.out",
+      volume: loading ? 0.2 : 0.5
+    });
+
   }, [audio, loading]);
 
   useEffect(() => {
     if (!audio) return;
+    if (mute) muteAudio();
 
-    if (env === "development" || mute) {
-      audio.muted = true;
-      audio.pause();
-    }
-    else {
-      audio.muted = false;
-      audio.play();
-    }
+    if (env === "production") return;
+    else if (env === "development") muteAudio();
+    else if (env === "staging") unmuteAudio();
   }, [audio, env, mute]);
+
+
+  /**
+   * Not hook
+   */
+  const muteAudio = () => {
+    if (!audio) return;
+
+    audio.muted = true;
+    audio.pause();
+  }
+
+  const unmuteAudio = () => {
+    if (!audio) return;
+
+    audio.muted = false;
+    audio.play();
+  }
 }
