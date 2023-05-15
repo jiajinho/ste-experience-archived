@@ -29,7 +29,8 @@ export default ({ knob, onKnobClick, onKnobPointerEnter, onKnobPointerLeave, ...
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
 
   const texture = useVideoTexture(videoUrl, {
-    unsuspend: 'canplay'
+    unsuspend: 'canplaythrough',
+    muted: true
   });
 
   const videoMaterial = useMemo(() => {
