@@ -53,6 +53,13 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const elevenClick = useCardEvent("merchEleven", triggerZoom);
   const vecnaClick = useCardEvent("merchVecna", triggerZoom);
+  const vhsClick = useCardEvent("merchVHS", triggerZoom);
+  const mugClick = useCardEvent("merchMug", triggerZoom);
+  const capClick = useCardEvent("merchCap", triggerZoom);
+  const vinylClick = useCardEvent("merchVinyl", triggerZoom);
+  const bagClick = useCardEvent("merchBag", triggerZoom);
+  const shirtClick = useCardEvent("merchShirt", triggerZoom);
+  const denimClick = useCardEvent("merchDenim", triggerZoom);
 
   /**
    * Not hook
@@ -73,8 +80,18 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         onClick={handleClick}
         rotation-y={Math.PI / 2}
         scale={1.1}
+
+        vhs={{ ...vhsClick, ...hoverEvent.hotspot2 }}
+        mug={{ ...mugClick, ...hoverEvent.hotspot1 }}
+        cap={{ ...capClick, ...hoverEvent.hotspot2 }}
+
+        vinyl={{ ...vinylClick, ...hoverEvent.hotspot2 }}
         eleven={{ ...elevenClick, ...hoverEvent.hotspot1 }}
         vecna={{ ...vecnaClick, ...hoverEvent.hotspot2 }}
+
+        bag={{ ...bagClick, ...hoverEvent.hotspot2 }}
+        shirt={{ ...shirtClick, ...hoverEvent.hotspot1 }}
+        denim={{ ...denimClick, ...hoverEvent.hotspot2 }}
         {...hoverEvent.home}
       />
 

@@ -32,9 +32,16 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ eleven, vecna, ...props }: {
+export default ({ eleven, vecna, vhs, mug, cap, vinyl, bag, shirt, denim, ...props }: {
   eleven?: JSX.IntrinsicElements["mesh"],
-  vecna?: JSX.IntrinsicElements["mesh"]
+  vecna?: JSX.IntrinsicElements["mesh"],
+  vhs?: JSX.IntrinsicElements["mesh"],
+  mug?: JSX.IntrinsicElements["mesh"],
+  cap?: JSX.IntrinsicElements["mesh"],
+  vinyl?: JSX.IntrinsicElements["mesh"],
+  bag?: JSX.IntrinsicElements["mesh"],
+  shirt?: JSX.IntrinsicElements["mesh"],
+  denim?: JSX.IntrinsicElements["mesh"],
 } & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
@@ -49,26 +56,32 @@ export default ({ eleven, vecna, ...props }: {
       <mesh
         geometry={nodes.cap.geometry}
         material={materials.cap}
+        {...cap}
       />
       <mesh
         geometry={nodes.cup.geometry}
         material={materials.cup}
+        {...mug}
       />
       <mesh
         geometry={nodes["tote-bag"].geometry}
         material={materials["tote-bag"]}
+        {...bag}
       />
       <mesh
         geometry={nodes.tape.geometry}
         material={materials.tape}
+        {...vhs}
       />
       <mesh
         geometry={nodes.shirt.geometry}
         material={materials.shirt}
+        {...shirt}
       />
       <mesh
         geometry={nodes.vinyl.geometry}
         material={materials.vinyl}
+        {...vinyl}
       />
       <mesh
         geometry={nodes.vecna.geometry}
@@ -78,6 +91,7 @@ export default ({ eleven, vecna, ...props }: {
       <mesh
         geometry={nodes.denim.geometry}
         material={materials.denim}
+        {...denim}
       />
       <mesh
         castShadow

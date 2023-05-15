@@ -18,7 +18,14 @@ export namespace Asset {
 
   export type Merch =
     "merchVecna" |
-    "merchEleven";
+    "merchEleven" |
+    "merchVHS" |
+    "merchMug" |
+    "merchCap" |
+    "merchVinyl" |
+    "merchBag" |
+    "merchShirt" |
+    "merchDenim"
 }
 
 export namespace Card {

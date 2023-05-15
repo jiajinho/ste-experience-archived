@@ -83,7 +83,7 @@ export default React.forwardRef(({ ...props }: {
         <TextContainer>
           {merch &&
             <>
-              <h4 dangerouslySetInnerHTML={{ __html: locale.card.merch.item[merch][0] || '' }} />
+              <p dangerouslySetInnerHTML={{ __html: locale.card.merch.item[merch][0] || '' }} />
               <p dangerouslySetInnerHTML={{ __html: locale.card.merch.item[merch][1] || '' }} />
             </>
           }
