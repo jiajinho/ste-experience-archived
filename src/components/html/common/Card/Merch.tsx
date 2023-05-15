@@ -9,18 +9,22 @@ import useCardStore from 'stores/html/useCardStore';
 import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div(({ $heightRatio, $top, $left }: {
+  $heightRatio: number,
+  $top: number,
+  $left: number
+}) => `
   aspect-ratio: 1/1;
-  height: calc(var(--card-width) * 0.6);
+  height: calc(var(--card-width) * ${$heightRatio});
   width: auto;
 
   position: absolute;
-  top: 35%;
-  left: 50%;
+  top: ${$top}%;
+  left: ${$left}%;
   transform: translate(-50%, -50%);
 
   & > * { object-fit: contain }
-`;
+`);
 
 const Image = styled.img`
   object-fit: contain;
@@ -71,20 +75,26 @@ export default React.forwardRef(({ ...props }: {
 ) => {
   const merch = useCardStore(state => state.merch);
 
+  const merchItem = merch ? config.merchCard[merch] : undefined;
+
   return (
     <Card ref={ref} {...props}>
       <div className="front">
         <FrontTemplate />
 
-        <ImageContainer>
+        <ImageContainer
+          $heightRatio={merchItem?.heightRatio || 0.6}
+          $top={merchItem?.top || 35}
+          $left={merchItem?.left || 50}
+        >
           {merch && <Image src={config.assetUrl.image[merch]} />}
         </ImageContainer>
 
         <TextContainer>
           {merch &&
             <>
-              <p dangerouslySetInnerHTML={{ __html: locale.card.merch.item[merch][0] || '' }} />
-              <p dangerouslySetInnerHTML={{ __html: locale.card.merch.item[merch][1] || '' }} />
+              <p dangerouslySetInnerHTML={{ __html: merchItem?.content[0] || '' }} />
+              <p dangerouslySetInnerHTML={{ __html: merchItem?.content[1] || '' }} />
             </>
           }
         </TextContainer>

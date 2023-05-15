@@ -8,26 +8,29 @@ type GLTFResult = GLTF & {
   nodes: {
     eleven: THREE.Mesh;
     cap: THREE.Mesh;
-    cup: THREE.Mesh;
     ["tote-bag"]: THREE.Mesh;
     tape: THREE.Mesh;
     shirt: THREE.Mesh;
+    cup: THREE.Mesh;
     vinyl: THREE.Mesh;
-    vecna: THREE.Mesh;
     denim: THREE.Mesh;
+    vecna: THREE.Mesh;
     Shelf: THREE.Mesh;
     Sign: THREE.Mesh;
+    ShelfPlankTop: THREE.Mesh;
+    ShelfPlankMiddle: THREE.Mesh;
+    ShelfPlankBottom: THREE.Mesh;
   };
   materials: {
     eleven: THREE.MeshStandardMaterial;
     cap: THREE.MeshStandardMaterial;
-    cup: THREE.MeshStandardMaterial;
     ["tote-bag"]: THREE.MeshStandardMaterial;
     tape: THREE.MeshStandardMaterial;
     shirt: THREE.MeshStandardMaterial;
+    cup: THREE.MeshStandardMaterial;
     vinyl: THREE.MeshStandardMaterial;
-    vecna: THREE.MeshStandardMaterial;
     denim: THREE.MeshStandardMaterial;
+    vecna: THREE.MeshStandardMaterial;
     Shelf: THREE.MeshStandardMaterial;
   };
 };
@@ -100,6 +103,19 @@ export default ({ eleven, vecna, vhs, mug, cap, vinyl, bag, shirt, denim, ...pro
       />
       <mesh
         geometry={nodes.Sign.geometry}
+        material={materials.Shelf}
+      />
+
+      <mesh
+        geometry={nodes.ShelfPlankTop.geometry}
+        material={materials.Shelf}
+      />
+      <mesh
+        geometry={nodes.ShelfPlankMiddle.geometry}
+        material={materials.Shelf}
+      />
+      <mesh
+        geometry={nodes.ShelfPlankBottom.geometry}
         material={materials.Shelf}
       />
     </group>

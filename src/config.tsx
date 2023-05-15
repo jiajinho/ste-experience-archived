@@ -204,10 +204,61 @@ const cards = {
   }
 }
 
+const merchCard: {
+  [k in Asset.Merch]: {
+    content: [string, string],
+    heightRatio?: number,
+    top?: number,
+    left?: number
+  }
+} = {
+  merchVecna: {
+    content: locale.card.merch.item.merchVecna,
+  },
+  merchEleven: {
+    content: locale.card.merch.item.merchEleven,
+    heightRatio: 0.55
+  },
+  merchVHS: {
+    content: locale.card.merch.item.merchVHS,
+    heightRatio: 0.7,
+    top: 44
+  },
+  merchMug: {
+    content: locale.card.merch.item.merchMug,
+    heightRatio: 0.55,
+    top: 42,
+    left: 44
+  },
+  merchCap: {
+    content: locale.card.merch.item.merchCap,
+    heightRatio: 0.55,
+    top: 41
+  },
+  merchVinyl: {
+    content: locale.card.merch.item.merchVinyl,
+    heightRatio: 0.65,
+    top: 38
+  },
+  merchBag: {
+    content: locale.card.merch.item.merchBag,
+    heightRatio: 0.7,
+    top: 32
+  },
+  merchShirt: {
+    content: locale.card.merch.item.merchShirt,
+  },
+  merchDenim: {
+    content: locale.card.merch.item.merchDenim,
+    heightRatio: 0.7
+  },
+}
+
 export default {
   assetUrl,
   link,
   zoomSettings,
   viewport,
-  cards
+  cards,
+  merchCard
 }
