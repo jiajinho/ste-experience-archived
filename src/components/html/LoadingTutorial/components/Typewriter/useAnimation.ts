@@ -77,6 +77,11 @@ export default (
             ease: "power2.out",
             autoAlpha: 1
           });
+
+          gsap.to(skip.current, {
+            duration: 0.01,
+            autoAlpha: 0
+          });
         });
 
         return () => { tween.kill() }
