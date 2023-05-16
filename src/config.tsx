@@ -157,8 +157,14 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   chalkBoard: {
     name: locale.global.hotspot.chalkBoard,
     cameraBox: {
-      position: [0, 0, 1.5],
+      position: [0, 0, 1.8],
       lookAt: [0, 0, -1]
+    },
+    aspect: {
+      minAspect: 0.55,
+      maxAspect: 1.65,
+      vectorIndex: VectorIndex.z,
+      constant: -0.2
     }
   },
   shelf: {
