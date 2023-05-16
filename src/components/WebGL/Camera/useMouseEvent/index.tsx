@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber';
 
 import config from 'config';
 import { EventState } from './types';
-import { enableEvent, executeEvent } from './utils';
+import { disableEvent, enableEvent, executeEvent } from './utils';
 import useCameraStore from 'stores/webgl/useCameraStore';
 
 export default () => {
@@ -20,47 +20,51 @@ export default () => {
 
     const state: EventState = {
       enabled: false,
+
       anchorX: 0,
-      anchorAzimuth: setting.allowEvent?.default.azimuth || 0,
-      azimuth: setting.allowEvent?.default.azimuth || 0
+      anchorAzimuth: setting.allowEvent?.default.azimuth.value || 0,
+      azimuth: setting.allowEvent?.default.azimuth.value || 0,
+
+      anchorY: 0,
+      anchorPolar: setting.allowEvent?.default.polar.value || 0,
+      polar: setting.allowEvent?.default.polar.value || 0
     }
 
     function handleMouseDown(e: MouseEvent) {
-      enableEvent(state, e.pageX);
+      enableEvent(state, e.pageX, e.pageY);
     }
 
     function handleTouchStart(e: TouchEvent) {
-      enableEvent(state, e.targetTouches[0].pageX);
-    }
-
-    function disableEvent() {
-      state.enabled = false;
-      state.anchorAzimuth = state.azimuth;
+      enableEvent(state, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
     }
 
     function handleMouseMove(e: MouseEvent) {
-      executeEvent(state, e.pageX, aspect);
+      executeEvent(state, aspect, e.pageX, e.pageY);
     }
 
     function handleTouchMove(e: TouchEvent) {
-      executeEvent(state, e.targetTouches[0].pageX, aspect);
+      executeEvent(state, aspect, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+    }
+
+    function handleMouseUp() {
+      disableEvent(state);
     }
 
     canvas.addEventListener("mousedown", handleMouseDown);
-    canvas.addEventListener("mouseup", disableEvent);
+    canvas.addEventListener("mouseup", handleMouseUp);
     canvas.addEventListener("mousemove", handleMouseMove);
 
     canvas.addEventListener("touchstart", handleTouchStart, { passive: true });
-    canvas.addEventListener("touchend", disableEvent, { passive: true });
+    canvas.addEventListener("touchend", handleMouseUp, { passive: true });
     canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
 
     return () => {
       canvas.removeEventListener("mousedown", handleMouseDown);
-      canvas.removeEventListener("mouseup", disableEvent);
+      canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("mousemove", handleMouseMove);
 
       canvas.removeEventListener("touchstart", handleTouchStart);
-      canvas.removeEventListener("touchend", disableEvent);
+      canvas.removeEventListener("touchend", handleMouseUp);
       canvas.removeEventListener("touchmove", handleTouchMove);
     }
   }, [camera, mouseEvent, currentZoom, aspect]);

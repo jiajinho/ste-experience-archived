@@ -1,16 +1,24 @@
 import * as THREE from 'three';
 import gsap from 'gsap';
 
-import config from "config";
-import useCameraStore from "stores/webgl/useCameraStore";
 import { EventState } from "./types";
+import config from "config";
+import { clamp } from 'utils';
+import useCameraStore from "stores/webgl/useCameraStore";
 
-export function enableEvent(state: EventState, pageX: number) {
+export function enableEvent(state: EventState, pageX: number, pageY: number) {
   state.enabled = true;
   state.anchorX = pageX;
+  state.anchorY = pageY;
 }
 
-export function executeEvent(state: EventState, pageX: number, aspect: number) {
+export function disableEvent(state: EventState) {
+  state.enabled = false;
+  state.anchorAzimuth = state.azimuth;
+  state.anchorPolar = state.polar;
+}
+
+export function executeEvent(state: EventState, aspect: number, pageX: number, pageY: number) {
   const { currentZoom, canvas } = useCameraStore.getState();
   const setting = config.zoomSettings[currentZoom];
 
@@ -18,27 +26,49 @@ export function executeEvent(state: EventState, pageX: number, aspect: number) {
   if (!setting.allowEvent) return;
   if (!canvas) return;
 
-  let minAzimuth = setting.allowEvent.default.azimuth;
-  let maxAzimuth = setting.allowEvent.default.azimuth;
+  let minAzimuth = setting.allowEvent.default.azimuth.value;
+  let maxAzimuth = setting.allowEvent.default.azimuth.value;
 
-  if (aspect <= setting.allowEvent.props.azimuth.maxAspect) {
-    const range = setting.allowEvent.props.azimuth.constant / aspect;
+  if (aspect <= setting.allowEvent.props.azimuth.aspect.max) {
+    const range = setting.allowEvent.props.azimuth.aspect.constant / aspect;
 
     minAzimuth -= range;
     maxAzimuth += range;
   }
 
+  const minPolar = setting.allowEvent.props.polar.min;
+  const maxPolar = setting.allowEvent.props.polar.max;
+
   if (setting.allowEvent.name === "rotate") {
-    rotate(
+    rotate({
       state,
       pageX,
-      minAzimuth,
-      maxAzimuth
-    );
+      pageY,
+      azimuth: {
+        min: minAzimuth,
+        max: maxAzimuth
+      },
+      polar: {
+        min: minPolar,
+        max: maxPolar
+      }
+    });
   }
 }
 
-function rotate(state: EventState, pageX: number, minAzimuth: number, maxAzimuth: number) {
+function rotate({ state, pageX, pageY, azimuth, polar }: {
+  state: EventState,
+  pageX: number,
+  pageY: number,
+  azimuth: {
+    min: number,
+    max: number
+  },
+  polar: {
+    min: number,
+    max: number
+  }
+}) {
   const { shadowCamera, camera, canvas, currentZoom } = useCameraStore.getState();
   const setting = config.zoomSettings[currentZoom];
 
@@ -48,25 +78,26 @@ function rotate(state: EventState, pageX: number, minAzimuth: number, maxAzimuth
   if (!setting.allowEvent) return;
   if (setting.allowEvent.name !== "rotate") return;
 
-  const delta = pageX - state.anchorX;
-  const scaleFactor = 0.001;
+  //azimuth
+  const deltaX = pageX - state.anchorX;
+  let newAzimuth = state.anchorAzimuth + deltaX * setting.allowEvent.props.azimuth.sensitivity;
 
-  let newAzimuth = state.anchorAzimuth + delta * scaleFactor;
+  const maxAzimuthLimit = Math.min(azimuth.max, setting.allowEvent.props.azimuth.max);
+  const minAzimuthLimit = Math.max(azimuth.min, setting.allowEvent.props.azimuth.min);
 
-  const maxLimit = Math.min(maxAzimuth, setting.allowEvent.props.azimuth.max);
-  const minLimit = Math.max(minAzimuth, setting.allowEvent.props.azimuth.min);
+  newAzimuth = clamp(newAzimuth, minAzimuthLimit, maxAzimuthLimit);
 
-  if (newAzimuth >= maxLimit) {
-    newAzimuth = maxLimit;
-  }
-  else if (newAzimuth <= minLimit) {
-    newAzimuth = minLimit;
-  }
+  //polar
+  const deltaY = pageY - state.anchorY;
+  let newPolar = state.anchorPolar + deltaY * setting.allowEvent.props.polar.sensitivity;
 
+  newPolar = clamp(newPolar, polar.min, polar.max);
+
+  //transformation
   const vec3 = new THREE.Vector3(
-    -Math.sin(state.azimuth) * setting.allowEvent.default.azimuthScaleFactor,
-    setting.allowEvent.default.lookAtY,
-    -Math.cos(state.azimuth) * setting.allowEvent.default.azimuthScaleFactor
+    -Math.sin(state.azimuth) * setting.allowEvent.default.azimuth.scaleFactor,
+    state.polar,
+    -Math.cos(state.azimuth) * setting.allowEvent.default.azimuth.scaleFactor
   );
 
   shadowCamera.lookAt(vec3);
@@ -86,5 +117,7 @@ function rotate(state: EventState, pageX: number, minAzimuth: number, maxAzimuth
     },
   });
 
+
   state.azimuth = newAzimuth;
+  state.polar = newPolar;
 }

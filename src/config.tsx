@@ -53,7 +53,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       position: [3.81, 2.29, 2.26],
       lookAt: [
         -Math.sin(1.05) * 100, //-Math.sin(default.azimuth) * default.azimuthScaleFactor
-        -20, //default.lookAtY
+        -20, //default.polar.value
         -Math.cos(1.05) * 100 //-Math.cos(default.azimuth) * default.azimuthScaleFactor
       ]
     },
@@ -61,16 +61,28 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       name: "rotate",
       props: {
         azimuth: {
+          sensitivity: 0.001,
           min: 0.35,
           max: 1.73,
-          constant: 0.4,
-          maxAspect: 2.25
+          aspect: {
+            constant: 0.4,
+            max: 2.25
+          }
+        },
+        polar: {
+          sensitivity: 0.1,
+          min: -35,
+          max: -5,
         }
       },
       default: {
-        lookAtY: -20,
-        azimuth: 1.05,
-        azimuthScaleFactor: 100
+        polar: {
+          value: -20
+        },
+        azimuth: {
+          value: 1.05,
+          scaleFactor: 100
+        }
       }
     }
   },

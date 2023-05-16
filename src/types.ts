@@ -71,16 +71,34 @@ export namespace Camera {
     name: "rotate",
     props: {
       azimuth: {
+        sensitivity: number,
         min: number,
         max: number,
-        constant: number,
-        maxAspect: number
+        aspect: {
+          constant: number,
+          max: number
+        }
+      },
+      polar: {
+        sensitivity: number,
+        min: number,
+        max: number
       }
     },
     default: {
-      lookAtY: number,
-      azimuth: number,
-      azimuthScaleFactor: number
+      polar: {
+        value: number,
+      }
+      // lookAt: {
+      //   y: number
+      // },
+      azimuth: {
+        value: number,
+        scaleFactor: number
+      }
+      // lookAtY: number,
+      // azimuth: number,
+      // azimuthScaleFactor: number
     }
   }
 }
