@@ -63,9 +63,7 @@ export default () => {
     if (!interacted) return;
     if (typewriter === "standby") return;
 
-    audio.muted = false;
-    audio.play();
-
+    unmuteAudio();
   }, [audio, typewriter, interacted]);
 
   useEffect(() => {
@@ -82,11 +80,20 @@ export default () => {
 
   useEffect(() => {
     if (!audio) return;
-    if (mute) muteAudio();
 
-    if (env === "production") return;
-    else if (env === "development") muteAudio();
-    else if (env === "staging") unmuteAudio();
+    if (mute) {
+      muteAudio();
+      return;
+    }
+
+    switch (env) {
+      case "staging":
+      case "production":
+        unmuteAudio();
+        break;
+      default:
+        muteAudio();
+    }
   }, [audio, env, mute]);
 
 
