@@ -2,24 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
-import MightyExperience, { Wrapper as $MightyExperience } from '@html/common/svg/MightyExperience';
-import Netflix, { Wrapper as $Netflix } from '@html/common/svg/Netflix';
+import MightyExperience from '@html/common/svg/MightyExperience';
+import Netflix from '@html/common/svg/Netflix';
+import MJGroup from '@html/common/svg/MJGroup';
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  
+  gap: 1vmin;
   user-select: none;
 
   & > p {
     text-transform: uppercase;
     font-family: var(--font-inter);
     font-weight: 700;
-    font-size: 10px;
-    
-    letter-spacing: 0.2px;
+    font-size: 1.7vmin;
     color: white;
   }
 `;
@@ -29,14 +27,9 @@ const BrandGroup = styled.div`
   align-items: center;
   gap: 12px;
 
-  ${$MightyExperience} { 
-    width: 10vmin;
-    min-width: 95px; 
-  }
-
-  ${$Netflix} { 
+  svg {
     width: 9vmin;
-    min-width: 70px;
+    min-width: 65px;
   }
 `;
 
@@ -48,6 +41,7 @@ export default () => (
 
     <BrandGroup>
       <Netflix color="var(--color-cherry)" />
+      <MJGroup />
       <MightyExperience />
     </BrandGroup>
   </Wrapper>
