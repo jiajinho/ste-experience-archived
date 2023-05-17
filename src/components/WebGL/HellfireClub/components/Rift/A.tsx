@@ -7,11 +7,8 @@ import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const url = "/static/gltf/rifts-mini.glb";
 
-export default ({ material, ...props }: {
-  material: THREE.Material
-} & JSX.IntrinsicElements["group"]
-) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
+export default (props: JSX.IntrinsicElements["group"]) => {
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useTriggerDebugModel(ref);
@@ -26,11 +23,10 @@ export default ({ material, ...props }: {
       ref={ref}
       {...props}
       onClick={handleClick}
-      dispose={null}
     >
       <mesh
         geometry={nodes.Rift_A.geometry}
-        material={material}
+        material={materials.Rift}
       />
     </group>
   );
