@@ -5,11 +5,14 @@ import type { GLTF } from "three-stdlib";
 
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
-const url = "/static/gltf/paper-yellow.glb";
+const url = "/static/gltf/paper-yellow-scribbled.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    YellowPaper: THREE.Mesh;
+    PaperYellowScribbled: THREE.Mesh;
+  };
+  materials: {
+    paper: THREE.MeshPhysicalMaterial;
   };
 };
 
@@ -17,7 +20,7 @@ export default ({ material, ...props }: {
   material?: THREE.Material
 } & JSX.IntrinsicElements["group"]
 ) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useTriggerDebugModel(ref);
@@ -32,11 +35,10 @@ export default ({ material, ...props }: {
       ref={ref}
       {...props}
       onClick={handleClick}
-      dispose={null}
     >
       <mesh
-        material={material}
-        geometry={nodes.YellowPaper.geometry}
+        geometry={nodes.PaperYellowScribbled.geometry}
+        material={materials.paper}
         scale={1.35}
       />
     </group>
