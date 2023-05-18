@@ -15,39 +15,37 @@ type GLTFResult = GLTF & {
   };
 };
 
-const material = new THREE.MeshStandardMaterial({
-  metalness: 0.5,
-  roughness: 0.3
-});
-
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   const triggerMover = useTriggerDebugModel(ref);
 
-  useTexture(mapUrl, t => {
-    const _t = t as THREE.Texture;
-    _t.flipY = false;
-    material.map = _t;
-  })
+  const { map } = useTexture({ map: mapUrl });
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
     props.onClick && props.onClick(e);
   }
 
+  map.flipY = false;
+
   return (
     <group
       ref={ref}
       {...props}
       onClick={handleClick}
-      dispose={null}
     >
       <mesh
+        castShadow
         geometry={nodes.Soda.geometry}
-        material={material}
-      />
+      >
+        <meshStandardMaterial
+          map={map}
+          metalness={0.5}
+          roughness={0.3}
+        />
+      </mesh>
     </group>
   );
 }

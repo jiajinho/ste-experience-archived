@@ -16,10 +16,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ material, ...props }: {
-  material?: THREE.Material
-} & JSX.IntrinsicElements["group"]
-) => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 

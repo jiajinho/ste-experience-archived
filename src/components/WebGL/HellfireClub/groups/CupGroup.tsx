@@ -17,6 +17,11 @@ export default () => {
       <Cup
         position={[-0.32, 0.82, -0.67]}
       />
+
+      <Cup
+        position={[1.43, 0.018, 0.55]}
+        rotation={[1.38, 0.01, -0.62]}
+      />
     </>
   )
 }

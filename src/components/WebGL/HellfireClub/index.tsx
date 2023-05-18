@@ -133,7 +133,7 @@ export default () => (
     />
 
     <Lamp
-      position={[-1.89, 1.19, -4.39]}
+      position={[-1.89, 1.28, -4.39]}
     />
 
     <Coffin
