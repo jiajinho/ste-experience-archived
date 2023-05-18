@@ -11,6 +11,10 @@ const lightStand = new THREE.MeshStandardMaterial({
   color: "#040406"
 });
 
+const wood = new THREE.MeshStandardMaterial({
+  roughness: 0.8
+});
+
 //#region bulb
 const yellow = new THREE.MeshStandardMaterial({
   toneMapped: false,
@@ -46,6 +50,7 @@ const none = new THREE.MeshBasicMaterial({
 //#endregion
 
 export default {
+  wood,
   curtain,
   lightStand,
   bulb: {
