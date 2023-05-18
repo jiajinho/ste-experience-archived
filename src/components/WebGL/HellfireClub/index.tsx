@@ -124,7 +124,6 @@ export default () => (
     <Chandelier
       position={[2.64, 0.92, -4.24]}
       rotation={[0.45, -0.21, 0.1]}
-      light={LightColor.Yellow}
     />
 
     <CastlewallStandee

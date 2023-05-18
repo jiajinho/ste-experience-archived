@@ -39,10 +39,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         />
       </mesh>
 
-      <mesh
-        castShadow
-        geometry={nodes.Candlestand.geometry}
-      >
+      <mesh castShadow geometry={nodes.Candlestand.geometry}>
         <meshStandardMaterial
           metalness={0.4}
           roughness={0.2}
