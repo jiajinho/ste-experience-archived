@@ -9,7 +9,7 @@ import Chandelier from './components/Chandelier';
 import CeilingLight from './components/CeilingLight';
 import Lamp from './components/Lamp';
 import Coffin from './components/Coffin';
-import Standee from './components/Standee';
+import CastlewallStandee from './components/CastlewallStandee';
 
 import PaperGroup from './groups/PaperGroup';
 import CurtainGroup from './groups/CurtainGroup';
@@ -127,7 +127,7 @@ export default () => (
       light={LightColor.Yellow}
     />
 
-    <Standee.CastleWall
+    <CastlewallStandee
       position={[-2.11, 0.92, 4.42]}
       rotation={[0.19, -0.36, 0.1]}
     />
