@@ -12,12 +12,9 @@ export default () => {
   const env = useEnvStore(state => state.env);
 
   const loading = useLoadAnimationStore(state => state.loading);
-  const typewriter = useLoadAnimationStore(state => state.typewriter);
-
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
   const mute = useBGMStore(state => state.mute);
 
-  const [interacted, setInteracted] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement>();
 
   useEffect(() => {
@@ -25,7 +22,7 @@ export default () => {
     audio.muted = true;
     audio.loop = true;
     audio.volume = 0.2;
-    audio.pause();
+    audio.autoplay = true;
 
     const handleAudioCanPlayThrough = () => {
       setLoadProgressStore("html", { bgm: true });
@@ -33,8 +30,6 @@ export default () => {
     }
 
     audio.addEventListener("canplaythrough", handleAudioCanPlayThrough);
-    window.addEventListener("click", () => { setInteracted(true), { once: true } });
-
     return () => { audio.removeEventListener("canplaythrough", handleAudioCanPlayThrough) }
   }, []);
 
@@ -58,22 +53,15 @@ export default () => {
     }
   }, [mute, audio, env]);
 
-  useEffect(() => {
-    if (!audio) return;
-    if (!interacted) return;
-    if (typewriter === "standby") return;
-
-    unmuteAudio();
-  }, [audio, typewriter, interacted]);
 
   useEffect(() => {
     if (!audio) return;
     if (loading) return;
 
     gsap.to(audio, {
-      duration: loading ? 0 : 0.5,
+      duration: loading ? 0 : 0.7,
       ease: "power2.out",
-      volume: loading ? 0.2 : 0.5
+      volume: loading ? 0.1 : 0.35
     });
 
   }, [audio, loading]);

@@ -21,7 +21,7 @@ const viewport: Viewport = {
 const link = {
   faq: "https://mightyexperiences.com/support",
   ticketing: "https://mightyexperiences.com?source=body",
-  eventLocation: "https://goo.gl/maps/4af3VHoxSw7bPVsi9",
+  eventLocation: "https://goo.gl/maps/RufXHwYPt81vhgKy8",
   tiktok: "https://www.tiktok.com/@strangerthingsencounter",
   instagram: "https://www.instagram.com/strangerthings.encounter/"
 }
