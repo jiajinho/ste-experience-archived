@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import gsap from 'gsap';
 
-import { EventState } from "./types";
 import config from "config";
 import { clamp } from 'utils';
+import { EventState } from "./types";
 import useCameraStore from "stores/webgl/useCameraStore";
 
 export function enableEvent(state: EventState, pageX: number, pageY: number) {
@@ -109,7 +109,7 @@ function rotate({ state, pageX, pageY, azimuth, polar }: {
 
   gsap.to(time, {
     t: 1,
-    duration: 0.5,
+    duration: 0.1,
     ease: "power2.out",
     overwrite: true,
     onUpdate: () => {
