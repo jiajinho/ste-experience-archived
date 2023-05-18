@@ -1,9 +1,6 @@
 import React, { useRef } from 'react';
-import { ThreeEvent } from '@react-three/fiber';
 
 import { Tuple } from 'types';
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-
 import Bar from './Bar';
 import Bulb from './Bulb';
 
@@ -13,20 +10,8 @@ export default ({ materials, ...props }: {
 ) => {
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useTriggerDebugModel(ref);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group ref={ref} {...props}>
       <Bar />
 
       <Bulb
