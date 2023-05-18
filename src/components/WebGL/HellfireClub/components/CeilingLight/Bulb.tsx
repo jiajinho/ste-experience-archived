@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import config from '../../config';
+import materials from "@webgl/HellfireClub/materials";
 
 const url = "/static/gltf/ceiling-light-bulb.glb";
 
@@ -14,27 +14,21 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default ({ light, ...props }: {
-  light?: number
+export default ({ material, ...props }: {
+  material: THREE.Material
 } & JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group
-      {...props}
-      dispose={null}
-    >
-      <mesh geometry={nodes.CeilingLightBulb.geometry}>
-        <meshStandardMaterial
-          {...config.bulbMaterialProps}
-          color={light || "black"}
-          emissive={light || undefined}
-        />
-      </mesh>
+    <group {...props}>
+      <mesh
+        geometry={nodes.CeilingLightBulb.geometry}
+        material={material}
+      />
 
       <mesh
         geometry={nodes.CeilingLightCup.geometry}
-        material={config.lightStandMaterial}
+        material={materials.lightStand}
       />
     </group>
   );

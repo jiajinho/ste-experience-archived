@@ -88,17 +88,11 @@ export namespace Camera {
     default: {
       polar: {
         value: number,
-      }
-      // lookAt: {
-      //   y: number
-      // },
+      },
       azimuth: {
         value: number,
         scaleFactor: number
       }
-      // lookAtY: number,
-      // azimuth: number,
-      // azimuthScaleFactor: number
     }
   }
 }

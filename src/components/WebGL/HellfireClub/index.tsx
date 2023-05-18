@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LightColor } from '@webgl/config';
+import { LightColor } from 'config';
 import RiftFloor from './components/RiftFloor';
 import Tabletop from './components/Tabletop';
 import HellfireSignStand from './components/HellfireSignStand';
@@ -30,6 +30,7 @@ import DefaultViewHotspot from './hotspots/DefaultViewHotspot';
 import VecnaBoardHotspot from './hotspots/VecnaBoardHotspot';
 import FAQBoardHotspot from './hotspots/FAQBoardHotspot';
 import MapHotspot from './hotspots/MapHotspot';
+import CeilingLightGroup from './groups/CeilingLightGroup';
 
 export default () => (
   <>
@@ -75,51 +76,9 @@ export default () => (
       position={[2.62, 0.52, -4.18]}
     />
 
-    <CeilingLight
-      position={[-2.68, 4.13, 1.35]}
-      lights={[
-        LightColor.Yellow,
-        undefined,
-        LightColor.Cyan,
-        undefined,
-        LightColor.Teal,
-        undefined,
-        LightColor.Cyan,
-        LightColor.Tangerine,
-        LightColor.Cyan,
-        undefined,
-        LightColor.Tangerine
-      ]}
-    />
+    <HellfireSignStand position={[0, 0, -4.52]} />
 
-    <CeilingLight
-      position={[-2.68, 4.13, -1.35]}
-      lights={[
-        LightColor.Yellow,
-        LightColor.Teal,
-        LightColor.Yellow,
-        LightColor.Cyan,
-        undefined,
-        undefined,
-        undefined,
-        LightColor.Yellow,
-        LightColor.Cyan,
-        LightColor.Tangerine,
-        undefined
-      ]}
-    />
-
-    <HellfireSignStand
-      position={[0, 0, -4.52]}
-    />
-
-    <WallLight
-      position={[0, 0, -5]}
-      lights={[
-        LightColor.Cyan,
-        LightColor.Cyan
-      ]}
-    />
+    <WallLight position={[0, 0, -5]} />
 
     <Chandelier
       position={[2.64, 0.92, -4.24]}
@@ -131,9 +90,7 @@ export default () => (
       rotation={[0.19, -0.36, 0.1]}
     />
 
-    <Lamp
-      position={[-1.89, 1.28, -4.39]}
-    />
+    <Lamp position={[-1.89, 1.28, -4.39]} />
 
     <Coffin
       position={[-0.59, 0, -3.97]}
@@ -141,25 +98,16 @@ export default () => (
     />
 
     <BoxGroup />
-
+    <CeilingLightGroup />
     <TabletopGroup />
-
     <CurtainGroup />
-
     <CandlestandGroup />
-
     <ChairGroup />
-
     <RiftGroup />
-
     <PaperGroup />
-
     <WallGroup />
-
     <RiftFloor />
-
     <SodaGroup />
-
     <CupGroup />
   </>
 );

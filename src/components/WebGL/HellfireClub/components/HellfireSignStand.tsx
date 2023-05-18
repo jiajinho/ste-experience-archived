@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import config from "@hellfire/config";
+import _materials from "../materials";
 
 const url = "/static/gltf/hellfire-sign.glb";
 
@@ -28,7 +28,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       />
       <mesh
         geometry={nodes.HellfireStand.geometry}
-        material={config.lightStandMaterial}
+        material={_materials.lightStand}
       />
     </group>
   );

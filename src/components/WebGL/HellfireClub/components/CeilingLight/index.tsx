@@ -2,14 +2,13 @@ import React, { useRef } from 'react';
 import { ThreeEvent } from '@react-three/fiber';
 
 import { Tuple } from 'types';
-import { LightColor } from '@webgl/config';
-
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+
 import Bar from './Bar';
 import Bulb from './Bulb';
 
-export default ({ lights, ...props }: {
-  lights: Tuple<LightColor | undefined, 11>
+export default ({ materials, ...props }: {
+  materials: Tuple<THREE.Material, 11>
 } & JSX.IntrinsicElements["group"]
 ) => {
   const ref = useRef<THREE.Group>(null);
@@ -32,57 +31,57 @@ export default ({ lights, ...props }: {
 
       <Bulb
         position={[0.09, -0.47, 1.21]}
-        light={lights[0]}
+        material={materials[0]}
       />
 
       <Bulb
         position={[0.09, -0.47, 0.97]}
-        light={lights[1]}
+        material={materials[1]}
       />
 
       <Bulb
         position={[0.09, -0.47, 0.73]}
-        light={lights[2]}
+        material={materials[2]}
       />
 
       <Bulb
         position={[0.09, -0.47, 0.49]}
-        light={lights[3]}
+        material={materials[3]}
       />
 
       <Bulb
         position={[0.09, -0.47, 0.25]}
-        light={lights[4]}
+        material={materials[4]}
       />
 
       <Bulb
         position={[0.09, -0.47, 0.01]}
-        light={lights[5]}
+        material={materials[5]}
       />
 
       <Bulb
         position={[0.09, -0.47, -0.23]}
-        light={lights[6]}
+        material={materials[6]}
       />
 
       <Bulb
         position={[0.09, -0.47, -0.47]}
-        light={lights[7]}
+        material={materials[7]}
       />
 
       <Bulb
         position={[0.09, -0.47, -0.71]}
-        light={lights[8]}
+        material={materials[8]}
       />
 
       <Bulb
         position={[0.09, -0.47, -0.95]}
-        light={lights[9]}
+        material={materials[9]}
       />
 
       <Bulb
         position={[0.09, -0.47, -1.19]}
-        light={lights[10]}
+        material={materials[10]}
       />
     </group>
   );

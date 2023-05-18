@@ -2,7 +2,7 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import config from "../../config";
+import materials from "@webgl/HellfireClub/materials";
 
 const url = "/static/gltf/ceiling-light-bar.glb";
 
@@ -16,13 +16,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group
-      {...props}
-      dispose={null}
-    >
+    <group {...props}>
       <mesh
         geometry={nodes.CeilingLightBar.geometry}
-        material={config.lightStandMaterial}
+        material={materials.lightStand}
       />
     </group>
   );

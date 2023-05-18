@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import { LightColor } from "@webgl/config";
+import materials from "../materials";
 
 const gltfUrl = "/static/gltf/candlestand.glb";
 const colorMapUrl = "/static/texture/lamp-color.jpg";
@@ -30,14 +30,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   return (
     <group ref={ref} {...props}>
-      <mesh geometry={nodes.CandlestandFlame.geometry}>
-        <meshStandardMaterial
-          toneMapped={false}
-          emissiveIntensity={10}
-          emissive={LightColor.Yellow}
-          color={LightColor.Yellow}
-        />
-      </mesh>
+      <mesh
+        geometry={nodes.CandlestandFlame.geometry}
+        material={materials.bulb.yellow}
+      />
 
       <mesh castShadow geometry={nodes.Candlestand.geometry}>
         <meshStandardMaterial

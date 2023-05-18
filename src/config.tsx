@@ -176,6 +176,14 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   }
 }
 
+export enum LightColor {
+  Yellow = 0xFFB931,
+  Cyan = 0x45E9FF,
+  Teal = 0x29FFB2,
+  Tangerine = 0xFE7044,
+  Crimson = 0xfecccc
+}
+
 const cards = {
   theEncounter: {
     position: [-0.2, 0.01, 0.11] satisfies Vector3,

@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import config from 'config';
-import { LightColor } from '@webgl/config';
-import { PolaroidColor } from '@hellfire/config';
+import config, { LightColor } from 'config';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
@@ -15,6 +13,12 @@ import NoticeBoard from '@hellfire/components/NoticeBoard';
 import WireframeBox from '@webgl/debug/WireframeBox';
 import Polaroid from '../components/Polaroid';
 import Sticker from '../components/Sticker';
+
+enum PolaroidColor {
+  Bottom = 0x8e8d8d,
+  Middle = 0x7f7c7c,
+  Top = 0x756d6d
+}
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   /**
