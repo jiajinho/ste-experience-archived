@@ -83,11 +83,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group ref={ref} {...props}>
       <RetroTV
-        knob={knob}
+        knobRef={knob}
         onClick={handleClick}
-        onKnobClick={handleKnobClick}
-        onKnobPointerEnter={hoverEvent.hotspot.onPointerEnter}
-        onKnobPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        knob={{
+          onClick: handleKnobClick,
+          ...hoverEvent.hotspot
+        }}
         {...hoverEvent.home}
       />
 
