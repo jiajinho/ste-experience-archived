@@ -32,7 +32,7 @@ export default ({ knobRef, knob, ...props }: {
   });
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props}>
       <mesh
         geometry={nodes.RetroTVKnob.geometry}
         material={materials.CTV}

@@ -17,10 +17,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group
-      {...props}
-      dispose={null}
-    >
+    <group {...props}>
       <mesh
         receiveShadow
         position-y={-0.05}
