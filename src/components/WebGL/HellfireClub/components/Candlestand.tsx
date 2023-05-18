@@ -1,14 +1,16 @@
 import React, { useRef } from "react";
 import * as THREE from "three";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
-import { ThreeEvent } from "@react-three/fiber";
+import type { ThreeEvent } from "@react-three/fiber";
 
-import config from "@hellfire/config";
 import { LightColor } from "@webgl/config";
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
-const url = "/static/gltf/candlestand.glb";
+const gltfUrl = "/static/gltf/candlestand.glb";
+const colorMapUrl = "/static/texture/lamp-color.jpg";
+const normalMapUrl = "/static/texture/lamp-normal.jpg";
+
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,13 +19,14 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ light, material, ...props }: {
-  light?: LightColor,
-  material?: THREE.Material
-} & JSX.IntrinsicElements["group"]
-) => {
-  const { nodes } = useGLTF(url) as any as GLTFResult;
+export default (props: JSX.IntrinsicElements["group"]) => {
+  const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
+
+  const { colorMap, normalMap } = useTexture({
+    colorMap: colorMapUrl,
+    normalMap: normalMapUrl
+  });
 
   const triggerMover = useTriggerDebugModel(ref);
 
@@ -31,6 +34,9 @@ export default ({ light, material, ...props }: {
     triggerMover();
     props.onClick && props.onClick(e);
   }
+
+  colorMap.flipY = false;
+  normalMap.flipY = false;
 
   return (
     <group
@@ -41,18 +47,26 @@ export default ({ light, material, ...props }: {
     >
       <mesh geometry={nodes.CandlestandFlame.geometry}>
         <meshStandardMaterial
-          {...config.bulbMaterialProps}
-          emissive={light || undefined}
-          color={light || "black"}
+          toneMapped={false}
+          emissiveIntensity={10}
+          emissive={LightColor.Yellow}
+          color={LightColor.Yellow}
         />
       </mesh>
+
       <mesh
         castShadow
         geometry={nodes.Candlestand.geometry}
-        material={material}
-      />
+      >
+        <meshStandardMaterial
+          metalness={0.4}
+          roughness={0.2}
+          map={colorMap}
+          normalMap={normalMap}
+        />
+      </mesh>
     </group>
   );
 }
 
-useGLTF.preload(url);
+useGLTF.preload(gltfUrl);

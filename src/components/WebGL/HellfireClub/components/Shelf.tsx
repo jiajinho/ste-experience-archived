@@ -6,12 +6,12 @@ const url = "/static/gltf/shelf.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
-    eleven: THREE.Mesh;
+    vhs: THREE.Mesh;
     cap: THREE.Mesh;
-    ["tote-bag"]: THREE.Mesh;
-    tape: THREE.Mesh;
-    shirt: THREE.Mesh;
+    eleven: THREE.Mesh;
     cup: THREE.Mesh;
+    ["tote-bag"]: THREE.Mesh;
+    shirt: THREE.Mesh;
     vinyl: THREE.Mesh;
     denim: THREE.Mesh;
     vecna: THREE.Mesh;
@@ -22,12 +22,12 @@ type GLTFResult = GLTF & {
     ShelfPlankBottom: THREE.Mesh;
   };
   materials: {
-    eleven: THREE.MeshStandardMaterial;
+    vhs: THREE.MeshStandardMaterial;
     cap: THREE.MeshStandardMaterial;
-    ["tote-bag"]: THREE.MeshStandardMaterial;
-    tape: THREE.MeshStandardMaterial;
-    shirt: THREE.MeshStandardMaterial;
+    eleven: THREE.MeshStandardMaterial;
     cup: THREE.MeshStandardMaterial;
+    ["tote-bag"]: THREE.MeshStandardMaterial;
+    shirt: THREE.MeshStandardMaterial;
     vinyl: THREE.MeshStandardMaterial;
     denim: THREE.MeshStandardMaterial;
     vecna: THREE.MeshStandardMaterial;
@@ -72,8 +72,8 @@ export default ({ eleven, vecna, vhs, mug, cap, vinyl, bag, shirt, denim, ...pro
         {...bag}
       />
       <mesh
-        geometry={nodes.tape.geometry}
-        material={materials.tape}
+        geometry={nodes.vhs.geometry}
+        material={materials.vhs}
         {...vhs}
       />
       <mesh

@@ -15,37 +15,33 @@ type GLTFResult = GLTF & {
   };
 };
 
-const material = new THREE.MeshPhongMaterial();
-
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useTriggerDebugModel(ref);
+  const { map } = useTexture({ map: mapUrl });
 
-  useTexture(mapUrl, t => {
-    const _t = t as THREE.Texture;
-    _t.flipY = false;
-    material.map = _t;
-  });
+  const triggerMover = useTriggerDebugModel(ref);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     triggerMover();
     props.onClick && props.onClick(e);
   }
 
+  map.flipY = false;
+
   return (
     <group
       ref={ref}
       {...props}
       onClick={handleClick}
-      dispose={null}
     >
       <mesh
-        geometry={nodes.Cup.geometry}
-        material={material}
         castShadow
-      />
+        geometry={nodes.Cup.geometry}
+      >
+        <meshPhongMaterial map={map} />
+      </mesh>
     </group>
   );
 }

@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import materials from "@webgl/HellfireClub/materials";
 
 const url = "/static/gltf/curtain-large.glb";
 
@@ -13,30 +12,15 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default ({ material, ...props }: {
-  material: THREE.Material
-} & JSX.IntrinsicElements["group"]
-) => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useTriggerDebugModel(ref);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group ref={ref} {...props}>
       <mesh
         geometry={nodes.CurtainLarge.geometry}
-        material={material}
+        material={materials.curtain}
       />
     </group>
   );

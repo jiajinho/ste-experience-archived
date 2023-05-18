@@ -32,7 +32,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       ref={ref}
       {...props}
       onClick={handleClick}
-      dispose={null}
     >
       <mesh
         castShadow
