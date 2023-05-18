@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
@@ -31,33 +31,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     normalMap: normalMapUrl
   });
 
-  const lampMaterial = useMemo(() => {
-    if (!colorMap) return;
-    if (!normalMap) return;
-
-    return new THREE.MeshStandardMaterial({
-      metalness: 0.6,
-      roughness: 0.2,
-      map: colorMap,
-      normalMap: normalMap
-    });
-  }, [colorMap, normalMap]);
-
-  const lampHeadMaterial = useMemo(() => {
-    if (!colorMap) return;
-    if (!normalMap) return;
-
-    return new THREE.MeshStandardMaterial({
-      metalness: 0.3,
-      roughness: 0.7,
-      map: colorMap,
-      normalMap: normalMap
-    });
-  }, [colorMap, normalMap]);
-
-  /**
-   * Not hooks
-   */
   colorMap.flipY = false;
   normalMap.flipY = false;
 
@@ -74,18 +47,30 @@ export default (props: JSX.IntrinsicElements["group"]) => {
       ref={ref}
       {...props}
       onClick={handleClick}
-      dispose={null}
     >
       <mesh
         castShadow
         geometry={nodes.LampHead.geometry}
-        material={lampHeadMaterial}
-      />
+      >
+        <meshStandardMaterial
+          metalness={0.3}
+          roughness={0.7}
+          map={colorMap}
+          normalMap={normalMap}
+        />
+      </mesh>
+
       <mesh
         castShadow
         geometry={nodes.Lamp.geometry}
-        material={lampMaterial}
-      />
+      >
+        <meshStandardMaterial
+          metalness={0.6}
+          roughness={0.2}
+          map={colorMap}
+          normalMap={normalMap}
+        />
+      </mesh>
     </group>
   );
 }
