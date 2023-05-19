@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
 
 import locale from 'locale';
@@ -25,13 +26,6 @@ const ImageContainer = styled.div(({ $heightRatio, $top, $left }: {
 
   & > * { object-fit: contain }
 `);
-
-const Image = styled.img`
-  object-fit: contain;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-`;
 
 const TextContainer = styled.div`
   width: calc(var(--card-width) * 0.8);
@@ -87,7 +81,14 @@ export default React.forwardRef(({ ...props }: {
           $top={merchItem?.top || 35}
           $left={merchItem?.left || 50}
         >
-          {merch && <Image src={config.assetUrl.image[merch]} />}
+          {merch &&
+            <Image
+              src={config.assetUrl.image[merch]}
+              alt="Merch items"
+              sizes="(max-width: 768px) 33vw, (max-width: 1200px) 50vw, 100vw"
+              fill
+            />
+          }
         </ImageContainer>
 
         <TextContainer>

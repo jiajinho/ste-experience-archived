@@ -42,6 +42,7 @@ export default create<Store>((set) => ({
     hellfireBack: false,
     theEncounterBack: false,
     whenWhereBack: false,
+
     bgm: false
   },
 
