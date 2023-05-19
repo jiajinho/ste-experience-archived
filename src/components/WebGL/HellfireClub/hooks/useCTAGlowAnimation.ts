@@ -10,7 +10,7 @@ export default (material: THREE.MeshStandardMaterial, glow: boolean, color: numb
 
   useEffect(() => {
     gsap.to(material, {
-      duration: 0.5,
+      duration: 0.25,
       ease: "power2.out",
       emissiveIntensity: glow ? 4 : 0
     });

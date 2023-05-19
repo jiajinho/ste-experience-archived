@@ -6,7 +6,7 @@ import useBGMStore from 'stores/useBGMStore';
 import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
 
-const url = "/static/ste-theme.wav";
+const url = "/static/strangerthings.mp3";
 
 export default () => {
   const env = useEnvStore(state => state.env);
