@@ -24,8 +24,6 @@ export default () => {
 
     const progress = (loaded / total) * 100;
     setProgress(progress);
-
-    console.log(loaded, total);
   }, [webgl, html, fps]);
 
   useEffect(() => {
