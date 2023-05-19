@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { LightColor } from 'config';
 import RiftFloor from './components/RiftFloor';
 import Tabletop from './components/Tabletop';
 import HellfireSignStand from './components/HellfireSignStand';
 import WallLight from './components/WallLight';
 import Chandelier from './components/Chandelier';
-import CeilingLight from './components/CeilingLight';
 import Lamp from './components/Lamp';
 import Coffin from './components/Coffin';
 import CastlewallStandee from './components/CastlewallStandee';
@@ -36,18 +34,14 @@ export default () => (
   <>
     <DefaultViewHotspot />
 
-    <NoticeBoardHotspot
-      position={[-3.16, 1.84, 0.15]}
-    />
+    <NoticeBoardHotspot position={[-3.16, 1.84, 0.15]} />
 
     <ShelfHotspot
       position={[1.31, 1.45, -4.29]}
       rotation-y={-Math.PI / 2}
     />
 
-    <VecnaBoardHotspot
-      position={[0, 0.835, 0.2]}
-    />
+    <VecnaBoardHotspot position={[0, 0.835, 0.2]} />
 
     <FAQBoardHotspot
       position={[0, 0.825, -0.42]}
@@ -59,22 +53,16 @@ export default () => (
       rotation-y={-0.06}
     />
 
-    <RetroTVHotspot
-      position={[-2.61, 1.07, 3.13]}
-    />
+    <RetroTVHotspot position={[-2.61, 1.07, 3.13]} />
 
     <ChalkboardHotspot
       position={[-2.13, 1.35, -3.11]}
       rotation-y={0.63}
     />
 
-    <Tabletop.DShape
-      position={[-2.7, 0.75, 3.06]}
-    />
+    <Tabletop.DShape position={[-2.7, 0.75, 3.06]} />
 
-    <Tabletop.Round
-      position={[2.62, 0.52, -4.18]}
-    />
+    <Tabletop.Round position={[2.62, 0.52, -4.18]} />
 
     <HellfireSignStand position={[0, 0, -4.52]} />
 
