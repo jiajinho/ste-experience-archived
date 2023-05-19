@@ -12,7 +12,7 @@ import useEnvStore from 'stores/useEnvStore';
 import useResponsive from 'hooks/useResponsive';
 import useCursorPointer from 'hooks/useCursorPointer';
 import useThemeSong from 'hooks/useThemeSong';
-import useLoadAsset from 'hooks/useLoadAsset';
+import useLoadMerch from 'hooks/useLoadMerch';
 
 const App = styled.div`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
@@ -27,7 +27,7 @@ export default ({ Component, pageProps }: AppProps) => {
   useResponsive();
   useToggleEnv();
   useCursorPointer();
-  useLoadAsset();
+  useLoadMerch();
 
   return (
     <>
