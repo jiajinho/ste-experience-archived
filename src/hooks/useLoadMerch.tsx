@@ -8,7 +8,7 @@ export default () => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
   useEffect(() => {
-    for (const [k, v] of Object.entries(config.assetUrl.image)) {
+    for (const [k, v] of Object.entries(config.merchUrl)) {
       const image = new Image();
       image.src = v;
 

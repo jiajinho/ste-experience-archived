@@ -1,11 +1,11 @@
 import { ThreeEvent } from '@react-three/fiber';
 
-import { Asset } from 'types';
+import { Merch } from 'types';
 import useCardStore from 'stores/html/useCardStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useEnvStore from 'stores/useEnvStore';
 
-export default (merch: Asset.Merch, triggerZoom: () => void) => {
+export default (merch: Merch, triggerZoom: () => void) => {
   const env = useEnvStore(state => state.env);
   const currentZoom = useCameraStore(state => state.currentZoom);
 

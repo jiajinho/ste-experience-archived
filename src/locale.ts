@@ -1,4 +1,4 @@
-import { Asset } from "types";
+import { Merch } from "types";
 
 const global = {
   stEncounter: "The Encounter",
@@ -99,7 +99,7 @@ const card = {
         "Hellfire Club",
         "<b>Denim Vest</b>"
       ]
-    } satisfies { [k in Asset.Merch]: [string, string] },
+    } satisfies { [k in Merch]: [string, string] },
     closeBtn: "Close"
   }
 }

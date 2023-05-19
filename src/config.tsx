@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import locale from "locale";
-import { Asset, Camera, Vector3, VectorIndex, Viewport } from "types";
+import { Camera, Merch, Vector3, VectorIndex, Viewport } from "types";
 
 import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";
@@ -26,20 +26,16 @@ const link = {
   instagram: "https://www.instagram.com/strangerthings.encounter/"
 }
 
-const assetUrl: {
-  image: { [k in Asset.Image]: string }
-} = {
-  image: {
-    merchVecna: "/static/cards/merch/vecna.png",
-    merchEleven: "/static/cards/merch/eleven.png",
-    merchVHS: "/static/cards/merch/vhs.png",
-    merchMug: "/static/cards/merch/mug.png",
-    merchCap: "/static/cards/merch/cap.png",
-    merchVinyl: "/static/cards/merch/vinyl.png",
-    merchBag: "/static/cards/merch/tote-bag.png",
-    merchShirt: "/static/cards/merch/shirt.png",
-    merchDenim: "/static/cards/merch/denim.png"
-  }
+const merchUrl: { [k in Merch]: string } = {
+  merchVecna: "/static/cards/merch/vecna.png",
+  merchEleven: "/static/cards/merch/eleven.png",
+  merchVHS: "/static/cards/merch/vhs.png",
+  merchMug: "/static/cards/merch/mug.png",
+  merchCap: "/static/cards/merch/cap.png",
+  merchVinyl: "/static/cards/merch/vinyl.png",
+  merchBag: "/static/cards/merch/tote-bag.png",
+  merchShirt: "/static/cards/merch/shirt.png",
+  merchDenim: "/static/cards/merch/denim.png"
 }
 
 /**
@@ -170,7 +166,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   shelf: {
     name: locale.global.hotspot.shelf,
     cameraBox: {
-      position: [2.4, 0.13, 0],
+      position: [2.4, 0, 0],
       lookAt: [-1, 0, 0]
     }
   }
@@ -231,7 +227,7 @@ const cards = {
 }
 
 const merchCard: {
-  [k in Asset.Merch]: {
+  [k in Merch]: {
     content: [string, string],
     heightRatio?: number,
     top?: number,
@@ -281,7 +277,7 @@ const merchCard: {
 }
 
 export default {
-  assetUrl,
+  merchUrl,
   link,
   zoomSettings,
   viewport,

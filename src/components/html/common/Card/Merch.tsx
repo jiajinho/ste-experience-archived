@@ -83,7 +83,7 @@ export default React.forwardRef(({ ...props }: {
         >
           {merch &&
             <Image
-              src={config.assetUrl.image[merch]}
+              src={config.merchUrl[merch]}
               alt="Merch items"
               sizes="(max-width: 768px) 33vw, (max-width: 1200px) 50vw, 100vw"
               fill
