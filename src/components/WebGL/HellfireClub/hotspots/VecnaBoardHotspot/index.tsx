@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import config from 'config';
-import { LightColor } from '@webgl/config';
+import config, { LightColor } from 'config';
 import { Card as CardType } from 'types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';

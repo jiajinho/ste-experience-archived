@@ -18,6 +18,7 @@ export default React.forwardRef(({ }, ref: React.ForwardedRef<HTMLPictureElement
       src={image}
       alt="Merch - Shirt with Fanny pack"
       fill
+      sizes="(max-width: 768px) 50vw, 100vw"
     />
   </Wrapper>
 ));

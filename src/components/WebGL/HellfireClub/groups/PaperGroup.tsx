@@ -1,25 +1,7 @@
-import React, { useMemo } from 'react';
-import * as THREE from 'three';
-import { useTexture } from '@react-three/drei';
-
+import React from 'react';
 import Paper from '@hellfire/components/Paper';
 
-const mapUrl = "/static/texture/soda-dice-paper.jpg";
-
 export default () => {
-  const { map } = useTexture({ map: mapUrl });
-
-  const paperMaterial = useMemo(() => {
-    if (!map) return;
-    map.flipY = false;
-
-    return new THREE.MeshStandardMaterial({
-      map,
-      metalness: 0.1,
-      roughness: 0.3
-    });
-  }, [map]);
-
   return (
     <>
       <Paper.White.Scribbled
@@ -33,7 +15,6 @@ export default () => {
       />
 
       <Paper.Yellow
-        material={paperMaterial}
         position={[2.53, 0, -3.6]}
         rotation-y={-2.07}
       />
@@ -43,7 +24,6 @@ export default () => {
       />
 
       <Paper.Yellow
-        material={paperMaterial}
         position={[2.42, 0, -1.48]}
         rotation-y={1.92}
       />
@@ -72,18 +52,17 @@ export default () => {
       />
 
       <Paper.White.Scribbled
-        position={[-1.45, 0.01, 3.14]}
+        position={[-1.96, 0.01, 3.39]}
         rotation-y={-0.61}
       />
 
       <Paper.Yellow
-        material={paperMaterial}
-        position={[-1.53, 0, 3.05]}
+        position={[-2.04, 0, 3.47]}
         rotation-y={-1.73}
       />
 
       <Paper.White.Scribbled
-        position={[-1.76, 0, -4.28]}
+        position={[-1.51, 0, -4.28]}
         rotation-y={0.77}
       />
 

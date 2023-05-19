@@ -18,6 +18,7 @@ export default React.forwardRef(({ }, ref: React.ForwardedRef<HTMLPictureElement
       src={image}
       alt="FnB - Material Girl"
       fill
+      sizes="(max-width: 768px) 50vw, 100vw"
     />
   </Wrapper>
 ));

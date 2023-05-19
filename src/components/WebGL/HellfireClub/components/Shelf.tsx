@@ -50,7 +50,7 @@ export default ({ eleven, vecna, vhs, mug, cap, vinyl, bag, shirt, denim, ...pro
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props}>
       <mesh
         geometry={nodes.eleven.geometry}
         material={materials.eleven}

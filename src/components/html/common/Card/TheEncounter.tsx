@@ -74,15 +74,14 @@ export default React.forwardRef(({ onRowHover, ...props }: {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
   return (
-    <Card ref={ref} flipped {...props}>
-      <div className="front" />
-
-      <div className="back">
+    <Card ref={ref} flipped={false} {...props}>
+      <div className="front">
         <BackTemplate />
         <Image
           src={theEncounterBack}
           alt="The Encounter - Back"
           fill
+          sizes="(max-width: 768px) 50vw, 100vw"
           onLoadingComplete={() => setLoadProgressStore("html", { theEncounterBack: true })}
         />
 
@@ -101,6 +100,8 @@ export default React.forwardRef(({ onRowHover, ...props }: {
           )}
         </Content>
       </div>
+
+      <div className="back" />
     </Card>
   )
 });

@@ -1,10 +1,7 @@
 import React, { useRef } from "react";
 import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
-import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
-
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/coffin.glb";
 const mapUrl = {
@@ -35,8 +32,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useTriggerDebugModel(ref);
-
   useTexture([mapUrl.coffin, mapUrl.crossNormal], t => {
     const _t = t as [THREE.Texture, THREE.Texture];
 
@@ -47,17 +42,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     material.cross.normalMap = _t[1];
   });
 
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
     <group
       ref={ref}
       {...props}
-      onClick={handleClick}
-      dispose={null}
     >
       <mesh
         castShadow

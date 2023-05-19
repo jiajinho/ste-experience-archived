@@ -1,12 +1,9 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
-import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import config from "@hellfire/config";
-import { LightColor } from "@webgl/config";
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import materials from "../materials";
 
 const gltfUrl = "/static/gltf/chandelier.glb";
 const colorMapUrl = "/static/texture/lamp-color.jpg";
@@ -19,59 +16,30 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default ({ light, ...props }: {
-  light: LightColor
-} & JSX.IntrinsicElements["group"]
-) => {
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
-
-  const triggerMover = useTriggerDebugModel(ref);
 
   const { colorMap, normalMap } = useTexture({
     colorMap: colorMapUrl,
     normalMap: normalMapUrl
   });
 
-  const chandelierMaterial = useMemo(() => {
-    if (!colorMap) return;
-    if (!normalMap) return;
-
-    colorMap.flipY = false;
-    normalMap.flipY = false;
-
-    return new THREE.MeshStandardMaterial({
-      metalness: 0.4,
-      roughness: 0.3,
-      map: colorMap,
-      normalMap: normalMap
-    });
-  }, [colorMap, normalMap]);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
-      <mesh geometry={nodes.ChandelierFlame.geometry}>
+    <group ref={ref} {...props}>
+      <mesh
+        geometry={nodes.ChandelierFlame.geometry}
+        material={materials.bulb.yellow}
+      />
+
+      <mesh castShadow geometry={nodes.Chandelier.geometry}>
         <meshStandardMaterial
-          {...config.bulbMaterialProps}
-          emissive={light}
-          color={light}
+          metalness={0.4}
+          roughness={0.3}
+          map={colorMap}
+          normalMap={normalMap}
         />
       </mesh>
-      <mesh
-        castShadow
-        geometry={nodes.Chandelier.geometry}
-        material={chandelierMaterial}
-      />
     </group>
   );
 }

@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import type { Asset, Card } from "types";
+import type { Merch, Card } from "types";
 
 type State = {
   htmlEvent: Card.Event,
   webglEvent: Card.Event,
 
-  merch?: Asset.Merch
+  merch?: Merch
 }
 
 type Store = State & {

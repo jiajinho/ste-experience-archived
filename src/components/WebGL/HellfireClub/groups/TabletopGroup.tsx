@@ -22,7 +22,7 @@ export default () => {
       />
 
       <Page.Rafflesia
-        position={[-0.26, 0.82, -0.01]}
+        position={[-0.26, 0.815, -0.01]}
         rotation-y={1.52}
       />
 
@@ -37,7 +37,7 @@ export default () => {
       />
 
       <Page.Demogorgon
-        position={[0.23, 0.82, -0.03]}
+        position={[0.23, 0.815, -0.03]}
         rotation-y={4.38}
       />
 

@@ -29,6 +29,7 @@ export default React.forwardRef(({ flipped, ...props }: {
           src={hellfireFront}
           alt="Hellfire - Front"
           fill
+          sizes="(max-width: 768px) 50vw, 100vw"
           onLoadingComplete={() => setLoadProgressStore("html", { hellfireFront: true })}
         />
       </div>
@@ -39,6 +40,7 @@ export default React.forwardRef(({ flipped, ...props }: {
           src={hellfireBack}
           alt="Hellfire - Back"
           fill
+          sizes="(max-width: 768px) 50vw, 100vw"
           onLoadingComplete={() => setLoadProgressStore("html", { hellfireBack: true })}
         />
       </div>

@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import config from 'config';
-import { LightColor } from '@webgl/config';
+import config, { LightColor } from 'config';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
@@ -83,11 +82,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group ref={ref} {...props}>
       <RetroTV
-        knob={knob}
+        knobRef={knob}
         onClick={handleClick}
-        onKnobClick={handleKnobClick}
-        onKnobPointerEnter={hoverEvent.hotspot.onPointerEnter}
-        onKnobPointerLeave={hoverEvent.hotspot.onPointerLeave}
+        knob={{
+          onClick: handleKnobClick,
+          ...hoverEvent.hotspot
+        }}
         {...hoverEvent.home}
       />
 

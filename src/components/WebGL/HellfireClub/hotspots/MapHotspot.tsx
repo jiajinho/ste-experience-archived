@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { LightColor } from '@webgl/config';
-import config from 'config';
+import config, { LightColor } from 'config';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useCameraStore from 'stores/webgl/useCameraStore';

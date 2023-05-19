@@ -1,4 +1,4 @@
-import { Asset } from "types";
+import { Merch } from "types";
 
 const global = {
   stEncounter: "The Encounter",
@@ -31,7 +31,7 @@ const overlayUI = {
 
 const card = {
   theEncounter: {
-    star: "Immersive interactive retail experience",
+    star: "Immersive retail experience",
     puppet: "Purchase event-exclusive merchandise",
     ghost: "Collect and customize digital collectibles",
     gelato: "Visit Unique Stranger Things Themed F&B Establishments"
@@ -99,7 +99,7 @@ const card = {
         "Hellfire Club",
         "<b>Denim Vest</b>"
       ]
-    } satisfies { [k in Asset.Merch]: [string, string] },
+    } satisfies { [k in Merch]: [string, string] },
     closeBtn: "Close"
   }
 }

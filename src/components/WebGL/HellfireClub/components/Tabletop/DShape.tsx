@@ -1,12 +1,10 @@
 import React, { useRef } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
-import { ThreeEvent } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import materials from "@webgl/HellfireClub/materials";
 
 const gltfUrl = "/static/gltf/tabletop-dshape.glb";
-const mapUrl = "/static/texture/wood.jpg";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -16,36 +14,16 @@ type GLTFResult = GLTF & {
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
-
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useTriggerDebugModel(ref);
-
-  const { map } = useTexture({ map: mapUrl });
-  map.flipY = false;
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    // triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group ref={ref} {...props}>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.TabletopDShape.geometry}
-      >
-        <meshStandardMaterial
-          roughness={0.8}
-          map={map}
-        />
-      </mesh>
+        material={materials.wood}
+      />
     </group>
   );
 }

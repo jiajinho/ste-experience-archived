@@ -1,13 +1,11 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import * as THREE from "three";
-import { useGLTF, useTexture } from "@react-three/drei";
-import { ThreeEvent } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import materials from "@webgl/HellfireClub/materials";
 
 const gltfUrl = "/static/gltf/tabletop-round.glb";
-const mapUrl = "/static/texture/wood.jpg";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -20,41 +18,17 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useTriggerDebugModel(ref);
-
-  const { map } = useTexture({ map: mapUrl });
-
-  const tableMaterial = useMemo(() => {
-    if (!map) return;
-    map.flipY = false;
-
-    return new THREE.MeshStandardMaterial({
-      roughness: 0.8,
-      map
-    });
-  }, [map]);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group ref={ref} {...props}>
       <mesh
         castShadow
         geometry={nodes.TabletopRoundLeg.geometry}
-        material={tableMaterial}
+        material={materials.wood}
       />
       <mesh
         castShadow
         geometry={nodes.TabletopRound.geometry}
-        material={tableMaterial}
+        material={materials.wood}
       />
     </group>
   );

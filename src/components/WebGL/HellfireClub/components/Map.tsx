@@ -1,10 +1,8 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useGlowAnimation from "../hooks/useGlowAnimation";
+import useCTAGlowAnimation from "../hooks/useCTAGlowAnimation";
 
 const url = "/static/gltf/map.glb";
 
@@ -26,22 +24,10 @@ export default ({ cta, buttonGlow = false, ...props }: {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  useGlowAnimation(materials.cta, buttonGlow, 0xED1B30);
-
-  const triggerMover = useTriggerDebugModel(ref);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
+  useCTAGlowAnimation(materials.cta, buttonGlow, 0xED1B30);
 
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group ref={ref} {...props}>
       <mesh
         geometry={nodes.cta.geometry}
         material={materials.cta}

@@ -1,3 +1,4 @@
+import { Merch } from "types";
 import { create } from "zustand";
 
 type LoadObject = {
@@ -18,6 +19,8 @@ type LoadObject = {
     whenWhereBack?: boolean,
 
     bgm?: boolean,
+  } | {
+    [k in Merch]: boolean
   }
 }
 
@@ -42,6 +45,17 @@ export default create<Store>((set) => ({
     hellfireBack: false,
     theEncounterBack: false,
     whenWhereBack: false,
+
+    merchVecna: false,
+    merchEleven: false,
+    merchBag: false,
+    merchCap: false,
+    merchDenim: false,
+    merchMug: false,
+    merchShirt: false,
+    merchVHS: false,
+    merchVinyl: false,
+
     bgm: false
   },
 

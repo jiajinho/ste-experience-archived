@@ -2,9 +2,8 @@ import React, { useRef } from "react";
 import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
-import type { ThreeEvent } from "@react-three/fiber";
 
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
+import materials from "@webgl/HellfireClub/materials";
 
 const gltfUrl = "/static/gltf/chair-ornamental.glb";
 const mapUrl = "/static/texture/wood.jpg";
@@ -19,32 +18,19 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const triggerMover = useTriggerDebugModel(ref);
-
   const { map } = useTexture({ map: mapUrl });
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   map.flipY = false;
+  map.encoding = THREE.sRGBEncoding;
+
+  materials.wood.map = map;
 
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-    >
+    <group ref={ref} {...props}>
       <mesh
         castShadow
         geometry={nodes.WoodChair.geometry}
-      >
-        <meshStandardMaterial
-          map={map}
-          roughness={0.8}
-        />
-      </mesh>
+        material={materials.wood}
+      />
     </group>
   );
 }

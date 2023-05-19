@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
 import { useGLTF, useVideoTexture } from "@react-three/drei";
@@ -19,41 +19,29 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default ({ knob, onKnobClick, onKnobPointerEnter, onKnobPointerLeave, ...props }: {
-  knob?: React.RefObject<THREE.Mesh>,
-  onKnobPointerEnter?: () => void,
-  onKnobPointerLeave?: () => void
-  onKnobClick?: () => void
+export default ({ knobRef, knob, ...props }: {
+  knobRef?: React.RefObject<THREE.Mesh>,
+  knob?: JSX.IntrinsicElements["mesh"],
 } & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
 
-  const texture = useVideoTexture(videoUrl, {
+  const videoMap = useVideoTexture(videoUrl, {
     unsuspend: 'canplaythrough',
     muted: true
   });
 
-  const videoMaterial = useMemo(() => {
-    if (!texture) return;
-
-    return new THREE.MeshBasicMaterial({
-      map: texture
-    })
-  }, [texture]);
-
   return (
-    <group {...props} dispose={null}>
+    <group {...props}>
       <mesh
         geometry={nodes.RetroTVKnob.geometry}
         material={materials.CTV}
       />
       <mesh
-        ref={knob}
+        ref={knobRef}
         geometry={nodes.RetroTVKnob1.geometry}
         material={materials.CTV}
-        onClick={onKnobClick}
-        onPointerEnter={onKnobPointerEnter}
-        onPointerLeave={onKnobPointerLeave}
+        {...knob}
       />
       <mesh
         geometry={nodes.Tiktok.geometry}
@@ -66,12 +54,12 @@ export default ({ knob, onKnobClick, onKnobPointerEnter, onKnobPointerLeave, ...
       />
 
       <mesh
-        material={videoMaterial}
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.3, 0.25, 1]}
         position={[0.08, 0, 0]}
       >
         <planeGeometry />
+        <meshBasicMaterial map={videoMap} />
       </mesh>
     </group >
   );

@@ -13,20 +13,16 @@ export enum VectorIndex {
   z = 2
 }
 
-export namespace Asset {
-  export type Image = Merch;
-
-  export type Merch =
-    "merchVecna" |
-    "merchEleven" |
-    "merchVHS" |
-    "merchMug" |
-    "merchCap" |
-    "merchVinyl" |
-    "merchBag" |
-    "merchShirt" |
-    "merchDenim"
-}
+export type Merch =
+  "merchVecna" |
+  "merchEleven" |
+  "merchVHS" |
+  "merchMug" |
+  "merchCap" |
+  "merchVinyl" |
+  "merchBag" |
+  "merchShirt" |
+  "merchDenim"
 
 export namespace Card {
   export type Event =
@@ -88,17 +84,11 @@ export namespace Camera {
     default: {
       polar: {
         value: number,
-      }
-      // lookAt: {
-      //   y: number
-      // },
+      },
       azimuth: {
         value: number,
         scaleFactor: number
       }
-      // lookAtY: number,
-      // azimuth: number,
-      // azimuthScaleFactor: number
     }
   }
 }
