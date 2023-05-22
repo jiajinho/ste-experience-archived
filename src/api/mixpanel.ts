@@ -37,9 +37,10 @@ export enum MixpanelEvent {
   EVENT_EXCLUSIVE_DROPOFF = "Event_exclusives_dropoff"
 }
 
-export default async (event: MixpanelEvent): Promise<Response> => {
+export default async (event: MixpanelEvent): Promise<void> => {
   const queryParams = new URLSearchParams({ event });
 
-  const res = await fetch(`/api/mixpanel?${queryParams}`);
-  return res.json();
+  await fetch(`/api/mixpanel?${queryParams}`, {
+    cache: "no-store"
+  });;
 }
