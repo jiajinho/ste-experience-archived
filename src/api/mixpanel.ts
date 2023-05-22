@@ -41,6 +41,7 @@ export default async (event: MixpanelEvent): Promise<any> => {
   const queryParams = new URLSearchParams({ event });
 
   await fetch(`/api/mixpanel?${queryParams}`, {
-    cache: "no-store"
+    cache: "no-store",
+    keepalive: false
   });
 }

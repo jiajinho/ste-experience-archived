@@ -14,7 +14,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return;
   }
 
-  const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
+  const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN, {
+    protocol: 'http',
+    keepAlive: false,
+  });
 
   const ua = new UAParser(req.headers["user-agent"]);
   const os = ua.getOS();
@@ -31,7 +34,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   mixpanel.track(req.query.event as string, {
-    $ip: ip,
+    ip: ip,
     $os: `${os.name} ${os.version}`,
     $browser: browser.name,
     $browser_version: browser.version
