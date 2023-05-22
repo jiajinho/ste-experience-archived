@@ -12,6 +12,7 @@ import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
 import SceneOverlay from '@html/SceneOverlay';
 import CardOverlay from '@html/CardOverlay';
+import dynamic from 'next/dynamic';
 
 const Wrapper = styled.main`
   position: relative;
@@ -29,7 +30,7 @@ const CanvasContainer = styled.div`
   width: 100%;
 `;
 
-export default () => {
+const Main = () => {
   /**
    * Hooks
    */
@@ -37,7 +38,6 @@ export default () => {
 
   const env = useEnvStore(state => state.env);
   const dpr = useGLStore(state => state.dpr);
-  const fps = useLoadProgressStore(state => state.fps);
   const loading = useLoadAnimationStore(state => state.loading);
   const setCameraStore = useCameraStore(state => state.set);
 
@@ -75,3 +75,7 @@ export default () => {
     </Wrapper>
   )
 }
+
+export default dynamic(() => Promise.resolve(Main), {
+  ssr: false,
+});

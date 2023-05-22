@@ -1,9 +1,7 @@
 import { create } from "zustand";
 
 type State = {
-  dpr: number,
-  fps: number,
-  test: string
+  dpr: number
 }
 
 type Store = State & {
@@ -12,13 +10,9 @@ type Store = State & {
 
 export default create<Store>((set) => ({
   dpr: 2,
-  fps: 0,
-
-  test: "",
 
   set: (key, value) => set((state) => {
     const clone = { ...state };
-    //@ts-ignore
     clone[key] = value;
 
     return clone;
