@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 
 import config, { LightColor } from 'config';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
+
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useCameraStore from 'stores/webgl/useCameraStore';
@@ -48,12 +51,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   }
 
   const handleCallToAction = () => {
-    if (currentZoom !== 'map') {
-      triggerZoom();
-    }
-    else {
-      window.open(config.link.eventLocation, "_blank");
-    }
+    if (currentZoom !== 'map') return;
+
+    window.open(config.link.eventLocation, "_blank");
+    api.mixpanel(MixpanelEvent.EVENT_LOCATION_CTA);
   }
 
   const handleCTAPointerEnter = () => {

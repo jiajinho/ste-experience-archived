@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { SpotLight } from 'three';
 
 import config, { LightColor } from 'config';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
+
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
@@ -56,12 +59,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   }
 
   const handleCallToAction = () => {
-    if (currentZoom !== "chalkBoard") {
-      triggerZoom();
-    }
-    else {
-      window.open(config.link.ticketing, "_blank");
-    }
+    if (currentZoom !== "chalkBoard") return;
+
+    window.open(config.link.ticketing, "_blank");
+    api.mixpanel(MixpanelEvent.XPASS_CTA);
   }
 
   const handleCTAPointerEnter = () => {

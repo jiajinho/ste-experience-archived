@@ -13,6 +13,7 @@ import useResponsive from 'hooks/useResponsive';
 import useCursorPointer from 'hooks/useCursorPointer';
 import useThemeSong from 'hooks/useThemeSong';
 import useLoadMerch from 'hooks/useLoadMerch';
+import useExitBrowser from 'hooks/useExitBrowser';
 
 const App = styled.div`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
@@ -28,6 +29,7 @@ export default ({ Component, pageProps }: AppProps) => {
   useToggleEnv();
   useCursorPointer();
   useLoadMerch();
+  useExitBrowser();
 
   return (
     <>
