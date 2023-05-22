@@ -4,8 +4,15 @@ import UAParser from "ua-parser-js";
 import requestIp from "request-ip";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (!process.env.MIXPANEL_TOKEN) throw new Error("Undefined MIXPANEL_TOKEN");
-  if (!req.query.event) return;
+  if (!process.env.MIXPANEL_TOKEN) {
+    res.status(500).json({ message: "Undefined MIXPANEL_TOKEN" });
+    return;
+  }
+
+  if (!req.query.event) {
+    res.status(400).json({ message: "Undefined query params" });
+    return;
+  }
 
   const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
 
