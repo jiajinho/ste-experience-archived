@@ -10,33 +10,46 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (!req.query.event) {
-    res.status(400).json({ message: "Undefined query params" });
+    res.status(400).json({ message: "Undefined query param for 'event'" });
     return;
+  }
+
+  if (!req.query.env) {
+    res.status(400).json({ message: "Undefined query param for 'env'" });
   }
 
   const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN, {
     protocol: 'http',
-    keepAlive: false,
+    keepAlive: false
   });
 
-  const ua = new UAParser(req.headers["user-agent"]);
-  const os = ua.getOS();
-  const browser = ua.getBrowser();
+  const userAgent = new UAParser(req.headers["user-agent"]);
+  const os = userAgent.getOS();
+  const browser = userAgent.getBrowser();
   const ip = requestIp.getClientIp(req);
 
-  const callback = (e?: Error) => {
-    if (e) {
-      res.status(500).json({ message: e.message });
-    }
-    else {
-      res.status(200).json(true);
-    }
-  }
+  const _os = `${os.name} ${os.version}`;
 
-  mixpanel.track(req.query.event as string, {
-    ip: ip,
-    $os: `${os.name} ${os.version}`,
-    $browser: browser.name,
-    $browser_version: browser.version
-  }, callback);
+
+  if (req.query.env === "production") {
+    const callback = (e?: Error) => {
+      if (e) res.status(500).json({ message: e.message });
+      else res.status(200).json(true);
+    }
+
+    mixpanel.track(req.query.event as string, {
+      ip: ip,
+      $os: _os,
+      $browser: browser.name,
+      $browser_version: browser.version
+    }, callback);
+  }
+  else {
+    res.status(200).json({
+      ip,
+      os: _os,
+      browser: browser.name,
+      browser_version: browser.version
+    });
+  }
 }

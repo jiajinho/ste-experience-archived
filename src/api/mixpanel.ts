@@ -1,3 +1,5 @@
+import useEnvStore from "stores/useEnvStore";
+
 export enum MixpanelEvent {
   START = "(Loading Page)",
   SKIP = "Skip_button",
@@ -38,7 +40,9 @@ export enum MixpanelEvent {
 }
 
 export default async (event: MixpanelEvent): Promise<any> => {
-  const queryParams = new URLSearchParams({ event });
+  const env = useEnvStore.getState().env;
+
+  const queryParams = new URLSearchParams({ event, env });
 
   await fetch(`/api/mixpanel?${queryParams}`, {
     cache: "no-store",
