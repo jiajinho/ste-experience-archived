@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import locale from 'locale';
 import config from 'config';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
 
 export const Wrapper = styled.svg`
   aspect-ratio: 98/40;
@@ -24,6 +26,7 @@ export const Wrapper = styled.svg`
 export default () => {
   const handleClick = () => {
     window.open(config.link.ticketing, "_blank");
+    api.mixpanel(MixpanelEvent.TICKETING);
   }
 
   return (
