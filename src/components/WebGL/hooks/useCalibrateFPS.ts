@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { useProgress } from '@react-three/drei';
 
+import { clamp } from 'utils';
 import useGLStore from 'stores/webgl/useGLStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
 import useEnvStore from 'stores/useEnvStore';
@@ -10,7 +12,11 @@ export default () => {
    * Hooks
    */
   const env = useEnvStore(state => state.env);
+  const { loaded, total } = useProgress();
+
+  const dpr = useGLStore(state => state.dpr);
   const setGLStore = useGLStore(state => state.set);
+
   const fps = useLoadProgressStore(state => state.fps);
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
@@ -18,16 +24,23 @@ export default () => {
   const beginTime = useRef((performance || Date).now());
   const prevTime = useRef(beginTime.current);
 
-  const fpsSamples = useRef<number[]>([]);
+  const maxDpr = useRef(0);
+  const fpsHitCounter = useRef(0);
+
+  const frameCounter = useRef(0);
 
   useEffect(() => {
     if (!window) return;
 
     const dpr = Math.min(window.devicePixelRatio, 2);
+
+    maxDpr.current = dpr;
     setGLStore("dpr", dpr);
   }, [window]);
 
   useFrame(() => {
+    if (!window) return;
+    if (loaded !== total) return;
     if (env === 'development') return;
     if (env === 'staging') return;
     if (fps.completed) return;
@@ -49,24 +62,24 @@ export default () => {
 
     if (time > prevTime.current + 1000) {
       const fps = Math.round((frames.current * 1000) / (time - prevTime.current));
-      setGLStore("fps", fps);
 
+      let newDpr = dpr;
 
-      fpsSamples.current.push(fps);
+      if (fps >= 30) {
+        fpsHitCounter.current += 1;
+        newDpr += 0.15;
+      }
+      else {
+        fpsHitCounter.current = 0;
+        newDpr -= 0.15;
+      }
 
-      if (fpsSamples.current.length > 5) {
-        const sumFps = fpsSamples.current.reduce((prev, current) => {
-          return prev + current;
-        });
+      frameCounter.current += 1;
 
-        const avgFps = sumFps / fpsSamples.current.length;
+      newDpr = clamp(newDpr, 0.8, maxDpr.current);
+      setGLStore("dpr", newDpr);
 
-        if (avgFps < 30) {
-          setGLStore("dpr", 1);
-        }
-
-        fpsSamples.current.length = 0;
-
+      if (fpsHitCounter.current >= 5 || frameCounter.current >= 15) {
         setLoadProgressStore("fps", {
           calibrating: false,
           completed: true
