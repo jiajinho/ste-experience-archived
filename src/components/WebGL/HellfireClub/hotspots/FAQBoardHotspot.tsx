@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 
 import config from 'config';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
+
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
 import useCameraStore from 'stores/webgl/useCameraStore';
@@ -42,12 +45,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   }
 
   const handleCallToAction = () => {
-    if (currentZoom !== "faqBoard") {
-      triggerZoom();
-    }
-    else {
-      window.open(config.link.faq, "_blank");
-    }
+    if (currentZoom !== "faqBoard") return;
+
+    window.open(config.link.faq, "_blank");
+    api.mixpanel(MixpanelEvent.KEY_QUESTION_CTA);
   }
 
   const handleCTAPointerEnter = () => {

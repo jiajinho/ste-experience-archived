@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useThree } from '@react-three/fiber';
 
 import config from 'config';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
 import { moveCamera } from './utils';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useCardStore from 'stores/html/useCardStore';
@@ -45,4 +47,29 @@ export default () => {
     firstTime.current = false;
   }, [currentZoom, camera, shadowCamera, aspect, env]);
 
+  useEffect(() => {
+    switch (currentZoom) {
+      case "retroTV":
+        api.mixpanel(MixpanelEvent.EVENT_VIDEO);
+        break;
+      case "noticeBoard":
+        api.mixpanel(MixpanelEvent.FAN_GALLERY);
+        break;
+      case "vecnaBoard":
+        api.mixpanel(MixpanelEvent.EVENT_SUMMARY);
+        break;
+      case "faqBoard":
+        api.mixpanel(MixpanelEvent.KEY_QUESTION);
+        break;
+      case "map":
+        api.mixpanel(MixpanelEvent.EVENT_LOCATION);
+        break;
+      case "chalkBoard":
+        api.mixpanel(MixpanelEvent.XPASS);
+        break;
+      case "shelf":
+        api.mixpanel(MixpanelEvent.EVENT_EXCLUSIVE);
+        break;
+    }
+  }, [currentZoom]);
 }

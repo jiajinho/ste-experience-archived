@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import config, { LightColor } from 'config';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
+
 import { Card as CardType } from 'types';
 import useEnvStore from 'stores/useEnvStore';
 import useCardStore from 'stores/html/useCardStore';
@@ -91,6 +94,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     if (currentZoom !== "vecnaBoard") return;
 
     window.open(config.link.ticketing, "_blank");
+    api.mixpanel(MixpanelEvent.EVENT_SUMMARY_CTA);
   }
 
   const handleCTAPointerEnter = () => {

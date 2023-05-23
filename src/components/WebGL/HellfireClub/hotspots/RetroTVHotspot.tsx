@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 import config, { LightColor } from 'config';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
+
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
@@ -68,12 +71,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   }
 
   const handleKnobClick = () => {
-    if (currentZoom !== "retroTV") {
-      triggerZoom();
-    }
-    else {
-      window.open(config.link.tiktok, "_blank");
-    }
+    if (currentZoom !== "retroTV") return;
+
+    window.open(config.link.tiktok, "_blank");
+    api.mixpanel(MixpanelEvent.EVENT_VIDEO_TIKTOK);
   }
 
   /**

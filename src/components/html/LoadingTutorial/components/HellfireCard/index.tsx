@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
+
 import useAnimation from './useAnimation';
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import Card, { Wrapper as $Card } from '@html/common/Card';
@@ -36,9 +39,13 @@ export default () => {
     if (!clicked.current) {
       setLoadAnimateStore("card", "flip");
       clicked.current = true;
+
+      api.mixpanel(MixpanelEvent.ACCEPT_INVITE);
     }
     else {
       setLoadAnimateStore("card", "end");
+
+      api.mixpanel(MixpanelEvent.ENTER_CLUBROOM);
     }
   }
 

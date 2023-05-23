@@ -1,8 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import config from 'config';
 import glitch from './glitch';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
 import useAnimation from './useAnimation';
 
 const Wrapper = styled.div`
@@ -41,6 +43,10 @@ export default ({ data }: { data: string }) => {
 
   const progress = useAnimation(wrapper, data);
   const content = `${progress}%`;
+
+  useEffect(() => {
+    api.mixpanel(MixpanelEvent.START);
+  }, []);
 
   return (
     <Wrapper ref={wrapper}>

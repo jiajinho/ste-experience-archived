@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
 import config, { LightColor } from 'config';
+import api from 'api';
+import { MixpanelEvent } from 'api/mixpanel';
+
 import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
@@ -62,12 +65,10 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   }
 
   const handleIGPinClick = () => {
-    if (currentZoom !== "noticeBoard") {
-      triggerZoom();
-    }
-    else {
-      window.open(config.link.instagram, "_blank");
-    }
+    if (currentZoom !== "noticeBoard") return;
+
+    window.open(config.link.instagram, "_blank");
+    api.mixpanel(MixpanelEvent.FAN_GALLERY_INSTA);
   }
 
   /**

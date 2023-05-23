@@ -21,7 +21,7 @@ const viewport: Viewport = {
 const link = {
   faq: "https://mightyexperiences.com/support",
   ticketing: "https://mightyexperiences.com?source=body",
-  eventLocation: "https://goo.gl/maps/RufXHwYPt81vhgKy8",
+  eventLocation: "https://www.google.com.sg/maps/place/Stranger+Things+The+Encounter:+Singapore/@1.2994132,103.8513699,17z/data=!3m1!4b1!4m6!3m5!1s0x31da199103414893:0x9ffbf0eb30a7b82d!8m2!3d1.2994132!4d103.8539448!16s%2Fg%2F11str4c0ny",
   tiktok: "https://www.tiktok.com/@strangerthingsencounter",
   instagram: "https://www.instagram.com/strangerthings.encounter/"
 }
