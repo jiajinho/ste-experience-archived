@@ -6,10 +6,10 @@ import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 
 const Wrapper = styled.div`
   ${$STEncounter} {
-    --width: max(100px, 15vmin);
+    --width: max(100px, 16vmin);
     
     position: fixed;
-    top: 30px;
+    top: 36px;
     left: 50%;
     transform: translateX(-50%);
   }
