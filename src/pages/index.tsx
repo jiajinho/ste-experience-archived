@@ -1,18 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 
 import useEnvStore from 'stores/useEnvStore';
+import useLoadProgressStore from 'stores/useLoadProgressStore';
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
 import useGLStore from 'stores/webgl/useGLStore';
-import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
-import SceneOverlay from '@html/SceneOverlay';
-import CardOverlay from '@html/CardOverlay';
-import dynamic from 'next/dynamic';
+
+const SceneOverlay = lazy(() => import('@html/SceneOverlay'));
+const CardOverlay = lazy(() => import('@html/CardOverlay'));
 
 const Wrapper = styled.main`
   position: relative;
@@ -38,6 +39,7 @@ const Main = () => {
 
   const env = useEnvStore(state => state.env);
   const dpr = useGLStore(state => state.dpr);
+  const fps = useLoadProgressStore(state => state.fps);
   const loading = useLoadAnimationStore(state => state.loading);
   const setCameraStore = useCameraStore(state => state.set);
 
@@ -52,21 +54,30 @@ const Main = () => {
   const renderTutorial = loading && env === "production";
   const renderOverlay = env !== "development";
 
+  let frameloop: "always" | "never" = "never";
+
+  if (fps.calibrating) frameloop = "always";
+  if (fps.completed) frameloop = "never";
+  if (!loading) frameloop = "always";
+
   /**
    * Render
    */
   return (
     <Wrapper>
       {renderTutorial && <LoadingTutorial />}
-      {renderOverlay && <SceneOverlay />}
 
-      <CardOverlay />
+      <Suspense fallback={null}>
+        {renderOverlay && <SceneOverlay />}
+        <CardOverlay />
+      </Suspense>
 
       <CanvasContainer ref={canvas}>
         <Canvas
           shadows
           gl={{ alpha: false }}
           camera={{ fov: 50 }}
+          frameloop={frameloop}
           dpr={dpr}
         >
           <WebGL />
