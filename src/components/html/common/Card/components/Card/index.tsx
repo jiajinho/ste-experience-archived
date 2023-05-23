@@ -40,6 +40,7 @@ const Container = styled.div`
   & > *.front { 
     z-index: 2;
     backface-visibility: hidden;
+    transform: rotateX(0deg);
   }
   
   & > *.back { transform: rotateY(180deg) }
