@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, lazy, Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useEffect, useRef } from 'react';
+import { GetServerSideProps } from 'next';
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 
@@ -11,11 +11,10 @@ import useGLStore from 'stores/webgl/useGLStore';
 
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
+import SceneOverlay from '@html/SceneOverlay';
+import CardOverlay from '@html/CardOverlay';
 
-const SceneOverlay = lazy(() => import('@html/SceneOverlay'));
-const CardOverlay = lazy(() => import('@html/CardOverlay'));
-
-const Wrapper = styled.main`
+const Wrapper = styled.div`
   position: relative;
   z-index: 1;
 
@@ -31,7 +30,7 @@ const CanvasContainer = styled.div`
   width: 100%;
 `;
 
-const Main = () => {
+export default () => {
   /**
    * Hooks
    */
@@ -67,28 +66,26 @@ const Main = () => {
     <Wrapper>
       {renderTutorial && <LoadingTutorial />}
 
-      <Suspense fallback={null}>
-        {renderOverlay && <SceneOverlay />}
-        <CardOverlay />
-      </Suspense>
+      {renderOverlay && <SceneOverlay />}
+      <CardOverlay />
 
       <CanvasContainer ref={canvas}>
-        <Suspense fallback={null}>
-          <Canvas
-            shadows
-            gl={{ alpha: false }}
-            camera={{ fov: 50 }}
-            frameloop={frameloop}
-            dpr={dpr}
-          >
-            <WebGL />
-          </Canvas>
-        </Suspense>
+        <Canvas
+          shadows
+          gl={{ alpha: false }}
+          camera={{ fov: 50 }}
+          frameloop={frameloop}
+          dpr={dpr}
+        >
+          <WebGL />
+        </Canvas>
       </CanvasContainer>
     </Wrapper>
   )
 }
 
-export default dynamic(() => Promise.resolve(Main), {
-  ssr: false,
-});
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {}
+  }
+}
