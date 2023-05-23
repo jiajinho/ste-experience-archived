@@ -61,11 +61,6 @@ export default () => {
         rotation-y={-1.73}
       />
 
-      <Paper.White.Scribbled
-        position={[-1.51, 0, -4.28]}
-        rotation-y={0.77}
-      />
-
       <Paper.White.Ball
         position={[-1.76, 0.1, -3.62]}
       />
