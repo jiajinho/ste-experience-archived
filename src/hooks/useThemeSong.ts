@@ -20,7 +20,7 @@ export default () => {
   useEffect(() => {
     const audio = new Audio(url);
     audio.loop = true;
-    audio.volume = 0.2;
+    audio.volume = 0.1;
 
     const handleAudioCanPlayThrough = () => {
       setLoadProgressStore("html", { bgm: true });
@@ -58,7 +58,6 @@ export default () => {
 
   useEffect(() => {
     if (!audio) return;
-    if (loading) return;
 
     gsap.to(audio, {
       duration: loading ? 0 : 0.7,
