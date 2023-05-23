@@ -14,9 +14,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return;
   }
 
-  if (!req.query.env) {
-    res.status(400).json({ message: "Undefined query param for 'env'" });
-  }
+  let debug = req.query.debug ? req.query.debug === "true" : true;
 
   const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN, {
     protocol: 'http',
@@ -31,7 +29,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const _os = `${os.name} ${os.version}`;
 
 
-  if (req.query.env === "production") {
+  if (!debug) {
     const callback = (e?: Error) => {
       if (e) res.status(500).json({ message: e.message });
       else res.status(200).json(true);
