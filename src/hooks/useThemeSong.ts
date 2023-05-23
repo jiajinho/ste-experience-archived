@@ -8,6 +8,9 @@ import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 const url = "/static/strangerthings.mp3";
 
+const lowVolume = 0.2;
+const highVolume = 0.35;
+
 export default () => {
   const env = useEnvStore(state => state.env);
 
@@ -20,7 +23,7 @@ export default () => {
   useEffect(() => {
     const audio = new Audio(url);
     audio.loop = true;
-    audio.volume = 0.1;
+    audio.volume = lowVolume;
 
     const handleAudioCanPlayThrough = () => {
       setLoadProgressStore("html", { bgm: true });
@@ -62,7 +65,7 @@ export default () => {
     gsap.to(audio, {
       duration: loading ? 0 : 0.7,
       ease: "power2.out",
-      volume: loading ? 0.1 : 0.35
+      volume: loading ? lowVolume : highVolume
     });
 
   }, [audio, loading]);
