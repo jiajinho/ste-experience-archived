@@ -12,7 +12,7 @@ import HellfireCard from './components/HellfireCard';
 
 const Wrapper = styled.div`
   position: fixed;
-  z-index: 12;
+  z-index: 100;
   height: 100%;
   width: 100%;
 `;
