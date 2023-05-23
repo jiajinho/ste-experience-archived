@@ -19,14 +19,16 @@ export default () => {
 
   useEffect(() => {
     const audio = new Audio(url);
-    audio.muted = true;
     audio.loop = true;
     audio.volume = 0.2;
-    audio.autoplay = true;
 
     const handleAudioCanPlayThrough = () => {
       setLoadProgressStore("html", { bgm: true });
       setAudio(audio);
+
+      audio.play().catch(() => {
+        window.addEventListener("click", () => audio.play(), { once: true });
+      });
     }
 
     audio.addEventListener("canplaythrough", handleAudioCanPlayThrough);
