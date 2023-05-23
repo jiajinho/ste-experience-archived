@@ -24,7 +24,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const browser = userAgent.getBrowser();
   const ip = requestIp.getClientIp(req);
 
-  const _os = `${os.name} ${os.version}`;
+  const _os = !!os.name ? `${os.name} ${os.version}` : undefined;
 
 
   if (!debug) {
