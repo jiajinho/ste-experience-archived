@@ -26,7 +26,7 @@ const loading = {
 
 const overlayUI = {
   presentedBy: "Presented By",
-  ticketBtn: "Tickets"
+  ticketBtn: "Buy Tickets"
 }
 
 const card = {
