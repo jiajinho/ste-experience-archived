@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 
+import api from "api";
+import { MixpanelEvent } from "api/mixpanel";
 import useLoadAnimationStore from "stores/html/useLoadAnimationStore";
 
 export default (
@@ -88,6 +90,8 @@ export default (
 
 
       case "skipped":
+        api.mixpanel(MixpanelEvent.SKIP);
+
         gsap.to([chars.current, button.current], {
           duration: 0.01,
           autoAlpha: 1
@@ -118,6 +122,8 @@ export default (
 
 
       case "end":
+        api.mixpanel(MixpanelEvent.CONTINUE);
+
         let t: NodeJS.Timer;
 
         gsap.to([wrapper.current, caret.current], {
