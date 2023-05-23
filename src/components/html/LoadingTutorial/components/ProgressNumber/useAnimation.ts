@@ -43,6 +43,7 @@ export default (wrapper: React.RefObject<HTMLDivElement>, data: string) => {
     gsap.to(number, {
       duration: 0.75,
       ease: "power2.out",
+      overwrite: true,
       n: Number(data),
       onUpdate: () => {
         setProgress(number.n)
