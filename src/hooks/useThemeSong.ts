@@ -100,6 +100,9 @@ export default () => {
     if (!audio) return;
 
     audio.muted = false;
-    audio.play();
+
+    audio.play().catch(() => {
+      window.addEventListener("click", () => audio.play(), { once: true });
+    });
   }
 }
