@@ -73,15 +73,17 @@ const Main = () => {
       </Suspense>
 
       <CanvasContainer ref={canvas}>
-        <Canvas
-          shadows
-          gl={{ alpha: false }}
-          camera={{ fov: 50 }}
-          frameloop={frameloop}
-          dpr={dpr}
-        >
-          <WebGL />
-        </Canvas>
+        <Suspense fallback={null}>
+          <Canvas
+            shadows
+            gl={{ alpha: false }}
+            camera={{ fov: 50 }}
+            frameloop={frameloop}
+            dpr={dpr}
+          >
+            <WebGL />
+          </Canvas>
+        </Suspense>
       </CanvasContainer>
     </Wrapper>
   )
