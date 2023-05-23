@@ -13,6 +13,7 @@
     "@react-three/drei": "^9.56.10",
     "@react-three/fiber": "^8.10.1",
     "@react-three/postprocessing": "^2.7.0",
+    "@vercel/edge-config": "^0.1.11",
     "date-fns": "^2.29.3",
     "gsap": "^3.11.4",
     "leva": "^0.9.34",

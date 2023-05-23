@@ -26,7 +26,7 @@ const loading = {
 
 const overlayUI = {
   presentedBy: "Presented By",
-  ticketBtn: "Tickets"
+  ticketBtn: "Buy Tickets"
 }
 
 const card = {
@@ -104,9 +104,19 @@ const card = {
   }
 }
 
+const maintenance = {
+  title: "Website is currently under maintenance",
+  description: `
+    We are performing maintenance to the website. We apologize 
+    for any inconvenience this may cause, and we thank you for 
+    your understanding.
+  `
+}
+
 export default {
   global,
   loading,
   overlayUI,
   card,
+  maintenance
 }

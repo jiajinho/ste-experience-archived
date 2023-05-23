@@ -43,7 +43,7 @@ const TopRow = styled.div`
   align-items: start;
 
   ${$STEncounter} {
-    --width: max(100px, 15vmin);
+    --width: max(100px, 16vmin);
     position: absolute;
     top: 0;
     left: 50%;

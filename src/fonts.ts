@@ -20,9 +20,12 @@ const chalkiez = localFont({ src: "../public/static/fonts/chalkiez-400.woff2" })
 
 const inter = Inter({ subsets: ["latin"] });
 
+const maax = localFont({ src: "../public/static/fonts/maax-400.woff2" });
+
 export default {
   benguiat,
   chalkiez,
-  inter
+  inter,
+  maax
 }
 

@@ -15,10 +15,11 @@ import useThemeSong from 'hooks/useThemeSong';
 import useLoadMerch from 'hooks/useLoadMerch';
 import useExitBrowser from 'hooks/useExitBrowser';
 
-const App = styled.div`
+const App = styled.main`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
   --font-inter: ${fonts.inter.style.fontFamily};
   --font-chalkiez: ${fonts.chalkiez.style.fontFamily};
+  --font-maax: ${fonts.maax.style.fontFamily};
 `;
 
 export default ({ Component, pageProps }: AppProps) => {

@@ -20,6 +20,7 @@ export const Wrapper = styled.svg`
     user-select: none;
     font-family: var(--font-benguiat);
     font-weight: 700;
+    font-size: 12px;
   }
 `;
 
@@ -51,10 +52,7 @@ export default () => {
         fill="#EC1A3B"
       />
 
-      <text
-        x={18} y={25}
-        fill="white"
-      >
+      <text fill="white" y={24} x={12}>
         {locale.overlayUI.ticketBtn}
       </text>
     </Wrapper>
