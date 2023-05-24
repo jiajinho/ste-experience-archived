@@ -44,7 +44,7 @@ const merchUrl: { [k in Merch]: string } = {
  */
 const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
   default: {
-    name: locale.global.hotspot.default,
+    name: locale.hotspot.default,
     cameraBox: {
       position: [3.81, 2.29, 2.26],
       lookAt: [
@@ -83,7 +83,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   retroTV: {
-    name: locale.global.hotspot.retroTV,
+    name: locale.hotspot.retroTV,
     cameraBox: {
       position: [1, 0, 0],
       lookAt: [-1, 0, 0]
@@ -96,7 +96,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   noticeBoard: {
-    name: locale.global.hotspot.noticeBoard,
+    name: locale.hotspot.noticeBoard,
     cameraBox: {
       position: [3, 0, 0],
       lookAt: [-1, 0, 0]
@@ -109,7 +109,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   vecnaBoard: {
-    name: locale.global.hotspot.vecnaBoard,
+    name: locale.hotspot.vecnaBoard,
     cameraBox: {
       position: [0, 1.2, 0],
       lookAt: [0, -1, 0]
@@ -123,7 +123,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(-1, 0, 0)
   },
   faqBoard: {
-    name: locale.global.hotspot.faqBoard,
+    name: locale.hotspot.faqBoard,
     cameraBox: {
       position: [0, 0.45, 0],
       lookAt: [0, -1, 0]
@@ -137,7 +137,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(0.08, 0, 1)
   },
   map: {
-    name: locale.global.hotspot.map,
+    name: locale.hotspot.map,
     cameraBox: {
       position: [0, 0.48, -0.015],
       lookAt: [0, -1, 0]
@@ -151,7 +151,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     cameraUp: new THREE.Vector3(-0.063, 0, 1)
   },
   chalkBoard: {
-    name: locale.global.hotspot.chalkBoard,
+    name: locale.hotspot.chalkBoard,
     cameraBox: {
       position: [0, 0, 1.8],
       lookAt: [0, 0, -1]
@@ -164,7 +164,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
     }
   },
   shelf: {
-    name: locale.global.hotspot.shelf,
+    name: locale.hotspot.shelf,
     cameraBox: {
       position: [2.4, 0, 0],
       lookAt: [-1, 0, 0]

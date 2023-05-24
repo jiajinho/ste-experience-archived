@@ -1,18 +1,20 @@
-import { Merch } from "types";
+import { Camera, Merch } from "types";
 
 const global = {
   stEncounter: "The Encounter",
   title: "Stranger Things - The Encounter",
-  hotspot: {
-    default: "Club Room",
-    retroTV: "Event Video",
-    noticeBoard: "Fan Gallery",
-    vecnaBoard: "Event Summary",
-    faqBoard: "Key Questions",
-    map: "Event Location",
-    chalkBoard: "About XPASS",
-    shelf: "Event Exclusives"
-  }
+  description: 'Come join me in the quest to overcome the threat of Vecna @STEncounter'
+}
+
+const hotspot: { [k in Camera.Hotspot]: string } = {
+  default: "Club Room",
+  retroTV: "Event Video",
+  noticeBoard: "Fan Gallery",
+  vecnaBoard: "Event Summary",
+  faqBoard: "Key Questions",
+  map: "Event Location",
+  chalkBoard: "About XPASS",
+  shelf: "Event Exclusives"
 }
 
 const loading = {
@@ -115,6 +117,7 @@ const maintenance = {
 
 export default {
   global,
+  hotspot,
   loading,
   overlayUI,
   card,
