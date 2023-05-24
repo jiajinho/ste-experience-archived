@@ -83,9 +83,11 @@ export default ({ hostUrl }: {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
 
-        <meta property="og:image" content={`${hostUrl}/og-img-400x400.jpg`} />
+        <meta property="og:image" content={`${hostUrl}/og-img-280x280.jpg`} />
         <meta property="og:image:width" content="400" />
         <meta property="og:image:height" content="400" />
+        <meta property="og:image:type" content="image/jpeg" />
+
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
