@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { GetServerSideProps } from 'next';
-import styled from 'styled-components';
+import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import styled from 'styled-components';
 
+import locale from 'locale';
 import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
@@ -32,7 +34,11 @@ const CanvasContainer = styled.div`
   width: 100%;
 `;
 
-export default () => {
+const ogImgUrl = "https://d2sie3twm806m7.cloudfront.net/sg-2023/sharebanner.jpg";
+
+export default ({ hostUrl }: {
+  hostUrl: string
+}) => {
   /**
    * Hooks
    */
@@ -65,29 +71,49 @@ export default () => {
    * Render
    */
   return (
-    <Wrapper>
-      {renderTutorial && <LoadingTutorial />}
+    <>
+      <Head>
+        {/* Open graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={hostUrl} />
+        <meta property="og:title" content={locale.global.title} />
+        <meta property="og:description" content={locale.global.description} />
+        <meta property="og:image" content={ogImgUrl} />
 
-      {renderOverlay && <SceneOverlay />}
-      <CardOverlay />
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={hostUrl} />
+        <meta property="twitter:title" content={locale.global.title} />
+        <meta property="twitter:description" content={locale.global.description} />
+        <meta property="twitter:image" content={ogImgUrl} />
+      </Head>
 
-      <CanvasContainer ref={canvas}>
-        <Canvas
-          shadows
-          gl={{ alpha: false }}
-          camera={{ fov: 50 }}
-          frameloop={frameloop}
-          dpr={dpr}
-        >
-          <WebGL />
-        </Canvas>
-      </CanvasContainer>
-    </Wrapper>
+      <Wrapper>
+        {renderTutorial && <LoadingTutorial />}
+
+        {renderOverlay && <SceneOverlay />}
+        <CardOverlay />
+
+        <CanvasContainer ref={canvas}>
+          <Canvas
+            shadows
+            gl={{ alpha: false }}
+            camera={{ fov: 50 }}
+            frameloop={frameloop}
+            dpr={dpr}
+          >
+            <WebGL />
+          </Canvas>
+        </CanvasContainer>
+      </Wrapper>
+    </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
-    props: {}
+    props: {
+      hostUrl: context.req.headers.host
+    }
   }
 }
