@@ -84,8 +84,8 @@ export default ({ hostUrl }: {
         <meta property="og:image:height" content="630" />
 
         <meta property="og:image" content={`${hostUrl}/og-img-280x280.jpg`} />
-        <meta property="og:image:width" content="400" />
-        <meta property="og:image:height" content="400" />
+        <meta property="og:image:width" content="280" />
+        <meta property="og:image:height" content="280" />
         <meta property="og:image:type" content="image/jpeg" />
 
 
