@@ -78,16 +78,9 @@ export default ({ hostUrl }: {
         <meta property="og:url" content={hostUrl} />
         <meta property="og:title" content={locale.global.title} />
         <meta property="og:description" content={locale.global.description} />
-
         <meta property="og:image" content={ogImgUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-
-        <meta property="og:image" content={`${hostUrl}/og-img-280x280.jpg`} />
-        <meta property="og:image:width" content="280" />
-        <meta property="og:image:height" content="280" />
-        <meta property="og:image:type" content="image/jpeg" />
-
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
