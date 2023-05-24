@@ -92,6 +92,9 @@ export default ({ Component, pageProps }: AppProps) => {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="black" />
+
+        {/* Domain verification */}
+        <meta name="google-site-verification" content="lSvXw1z8GqnyJGLTQXx72fC-cVbTFCsrQL9LexKGY7k" />
       </Head>
 
       <App>
