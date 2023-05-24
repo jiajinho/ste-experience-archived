@@ -12,7 +12,6 @@ export default () => {
       src={frontTemplate}
       alt="Card front"
       fill
-      priority
       sizes="(max-width: 768px) 50vw, 100vw"
       onLoadingComplete={() => setLoadProgressStore("html", { cardTemplateFront: true })}
     />

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { GetServerSideProps } from 'next';
 import styled from 'styled-components';
-import { Canvas } from '@react-three/fiber';
+import dynamic from 'next/dynamic';
 
 import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
@@ -11,8 +11,10 @@ import useGLStore from 'stores/webgl/useGLStore';
 
 import WebGL from 'components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
-import SceneOverlay from '@html/SceneOverlay';
-import CardOverlay from '@html/CardOverlay';
+
+const Canvas = dynamic(() => import('@react-three/fiber').then(c => c.Canvas), { ssr: false });
+const SceneOverlay = dynamic(() => import('@html/SceneOverlay'), { ssr: false });
+const CardOverlay = dynamic(() => import('@html/CardOverlay'), { ssr: false });
 
 const Wrapper = styled.div`
   position: relative;
