@@ -9,6 +9,10 @@ import useEnvStore from 'stores/useEnvStore';
 import useLoadProgressStore from 'stores/useLoadProgressStore';
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import useCameraStore from 'stores/webgl/useCameraStore';
+import useLoadMerch from 'hooks/useLoadMerch';
+import useThemeSong from 'hooks/useThemeSong';
+import useCursorPointer from 'hooks/useCursorPointer';
+import useExitBrowser from 'hooks/useExitBrowser';
 import useGLStore from 'stores/webgl/useGLStore';
 
 import WebGL from 'components/WebGL';
@@ -42,6 +46,11 @@ export default ({ hostUrl }: {
   /**
    * Hooks
    */
+  useLoadMerch();
+  useThemeSong();
+  useCursorPointer();
+  useExitBrowser();
+
   const canvas = useRef<HTMLDivElement>(null);
 
   const env = useEnvStore(state => state.env);

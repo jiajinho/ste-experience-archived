@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
-import { useRouter } from 'next/router';
 
 import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
 import useBGMStore from 'stores/useBGMStore';
@@ -13,8 +12,6 @@ const lowVolume = 0.2;
 const highVolume = 0.35;
 
 export default () => {
-  const router = useRouter();
-
   const env = useEnvStore(state => state.env);
 
   const loading = useLoadAnimationStore(state => state.loading);
@@ -24,28 +21,22 @@ export default () => {
   const [audio, setAudio] = useState<HTMLAudioElement>();
 
   useEffect(() => {
-    if (router.pathname === "/") {
-      const audio = new Audio(url);
-      audio.loop = true;
-      audio.volume = lowVolume;
+    const audio = new Audio(url);
+    audio.loop = true;
+    audio.volume = lowVolume;
 
-      const handleAudioCanPlayThrough = () => {
-        setLoadProgressStore("html", { bgm: true });
-        setAudio(audio);
+    const handleAudioCanPlayThrough = () => {
+      setLoadProgressStore("html", { bgm: true });
+      setAudio(audio);
 
-        audio.play().catch(() => {
-          window.addEventListener("click", () => audio.play(), { once: true });
-        });
-      }
-
-      audio.addEventListener("canplaythrough", handleAudioCanPlayThrough);
-      return () => { audio.removeEventListener("canplaythrough", handleAudioCanPlayThrough) }
+      audio.play().catch(() => {
+        window.addEventListener("click", () => audio.play(), { once: true });
+      });
     }
-    else {
-      if (audio) { audio.muted = true }
-      setAudio(undefined);
-    }
-  }, [router]);
+
+    audio.addEventListener("canplaythrough", handleAudioCanPlayThrough);
+    return () => { audio.removeEventListener("canplaythrough", handleAudioCanPlayThrough) }
+  }, []);
 
   useEffect(() => {
     const handleWindowBlur = () => {

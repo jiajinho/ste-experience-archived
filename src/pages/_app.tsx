@@ -10,10 +10,6 @@ import fonts from 'fonts';
 import useToggleEnv from 'hooks/useToggleEnv';
 import useEnvStore from 'stores/useEnvStore';
 import useResponsive from 'hooks/useResponsive';
-import useCursorPointer from 'hooks/useCursorPointer';
-import useThemeSong from 'hooks/useThemeSong';
-import useLoadMerch from 'hooks/useLoadMerch';
-import useExitBrowser from 'hooks/useExitBrowser';
 
 const App = styled.main`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};
@@ -25,12 +21,8 @@ const App = styled.main`
 export default ({ Component, pageProps }: AppProps) => {
   const env = useEnvStore(state => state.env);
 
-  useThemeSong();
   useResponsive();
   useToggleEnv();
-  useCursorPointer();
-  useLoadMerch();
-  useExitBrowser();
 
   return (
     <>
