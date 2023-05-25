@@ -81,7 +81,7 @@ export default ({ Component, pageProps }: AppProps) => {
           fun places to go in singapore,
           top things to do in singapore,
           things to do with friends in singapore
-          `.replace(/\s+/g, '')
+          `.trim().replace(/\s+/g, ' ')
         } />
 
         {/* Favicon - https://realfavicongenerator.net/ */}
