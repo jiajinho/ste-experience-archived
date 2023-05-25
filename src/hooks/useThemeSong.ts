@@ -24,6 +24,7 @@ export default () => {
     const audio = new Audio(url);
     audio.loop = true;
     audio.volume = lowVolume;
+    audio.load();
 
     const handleAudioCanPlayThrough = () => {
       setLoadProgressStore("html", { bgm: true });

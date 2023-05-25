@@ -3,6 +3,8 @@ import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
 import { useGLTF, useVideoTexture } from "@react-three/drei";
 
+import useLoadProgressStore from "stores/useLoadProgressStore";
+
 const gltfUrl = "/static/gltf/retro-tv.glb";
 const videoUrl = "/static/ste-encounter.mp4";
 
@@ -25,10 +27,13 @@ export default ({ knobRef, knob, ...props }: {
 } & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
+  const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
   const videoMap = useVideoTexture(videoUrl, {
-    unsuspend: 'canplaythrough',
-    muted: true
+    muted: true,
+    oncanplaythrough: () => {
+      setLoadProgressStore("html", { eventVideo: true });
+    }
   });
 
   return (
