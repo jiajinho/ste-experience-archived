@@ -92,7 +92,7 @@ export default ({ hostUrl }: {
       window.removeEventListener("blur", setFrameloopNever);
       window.removeEventListener("focus", resetFrameloop);
     }
-  }, []);
+  }, [fps, loading]);
 
   /**
    * Not hook
