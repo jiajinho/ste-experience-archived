@@ -37,7 +37,8 @@ export function moveCamera({
   const timeline = gsap.timeline({
     defaults: {
       duration: animate ? 1.5 : 0,
-      ease: "power2.out"
+      ease: "power2.out",
+      overwrite: true
     }
   });
 
