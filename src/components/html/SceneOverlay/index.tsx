@@ -56,6 +56,7 @@ const TopRow = styled.div`
 
 const BottomRow = styled(TopRow)`
   align-items: end;
+  gap: 10px;
 
   @media screen and (min-width: ${config.viewport.md}) {
     justify-content: end;

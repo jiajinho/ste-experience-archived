@@ -12,7 +12,7 @@ export default () => {
    * Hooks
    */
   const env = useEnvStore(state => state.env);
-  const { loaded, total } = useProgress();
+  const progress = useProgress(state => state.progress);
 
   const dpr = useGLStore(state => state.dpr);
   const setGLStore = useGLStore(state => state.set);
@@ -30,17 +30,14 @@ export default () => {
   const frameCounter = useRef(0);
 
   useEffect(() => {
-    if (!window) return;
-
     const dpr = Math.min(window.devicePixelRatio, 2);
 
     maxDpr.current = dpr;
     setGLStore("dpr", dpr);
-  }, [window]);
+  }, []);
 
   useFrame(() => {
-    if (!window) return;
-    if (loaded !== total) return;
+    if (progress !== 100) return;
     if (env === 'development') return;
     if (env === 'staging') return;
     if (fps.completed) return;

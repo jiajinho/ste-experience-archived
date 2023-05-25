@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
@@ -38,6 +38,8 @@ const CanvasContainer = styled.div`
   width: 100%;
 `;
 
+type Frameloop = "never" | "always";
+
 const ogImgUrl = "https://d2sie3twm806m7.cloudfront.net/sg-2023/sharebanner.jpg";
 
 export default ({ hostUrl }: {
@@ -59,9 +61,37 @@ export default ({ hostUrl }: {
   const loading = useLoadAnimationStore(state => state.loading);
   const setCameraStore = useCameraStore(state => state.set);
 
+  const [frameloop, setFrameloop] = useState<Frameloop>("never");
+
   useEffect(() => {
     if (!canvas.current) return;
     setCameraStore("canvas", canvas.current);
+  }, []);
+
+  useEffect(() => {
+    const resetFrameloop = () => {
+      let fl: Frameloop = "never";
+
+      if (fps.calibrating) fl = "always";
+      if (fps.completed) fl = "never";
+      if (!loading) fl = "always";
+
+      setFrameloop(fl);
+    }
+
+    const setFrameloopNever = () => {
+      setFrameloop("never");
+    }
+
+    resetFrameloop();
+
+    window.addEventListener("blur", setFrameloopNever);
+    window.addEventListener("focus", resetFrameloop);
+
+    return () => {
+      window.removeEventListener("blur", setFrameloopNever);
+      window.removeEventListener("focus", resetFrameloop);
+    }
   }, []);
 
   /**
@@ -69,12 +99,6 @@ export default ({ hostUrl }: {
    */
   const renderTutorial = loading && env === "production";
   const renderOverlay = env !== "development";
-
-  let frameloop: "always" | "never" = "never";
-
-  if (fps.calibrating) frameloop = "always";
-  if (fps.completed) frameloop = "never";
-  if (!loading) frameloop = "always";
 
   /**
    * Render
