@@ -11,21 +11,22 @@ type LoadObject = {
     loaded: number
   },
   html: {
-    cardTemplateBack?: boolean,
-    cardTemplateFront?: boolean,
-    hellfireFront?: boolean,
-    hellfireBack?: boolean,
-    theEncounterBack?: boolean,
-    whenWhereBack?: boolean,
+    cardTemplateBack: boolean,
+    cardTemplateFront: boolean,
+    hellfireFront: boolean,
+    hellfireBack: boolean,
+    theEncounterBack: boolean,
+    whenWhereBack: boolean,
 
-    bgm?: boolean,
+    bgm: boolean,
+    eventVideo: boolean
   } | {
     [k in Merch]: boolean
   }
 }
 
 type Store = LoadObject & {
-  set: <T extends keyof LoadObject>(k: T, v: LoadObject[T]) => void
+  set: <T extends keyof LoadObject>(k: T, v: Partial<LoadObject[T]>) => void
 }
 
 
@@ -56,7 +57,8 @@ export default create<Store>((set) => ({
     merchVHS: false,
     merchVinyl: false,
 
-    bgm: false
+    bgm: false,
+    eventVideo: false
   },
 
   set: (k, v) => set((state) => {

@@ -11,6 +11,7 @@ export const Wrapper = styled.div(({ $width }: {
 
   display: inline-block;
   perspective: 1000px;
+  user-select: none;
 `);
 
 const Container = styled.div`

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import locale from 'locale';
+import config from 'config';
 import MightyExperience from '@html/common/svg/MightyExperience';
 import Netflix from '@html/common/svg/Netflix';
 import MJGroup from '@html/common/svg/MJGroup';
@@ -15,7 +16,7 @@ export const Wrapper = styled.div`
   align-self: end;
 
   user-select: none;
-  max-width: 30vmin;
+  max-width: 200px;
 
   & > p {
     text-transform: uppercase;
@@ -23,6 +24,10 @@ export const Wrapper = styled.div`
     font-weight: 700;
     font-size: max(1.3vmin, 8px);
     color: white;
+  }
+
+  @media screen and (min-width: ${config.viewport.md}) {
+    max-width: 30vmin;
   }
 `;
 
