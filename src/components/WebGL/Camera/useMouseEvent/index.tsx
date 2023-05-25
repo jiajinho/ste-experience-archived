@@ -45,7 +45,6 @@ export default () => {
     }
 
     function handleTouchMove(e: TouchEvent) {
-      console.log("touchmove?");
       executeEvent(state, aspect, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
     }
 
