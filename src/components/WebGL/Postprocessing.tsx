@@ -21,7 +21,7 @@ export default () => {
       autoClear={false}
       multisampling={0}
       disableNormalPass={true}
-      resolutionScale={0.6}
+      resolutionScale={0.1}
     >
       <Bloom
         luminanceThreshold={1}

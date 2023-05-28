@@ -1,10 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
-
-import { applyRef } from "@webgl/HellfireClub/utils";
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
 
 const gltfUrl = "/static/gltf/card.glb";
 const mapUrl = "/static/texture/when-where-texture.jpg";
@@ -20,25 +16,12 @@ export default React.forwardRef((
   ref: React.ForwardedRef<THREE.Group>
 ) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
-  const _ref = useRef<THREE.Group>(null);
-
-  const triggerMover = useTriggerDebugModel(_ref);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
 
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
-    <group
-      ref={r => applyRef([ref, _ref], r)}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group ref={ref} {...props}>
       <mesh
         geometry={nodes.Card.geometry}
         scale={0.9}
