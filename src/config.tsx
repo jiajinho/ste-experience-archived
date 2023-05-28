@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import { Vector3 as Vector3JS } from "three";
 
 import locale from "locale";
 import { Camera, Merch, Vector3, VectorIndex, Viewport } from "types";
@@ -120,7 +120,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       vectorIndex: VectorIndex.y,
       constant: -0.15
     },
-    cameraUp: new THREE.Vector3(-1, 0, 0)
+    cameraUp: new Vector3JS(-1, 0, 0)
   },
   faqBoard: {
     name: locale.hotspot.faqBoard,
@@ -134,7 +134,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       vectorIndex: VectorIndex.y,
       constant: -0.1
     },
-    cameraUp: new THREE.Vector3(0.08, 0, 1)
+    cameraUp: new Vector3JS(0.08, 0, 1)
   },
   map: {
     name: locale.hotspot.map,
@@ -148,7 +148,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       vectorIndex: VectorIndex.y,
       constant: -0.06
     },
-    cameraUp: new THREE.Vector3(-0.063, 0, 1)
+    cameraUp: new Vector3JS(-0.063, 0, 1)
   },
   chalkBoard: {
     name: locale.hotspot.chalkBoard,

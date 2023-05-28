@@ -17,7 +17,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Box.geometry}
         material={materials.box}

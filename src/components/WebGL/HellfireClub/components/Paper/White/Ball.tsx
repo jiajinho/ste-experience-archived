@@ -15,10 +15,9 @@ type GLTFResult = GLTF & {
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
 
   return (
-    <group ref={ref} {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.PaperWhiteBall.geometry}
         material={materials.paper}

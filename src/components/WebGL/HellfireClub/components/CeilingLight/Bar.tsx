@@ -16,7 +16,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.CeilingLightBar.geometry}
         material={materials.lightStand}

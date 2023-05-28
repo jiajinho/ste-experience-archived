@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
@@ -22,12 +22,11 @@ export default ({ cta, buttonGlow = false, ...props }: {
   buttonGlow?: boolean
 } & JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
 
   useCTAGlowAnimation(materials.cta, buttonGlow, 0xED1B30);
 
   return (
-    <group ref={ref} {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.cta.geometry}
         material={materials.cta}

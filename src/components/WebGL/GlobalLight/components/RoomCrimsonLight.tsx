@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
 
 export default () => {
   const spotlight = useRef<THREE.SpotLight>(null);

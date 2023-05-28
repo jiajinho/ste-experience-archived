@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import { Vector3, Quaternion } from 'three';
 import gsap from 'gsap';
 
 import config from "config";
@@ -114,7 +114,7 @@ function rotate({ state, pageX, pageY, azimuth, polar }: {
   newPolar = clamp(newPolar, polar.min, polar.max);
 
   //transformation
-  const vec3 = new THREE.Vector3(
+  const vec3 = new Vector3(
     -Math.sin(state.azimuth) * setting.allowEvent.default.azimuth.scaleFactor,
     state.polar,
     -Math.cos(state.azimuth) * setting.allowEvent.default.azimuth.scaleFactor
@@ -122,7 +122,7 @@ function rotate({ state, pageX, pageY, azimuth, polar }: {
 
   shadowCamera.lookAt(vec3);
 
-  const endQuaternion = new THREE.Quaternion();
+  const endQuaternion = new Quaternion();
   endQuaternion.setFromRotationMatrix(shadowCamera.matrix);
 
   const time = { t: 0 };

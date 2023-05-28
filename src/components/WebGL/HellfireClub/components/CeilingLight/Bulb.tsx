@@ -1,5 +1,4 @@
 import React from "react";
-import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
@@ -20,7 +19,7 @@ export default ({ material, ...props }: {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.CeilingLightBulb.geometry}
         material={material}

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
@@ -15,13 +15,12 @@ type GLTFResult = GLTF & {
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
 
   materials.DNDTable.metalness = 0.5;
   materials.DNDTable.roughness = 1;
 
   return (
-    <group ref={ref} {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.MeetingTable.geometry}
         material={materials.DNDTable}

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Image, useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
@@ -19,10 +19,9 @@ export default ({ color, imgUrl, ...props }: {
 } & JSX.IntrinsicElements["group"]
 ) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
 
   return (
-    <group ref={ref} {...props} scale={1.2}>
+    <group {...props} scale={1.2} dispose={null}>
       <mesh geometry={nodes.Polaroid.geometry} >
         <meshStandardMaterial color={color} />
       </mesh>

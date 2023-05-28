@@ -1,5 +1,4 @@
 import React from "react";
-import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
@@ -28,7 +27,7 @@ export default ({ cta, buttonGlow = false, ...props }: {
   useCTAGlowAnimation(materials.cta, buttonGlow, 0xEC1C24);
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.cta.geometry}
         material={materials.cta}

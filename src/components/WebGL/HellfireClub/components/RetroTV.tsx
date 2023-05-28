@@ -1,5 +1,4 @@
 import React from "react";
-import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
 import { useGLTF, useVideoTexture } from "@react-three/drei";
 
@@ -37,7 +36,7 @@ export default ({ knobRef, knob, ...props }: {
   });
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.RetroTVKnob.geometry}
         material={materials.CTV}

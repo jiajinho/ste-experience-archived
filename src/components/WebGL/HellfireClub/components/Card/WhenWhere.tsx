@@ -21,7 +21,7 @@ export default React.forwardRef((
   map.flipY = false;
 
   return (
-    <group ref={ref} {...props}>
+    <group ref={ref} {...props} dispose={null}>
       <mesh
         geometry={nodes.Card.geometry}
         scale={0.9}

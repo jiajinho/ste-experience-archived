@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import * as THREE from "three";
+import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
@@ -18,7 +17,6 @@ type GLTFResult = GLTF & {
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
 
   const { colorMap, normalMap } = useTexture({
     colorMap: colorMapUrl,
@@ -26,7 +24,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   });
 
   return (
-    <group ref={ref} {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.ChandelierFlame.geometry}
         material={materials.bulb.yellow}

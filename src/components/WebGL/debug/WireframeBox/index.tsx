@@ -1,6 +1,4 @@
 import React from "react";
-import * as THREE from "three";
-
 import Box from "./Box";
 import Camera from "./Camera";
 

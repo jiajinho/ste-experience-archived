@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
-import * as THREE from 'three';
+import { Object3D, Vector3 } from 'three';
 import { useControls } from 'leva';
 
 import config from 'config';
@@ -20,12 +20,12 @@ export default () => {
     setCameraStore("mouseEvent", env === "development" ? undefined : mouseEvent);
 
     if (env === "development") {
-      camera.up = THREE.Object3D.DefaultUp;
+      camera.up = Object3D.DefaultUp;
       return;
     }
 
     const cameraSetting = config.zoomSettings[currentZoom];
-    camera.up = cameraSetting.cameraUp || THREE.Object3D.DefaultUp;
+    camera.up = cameraSetting.cameraUp || Object3D.DefaultUp;
 
     if (cameraSetting.cameraPosition) {
       camera.position.x = cameraSetting.cameraPosition[0];
@@ -34,7 +34,7 @@ export default () => {
     }
 
     if (cameraSetting.lookAt) {
-      camera.lookAt(new THREE.Vector3(...cameraSetting.lookAt));
+      camera.lookAt(new Vector3(...cameraSetting.lookAt));
     }
   }, [env]);
 
@@ -80,12 +80,12 @@ export default () => {
 
     debug.box.position.set(x, y, z);
 
-    const position = new THREE.Vector3();
+    const position = new Vector3();
     debug.box.getWorldPosition(position);
 
     debug.target.position.set(tx, ty, tz);
 
-    const lookAt = new THREE.Vector3();
+    const lookAt = new Vector3();
     debug.target.getWorldPosition(lookAt);
 
     config.zoomSettings[debug.hotspot].cameraPosition = [position.x, position.y, position.z];

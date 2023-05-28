@@ -1,5 +1,5 @@
 import React from 'react';
-import * as THREE from 'three';
+import { Vector3 } from 'three';
 
 import { Camera } from 'types';
 import useEnvStore from 'stores/useEnvStore';
@@ -18,10 +18,10 @@ export default (box: React.RefObject<THREE.Object3D>, target: React.RefObject<TH
     if (!box.current) return;
     if (!target.current) return;
 
-    const position = new THREE.Vector3();
+    const position = new Vector3();
     box.current.getWorldPosition(position);
 
-    const lookAt = new THREE.Vector3();
+    const lookAt = new Vector3();
     target.current.getWorldPosition(lookAt);
 
     console.log({

@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import * as THREE from "three";
+import React from "react";
+import { MeshStandardMaterial } from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
@@ -17,11 +17,11 @@ type GLTFResult = GLTF & {
 };
 
 const material = {
-  coffin: new THREE.MeshStandardMaterial({
+  coffin: new MeshStandardMaterial({
     metalness: 0.2,
     roughness: 0.5
   }),
-  cross: new THREE.MeshStandardMaterial({
+  cross: new MeshStandardMaterial({
     color: "#E7B57A",
     metalness: 0.6,
     roughness: 0.2
@@ -30,7 +30,6 @@ const material = {
 
 export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
 
   useTexture([mapUrl.coffin, mapUrl.crossNormal], t => {
     const _t = t as [THREE.Texture, THREE.Texture];
@@ -43,10 +42,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   });
 
   return (
-    <group
-      ref={ref}
-      {...props}
-    >
+    <group {...props} dispose={null}>
       <mesh
         castShadow
         geometry={nodes.Coffin.geometry}

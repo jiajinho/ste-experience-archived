@@ -17,7 +17,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.StickerCap.geometry}
         material={materials["tinted-cap"]}

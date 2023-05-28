@@ -29,7 +29,7 @@ export default ({ cta, buttonGlow = false, ...props }: {
   useCTAGlowAnimation(materials.cta, buttonGlow, 0xED1B30);
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.cta.geometry}
         material={materials.cta}
