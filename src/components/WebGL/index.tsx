@@ -6,6 +6,7 @@ import useLoadProgressStore from 'stores/useLoadProgressStore';
 import useControlCamera from '@webgl/debug/hooks/useControlCamera';
 import useGLRenderer from '@webgl/hooks/useGLRenderer';
 import useCalibrateFPS from '@webgl/hooks/useCalibrateFPS';
+import useFrameloop from './hooks/useFrameloop';
 
 import HellfireClub from './HellfireClub';
 import GlobalLight from './GlobalLight';
@@ -24,6 +25,7 @@ export default () => {
   useControlCamera();
   useGLRenderer();
   useCalibrateFPS();
+  useFrameloop();
 
   useEffect(() => {
     setLoaderStore("webgl", {

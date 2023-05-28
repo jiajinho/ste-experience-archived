@@ -2,8 +2,8 @@ import { create } from "zustand";
 import type { Merch, Card } from "types";
 
 type State = {
-  htmlEvent: Card.Event,
-  webglEvent: Card.Event,
+  htmlEvent?: Card.Event,
+  webglEvent?: Card.Event,
 
   merch?: Merch
 }
