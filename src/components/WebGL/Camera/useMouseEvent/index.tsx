@@ -3,71 +3,82 @@ import { useThree } from '@react-three/fiber';
 
 import config from 'config';
 import { EventState } from './types';
-import { disableEvent, enableEvent, executeEvent } from './utils';
+import { disableEvent, enableEvent, executeEvent, resetEventState } from './utils';
+
 import useCameraStore from 'stores/webgl/useCameraStore';
+import useEnvStore from 'stores/useEnvStore';
+
+const eventState: EventState = {
+  enabled: false,
+
+  anchorX: 0,
+  anchorAzimuth: config.zoomSettings.default.allowEvent?.default.azimuth.value || 0,
+  azimuth: config.zoomSettings.default.allowEvent?.default.azimuth.value || 0,
+
+  anchorY: 0,
+  anchorPolar: config.zoomSettings.default.allowEvent?.default.polar.value || 0,
+  polar: config.zoomSettings.default.allowEvent?.default.polar.value || 0
+};
 
 export default () => {
-  const { canvas, mouseEvent, camera, shadowCamera, currentZoom } = useCameraStore(state => state);
   const { aspect } = useThree(state => state.viewport);
 
+  const env = useEnvStore(state => state.env);
+
+  const canvas = useCameraStore(state => state.canvas);
+  const camera = useCameraStore(state => state.camera);
+  const shadowCamera = useCameraStore(state => state.shadowCamera);
+
   useEffect(() => {
+    if (env === "development") return;
     if (!canvas) return;
     if (!camera) return;
     if (!shadowCamera) return;
-    if (!mouseEvent) return;
 
-    if (currentZoom !== "default") return;
-
-    const setting = config.zoomSettings[currentZoom];
-
-    const state: EventState = {
-      enabled: false,
-
-      anchorX: 0,
-      anchorAzimuth: setting.allowEvent?.default.azimuth.value || 0,
-      azimuth: setting.allowEvent?.default.azimuth.value || 0,
-
-      anchorY: 0,
-      anchorPolar: setting.allowEvent?.default.polar.value || 0,
-      polar: setting.allowEvent?.default.polar.value || 0
-    }
+    const unsubscribe = useCameraStore.subscribe(state => {
+      if (state.currentZoom === "default") {
+        resetEventState(eventState);
+      }
+    });
 
     function handleMouseDown(e: MouseEvent) {
-      enableEvent(state, e.pageX, e.pageY);
+      enableEvent(eventState, e.pageX, e.pageY);
     }
 
     function handleTouchStart(e: TouchEvent) {
-      enableEvent(state, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+      enableEvent(eventState, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
     }
 
     function handleMouseMove(e: MouseEvent) {
-      executeEvent(state, aspect, e.pageX, e.pageY);
+      executeEvent(eventState, aspect, e.pageX, e.pageY);
     }
 
     function handleTouchMove(e: TouchEvent) {
-      executeEvent(state, aspect, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+      executeEvent(eventState, aspect, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
     }
 
-    function handleMouseUp() {
-      disableEvent(state);
+    function handleTouchEndMouseUp() {
+      disableEvent(eventState);
     }
 
     canvas.addEventListener("mousedown", handleMouseDown);
-    canvas.addEventListener("mouseup", handleMouseUp);
+    canvas.addEventListener("mouseup", handleTouchEndMouseUp);
     canvas.addEventListener("mousemove", handleMouseMove);
 
     canvas.addEventListener("touchstart", handleTouchStart, { passive: true });
-    canvas.addEventListener("touchend", handleMouseUp, { passive: true });
+    canvas.addEventListener("touchend", handleTouchEndMouseUp, { passive: true });
     canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
 
     return () => {
+      unsubscribe();
+
       canvas.removeEventListener("mousedown", handleMouseDown);
-      canvas.removeEventListener("mouseup", handleMouseUp);
+      canvas.removeEventListener("mouseup", handleTouchEndMouseUp);
       canvas.removeEventListener("mousemove", handleMouseMove);
 
       canvas.removeEventListener("touchstart", handleTouchStart);
-      canvas.removeEventListener("touchend", handleMouseUp);
+      canvas.removeEventListener("touchend", handleTouchEndMouseUp);
       canvas.removeEventListener("touchmove", handleTouchMove);
     }
-  }, [camera, mouseEvent, currentZoom, aspect]);
+  }, [env, canvas, camera, shadowCamera, aspect]);
 }

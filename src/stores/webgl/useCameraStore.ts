@@ -26,6 +26,7 @@ export default create<Store>((set) => ({
   shadowCamera: undefined,
   currentZoom: "default",
   canvas: undefined,
+  mouseEvent: undefined,
 
   set: (key, value) => set((state) => {
     const clone = { ...state };
