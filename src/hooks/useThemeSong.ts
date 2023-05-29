@@ -5,18 +5,18 @@ import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 import useBGMStore from '@/stores/useBGMStore';
 import useEnvStore from '@/stores/useEnvStore';
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
-
-const url = "/static/strangerthings.mp3";
+import useAssetEnvUrl from './common/useAssetEnvUrl';
 
 const lowVolume = 0.2;
 const highVolume = 0.35;
 
 export default () => {
+  const url = useAssetEnvUrl('static/strangerthings.mp3');
+
   const env = useEnvStore(state => state.env);
 
   const loading = useLoadAnimationStore(state => state.loading);
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
-  const mute = useBGMStore(state => state.mute);
 
   const [audio, setAudio] = useState<HTMLAudioElement>();
 
@@ -24,9 +24,10 @@ export default () => {
     const audio = new Audio(url);
     audio.loop = true;
     audio.volume = lowVolume;
+    audio.muted = true;
     audio.load();
 
-    const handleAudioCanPlayThrough = () => {
+    const handleCanPlayThrough = () => {
       setLoadProgressStore("html", { bgm: true });
       setAudio(audio);
 
@@ -35,29 +36,47 @@ export default () => {
       });
     }
 
-    audio.addEventListener("canplaythrough", handleAudioCanPlayThrough);
-    return () => { audio.removeEventListener("canplaythrough", handleAudioCanPlayThrough) }
-  }, []);
+    audio.addEventListener("canplaythrough", handleCanPlayThrough);
+    return () => { audio.removeEventListener("canplaythrough", handleCanPlayThrough) }
+  }, [url]);
 
   useEffect(() => {
-    const handleWindowBlur = () => {
+    if (!audio) return;
+
+    const muteAudio = () => {
+      audio.muted = true;
+      audio.pause();
+    }
+
+    const unmuteAudio = () => {
+      const mute = useBGMStore.getState().mute;
+
+      if (!mute) {
+        audio.muted = false;
+        audio.play();
+      }
+    }
+
+    if (env === "development") {
       muteAudio();
+      return;
     }
 
-    const handleWindowFocus = () => {
-      if (mute) return;
-      if (env === "development") return;
-      unmuteAudio();
-    }
+    unmuteAudio();
 
-    window.addEventListener("blur", handleWindowBlur);
-    window.addEventListener("focus", handleWindowFocus);
+    const unsubscribe = useBGMStore.subscribe(({ mute }) => {
+      mute ? muteAudio() : unmuteAudio();
+    });
+
+    window.addEventListener("blur", muteAudio);
+    window.addEventListener("focus", unmuteAudio);
 
     return () => {
-      window.removeEventListener("blur", handleWindowBlur);
-      window.removeEventListener("focus", handleWindowFocus);
+      window.removeEventListener("blur", muteAudio);
+      window.removeEventListener("focus", unmuteAudio);
+      unsubscribe();
     }
-  }, [mute, audio, env]);
+  }, [env, audio]);
 
 
   useEffect(() => {
@@ -68,45 +87,5 @@ export default () => {
       ease: "power2.out",
       volume: loading ? lowVolume : highVolume
     });
-
   }, [audio, loading]);
-
-  useEffect(() => {
-    if (!audio) return;
-
-    if (mute) {
-      muteAudio();
-      return;
-    }
-
-    switch (env) {
-      case "staging":
-      case "production":
-        unmuteAudio();
-        break;
-      default:
-        muteAudio();
-    }
-  }, [audio, env, mute]);
-
-
-  /**
-   * Not hook
-   */
-  const muteAudio = () => {
-    if (!audio) return;
-
-    audio.muted = true;
-    audio.pause();
-  }
-
-  const unmuteAudio = () => {
-    if (!audio) return;
-
-    audio.muted = false;
-
-    audio.play().catch(() => {
-      window.addEventListener("click", () => audio.play(), { once: true });
-    });
-  }
 }
