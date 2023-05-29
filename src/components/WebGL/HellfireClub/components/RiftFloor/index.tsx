@@ -3,8 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import useAnimation from "./useAnimation";
-
-const url = "/static/gltf/rift-floor.glb";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,6 +17,8 @@ type GLTFResult = GLTF & {
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  const url = useAssetEnvUrl('static/gltf/rift-floor.glb');
+
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   const spotlight = useRef<THREE.SpotLight>(null);
@@ -64,5 +65,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(url);

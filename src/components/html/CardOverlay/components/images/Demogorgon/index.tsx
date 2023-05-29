@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Demogorgon1, { Wrapper as $Demogorgon1 } from './Demogorgon1';
@@ -38,17 +38,13 @@ export default ({ cardWidth, active }: {
   cardWidth: number,
   active: boolean
 }) => {
-  const refs = useRef<HTMLPictureElement[]>([]);
-
-  useAnimation(refs, active);
-
-  refs.current = [];
+  const addRef = useAnimation(active);
 
   return (
     <Wrapper $cardWidth={cardWidth}>
-      <Demogorgon1 ref={r => r && refs.current.push(r)} />
-      <Demogorgon2 ref={r => r && refs.current.push(r)} />
-      <Demogorgon3 ref={r => r && refs.current.push(r)} />
+      <Demogorgon1 ref={addRef} />
+      <Demogorgon2 ref={addRef} />
+      <Demogorgon3 ref={addRef} />
     </Wrapper>
   )
 }

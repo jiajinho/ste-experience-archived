@@ -2,8 +2,7 @@ import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-const gltfUrl = "/static/gltf/card.glb";
-const mapUrl = "/static/texture/when-where-texture.jpg";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -15,6 +14,9 @@ export default React.forwardRef((
   props: JSX.IntrinsicElements["group"],
   ref: React.ForwardedRef<THREE.Group>
 ) => {
+  const gltfUrl = useAssetEnvUrl('static/gltf/card.glb');
+  const mapUrl = useAssetEnvUrl('static/texture/when-where-texture.jpg');
+
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
 
   const { map } = useTexture({ map: mapUrl });
@@ -35,5 +37,3 @@ export default React.forwardRef((
     </group>
   );
 });
-
-useGLTF.preload(gltfUrl);

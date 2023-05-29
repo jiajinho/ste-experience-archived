@@ -5,6 +5,7 @@ import locale from '@/locale';
 import config from '@/config';
 import { IntrinsicHTML } from '@/types';
 import useCardStore from '@/stores/html/useCardStore';
+import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
 
 import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';
@@ -77,6 +78,8 @@ export default React.forwardRef(({ ...props }: {
 
   const merchItem = merch ? config.merchCard[merch] : undefined;
 
+  const url = useAssetEnvUrl(merch ? config.merchUrl[merch] : '');
+
   return (
     <Card ref={ref} {...props}>
       <div className="front">
@@ -87,7 +90,7 @@ export default React.forwardRef(({ ...props }: {
           $top={merchItem?.top || 35}
           $left={merchItem?.left || 50}
         >
-          {merch && <Image src={config.merchUrl[merch]} />}
+          {merch && <Image src={merch ? url : undefined} />}
         </ImageContainer>
 
         <TextContainer>

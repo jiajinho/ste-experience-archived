@@ -27,15 +27,15 @@ const link = {
 }
 
 const merchUrl: { [k in Merch]: string } = {
-  merchVecna: "/static/cards/merch/vecna.png",
-  merchEleven: "/static/cards/merch/eleven.png",
-  merchVHS: "/static/cards/merch/vhs.png",
-  merchMug: "/static/cards/merch/mug.png",
-  merchCap: "/static/cards/merch/cap.png",
-  merchVinyl: "/static/cards/merch/vinyl.png",
-  merchBag: "/static/cards/merch/tote-bag.png",
-  merchShirt: "/static/cards/merch/shirt.png",
-  merchDenim: "/static/cards/merch/denim.png"
+  merchVecna: "static/cards/merch/vecna.png",
+  merchEleven: "static/cards/merch/eleven.png",
+  merchVHS: "static/cards/merch/vhs.png",
+  merchMug: "static/cards/merch/mug.png",
+  merchCap: "static/cards/merch/cap.png",
+  merchVinyl: "static/cards/merch/vinyl.png",
+  merchBag: "static/cards/merch/tote-bag.png",
+  merchShirt: "static/cards/merch/shirt.png",
+  merchDenim: "static/cards/merch/denim.png"
 }
 
 /**
@@ -276,11 +276,14 @@ const merchCard: {
   },
 }
 
+const cdnBaseUrl = 'https://d2sie3twm806m7.cloudfront.net/sg-2023/general_admission_3d';
+
 export default {
   merchUrl,
   link,
   zoomSettings,
   viewport,
   cards,
-  merchCard
+  merchCard,
+  cdnBaseUrl
 }

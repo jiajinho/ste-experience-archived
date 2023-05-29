@@ -2,10 +2,11 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 
 import { GLTFResult } from "./types";
-
-const url = "/static/gltf/rifts-mini.glb";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  const url = useAssetEnvUrl('static/gltf/rifts-mini.glb');
+
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
@@ -17,5 +18,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(url);

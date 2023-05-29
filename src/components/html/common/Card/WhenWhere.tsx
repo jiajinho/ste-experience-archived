@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 import config from "@/config";
 import { IntrinsicHTML } from "@/types";
-// import whenWhereBack from "/public/static/cards/when-where-back.png";
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 import Card from "./components/Card";
 import BackTemplate from "./components/BackTemplate";
@@ -87,12 +87,14 @@ export default React.forwardRef(({ onRowHover, ...props }: {
 ) => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
+  const url = useAssetEnvUrl('static/cards/when-where-back.png');
+
   return (
-    <Card ref={ref} flipped={false} {...props}>
+    <Card ref={ref} {...props}>
       <div className="front">
         <BackTemplate />
         <Image
-          src="https://d2sie3twm806m7.cloudfront.net/sg-2023/general_admission_3d/static/cards/when-where-back.png"
+          src={url}
           alt="When Where - Back"
           fill
           sizes="(max-width: 768px) 50vw, 100vw"

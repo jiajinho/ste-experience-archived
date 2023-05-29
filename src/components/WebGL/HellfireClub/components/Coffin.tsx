@@ -3,11 +3,7 @@ import { MeshStandardMaterial } from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-const gltfUrl = "/static/gltf/coffin.glb";
-const mapUrl = {
-  coffin: "/static/texture/coffin/coffin.jpg",
-  crossNormal: "/static/texture/coffin/cross-normal.jpg"
-}
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -29,6 +25,13 @@ const material = {
 }
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  const gltfUrl = useAssetEnvUrl('static/gltf/coffin.glb');
+
+  const mapUrl = {
+    coffin: useAssetEnvUrl('static/texture/coffin/coffin.jpg'),
+    crossNormal: useAssetEnvUrl('static/texture/coffin/cross-normal.jpg')
+  }
+
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
 
   useTexture([mapUrl.coffin, mapUrl.crossNormal], t => {
@@ -55,5 +58,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(gltfUrl);

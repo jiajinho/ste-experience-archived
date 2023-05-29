@@ -3,8 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import _materials from "../materials";
-
-const url = "/static/gltf/hellfire-sign.glb";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,6 +16,8 @@ type GLTFResult = GLTF & {
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  const url = useAssetEnvUrl('static/gltf/hellfire-sign.glb');
+
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
@@ -32,5 +33,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(url);

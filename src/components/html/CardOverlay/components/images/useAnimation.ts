@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-export default (images: React.RefObject<HTMLPictureElement[]>, active: boolean) => {
-  useEffect(() => {
-    if (!images.current) return;
-    if (!images.current.length) return;
+export default (active: boolean) => {
+  const refs = useRef<HTMLPictureElement[]>([]);
 
-    gsap.fromTo([...images.current], {
+  useEffect(() => {
+    if (!refs.current) return;
+    if (!refs.current.length) return;
+
+    gsap.fromTo([...refs.current], {
       autoAlpha: active ? 0 : 1,
       y: active ? 30 : 0
     }, {
@@ -18,4 +20,12 @@ export default (images: React.RefObject<HTMLPictureElement[]>, active: boolean) 
       overwrite: true
     });
   }, [active]);
+
+  refs.current = []
+
+  const addRef = (dom: HTMLPictureElement | null) => {
+    if (dom) refs.current.push(dom);
+  }
+
+  return addRef;
 }

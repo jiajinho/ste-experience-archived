@@ -2,8 +2,7 @@ import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-const gltfUrl = "/static/gltf/page.glb";
-const mapUrl = "/static/texture/page/demogorgon.jpg"
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -12,6 +11,9 @@ type GLTFResult = GLTF & {
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  const gltfUrl = useAssetEnvUrl('static/gltf/page.glb');
+  const mapUrl = useAssetEnvUrl('static/texture/page/demogorgon.jpg');
+
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
 
   const { map } = useTexture({ map: mapUrl });
@@ -27,5 +29,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(gltfUrl);
