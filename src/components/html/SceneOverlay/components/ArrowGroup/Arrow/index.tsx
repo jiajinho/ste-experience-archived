@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Arrow, { Wrapper as $Arrow, Direction as ArrowDirection } from '@html/common/svg/Arrow';
-import { applyStyleIf } from 'utils';
+import { applyStyleIf } from '@/utils';
 import useAnimation from './useAnimation';
 
 export const Wrapper = styled.div(({ $dir }: {

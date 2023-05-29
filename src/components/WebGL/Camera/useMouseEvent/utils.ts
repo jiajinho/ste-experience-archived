@@ -1,10 +1,10 @@
 import { Vector3, Quaternion } from 'three';
 import gsap from 'gsap';
 
-import config from "config";
-import { clamp } from 'utils';
+import config from "@/config";
+import { clamp } from '@/utils';
 import { EventState } from "./types";
-import useCameraStore from "stores/webgl/useCameraStore";
+import useCameraStore from "@/stores/webgl/useCameraStore";
 
 export function resetEventState(state: EventState) {
   state = {

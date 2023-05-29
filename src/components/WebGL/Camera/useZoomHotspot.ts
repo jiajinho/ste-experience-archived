@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-import config from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import config from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 import { moveCamera } from './utils';
 
-import useCameraStore from 'stores/webgl/useCameraStore';
-import useEnvStore from 'stores/useEnvStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
+import useEnvStore from '@/stores/useEnvStore';
 
 export default () => {
   const firstTime = useRef(true);

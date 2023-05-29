@@ -2,7 +2,7 @@ import React from "react";
 import type { GLTF } from "three-stdlib";
 import { useGLTF, useVideoTexture } from "@react-three/drei";
 
-import useLoadProgressStore from "stores/useLoadProgressStore";
+import useLoadProgressStore from "@/stores/useLoadProgressStore";
 
 const gltfUrl = "/static/gltf/retro-tv.glb";
 const videoUrl = "/static/ste-encounter.mp4";

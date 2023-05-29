@@ -1,5 +1,5 @@
 import { button, useControls } from 'leva';
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
 export default () => {
   const set = useLoadAnimationStore(state => state.set);

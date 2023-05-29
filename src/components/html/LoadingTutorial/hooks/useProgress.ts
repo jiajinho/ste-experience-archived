@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
-import useLoadProgressStore from 'stores/useLoadProgressStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
 
 export default () => {
   const [progress, setProgress] = useState(0);

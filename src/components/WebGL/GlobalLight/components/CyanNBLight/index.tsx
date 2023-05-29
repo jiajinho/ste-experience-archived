@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import { LightColor } from 'config';
+import { LightColor } from '@/config';
 import useAnimation from './useAnimation';
 
 export default () => {

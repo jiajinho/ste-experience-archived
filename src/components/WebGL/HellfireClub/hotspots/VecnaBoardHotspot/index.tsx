@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import config, { LightColor } from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import config, { LightColor } from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 
-import { Card as CardType } from 'types';
-import useEnvStore from 'stores/useEnvStore';
-import useCardStore from 'stores/html/useCardStore';
-import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
+import { Card as CardType } from '@/types';
+import useEnvStore from '@/stores/useEnvStore';
+import useCardStore from '@/stores/html/useCardStore';
+import useOutlineMeshStore from '@/stores/webgl/useOutlineMeshStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import useRegisterHotspot from '../hooks/useRegisterHotspot';
 import useHoverHomeEvent from '../hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from '../hooks/useHoverHotspotEvent';

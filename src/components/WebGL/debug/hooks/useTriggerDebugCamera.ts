@@ -1,9 +1,9 @@
 import React from 'react';
 import { Vector3 } from 'three';
 
-import { Camera } from 'types';
-import useEnvStore from 'stores/useEnvStore';
-import useDebugCameraStore from 'stores/webgl/useDebugCameraStore';
+import { Camera } from '@/types';
+import useEnvStore from '@/stores/useEnvStore';
+import useDebugCameraStore from '@/stores/webgl/useDebugCameraStore';
 
 export default (box: React.RefObject<THREE.Object3D>, target: React.RefObject<THREE.Object3D>, hotspot: Camera.Hotspot) => {
   const env = useEnvStore(state => state.env);

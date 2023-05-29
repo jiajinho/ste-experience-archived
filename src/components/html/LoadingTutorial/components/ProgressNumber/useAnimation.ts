@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import gsap from 'gsap';
 
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
 export default (wrapper: React.RefObject<HTMLDivElement>, data: string) => {
   const phase = useLoadAnimationStore(state => state.progress);

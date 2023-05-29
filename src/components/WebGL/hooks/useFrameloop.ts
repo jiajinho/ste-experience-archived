@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 
-import useCardStore from 'stores/html/useCardStore';
-import useLoadProgressStore from 'stores/useLoadProgressStore';
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import useCardStore from '@/stores/html/useCardStore';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
 type Frameloop = "never" | "always";
 

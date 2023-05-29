@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import config from 'config';
+import config from '@/config';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import WireframeBox from '@webgl/debug/WireframeBox';
 

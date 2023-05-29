@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
-import config, { LightColor } from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import config, { LightColor } from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
-import useCameraStore from 'stores/webgl/useCameraStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import useHoverHomeEvent from './hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 

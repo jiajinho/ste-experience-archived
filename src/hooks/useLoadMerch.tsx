@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import config from "config";
-import { Merch } from "types";
-import useLoadProgressStore from "stores/useLoadProgressStore";
+import config from "@/config";
+import { Merch } from "@/types";
+import useLoadProgressStore from "@/stores/useLoadProgressStore";
 
 export default () => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);

@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useProgress } from '@react-three/drei';
 
-import { clamp } from 'utils';
-import useGLStore from 'stores/webgl/useGLStore';
-import useLoadProgressStore from 'stores/useLoadProgressStore';
-import useEnvStore from 'stores/useEnvStore';
+import { clamp } from '@/utils';
+import useGLStore from '@/stores/webgl/useGLStore';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
+import useEnvStore from '@/stores/useEnvStore';
 
 export default () => {
   /**

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import locale from 'locale';
-import config from 'config';
+import locale from '@/locale';
+import config from '@/config';
 import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 
 const Wrapper = styled.div`

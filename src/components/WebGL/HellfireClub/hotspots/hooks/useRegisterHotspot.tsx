@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Vector3 } from 'three';
 
-import config from 'config';
-import { Camera, VectorIndex } from 'types';
+import config from '@/config';
+import { Camera, VectorIndex } from '@/types';
 
-import useCameraStore from 'stores/webgl/useCameraStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import { useThree } from '@react-three/fiber';
 
 export default (hotspot: Camera.Hotspot, cameraBox: React.RefObject<THREE.Group>, cameraTarget: React.RefObject<THREE.Group>) => {

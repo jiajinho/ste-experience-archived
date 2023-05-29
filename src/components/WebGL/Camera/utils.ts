@@ -1,7 +1,7 @@
 import { Object3D, Vector3 as Vector3JS, Quaternion } from "three";
 import gsap from "gsap";
 
-import { Vector3 } from "types";
+import { Vector3 } from "@/types";
 
 export function moveCamera({
   camera,

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useEnvStore from 'stores/useEnvStore';
+import useEnvStore from '@/stores/useEnvStore';
 
 export default () => {
   const env = useEnvStore(state => state.env);

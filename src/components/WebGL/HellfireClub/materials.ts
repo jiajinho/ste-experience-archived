@@ -1,5 +1,5 @@
 import { MeshPhongMaterial, MeshStandardMaterial, MeshBasicMaterial } from "three";
-import { LightColor } from "config";
+import { LightColor } from "@/config";
 
 const curtain = new MeshPhongMaterial({
   color: "#171717"

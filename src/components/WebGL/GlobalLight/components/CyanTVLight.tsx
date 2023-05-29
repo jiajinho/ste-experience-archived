@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { LightColor } from 'config';
+import { LightColor } from '@/config';
 
 export default () => {
   const spotlight = useRef<THREE.SpotLight>(null);

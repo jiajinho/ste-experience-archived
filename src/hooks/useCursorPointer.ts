@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-import useEnvStore from "stores/useEnvStore";
-import useCameraStore from "stores/webgl/useCameraStore";
-import useHoverHomeStore from "stores/webgl/useHoverHomeStore";
-import useHoverHotspotStore from "stores/webgl/useHoverHotspotStore";
+import useEnvStore from "@/stores/useEnvStore";
+import useCameraStore from "@/stores/webgl/useCameraStore";
+import useHoverHomeStore from "@/stores/webgl/useHoverHomeStore";
+import useHoverHotspotStore from "@/stores/webgl/useHoverHotspotStore";
 
 export default () => {
   const env = useEnvStore(state => state.env);

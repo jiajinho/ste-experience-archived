@@ -3,10 +3,10 @@ import { useThree } from '@react-three/fiber';
 import { Object3D, Vector3 } from 'three';
 import { useControls } from 'leva';
 
-import config from 'config';
-import useEnvStore from 'stores/useEnvStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
-import useDebugCameraStore from 'stores/webgl/useDebugCameraStore';
+import config from '@/config';
+import useEnvStore from '@/stores/useEnvStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
+import useDebugCameraStore from '@/stores/webgl/useDebugCameraStore';
 
 export default () => {
   const camera = useThree(state => state.camera);

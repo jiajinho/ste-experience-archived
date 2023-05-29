@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { Tuple } from 'types';
+import { Tuple } from '@/types';
 import Bar from './Bar';
 import Bulb from './Bulb';
 

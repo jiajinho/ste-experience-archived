@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import locale from 'locale';
-import config from 'config';
-import { IntrinsicHTML } from 'types';
-import useCardStore from 'stores/html/useCardStore';
+import locale from '@/locale';
+import config from '@/config';
+import { IntrinsicHTML } from '@/types';
+import useCardStore from '@/stores/html/useCardStore';
 
 import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';

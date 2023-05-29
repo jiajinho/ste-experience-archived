@@ -2,10 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import config from 'config';
-import { IntrinsicHTML } from 'types';
+import config from '@/config';
+import { IntrinsicHTML } from '@/types';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
 import theEncounterBack from "/public/static/cards/the-encounter-back.png";
-import useLoadProgressStore from 'stores/useLoadProgressStore';
 
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
 import Card from './components/Card';

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import locale from 'locale';
-import config from 'config';
+import locale from '@/locale';
+import config from '@/config';
 import MightyExperience from '@html/common/svg/MightyExperience';
 import Netflix from '@html/common/svg/Netflix';
 import MJGroup from '@html/common/svg/MJGroup';

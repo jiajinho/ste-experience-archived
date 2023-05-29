@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import config, { LightColor } from 'config';
+import config, { LightColor } from '@/config';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
 import useHoverHomeEvent from '../hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from '../hooks/useHoverHotspotEvent';

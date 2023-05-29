@@ -1,7 +1,7 @@
 import { Vector3 as Vector3JS } from "three";
 
-import locale from "locale";
-import { Camera, Merch, Vector3, VectorIndex, Viewport } from "types";
+import locale from "@/locale";
+import { Camera, Merch, Vector3, VectorIndex, Viewport } from "@/types";
 
 import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";

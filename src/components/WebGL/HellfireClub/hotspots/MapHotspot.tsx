@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react';
 
-import config, { LightColor } from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import config, { LightColor } from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 
 import useRegisterHotspot from './hooks/useRegisterHotspot';
-import useCameraStore from 'stores/webgl/useCameraStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import useHoverHomeEvent from './hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
-import useEnvStore from 'stores/useEnvStore';
 
 import Map from '@hellfire/components/Map';
 import WireframeBox from '@webgl/debug/WireframeBox';

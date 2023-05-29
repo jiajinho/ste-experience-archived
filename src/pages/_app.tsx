@@ -5,11 +5,11 @@ import type { AppProps } from 'next/app';
 import { Leva } from 'leva';
 
 import '../globals.css';
-import locale from 'locale';
-import fonts from 'fonts';
-import useToggleEnv from 'hooks/useToggleEnv';
-import useEnvStore from 'stores/useEnvStore';
-import useResponsive from 'hooks/useResponsive';
+import locale from '@/locale';
+import fonts from '@/fonts';
+import useToggleEnv from '@/hooks/useToggleEnv';
+import useResponsive from '@/hooks/useResponsive';
+import useEnvStore from '@/stores/useEnvStore';
 
 const Stats = dynamic(() => import('@react-three/drei').then(l => l.Stats), { ssr: false });
 

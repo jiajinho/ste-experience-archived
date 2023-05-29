@@ -1,5 +1,5 @@
 import React from 'react';
-import useEnvStore from 'stores/useEnvStore';
+import useEnvStore from '@/stores/useEnvStore';
 
 export default React.forwardRef(({ color, ...props }: {
   color: string,

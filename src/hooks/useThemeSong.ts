@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
-import useBGMStore from 'stores/useBGMStore';
-import useEnvStore from 'stores/useEnvStore';
-import useLoadProgressStore from 'stores/useLoadProgressStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
+import useBGMStore from '@/stores/useBGMStore';
+import useEnvStore from '@/stores/useEnvStore';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
 
 const url = "/static/strangerthings.mp3";
 

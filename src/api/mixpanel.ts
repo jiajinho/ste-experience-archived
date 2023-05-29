@@ -1,4 +1,4 @@
-import useEnvStore from "stores/useEnvStore";
+import useEnvStore from "@/stores/useEnvStore";
 
 export enum MixpanelEvent {
   START = "(Loading Page)",

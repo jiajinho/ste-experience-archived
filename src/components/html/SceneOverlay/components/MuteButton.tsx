@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { IntrinsicHTML } from 'types';
-import useBGMStore from 'stores/useBGMStore';
+import { IntrinsicHTML } from '@/types';
+import useBGMStore from '@/stores/useBGMStore';
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
 import Cassette, { Wrapper as $Cassette } from '@html/common/svg/Cassette';
 

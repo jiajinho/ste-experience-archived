@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import config from 'config';
-import { Camera } from 'types';
-import useCameraStore from 'stores/webgl/useCameraStore';
+import config from '@/config';
+import { Camera } from '@/types';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import Arrow, { Viewport } from './Arrow';
 
 export const Wrapper = styled.div`

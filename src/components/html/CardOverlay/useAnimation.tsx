@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import useCardStore from 'stores/html/useCardStore';
+import useCardStore from '@/stores/html/useCardStore';
 
 export default (
   wrapper: React.RefObject<HTMLDivElement>,

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Bloom, EffectComposer, Noise, Outline } from '@react-three/postprocessing';
 import { KernelSize, BlendFunction } from 'postprocessing';
 
-import useEnvStore from 'stores/useEnvStore';
-import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
+import useEnvStore from '@/stores/useEnvStore';
+import useOutlineMeshStore from '@/stores/webgl/useOutlineMeshStore';
 
 export default () => {
   const env = useEnvStore(state => state.env);

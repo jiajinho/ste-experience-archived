@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IntrinsicHTML } from 'types';
+import { IntrinsicHTML } from '@/types';
 
 export const Wrapper = styled.svg`
   aspect-ratio: 42/51;

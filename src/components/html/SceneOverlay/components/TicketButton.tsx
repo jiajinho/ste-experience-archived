@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import locale from 'locale';
-import config from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import locale from '@/locale';
+import config from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 
 export const Wrapper = styled.svg`
   aspect-ratio: 98/40;

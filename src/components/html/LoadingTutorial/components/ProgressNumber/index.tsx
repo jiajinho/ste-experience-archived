@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import config from 'config';
+import config from '@/config';
 import glitch from './glitch';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 import useAnimation from './useAnimation';
 
 const Wrapper = styled.div`

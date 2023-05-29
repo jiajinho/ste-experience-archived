@@ -4,17 +4,17 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
-import locale from 'locale';
-import useEnvStore from 'stores/useEnvStore';
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
-import useLoadMerch from 'hooks/useLoadMerch';
-import useThemeSong from 'hooks/useThemeSong';
-import useCursorPointer from 'hooks/useCursorPointer';
-import useExitBrowser from 'hooks/useExitBrowser';
-import useGLStore from 'stores/webgl/useGLStore';
+import locale from '@/locale';
+import useEnvStore from '@/stores/useEnvStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
+import useLoadMerch from '@/hooks/useLoadMerch';
+import useThemeSong from '@/hooks/useThemeSong';
+import useCursorPointer from '@/hooks/useCursorPointer';
+import useExitBrowser from '@/hooks/useExitBrowser';
+import useGLStore from '@/stores/webgl/useGLStore';
 
-import WebGL from 'components/WebGL';
+import WebGL from '@/components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
 
 const Canvas = dynamic(() => import('@react-three/fiber').then(c => c.Canvas), { ssr: false });

@@ -1,4 +1,4 @@
-import { Camera, Merch } from "types";
+import { Camera, Merch } from "@/types";
 
 const global = {
   stEncounter: "The Encounter",

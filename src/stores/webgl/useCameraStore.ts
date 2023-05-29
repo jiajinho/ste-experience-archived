@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-import type { Camera } from "types";
-import config from "config";
+import type { Camera } from "@/types";
+import config from "@/config";
 
 type State = {
   camera?: THREE.PerspectiveCamera,

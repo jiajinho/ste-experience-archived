@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { IntrinsicHTML } from 'types';
+import { IntrinsicHTML } from '@/types';
 import hellfireFront from "/public/static/cards/hellfire-front.png";
 import hellfireBack from "/public/static/cards/hellfire-back.png";
-import useLoadProgressStore from 'stores/useLoadProgressStore';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
 
 import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';

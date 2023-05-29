@@ -1,4 +1,4 @@
-import { Merch } from "types";
+import { Merch } from "@/types";
 import { create } from "zustand";
 
 type LoadObject = {

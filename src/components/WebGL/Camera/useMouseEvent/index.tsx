@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 
-import config from 'config';
+import config from '@/config';
 import { EventState } from './types';
 import { disableEvent, enableEvent, executeEvent, resetEventState } from './utils';
 
-import useCameraStore from 'stores/webgl/useCameraStore';
-import useEnvStore from 'stores/useEnvStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
+import useEnvStore from '@/stores/useEnvStore';
 
 const eventState: EventState = {
   enabled: false,

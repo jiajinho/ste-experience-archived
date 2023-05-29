@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { gsap } from "gsap";
 
-import config from "config";
-import useCardStore from "stores/html/useCardStore";
+import config from "@/config";
+import useCardStore from "@/stores/html/useCardStore";
 
 export default (encounterCard: React.RefObject<THREE.Group>, whenWhereCard: React.RefObject<THREE.Group>) => {
   const webglEvent = useCardStore(state => state.webglEvent);
