@@ -5,6 +5,7 @@ import config from "@/config";
 import { clamp } from '@/utils';
 import { EventState } from "./types";
 import useCameraStore from "@/stores/webgl/useCameraStore";
+import useMouseEventStore from '@/stores/webgl/useMouseEventStore';
 
 export function resetEventState(state: EventState) {
   state = {
@@ -22,7 +23,7 @@ export function resetEventState(state: EventState) {
 
 export function enableEvent(state: EventState, pageX: number, pageY: number) {
   const currentZoom = useCameraStore.getState().currentZoom;
-  const mouseEvent = useCameraStore.getState().mouseEvent;
+  const mouseEvent = useMouseEventStore.getState().event;
 
   if (currentZoom !== "default") return;
   if (!mouseEvent) return;
