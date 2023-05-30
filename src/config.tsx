@@ -1,7 +1,7 @@
-import * as THREE from "three";
+import { Vector3 as Vector3JS } from "three";
 
-import locale from "locale";
-import { Camera, Merch, Vector3, VectorIndex, Viewport } from "types";
+import locale from "@/locale";
+import { Camera, Merch, Vector3, VectorIndex, Viewport } from "@/types";
 
 import Puppet from "@html/common/svg/Puppet";
 import Star from "@html/common/svg/Star";
@@ -27,15 +27,15 @@ const link = {
 }
 
 const merchUrl: { [k in Merch]: string } = {
-  merchVecna: "/static/cards/merch/vecna.png",
-  merchEleven: "/static/cards/merch/eleven.png",
-  merchVHS: "/static/cards/merch/vhs.png",
-  merchMug: "/static/cards/merch/mug.png",
-  merchCap: "/static/cards/merch/cap.png",
-  merchVinyl: "/static/cards/merch/vinyl.png",
-  merchBag: "/static/cards/merch/tote-bag.png",
-  merchShirt: "/static/cards/merch/shirt.png",
-  merchDenim: "/static/cards/merch/denim.png"
+  merchVecna: "static/cards/merch/vecna.png",
+  merchEleven: "static/cards/merch/eleven.png",
+  merchVHS: "static/cards/merch/vhs.png",
+  merchMug: "static/cards/merch/mug.png",
+  merchCap: "static/cards/merch/cap.png",
+  merchVinyl: "static/cards/merch/vinyl.png",
+  merchBag: "static/cards/merch/tote-bag.png",
+  merchShirt: "static/cards/merch/shirt.png",
+  merchDenim: "static/cards/merch/denim.png"
 }
 
 /**
@@ -120,7 +120,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       vectorIndex: VectorIndex.y,
       constant: -0.15
     },
-    cameraUp: new THREE.Vector3(-1, 0, 0)
+    cameraUp: new Vector3JS(-1, 0, 0)
   },
   faqBoard: {
     name: locale.hotspot.faqBoard,
@@ -134,7 +134,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       vectorIndex: VectorIndex.y,
       constant: -0.1
     },
-    cameraUp: new THREE.Vector3(0.08, 0, 1)
+    cameraUp: new Vector3JS(0.08, 0, 1)
   },
   map: {
     name: locale.hotspot.map,
@@ -148,7 +148,7 @@ const zoomSettings: { [h in Camera.Hotspot]: Camera.Zoom } = {
       vectorIndex: VectorIndex.y,
       constant: -0.06
     },
-    cameraUp: new THREE.Vector3(-0.063, 0, 1)
+    cameraUp: new Vector3JS(-0.063, 0, 1)
   },
   chalkBoard: {
     name: locale.hotspot.chalkBoard,
@@ -276,11 +276,14 @@ const merchCard: {
   },
 }
 
+const cdnBaseUrl = 'https://d2sie3twm806m7.cloudfront.net/sg-2023/general_admission_3d';
+
 export default {
   merchUrl,
   link,
   zoomSettings,
   viewport,
   cards,
-  merchCard
+  merchCard,
+  cdnBaseUrl
 }

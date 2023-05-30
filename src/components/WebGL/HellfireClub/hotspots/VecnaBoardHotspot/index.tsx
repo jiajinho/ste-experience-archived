@@ -1,16 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import config, { LightColor } from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import config, { LightColor } from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 
-import { Card as CardType } from 'types';
-import useEnvStore from 'stores/useEnvStore';
-import useCardStore from 'stores/html/useCardStore';
-import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+import { Card as CardType } from '@/types';
+import useEnvStore from '@/stores/useEnvStore';
+import useCardStore from '@/stores/html/useCardStore';
+import useOutlineMeshStore from '@/stores/webgl/useOutlineMeshStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import useRegisterHotspot from '../hooks/useRegisterHotspot';
 import useHoverHomeEvent from '../hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from '../hooks/useHoverHotspotEvent';
@@ -31,7 +29,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
-  const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
@@ -68,8 +65,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     return () => { setOutlineMeshStore([]) }
   }, [currentZoom, env]);
 
-  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
-  const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("vecnaBoard", cameraBox, cameraTarget);
 
@@ -77,11 +72,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Not hook
    */
   const setting = config.zoomSettings["vecnaBoard"];
-
-  const handleModelClick = () => {
-    triggerModelControl();
-    triggerZoom();
-  }
 
   const handleCardClick = (event: CardType.Event) => {
     if (env === "development") return;
@@ -113,7 +103,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group ref={ref} {...props}>
       <VecnaBoard
-        onClick={handleModelClick}
+        onClick={triggerZoom}
         rotation={[0, Math.PI / 2, 0]}
         cta={{
           onClick: handleCallToAction,
@@ -150,14 +140,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         distance={7.8}
         color={LightColor.Crimson}
       />
-
-      {(env === "development" || env === "staging") &&
-        <WireframeBox.Light
-          ref={lightBox}
-          position={spotlight.current?.position}
-          onClick={triggerSpotlightControl}
-        />
-      }
 
       <WireframeBox.Camera
         ref={cameraBox}

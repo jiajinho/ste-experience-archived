@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import * as THREE from 'three';
+import { Vector3 } from 'three';
 
-import config from 'config';
-import { Camera, VectorIndex } from 'types';
+import config from '@/config';
+import { Camera, VectorIndex } from '@/types';
 
-import useCameraStore from 'stores/webgl/useCameraStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import { useThree } from '@react-three/fiber';
 
 export default (hotspot: Camera.Hotspot, cameraBox: React.RefObject<THREE.Group>, cameraTarget: React.RefObject<THREE.Group>) => {
@@ -46,10 +46,10 @@ export default (hotspot: Camera.Hotspot, cameraBox: React.RefObject<THREE.Group>
       cameraTarget.current.position.z = setting.cameraBox.lookAt[2];
     }
 
-    const position = new THREE.Vector3();
+    const position = new Vector3();
     cameraBox.current.getWorldPosition(position);
 
-    const lookAt = new THREE.Vector3();
+    const lookAt = new Vector3();
     cameraTarget.current.getWorldPosition(lookAt);
 
     setting.cameraPosition = [position.x, position.y, position.z];

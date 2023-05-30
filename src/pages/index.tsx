@@ -1,21 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
-import locale from 'locale';
-import useEnvStore from 'stores/useEnvStore';
-import useLoadProgressStore from 'stores/useLoadProgressStore';
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
-import useLoadMerch from 'hooks/useLoadMerch';
-import useThemeSong from 'hooks/useThemeSong';
-import useCursorPointer from 'hooks/useCursorPointer';
-import useExitBrowser from 'hooks/useExitBrowser';
-import useGLStore from 'stores/webgl/useGLStore';
+import locale from '@/locale';
+import useEnvStore from '@/stores/useEnvStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
+import useLoadMerch from '@/hooks/useLoadMerch';
+import useThemeSong from '@/hooks/useThemeSong';
+import useCursorPointer from '@/hooks/useCursorPointer';
+import useExitBrowser from '@/hooks/useExitBrowser';
+import useGLStore from '@/stores/webgl/useGLStore';
 
-import WebGL from 'components/WebGL';
+import WebGL from '@/components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
 
 const Canvas = dynamic(() => import('@react-three/fiber').then(c => c.Canvas), { ssr: false });
@@ -38,8 +37,6 @@ const CanvasContainer = styled.div`
   width: 100%;
 `;
 
-type Frameloop = "never" | "always";
-
 const ogImgUrl = "https://d2sie3twm806m7.cloudfront.net/sg-2023/sharebanner.jpg";
 
 export default ({ hostUrl }: {
@@ -57,46 +54,14 @@ export default ({ hostUrl }: {
 
   const env = useEnvStore(state => state.env);
   const dpr = useGLStore(state => state.dpr);
-  const fps = useLoadProgressStore(state => state.fps);
   const loading = useLoadAnimationStore(state => state.loading);
   const setCameraStore = useCameraStore(state => state.set);
-
-  const [frameloop, setFrameloop] = useState<Frameloop>("never");
 
   useEffect(() => {
     if (!canvas.current) return;
     setCameraStore("canvas", canvas.current);
   }, []);
 
-  useEffect(() => {
-    const resetFrameloop = () => {
-      let fl: Frameloop = "never";
-
-      if (fps.calibrating) fl = "always";
-      if (fps.completed) fl = "never";
-      if (!loading) fl = "always";
-
-      setFrameloop(fl);
-    }
-
-    const setFrameloopNever = () => {
-      setFrameloop("never");
-    }
-
-    resetFrameloop();
-
-    window.addEventListener("blur", setFrameloopNever);
-    window.addEventListener("focus", resetFrameloop);
-
-    return () => {
-      window.removeEventListener("blur", setFrameloopNever);
-      window.removeEventListener("focus", resetFrameloop);
-    }
-  }, [fps, loading]);
-
-  /**
-   * Not hook
-   */
   const renderTutorial = loading && env === "production";
   const renderOverlay = env !== "development";
 
@@ -125,8 +90,8 @@ export default ({ hostUrl }: {
 
       <Wrapper>
         {renderTutorial && <LoadingTutorial />}
-
         {renderOverlay && <SceneOverlay />}
+
         <CardOverlay />
 
         <CanvasContainer ref={canvas}>
@@ -134,7 +99,6 @@ export default ({ hostUrl }: {
             shadows
             gl={{ alpha: false }}
             camera={{ fov: 50 }}
-            frameloop={frameloop}
             dpr={dpr}
           >
             <WebGL />

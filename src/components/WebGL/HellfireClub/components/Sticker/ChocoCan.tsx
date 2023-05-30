@@ -1,11 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
-import { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-
-const url = "/static/gltf/sticker-choco-can.glb";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,24 +14,12 @@ type GLTFResult = GLTF & {
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  const url = useAssetEnvUrl('static/gltf/sticker-choco-can.glb');
+
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
-  const ref = useRef<THREE.Group>(null);
-
-  const triggerMover = useTriggerDebugModel(ref);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
-
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-      dispose={null}
-    >
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.StickerCan.geometry}
         material={materials["tinted-choco-can"]}
@@ -42,5 +27,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(url);

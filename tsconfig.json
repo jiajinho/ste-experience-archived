@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@html/*": ["src/components/html/*"],
+      "@webgl/*": ["src/components/WebGL/*"],
+      "@hellfire/*": ["src/components/WebGL/HellfireClub/*"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -14,13 +20,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
-    "paths": {
-      "@html/*": ["components/html/*"],
-      "@webgl/*": ["components/WebGL/*"],
-      "@hellfire/*": ["components/WebGL/HellfireClub/*"]
-    }
+    "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "script"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "isolatedModules": false
+    }
+  }
 }

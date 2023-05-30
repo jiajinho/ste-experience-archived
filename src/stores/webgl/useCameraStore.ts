@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-import type { Camera } from "types";
-import config from "config";
+import type { Camera } from "@/types";
+import config from "@/config";
 
 type State = {
   camera?: THREE.PerspectiveCamera,
@@ -26,6 +26,7 @@ export default create<Store>((set) => ({
   shadowCamera: undefined,
   currentZoom: "default",
   canvas: undefined,
+  mouseEvent: undefined,
 
   set: (key, value) => set((state) => {
     const clone = { ...state };

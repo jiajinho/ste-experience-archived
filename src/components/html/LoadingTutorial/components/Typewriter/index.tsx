@@ -1,9 +1,9 @@
 import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
-import locale from 'locale';
-import useViewportStore from 'stores/useViewportStore';
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import locale from '@/locale';
+import useViewportStore from '@/stores/useViewportStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 import useAnimation from './useAnimation';
 import useDoubleClick from './useDoubleClick';
 

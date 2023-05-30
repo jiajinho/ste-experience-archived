@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
-import config from "config";
-import useViewportStore from "stores/useViewportStore";
+import config from "@/config";
+import useViewportStore from "@/stores/useViewportStore";
 
 export default () => {
   const setViewport = useViewportStore(state => state.set);

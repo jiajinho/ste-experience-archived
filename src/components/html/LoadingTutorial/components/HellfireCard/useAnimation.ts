@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
 export default (ref: React.RefObject<HTMLDivElement>) => {
   const phase = useLoadAnimationStore(state => state.card);

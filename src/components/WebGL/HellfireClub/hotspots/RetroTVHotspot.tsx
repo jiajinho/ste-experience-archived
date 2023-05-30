@@ -1,16 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
 
-import config, { LightColor } from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import config, { LightColor } from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
-import useEnvStore from 'stores/useEnvStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
-import useOutlineMeshStore from 'stores/webgl/useOutlineMeshStore';
+import useEnvStore from '@/stores/useEnvStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
+import useOutlineMeshStore from '@/stores/webgl/useOutlineMeshStore';
 import useHoverHomeEvent from './hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 
@@ -27,14 +24,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
 
   const knob = useRef<THREE.Mesh>(null);
 
-  const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
-  const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
-
-  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
-  const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("retroTV", cameraBox, cameraTarget);
 
@@ -65,11 +57,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    */
   const setting = config.zoomSettings["retroTV"];
 
-  const handleClick = () => {
-    triggerModelControl();
-    triggerZoom();
-  }
-
   const handleKnobClick = () => {
     if (currentZoom !== "retroTV") return;
 
@@ -81,16 +68,17 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Render
    */
   return (
-    <group ref={ref} {...props}>
+    <group {...props}>
       <RetroTV
         knobRef={knob}
-        onClick={handleClick}
+        onClick={triggerZoom}
         knob={{
           onClick: handleKnobClick,
           ...hoverEvent.hotspot
         }}
         {...hoverEvent.home}
       />
+
 
       <spotLight
         ref={spotlight}
@@ -102,14 +90,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         distance={5}
         color={LightColor.Crimson}
       />
-
-      {env === "development" &&
-        <WireframeBox.Light
-          ref={lightBox}
-          position={spotlight.current?.position}
-          onClick={triggerSpotlightControl}
-        />
-      }
 
       <WireframeBox.Camera
         ref={cameraBox}

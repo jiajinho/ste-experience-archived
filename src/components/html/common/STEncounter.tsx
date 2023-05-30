@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import locale from 'locale';
-import { IntrinsicHTML } from 'types';
+import locale from '@/locale';
+import { IntrinsicHTML } from '@/types';
 
 import Netflix, { Wrapper as $Netflix } from '@html/common/svg/Netflix';
 import StrangerThings, { Wrapper as $StrangerThings } from '@html/common/svg/StrangerThings';

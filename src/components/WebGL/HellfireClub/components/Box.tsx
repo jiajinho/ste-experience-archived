@@ -1,12 +1,8 @@
-import React, { useRef } from "react";
-import * as THREE from "three";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
-import type { ThreeEvent } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-
-const gltfUrl = "/static/gltf/box.glb";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,22 +14,12 @@ type GLTFResult = GLTF & {
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
+  const url = useAssetEnvUrl('static/gltf/box.glb');
 
-  const triggerMover = useTriggerDebugModel(ref);
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    triggerMover();
-    props.onClick && props.onClick(e);
-  }
+  const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group
-      ref={ref}
-      {...props}
-      onClick={handleClick}
-    >
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Box.geometry}
         material={materials.box}
@@ -41,5 +27,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(gltfUrl);

@@ -1,12 +1,32 @@
-import * as THREE from 'three';
+import { Vector3, Quaternion } from 'three';
 import gsap from 'gsap';
 
-import config from "config";
-import { clamp } from 'utils';
+import config from "@/config";
+import { clamp } from '@/utils';
 import { EventState } from "./types";
-import useCameraStore from "stores/webgl/useCameraStore";
+import useCameraStore from "@/stores/webgl/useCameraStore";
+
+export function resetEventState(state: EventState) {
+  state = {
+    enabled: false,
+
+    anchorX: 0,
+    anchorAzimuth: config.zoomSettings.default.allowEvent?.default.azimuth.value || 0,
+    azimuth: config.zoomSettings.default.allowEvent?.default.azimuth.value || 0,
+
+    anchorY: 0,
+    anchorPolar: config.zoomSettings.default.allowEvent?.default.polar.value || 0,
+    polar: config.zoomSettings.default.allowEvent?.default.polar.value || 0
+  }
+}
 
 export function enableEvent(state: EventState, pageX: number, pageY: number) {
+  const currentZoom = useCameraStore.getState().currentZoom;
+  const mouseEvent = useCameraStore.getState().mouseEvent;
+
+  if (currentZoom !== "default") return;
+  if (!mouseEvent) return;
+
   state.enabled = true;
   state.anchorX = pageX;
   state.anchorY = pageY;
@@ -94,7 +114,7 @@ function rotate({ state, pageX, pageY, azimuth, polar }: {
   newPolar = clamp(newPolar, polar.min, polar.max);
 
   //transformation
-  const vec3 = new THREE.Vector3(
+  const vec3 = new Vector3(
     -Math.sin(state.azimuth) * setting.allowEvent.default.azimuth.scaleFactor,
     state.polar,
     -Math.cos(state.azimuth) * setting.allowEvent.default.azimuth.scaleFactor
@@ -102,7 +122,7 @@ function rotate({ state, pageX, pageY, azimuth, polar }: {
 
   shadowCamera.lookAt(vec3);
 
-  const endQuaternion = new THREE.Quaternion();
+  const endQuaternion = new Quaternion();
   endQuaternion.setFromRotationMatrix(shadowCamera.matrix);
 
   const time = { t: 0 };

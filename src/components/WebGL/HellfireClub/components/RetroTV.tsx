@@ -1,12 +1,9 @@
 import React from "react";
-import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
 import { useGLTF, useVideoTexture } from "@react-three/drei";
 
-import useLoadProgressStore from "stores/useLoadProgressStore";
-
-const gltfUrl = "/static/gltf/retro-tv.glb";
-const videoUrl = "/static/ste-encounter.mp4";
+import useLoadProgressStore from "@/stores/useLoadProgressStore";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -26,6 +23,9 @@ export default ({ knobRef, knob, ...props }: {
   knob?: JSX.IntrinsicElements["mesh"],
 } & JSX.IntrinsicElements["group"]
 ) => {
+  const gltfUrl = useAssetEnvUrl('static/gltf/retro-tv.glb');
+  const videoUrl = useAssetEnvUrl('static/ste-encounter.mp4');
+
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
@@ -37,7 +37,7 @@ export default ({ knobRef, knob, ...props }: {
   });
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.RetroTVKnob.geometry}
         material={materials.CTV}
@@ -69,5 +69,3 @@ export default ({ knobRef, knob, ...props }: {
     </group >
   );
 }
-
-useGLTF.preload(gltfUrl);

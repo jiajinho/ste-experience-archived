@@ -1,12 +1,10 @@
-import React, { useRef } from "react";
-import * as THREE from "three";
+import React from "react";
+import { sRGBEncoding } from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import materials from "@webgl/HellfireClub/materials";
-
-const gltfUrl = "/static/gltf/chair-ornamental.glb";
-const mapUrl = "/static/texture/wood.jpg";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -15,17 +13,19 @@ type GLTFResult = GLTF & {
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
+  const gltfUrl = useAssetEnvUrl('static/gltf/chair-ornamental.glb');
+  const mapUrl = useAssetEnvUrl('static/texture/wood.jpg');
+
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
 
   const { map } = useTexture({ map: mapUrl });
   map.flipY = false;
-  map.encoding = THREE.sRGBEncoding;
+  map.encoding = sRGBEncoding;
 
   materials.wood.map = map;
 
   return (
-    <group ref={ref} {...props}>
+    <group {...props} dispose={null}>
       <mesh
         castShadow
         geometry={nodes.WoodChair.geometry}
@@ -34,5 +34,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(gltfUrl);

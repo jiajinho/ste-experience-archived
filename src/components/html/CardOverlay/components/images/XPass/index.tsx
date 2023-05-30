@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import useAnimation from '../useAnimation';
@@ -59,21 +59,17 @@ export default ({ cardWidth, active }: {
   cardWidth: number,
   active: boolean
 }) => {
-  const refs = useRef<HTMLPictureElement[]>([]);
-
-  useAnimation(refs, active);
-
-  refs.current = [];
+  const addRef = useAnimation(active);
 
   return (
     <Wrapper $cardWidth={cardWidth}>
-      <Ghost ref={r => r && refs.current.push(r)} />
-      <Tape ref={r => r && refs.current.push(r)} />
-      <Clock ref={r => r && refs.current.push(r)} />
+      <Ghost ref={addRef} />
+      <Tape ref={addRef} />
+      <Clock ref={addRef} />
 
-      <Waffle ref={r => r && refs.current.push(r)} />
-      <TrashDino ref={r => r && refs.current.push(r)} />
-      <Vial ref={r => r && refs.current.push(r)} />
+      <Waffle ref={addRef} />
+      <TrashDino ref={addRef} />
+      <Vial ref={addRef} />
     </Wrapper>
   )
 }

@@ -1,11 +1,10 @@
 import React, { useRef } from "react";
-import * as THREE from "three";
 import { Line } from "@react-three/drei";
 
-import { Camera, Vector3 } from "types";
+import { Camera, Vector3 } from "@/types";
 import { applyRef } from "@webgl/HellfireClub/utils";
-import useEnvStore from "stores/useEnvStore";
-import useDebugCameraStore from "stores/webgl/useDebugCameraStore";
+import useEnvStore from "@/stores/useEnvStore";
+import useDebugCameraStore from "@/stores/webgl/useDebugCameraStore";
 import useTriggerDebugCamera from "@webgl/debug/hooks/useTriggerDebugCamera";
 import Box from "./Box";
 

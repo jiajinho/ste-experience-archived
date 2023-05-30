@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { IntrinsicHTML } from 'types';
+import { IntrinsicHTML } from '@/types';
 import useAnimation from './useAnimation';
 
 export const Wrapper = styled.div(({ $width }: {

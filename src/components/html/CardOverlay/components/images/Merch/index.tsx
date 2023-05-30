@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Shirt, { Wrapper as $Shirt } from './Shirt';
@@ -45,18 +45,14 @@ export default ({ cardWidth, active }: {
   cardWidth: number,
   active: boolean
 }) => {
-  const refs = useRef<HTMLPictureElement[]>([]);
-
-  useAnimation(refs, active);
-
-  refs.current = [];
+  const addRef = useAnimation(active);
 
   return (
     <Wrapper $cardWidth={cardWidth}>
-      <Shirt ref={r => r && refs.current.push(r)} />
-      <Mug ref={r => r && refs.current.push(r)} />
-      <Tape ref={r => r && refs.current.push(r)} />
-      <Denim ref={r => r && refs.current.push(r)} />
+      <Shirt ref={addRef} />
+      <Mug ref={addRef} />
+      <Tape ref={addRef} />
+      <Denim ref={addRef} />
     </Wrapper>
   )
 }

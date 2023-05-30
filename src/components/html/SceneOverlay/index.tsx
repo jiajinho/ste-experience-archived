@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import config from 'config';
-import useViewportStore from 'stores/useViewportStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
-import useBGMStore from 'stores/useBGMStore';
+import config from '@/config';
+import useViewportStore from '@/stores/useViewportStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
+import useBGMStore from '@/stores/useBGMStore';
 
 import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 import ArrowGroup, { Wrapper as $ArrowGroup } from './components/ArrowGroup';

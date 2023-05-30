@@ -1,15 +1,17 @@
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import { Stats } from '@react-three/drei';
 import { Leva } from 'leva';
 
 import '../globals.css';
-import locale from 'locale';
-import fonts from 'fonts';
-import useToggleEnv from 'hooks/useToggleEnv';
-import useEnvStore from 'stores/useEnvStore';
-import useResponsive from 'hooks/useResponsive';
+import locale from '@/locale';
+import fonts from '@/fonts';
+import useToggleEnv from '@/hooks/useToggleEnv';
+import useResponsive from '@/hooks/useResponsive';
+import useEnvStore from '@/stores/useEnvStore';
+
+const Stats = dynamic(() => import('@react-three/drei').then(l => l.Stats), { ssr: false });
 
 const App = styled.main`
   --font-benguiat: ${fonts.benguiat.style.fontFamily};

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { differenceInMilliseconds } from "date-fns";
 
-import useLoadAnimationStore from 'stores/html/useLoadAnimationStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
 export default () => {
   const phase = useLoadAnimationStore(state => state.typewriter);

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 
-import api from "api";
-import { MixpanelEvent } from "api/mixpanel";
-import useLoadAnimationStore from "stores/html/useLoadAnimationStore";
+import api from "@/api";
+import { MixpanelEvent } from "@/api/mixpanel";
+import useLoadAnimationStore from "@/stores/html/useLoadAnimationStore";
 
 export default (
   chars: React.RefObject<HTMLParagraphElement[]>,

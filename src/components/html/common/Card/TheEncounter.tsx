@@ -2,10 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import config from 'config';
-import { IntrinsicHTML } from 'types';
-import theEncounterBack from "/public/static/cards/the-encounter-back.png";
-import useLoadProgressStore from 'stores/useLoadProgressStore';
+import config from '@/config';
+import { IntrinsicHTML } from '@/types';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
+import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
 
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
 import Card from './components/Card';
@@ -73,12 +73,14 @@ export default React.forwardRef(({ onRowHover, ...props }: {
 ) => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
+  const url = useAssetEnvUrl('static/cards/the-encounter-back.png');
+
   return (
     <Card ref={ref} flipped={false} {...props}>
       <div className="front">
         <BackTemplate />
         <Image
-          src={theEncounterBack}
+          src={url}
           alt="The Encounter - Back"
           fill
           sizes="(max-width: 768px) 50vw, 100vw"

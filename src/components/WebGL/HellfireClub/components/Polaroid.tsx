@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Image, useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-const url = "/static/gltf/polaroid.glb";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,11 +18,12 @@ export default ({ color, imgUrl, ...props }: {
   imgUrl: string
 } & JSX.IntrinsicElements["group"]
 ) => {
+  const url = useAssetEnvUrl('static/gltf/polaroid.glb');
+
   const { nodes } = useGLTF(url) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
 
   return (
-    <group ref={ref} {...props} scale={1.2}>
+    <group {...props} scale={1.2} dispose={null}>
       <mesh geometry={nodes.Polaroid.geometry} >
         <meshStandardMaterial color={color} />
       </mesh>
@@ -37,5 +38,3 @@ export default ({ color, imgUrl, ...props }: {
     </group>
   );
 }
-
-useGLTF.preload(url);

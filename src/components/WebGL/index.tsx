@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { useProgress } from '@react-three/drei';
 
-import useEnvStore from 'stores/useEnvStore';
-import useLoadProgressStore from 'stores/useLoadProgressStore';
-import useControlModel from '@webgl/debug/hooks/useControlModel';
-import useControlSpotlight from '@webgl/debug/hooks/useControlSpotlight';
+import useEnvStore from '@/stores/useEnvStore';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
 import useControlCamera from '@webgl/debug/hooks/useControlCamera';
 import useGLRenderer from '@webgl/hooks/useGLRenderer';
 import useCalibrateFPS from '@webgl/hooks/useCalibrateFPS';
+import useFrameloop from './hooks/useFrameloop';
 
 import HellfireClub from './HellfireClub';
 import GlobalLight from './GlobalLight';
@@ -23,11 +22,10 @@ export default () => {
 
   const { total, loaded } = useProgress();
 
-  useControlModel(true);
-  useControlSpotlight(true);
   useControlCamera();
   useGLRenderer();
   useCalibrateFPS();
+  useFrameloop();
 
   useEffect(() => {
     setLoaderStore("webgl", {
@@ -35,6 +33,8 @@ export default () => {
       loaded
     });
   }, [total, loaded, setLoaderStore]);
+
+  console.log("rerender");
 
   /**
    * Render

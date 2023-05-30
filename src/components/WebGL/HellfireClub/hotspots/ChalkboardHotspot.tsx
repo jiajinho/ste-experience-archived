@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { SpotLight } from 'three';
 
-import config, { LightColor } from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import config, { LightColor } from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 
-import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from './hooks/useRegisterHotspot';
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useEnvStore from 'stores/useEnvStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import useHoverHomeEvent from './hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 
@@ -21,18 +18,12 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Hooks
    */
   const currentZoom = useCameraStore(state => state.currentZoom);
-  const env = useEnvStore(state => state.env);
 
-  const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<SpotLight>(null);
-  const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
 
   const [ctaGlow, setCTAGlow] = useState(false);
-
-  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
-  const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("chalkBoard", cameraBox, cameraTarget);
 
@@ -52,11 +43,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Not hook
    */
   const setting = config.zoomSettings["chalkBoard"];
-
-  const handleClick = () => {
-    triggerModelControl();
-    triggerZoom();
-  }
 
   const handleCallToAction = () => {
     if (currentZoom !== "chalkBoard") return;
@@ -79,9 +65,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Render
    */
   return (
-    <group ref={ref} {...props}>
+    <group {...props}>
       <ChalkBoard
-        onClick={handleClick}
+        onClick={triggerZoom}
         cta={{
           onClick: handleCallToAction,
           onPointerEnter: handleCTAPointerEnter,
@@ -101,14 +87,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         distance={4.5}
         color={LightColor.Crimson}
       />
-
-      {(env === "development" || env === "staging") &&
-        <WireframeBox.Light
-          ref={lightBox}
-          position={spotlight.current?.position}
-          onClick={triggerSpotlightControl}
-        />
-      }
 
       <WireframeBox.Camera
         ref={cameraBox}

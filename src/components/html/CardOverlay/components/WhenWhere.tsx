@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import useCardStore from 'stores/html/useCardStore';
-import useViewportStore from 'stores/useViewportStore';
+import useCardStore from '@/stores/html/useCardStore';
+import useViewportStore from '@/stores/useViewportStore';
 
 import Card, { Wrapper as $Card } from '@html/common/Card';
 import Date from './images/Date';

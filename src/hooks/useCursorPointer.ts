@@ -1,41 +1,51 @@
 import { useEffect } from "react";
 
-import useEnvStore from "stores/useEnvStore";
-import useCameraStore from "stores/webgl/useCameraStore";
-import useHoverHomeStore from "stores/webgl/useHoverHomeStore";
-import useHoverHotspotStore from "stores/webgl/useHoverHotspotStore";
+import useEnvStore from "@/stores/useEnvStore";
+import useCameraStore from "@/stores/webgl/useCameraStore";
+import useHoverHomeStore from "@/stores/webgl/useHoverHomeStore";
+import useHoverHotspotStore from "@/stores/webgl/useHoverHotspotStore";
 
 export default () => {
   const env = useEnvStore(state => state.env);
-  const currentZoom = useCameraStore(state => state.currentZoom);
-
-  const hoverHomeStore = useHoverHomeStore();
-  const hoverHotspotStore = useHoverHotspotStore();
 
   useEffect(() => {
-    if (env === "development") return;
+    if (env === "development") {
+      document.body.style.cursor = "auto";
+      return;
+    }
 
-    if (currentZoom === "default") {
-      const values = Object.values(hoverHomeStore);
-
+    function setCursor(values: any[]) {
       for (const v of values) {
         if (typeof v === "boolean" && v) {
           document.body.style.cursor = "pointer";
           return;
         }
       }
-    }
-    else {
-      const values = Object.values(hoverHotspotStore);
 
-      for (const v of values) {
-        if (typeof v === "boolean" && v) {
-          document.body.style.cursor = "pointer";
-          return;
-        }
-      }
+      document.body.style.cursor = "auto";
     }
 
-    document.body.style.cursor = "auto";
-  }, [hoverHomeStore, hoverHotspotStore, env, currentZoom]);
+    const unsubHoverHome = useHoverHomeStore.subscribe(state => {
+      const currentZoom = useCameraStore.getState().currentZoom;
+
+      if (currentZoom !== "default") return;
+
+      const values = Object.values(state);
+      setCursor(values);
+    });
+
+    const unsubHoverHotspot = useHoverHotspotStore.subscribe(state => {
+      const currentZoom = useCameraStore.getState().currentZoom;
+
+      if (currentZoom === "default") return;
+
+      const values = Object.values(state);
+      setCursor(values);
+    });
+
+    return () => {
+      unsubHoverHome();
+      unsubHoverHotspot();
+    }
+  }, [env]);
 }

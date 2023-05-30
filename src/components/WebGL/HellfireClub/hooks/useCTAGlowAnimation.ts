@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import * as THREE from 'three';
+import { Color } from 'three';
 import { gsap } from 'gsap';
 
 export default (material: THREE.MeshStandardMaterial, glow: boolean, color: number) => {
   useEffect(() => {
     material.toneMapped = false;
-    material.emissive = new THREE.Color(color);
+    material.emissive = new Color(color);
   }, []);
 
   useEffect(() => {

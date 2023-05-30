@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Camera } from "types";
+import { Camera } from "@/types";
 
 type State = {
   box: THREE.Object3D | null,

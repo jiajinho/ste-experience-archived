@@ -1,11 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
 
-import config, { LightColor } from 'config';
-import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
+import config, { LightColor } from '@/config';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useEnvStore from 'stores/useEnvStore';
 import useHoverHomeEvent from '../hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from '../hooks/useHoverHotspotEvent';
 import useCardEvent from './useCardEvent';
@@ -17,19 +13,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Hooks
    */
-  const env = useEnvStore(state => state.env);
-
   const ref = useRef<THREE.Group>(null);
   const topLight = useRef<THREE.SpotLight>(null);
-  const topLightBox = useRef<THREE.Mesh>(null);
   const bottomLight = useRef<THREE.SpotLight>(null);
-  const bottomLightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
-
-  const triggerTopLightControl = useTriggerDebugSpotlight(topLight, topLightBox);
-  const triggerBottomLightControl = useTriggerDebugSpotlight(bottomLight, bottomLightBox);
-  const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("shelf", cameraBox, cameraTarget);
 
@@ -60,15 +48,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   const shirtClick = useCardEvent("merchShirt", triggerZoom);
   const denimClick = useCardEvent("merchDenim", triggerZoom);
 
-  /**
-   * Not hook
-   */
   const setting = config.zoomSettings["shelf"];
-
-  const handleClick = () => {
-    triggerModelControl();
-    triggerZoom();
-  }
 
   /**
    * Render
@@ -76,7 +56,7 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group ref={ref} {...props}>
       <Shelf
-        onClick={handleClick}
+        onClick={triggerZoom}
         rotation-y={Math.PI / 2}
         scale={1.1}
 
@@ -113,22 +93,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         distance={2}
         color={LightColor.Crimson}
       />
-
-      {(env === "development" || env === "staging") &&
-        <>
-          <WireframeBox.Light
-            ref={topLightBox}
-            position={topLight.current?.position}
-            onClick={triggerTopLightControl}
-          />
-
-          <WireframeBox.Light
-            ref={bottomLightBox}
-            position={bottomLight.current?.position}
-            onClick={triggerBottomLightControl}
-          />
-        </>
-      }
 
       <WireframeBox.Camera
         ref={cameraBox}

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 
-import useLoadAnimationStore from "stores/html/useLoadAnimationStore"
+import useLoadAnimationStore from "@/stores/html/useLoadAnimationStore"
 
 
 export default (mask: React.RefObject<HTMLDivElement>, wrapper: React.RefObject<HTMLDivElement>) => {

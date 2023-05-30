@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import materials from "@webgl/HellfireClub/materials";
-
-const gltfUrl = "/static/gltf/tabletop-dshape.glb";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -13,11 +12,12 @@ type GLTFResult = GLTF & {
 };
 
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
-  const ref = useRef<THREE.Group>(null);
+  const url = useAssetEnvUrl('static/gltf/tabletop-dshape.glb');
+
+  const { nodes } = useGLTF(url) as any as GLTFResult;
 
   return (
-    <group ref={ref} {...props}>
+    <group {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
@@ -27,5 +27,3 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
-
-useGLTF.preload(gltfUrl);

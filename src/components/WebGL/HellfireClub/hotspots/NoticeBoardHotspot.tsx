@@ -1,14 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
-import config, { LightColor } from 'config';
-import api from 'api';
-import { MixpanelEvent } from 'api/mixpanel';
+import config, { LightColor } from '@/config';
+import api from '@/api';
+import { MixpanelEvent } from '@/api/mixpanel';
 
-import useTriggerDebugSpotlight from '@webgl/debug/hooks/useTriggerDebugSpotlight';
 import useRegisterHotspot from '@webgl/HellfireClub/hotspots/hooks/useRegisterHotspot';
-import useTriggerDebugModel from '@webgl/debug/hooks/useTriggerDebugModel';
-import useEnvStore from 'stores/useEnvStore';
-import useCameraStore from 'stores/webgl/useCameraStore';
+import useCameraStore from '@/stores/webgl/useCameraStore';
 import useHoverHomeEvent from './hooks/useHoverHomeEvent';
 import useHoverHotspotEvent from './hooks/useHoverHotspotEvent';
 
@@ -27,17 +24,11 @@ export default (props: JSX.IntrinsicElements["group"]) => {
   /**
    * Hooks
    */
-  const env = useEnvStore(state => state.env);
   const currentZoom = useCameraStore(state => state.currentZoom);
 
-  const ref = useRef<THREE.Group>(null);
   const spotlight = useRef<THREE.SpotLight>(null);
-  const lightBox = useRef<THREE.Mesh>(null);
   const cameraBox = useRef<THREE.Group>(null);
   const cameraTarget = useRef<THREE.Group>(null);
-
-  const triggerSpotlightControl = useTriggerDebugSpotlight(spotlight, lightBox);
-  const triggerModelControl = useTriggerDebugModel(ref);
 
   const triggerZoom = useRegisterHotspot("noticeBoard", cameraBox, cameraTarget);
 
@@ -59,11 +50,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    */
   const setting = config.zoomSettings["noticeBoard"];
 
-  const handleClick = () => {
-    triggerModelControl();
-    triggerZoom();
-  }
-
   const handleIGPinClick = () => {
     if (currentZoom !== "noticeBoard") return;
 
@@ -75,9 +61,9 @@ export default (props: JSX.IntrinsicElements["group"]) => {
    * Render
    */
   return (
-    <group ref={ref} {...props}>
+    <group {...props}>
       <NoticeBoard
-        onClick={handleClick}
+        onClick={triggerZoom}
         {...hoverEvent.home}
       />
 
@@ -189,14 +175,6 @@ export default (props: JSX.IntrinsicElements["group"]) => {
         distance={4}
         color={LightColor.Crimson}
       />
-
-      {env === "development" &&
-        <WireframeBox.Light
-          ref={lightBox}
-          position={spotlight.current?.position}
-          onClick={triggerSpotlightControl}
-        />
-      }
 
       <WireframeBox.Camera
         ref={cameraBox}

@@ -1,14 +1,14 @@
-import * as THREE from "three";
+import { Object3D, Vector3 as Vector3JS, Quaternion } from "three";
 import gsap from "gsap";
 
-import { Vector3 } from "types";
+import { Vector3 } from "@/types";
 
 export function moveCamera({
   camera,
   shadowCamera,
   lookAt,
   cameraPosition,
-  up = THREE.Object3D.DefaultUp,
+  up = Object3D.DefaultUp,
   animate,
   callback
 }: {
@@ -20,7 +20,7 @@ export function moveCamera({
   animate: boolean,
   callback?: () => void
 }) {
-  const cameraLookAt = new THREE.Vector3(lookAt[0], lookAt[1], lookAt[2]);
+  const cameraLookAt = new Vector3JS(lookAt[0], lookAt[1], lookAt[2]);
 
   shadowCamera.position.x = cameraPosition[0];
   shadowCamera.position.y = cameraPosition[1];
@@ -30,7 +30,7 @@ export function moveCamera({
   shadowCamera.lookAt(cameraLookAt);
 
   const startQuaternion = camera.quaternion.clone();
-  const endQuaternion = new THREE.Quaternion().setFromEuler(shadowCamera.rotation);
+  const endQuaternion = new Quaternion().setFromEuler(shadowCamera.rotation);
 
   const time = { t: 0 };
 

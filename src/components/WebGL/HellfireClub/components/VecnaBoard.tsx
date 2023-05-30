@@ -1,11 +1,9 @@
 import React from "react";
-import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import useCTAGlowAnimation from "../hooks/useCTAGlowAnimation";
-
-const url = "/static/gltf/vecna-board.glb";
+import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -23,12 +21,14 @@ export default ({ cta, buttonGlow = false, ...props }: {
   buttonGlow?: boolean
 } & JSX.IntrinsicElements["group"]
 ) => {
+  const url = useAssetEnvUrl('static/gltf/vecna-board.glb');
+
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   useCTAGlowAnimation(materials.cta, buttonGlow, 0xEC1C24);
 
   return (
-    <group {...props}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.cta.geometry}
         material={materials.cta}
@@ -43,5 +43,3 @@ export default ({ cta, buttonGlow = false, ...props }: {
     </group>
   );
 }
-
-useGLTF.preload(url);

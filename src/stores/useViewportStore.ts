@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-
-import { Viewport } from 'types';
+import { Viewport } from '@/types';
 
 type StoreSchema = { [v in keyof Viewport]: boolean } & {
   set: (viewports: { [k in keyof Viewport]?: boolean }) => void
