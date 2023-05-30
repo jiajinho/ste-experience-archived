@@ -11,7 +11,8 @@ export default () => {
       />
 
       <Chair.Throne
-        position={[0, 0.68, -1.57]}
+        position={[0.08, 0.68, -1.57]}
+        rotation={[0, -0.08, 0]}
       />
 
       <Chair.Classic
