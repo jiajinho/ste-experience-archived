@@ -24,9 +24,7 @@ export default ({ knobRef, knob, ...props }: {
 } & JSX.IntrinsicElements["group"]
 ) => {
   const gltfUrl = useAssetEnvUrl('static/gltf/retro-tv.glb');
-  // const videoUrl = useAssetEnvUrl('static/ste-encounter.mp4');
-  const videoUrl = '/static/ste-encounter.mp4';
-
+  const videoUrl = useAssetEnvUrl('static/ste-encounter.mp4');
 
   const { nodes, materials } = useGLTF(gltfUrl) as any as GLTFResult;
   const setLoadProgressStore = useLoadProgressStore(state => state.set);

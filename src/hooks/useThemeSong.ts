@@ -11,7 +11,7 @@ const lowVolume = 0.2;
 const highVolume = 0.35;
 
 export default () => {
-  const url = useAssetEnvUrl('static/strangerthings.mp3');
+  const url = useAssetEnvUrl('static/bgm.mp3');
 
   const env = useEnvStore(state => state.env);
 
@@ -36,9 +36,9 @@ export default () => {
       });
     }
 
-    audio.addEventListener("canplaythrough", handleCanPlayThrough);
+    audio.addEventListener("canplaythrough", handleCanPlayThrough, { once: true });
     return () => { audio.removeEventListener("canplaythrough", handleCanPlayThrough) }
-  }, [url]);
+  }, [url, setLoadProgressStore]);
 
   useEffect(() => {
     if (!audio) return;
