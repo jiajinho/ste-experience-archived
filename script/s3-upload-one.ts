@@ -19,13 +19,13 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-const file = "static/gltf/shelf.glb";
+const file = "static/strangerthings.mp3";
 const filePath = path.join(__dirname, `../public/${file}`);
 
 const params = {
   Bucket: process.env.S3_BUCKET_NAME,
   Body: fs.createReadStream(filePath),
-  Key: `${process.env.S3_FILE_PREFIX}${file}`
+  Key: `${process.env.S3_FILE_PREFIX}/${file}`
 };
 
 const uploadOne = () => new Promise<void>((resolve, reject) => {

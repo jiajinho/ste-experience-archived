@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "script:s3-list-all": "ts-node script/s3-list-all",
-    "script:s3-upload-one": "ts-node script/s3-upload-one"
+    "script:s3-upload-one": "ts-node script/s3-upload-one",
+    "script:s3-upload-all": "ts-node script/s3-upload-all"
   },
   "dependencies": {
     "@next/font": "^13.2.3",
