@@ -72,7 +72,6 @@ export default () => {
 
   const goToDefaultView = () => {
     setCameraStore("currentZoom", "default");
-    throw Error("Test Sentry");
   }
 
   const toggleMute = () => {
