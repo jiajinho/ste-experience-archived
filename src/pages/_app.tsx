@@ -11,6 +11,9 @@ import useToggleEnv from '@/hooks/useToggleEnv';
 import useResponsive from '@/hooks/useResponsive';
 import useEnvStore from '@/stores/useEnvStore';
 
+import FacebookPixel from '@/components/head/FacebookPixel';
+import GoogleTagManager from '@/components/head/GoogleTagManager';
+
 const Stats = dynamic(() => import('@react-three/drei').then(l => l.Stats), { ssr: false });
 
 const App = styled.main`
@@ -92,6 +95,9 @@ export default ({ Component, pageProps }: AppProps) => {
       </Head>
 
       <App>
+        <FacebookPixel />
+        <GoogleTagManager />
+
         <Component {...pageProps} />
       </App>
     </>
