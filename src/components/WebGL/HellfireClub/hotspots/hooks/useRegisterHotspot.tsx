@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { Vector3 } from 'three';
+import { useThree } from '@react-three/fiber';
 
 import config from '@/config';
 import { Camera, VectorIndex } from '@/types';
 
 import useCameraStore from '@/stores/webgl/useCameraStore';
-import { useThree } from '@react-three/fiber';
 
 export default (hotspot: Camera.Hotspot, cameraBox: React.RefObject<THREE.Group>, cameraTarget: React.RefObject<THREE.Group>) => {
-  const currentZoom = useCameraStore(state => state.currentZoom);
   const setCameraStore = useCameraStore(state => state.set);
 
   const { aspect } = useThree(state => state.viewport);
@@ -57,6 +56,8 @@ export default (hotspot: Camera.Hotspot, cameraBox: React.RefObject<THREE.Group>
   }, [aspect]);
 
   const triggerZoom = () => {
+    const currentZoom = useCameraStore.getState().currentZoom;
+
     if (currentZoom === hotspot) return;
     setCameraStore("currentZoom", hotspot);
   }

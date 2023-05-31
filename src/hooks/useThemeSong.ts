@@ -53,7 +53,9 @@ export default () => {
 
       if (!mute) {
         audio.muted = false;
-        audio.play();
+        audio.play().catch(() => {
+          window.addEventListener("click", () => audio.play(), { once: true });
+        });
       }
     }
 

@@ -34,8 +34,6 @@ export default () => {
     });
   }, [total, loaded, setLoaderStore]);
 
-  console.log("rerender");
-
   /**
    * Render
    */

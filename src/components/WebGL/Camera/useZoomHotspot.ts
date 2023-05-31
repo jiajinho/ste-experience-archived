@@ -2,35 +2,35 @@ import { useEffect, useRef } from 'react';
 
 import config from '@/config';
 import api from '@/api';
+import { Camera } from '@/types';
 import { MixpanelEvent } from '@/api/mixpanel';
 import { moveCamera } from './utils';
 
 import useCameraStore from '@/stores/webgl/useCameraStore';
 import useEnvStore from '@/stores/useEnvStore';
+import useMouseEventStore from '@/stores/webgl/useMouseEventStore';
 
 export default () => {
-  const firstTime = useRef(true);
-
   const env = useEnvStore(state => state.env);
-  const shadowCamera = useCameraStore(state => state.shadowCamera);
-  const currentZoom = useCameraStore(state => state.currentZoom);
-  const camera = useCameraStore(state => state.camera);
+  const prevZoom = useRef<Camera.Hotspot>("default");
 
-  const setCameraStore = useCameraStore(state => state.set);
+  const setMouseEventStore = useMouseEventStore(state => state.set);
 
-  useEffect(() => {
+  useEffect(() => useCameraStore.subscribe(({ shadowCamera, camera, currentZoom }) => {
     if (env === "development") return;
+    if (prevZoom.current === currentZoom) return;
     if (!shadowCamera) return;
     if (!camera) return;
 
+    prevZoom.current = currentZoom;
+
     const setting = config.zoomSettings[currentZoom];
+    const allowEventName = config.zoomSettings[currentZoom].allowEvent?.name;
 
     if (!setting.lookAt) return;
     if (!setting.cameraPosition) return;
 
-    const allowEventName = config.zoomSettings[currentZoom].allowEvent?.name;
-
-    setCameraStore("mouseEvent", undefined);
+    setMouseEventStore("event", undefined);
 
     moveCamera({
       camera,
@@ -38,17 +38,15 @@ export default () => {
       lookAt: setting.lookAt,
       cameraPosition: setting.cameraPosition,
       up: setting.cameraUp,
-      animate: !firstTime.current,
+      animate: true,
       callback: () => {
-        setCameraStore("mouseEvent", allowEventName);
+        setMouseEventStore("event", allowEventName);
       }
     });
+  }), [env]);
 
-    firstTime.current = false;
-  }, [currentZoom, camera, shadowCamera, env]);
-
-  useEffect(() => {
-    switch (currentZoom) {
+  useEffect(() => useCameraStore.subscribe(state => {
+    switch (state.currentZoom) {
       case "retroTV":
         api.mixpanel(MixpanelEvent.EVENT_VIDEO);
         break;
@@ -71,5 +69,5 @@ export default () => {
         api.mixpanel(MixpanelEvent.EVENT_EXCLUSIVE);
         break;
     }
-  }, [currentZoom]);
+  }), []);
 }

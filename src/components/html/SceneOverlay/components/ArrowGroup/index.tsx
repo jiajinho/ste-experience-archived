@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import config from '@/config';
 import { Camera } from '@/types';
 import useCameraStore from '@/stores/webgl/useCameraStore';
+import useDebounce from '@/hooks/common/useDebounce';
 import Arrow, { Viewport } from './Arrow';
 
 export const Wrapper = styled.div`
@@ -18,6 +19,11 @@ export default ({ viewport }: {
   const goNextZoom = useCameraStore(state => state.goNextZoom);
   const goPrevZoom = useCameraStore(state => state.goPrevZoom);
 
+  const [debounce, resetDebounce] = useDebounce(500);
+
+  /**
+   * Not hooks
+   */
   const keys = Object.keys(config.zoomSettings) as Camera.Hotspot[];
   const index = keys.findIndex(k => k === currentZoom);
 
@@ -28,20 +34,37 @@ export default ({ viewport }: {
     return s.trim().replace(/\s/, '\n');
   }
 
+  const handleLeft = () => {
+    if (!debounce.current) return;
+
+    resetDebounce();
+    goPrevZoom();
+  }
+
+  const handleRight = () => {
+    if (!debounce.current) return;
+
+    resetDebounce();
+    goNextZoom();
+  }
+
+  /**
+   * Render
+   */
   return (
     <Wrapper>
       <Arrow
         label={replaceWsWithNewline(config.zoomSettings[keys[prevIndex]].name)}
         viewport={viewport}
         arrowDirection="left"
-        onClick={goPrevZoom}
+        onClick={handleLeft}
       />
 
       <Arrow
         label={replaceWsWithNewline(config.zoomSettings[keys[nextIndex]].name)}
         viewport={viewport}
         arrowDirection="right"
-        onClick={goNextZoom}
+        onClick={handleRight}
       />
     </Wrapper>
   );

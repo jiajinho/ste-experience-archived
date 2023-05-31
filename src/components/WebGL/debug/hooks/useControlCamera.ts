@@ -7,17 +7,19 @@ import config from '@/config';
 import useEnvStore from '@/stores/useEnvStore';
 import useCameraStore from '@/stores/webgl/useCameraStore';
 import useDebugCameraStore from '@/stores/webgl/useDebugCameraStore';
+import useMouseEventStore from '@/stores/webgl/useMouseEventStore';
 
 export default () => {
   const camera = useThree(state => state.camera);
 
   const env = useEnvStore(state => state.env);
-  const currentZoom = useCameraStore(state => state.currentZoom);
-  const setCameraStore = useCameraStore(state => state.set);
+  const setMouseEventStore = useMouseEventStore(state => state.set);
 
   useEffect(() => {
+    const currentZoom = useCameraStore.getState().currentZoom;
+
     const mouseEvent = config.zoomSettings[currentZoom].allowEvent?.name;
-    setCameraStore("mouseEvent", env === "development" ? undefined : mouseEvent);
+    setMouseEventStore("event", env === "development" ? undefined : mouseEvent);
 
     if (env === "development") {
       camera.up = Object3D.DefaultUp;

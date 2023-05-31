@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
+import { RootState } from '@react-three/fiber';
 
 import locale from '@/locale';
 import useEnvStore from '@/stores/useEnvStore';
@@ -65,6 +66,10 @@ export default ({ hostUrl }: {
   const renderTutorial = loading && env === "production";
   const renderOverlay = env !== "development";
 
+  const handleCanvasCreate = (r: RootState) => {
+    setCameraStore("camera", r.camera as THREE.PerspectiveCamera);
+  }
+
   /**
    * Render
    */
@@ -100,6 +105,7 @@ export default ({ hostUrl }: {
             gl={{ alpha: false }}
             camera={{ fov: 50 }}
             dpr={dpr}
+            onCreated={handleCanvasCreate}
           >
             <WebGL />
           </Canvas>

@@ -7,8 +7,7 @@ type State = {
   camera?: THREE.PerspectiveCamera,
   shadowCamera?: THREE.PerspectiveCamera,
   currentZoom: Camera.Hotspot,
-  canvas?: HTMLDivElement,
-  mouseEvent?: Camera.MouseEvent
+  canvas?: HTMLDivElement
 }
 
 type Store = State & {
@@ -26,7 +25,6 @@ export default create<Store>((set) => ({
   shadowCamera: undefined,
   currentZoom: "default",
   canvas: undefined,
-  mouseEvent: undefined,
 
   set: (key, value) => set((state) => {
     const clone = { ...state };

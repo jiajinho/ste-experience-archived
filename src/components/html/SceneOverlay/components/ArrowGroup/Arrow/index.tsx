@@ -32,6 +32,8 @@ const Label = styled.p(({ $dir }: {
   font-size: 14px;
   font-weight: 700;
 
+  user-select: none;
+
   --margin: 10px;
 
   ${applyStyleIf($dir === "left", `
