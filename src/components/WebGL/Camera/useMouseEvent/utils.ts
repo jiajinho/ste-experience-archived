@@ -8,17 +8,14 @@ import useCameraStore from "@/stores/webgl/useCameraStore";
 import useMouseEventStore from '@/stores/webgl/useMouseEventStore';
 
 export function resetEventState(state: EventState) {
-  state = {
-    enabled: false,
+  state.enabled = false;
+  state.anchorX = 0;
+  state.anchorAzimuth = config.zoomSettings.default.allowEvent?.default.azimuth.value || 0;
+  state.azimuth = config.zoomSettings.default.allowEvent?.default.azimuth.value || 0;
 
-    anchorX: 0,
-    anchorAzimuth: config.zoomSettings.default.allowEvent?.default.azimuth.value || 0,
-    azimuth: config.zoomSettings.default.allowEvent?.default.azimuth.value || 0,
-
-    anchorY: 0,
-    anchorPolar: config.zoomSettings.default.allowEvent?.default.polar.value || 0,
-    polar: config.zoomSettings.default.allowEvent?.default.polar.value || 0
-  }
+  state.anchorY = 0;
+  state.anchorPolar = config.zoomSettings.default.allowEvent?.default.polar.value || 0;
+  state.polar = config.zoomSettings.default.allowEvent?.default.polar.value || 0;
 }
 
 export function enableEvent(state: EventState, pageX: number, pageY: number) {
