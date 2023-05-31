@@ -19,7 +19,7 @@ export default ({ viewport }: {
   const goNextZoom = useCameraStore(state => state.goNextZoom);
   const goPrevZoom = useCameraStore(state => state.goPrevZoom);
 
-  const [debounce, resetDebounce] = useDebounce(500);
+  const [debounce, resetDebounce] = useDebounce(1000);
 
   /**
    * Not hooks
