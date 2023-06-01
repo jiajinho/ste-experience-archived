@@ -9,9 +9,8 @@ import Gelato from "@html/common/svg/Gelato";
 import Calendar from "@html/common/svg/Calendar";
 import Clock from "@html/common/svg/Clock";
 import School from "@html/common/svg/School";
-
-const Star = dynamic(() => import("@html/common/svg/Star"));
-const Ghost = dynamic(() => import("@html/common/svg/Ghost"));
+import Star from "@html/common/svg/Star";
+import Ghost from "@html/common/svg/Ghost";
 
 const viewport: Viewport = {
   sm: "456px",
