@@ -20,19 +20,17 @@ export default () => {
   const env = useEnvStore(state => state.env);
   const setLoaderStore = useLoadProgressStore(state => state.set);
 
-  const { total, loaded } = useProgress();
-
   useControlCamera();
   useGLRenderer();
   useCalibrateFPS();
   useFrameloop();
 
-  useEffect(() => {
+  useEffect(() => useProgress.subscribe(state => {
     setLoaderStore("webgl", {
-      total,
-      loaded
-    });
-  }, [total, loaded, setLoaderStore]);
+      total: state.total,
+      loaded: state.loaded
+    })
+  }), []);
 
   /**
    * Render
