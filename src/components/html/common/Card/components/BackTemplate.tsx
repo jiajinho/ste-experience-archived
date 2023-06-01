@@ -15,6 +15,7 @@ export default () => {
       alt="Card back"
       fill
       sizes="(max-width: 768px) 50vw, 100vw"
+      priority
       onLoadingComplete={() => setLoadProgressStore("html", { cardTemplateBack: true })}
     />
   );

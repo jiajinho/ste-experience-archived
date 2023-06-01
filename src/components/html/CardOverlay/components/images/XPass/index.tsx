@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import dynamic from 'next/dynamic';
 
 import useAnimation from '../useAnimation';
-import Ghost, { Wrapper as $Ghost } from './Ghost';
 import Tape, { Wrapper as $Tape } from './Tape';
 import Clock, { Wrapper as $Clock } from './Clock';
 import Waffle, { Wrapper as $Waffle } from './Waffle';
 import TrashDino, { Wrapper as $TrashDino } from './TrashDino';
 import Vial, { Wrapper as $Vial } from './Vial';
+
+const Ghost = dynamic(() => import("./Ghost"));
+const $Ghost = dynamic(() => import("./Ghost").then(c => c.Wrapper));
 
 const Wrapper = styled.div(({ $cardWidth }: {
   $cardWidth: number
