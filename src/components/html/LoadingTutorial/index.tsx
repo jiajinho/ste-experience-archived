@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 import useAnimation from './hooks/useAnimation';
-import useDebug from './hooks/useDebug';
 import useProgress from './hooks/useProgress';
 
 import ProgressNumber from './components/ProgressNumber';
@@ -34,7 +33,6 @@ export default () => {
   const progress = useProgress();
 
   useAnimation(mask, wrapper);
-  useDebug();
 
   return (
     <Wrapper ref={wrapper}>

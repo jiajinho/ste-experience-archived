@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import { Leva } from 'leva';
 
 import '../globals.css';
 import locale from '@/locale';
@@ -32,12 +31,6 @@ export default ({ Component, pageProps }: AppProps) => {
   return (
     <>
       {env === "development" && <Stats />}
-
-      <Leva
-        collapsed
-        hidden={env !== "development"}
-        theme={{ sizes: { numberInputMinWidth: "50px" } }}
-      />
 
       <Head>
         <title>{locale.global.title}</title>
@@ -95,8 +88,8 @@ export default ({ Component, pageProps }: AppProps) => {
       </Head>
 
       <App>
-        <FacebookPixel />
-        <GoogleTagManager />
+        {process.env.NODE_ENV === "production" && <FacebookPixel />}
+        {process.env.NODE_ENV === "production" && <GoogleTagManager />}
 
         <Component {...pageProps} />
       </App>
