@@ -61,6 +61,8 @@ export default ({ hostUrl }: {
   useEffect(() => {
     if (!canvas.current) return;
     setCameraStore("canvas", canvas.current);
+
+    console.log(process.env.NODE_ENV);
   }, []);
 
   const renderTutorial = loading && env === "production";
