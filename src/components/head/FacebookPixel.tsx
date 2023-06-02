@@ -15,11 +15,6 @@ export default () => (
           src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FB_PIXEL_ID}&ev=PageView&noscript=1`}
         />
       </noscript>
-
-      <meta
-        name="facebook-domain-verification"
-        content={process.env.NEXT_PUBLIC_META_DOMAIN_ID}
-      />
     </Head>
 
     <Script
