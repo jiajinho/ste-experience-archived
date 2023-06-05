@@ -20,8 +20,6 @@ export default (
   const ellipsisIntervalRef = useRef<NodeJS.Timer | null>(null);
 
   useEffect(() => {
-    console.log(phase);
-
     switch (phase) {
       case "standby":
         gsap.to(wrapper.current, {
