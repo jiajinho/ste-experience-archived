@@ -54,10 +54,10 @@ const card = {
         <b>L2:</b> Open daily | 10am to 10pm
 
         <b>L7:</b> Open Monday to Thursday from
-        2pm to 10pm (last entry at 8pm)
+        2pm to 10pm (last entry at 8:30pm)
 
         Friday to Sunday from
-        10am to 10pm (last entry at 8pm)
+        10am to 10pm (last entry at 8:30pm)
       `
     },
     location: {

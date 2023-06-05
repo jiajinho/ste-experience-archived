@@ -11,7 +11,7 @@ import useResponsive from '@/hooks/useResponsive';
 import useEnvStore from '@/stores/useEnvStore';
 
 import FacebookPixel from '@/components/head/FacebookPixel';
-import GoogleTagManager from '@/components/head/GoogleTagManager';
+import GoogleAnalytic from '@/components/head/GoogleAnalytic';
 
 const Stats = dynamic(() => import('@react-three/drei').then(l => l.Stats), { ssr: false });
 
@@ -85,11 +85,12 @@ export default ({ Component, pageProps }: AppProps) => {
 
         {/* Domain verification */}
         <meta name="google-site-verification" content="lSvXw1z8GqnyJGLTQXx72fC-cVbTFCsrQL9LexKGY7k" />
+        <meta name="facebook-domain-verification" content={process.env.NEXT_PUBLIC_META_DOMAIN_ID} />
       </Head>
 
       <App>
-        {process.env.NODE_ENV === "production" && <FacebookPixel />}
-        {process.env.NODE_ENV === "production" && <GoogleTagManager />}
+        <FacebookPixel />
+        <GoogleAnalytic />
 
         <Component {...pageProps} />
       </App>
