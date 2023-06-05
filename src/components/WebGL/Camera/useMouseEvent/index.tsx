@@ -8,6 +8,7 @@ import { disableEvent, enableEvent, executeEvent, resetEventState } from './util
 import useCameraStore from '@/stores/webgl/useCameraStore';
 import useEnvStore from '@/stores/useEnvStore';
 import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
+import useLoadProgressStore from '@/stores/useLoadProgressStore';
 
 const eventState: EventState = {
   enabled: false,
@@ -30,13 +31,20 @@ export default () => {
   const camera = useCameraStore(state => state.camera);
   const shadowCamera = useCameraStore(state => state.shadowCamera);
   const loading = useLoadAnimationStore(state => state.loading);
+  const fps = useLoadProgressStore(state => state.fps);
 
   useEffect(() => {
     if (env === "development") return;
-    if (loading) return;
     if (!canvas) return;
     if (!camera) return;
     if (!shadowCamera) return;
+
+    if (fps.calibrating) {
+      enableEvent(eventState, 0, 0);
+      executeEvent(eventState, aspect, 0, 0);
+      disableEvent(eventState);
+      resetEventState(eventState);
+    }
 
     const unsubscribe = useCameraStore.subscribe(state => {
       if (state.currentZoom === "default") {
@@ -45,10 +53,12 @@ export default () => {
     });
 
     function handleMouseDown(e: MouseEvent) {
+      if (loading) return;
       enableEvent(eventState, e.pageX, e.pageY);
     }
 
     function handleTouchStart(e: TouchEvent) {
+      if (loading) return;
       enableEvent(eventState, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
     }
 
@@ -83,5 +93,5 @@ export default () => {
       canvas.removeEventListener("touchend", handleTouchEndMouseUp);
       canvas.removeEventListener("touchmove", handleTouchMove);
     }
-  }, [env, canvas, camera, shadowCamera, aspect, loading]);
+  }, [env, canvas, camera, shadowCamera, aspect, loading, fps]);
 }
