@@ -38,10 +38,23 @@ const Percentage = styled.div(({ $content }: { $content: string }) => `
   }
 `);
 
+const LoadingText = styled.p`
+  position: absolute;
+  top: calc(100% - 15px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: var(--color-frosted-lemon);
+  font-family: var(--font-benguiat);
+  font-weight: 700;
+  font-size: 22px;
+  white-space: nowrap;
+`;
+
 export default ({ data }: { data: string }) => {
   const wrapper = useRef<HTMLDivElement>(null);
 
-  const progress = useAnimation(wrapper, data);
+  const [progress, loadingText] = useAnimation(wrapper, data);
   const content = `${progress}%`;
 
   useEffect(() => {
@@ -53,6 +66,10 @@ export default ({ data }: { data: string }) => {
       <Percentage $content={content}>
         {content}
       </Percentage>
+
+      <LoadingText>
+        {loadingText}
+      </LoadingText>
     </Wrapper>
   );
 }

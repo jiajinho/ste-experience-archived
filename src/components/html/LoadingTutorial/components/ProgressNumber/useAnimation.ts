@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
+import locale from '@/locale';
 import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
-export default (wrapper: React.RefObject<HTMLDivElement>, data: string) => {
+export default (
+  wrapper: React.RefObject<HTMLDivElement>,
+  data: string
+): [string, string] => {
   const phase = useLoadAnimationStore(state => state.progress);
   const set = useLoadAnimationStore(state => state.set);
 
   const [progress, setProgress] = useState(0);
+
+  const [ellipsis, setEllipsis] = useState(".");
+
+  const loadingIndexRef = useRef(0);
+  const [loadingText, setLoadingText] = useState(locale.loading.loadingTexts[0]);
 
   useEffect(() => {
     switch (phase) {
@@ -51,5 +60,33 @@ export default (wrapper: React.RefObject<HTMLDivElement>, data: string) => {
     });
   }, [data]);
 
-  return progress.toFixed(0);
+  useEffect(() => {
+    let ellipsisCount = 1;
+
+    const t = setInterval(() => {
+      let ellipsis = ".";
+
+      for (let i = 0; i < ellipsisCount; i++) {
+        ellipsis += ".";
+      }
+
+      setEllipsis(ellipsis);
+
+      if (++ellipsisCount >= 3) {
+        ellipsisCount = 0;
+      }
+    }, 1000);
+
+    return () => { clearInterval(t) }
+  }, []);
+
+  useEffect(() => {
+    if (++loadingIndexRef.current >= locale.loading.loadingTexts.length) {
+      loadingIndexRef.current = 0;
+    }
+
+    setLoadingText(`${locale.loading.loadingTexts[loadingIndexRef.current]}`)
+  }, [data]);
+
+  return [progress.toFixed(0), `${loadingText}${ellipsis}`];
 }
