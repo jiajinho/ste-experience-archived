@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import useAnimation from './hooks/useAnimation';
 import useProgress from './hooks/useProgress';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
 import ProgressNumber from './components/ProgressNumber';
 import STEncounter from './components/STEncounter';
@@ -32,15 +33,21 @@ export default () => {
 
   const progress = useProgress();
 
+  const setLoadAnimationStore = useLoadAnimationStore(state => state.set);
+
   useAnimation(mask, wrapper);
+
+  useEffect(() => {
+    setLoadAnimationStore("typewriter", "start");
+  }, []);
 
   return (
     <Wrapper ref={wrapper}>
       <Mask ref={mask} />
 
       <STEncounter />
-      <ProgressNumber data={progress.toFixed(0)} />
       <Typewriter />
+      <ProgressNumber data={progress.toFixed(0)} />
       <HellfireCard />
     </Wrapper>
   );

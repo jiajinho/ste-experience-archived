@@ -9,7 +9,6 @@ export default (
   data: string
 ): [string, string] => {
   const phase = useLoadAnimationStore(state => state.progress);
-  const set = useLoadAnimationStore(state => state.set);
 
   const [progress, setProgress] = useState(0);
 
@@ -18,9 +17,20 @@ export default (
   const loadingIndexRef = useRef(0);
   const [loadingText, setLoadingText] = useState(locale.loading.loadingTexts[0]);
 
+  const ellipsisIntervalRef = useRef<NodeJS.Timer | null>(null);
+
   useEffect(() => {
+    console.log(phase);
+
     switch (phase) {
       case "standby":
+        gsap.to(wrapper.current, {
+          duration: 0,
+          autoAlpha: 0
+        });
+        break;
+
+      case "visible":
         gsap.to(wrapper.current, {
           duration: 0,
           autoAlpha: 1
@@ -32,15 +42,15 @@ export default (
         let t: NodeJS.Timeout;
 
         gsap.to(wrapper.current, {
-          duration: 1.5,
-          autoAlpha: 0
-        }).eventCallback("onComplete", () => {
-          t = setTimeout(() => {
-            set("typewriter", "start");
-          }, 1000);
+          duration: 0.5,
+          autoAlpha: 0,
+          overwrite: true
         });
 
-        return () => { clearTimeout(t) }
+        return () => {
+          clearTimeout(t);
+          ellipsisIntervalRef.current && clearInterval(ellipsisIntervalRef.current);
+        }
     }
   }, [phase]);
 
@@ -63,7 +73,7 @@ export default (
   useEffect(() => {
     let ellipsisCount = 1;
 
-    const t = setInterval(() => {
+    ellipsisIntervalRef.current = setInterval(() => {
       let ellipsis = ".";
 
       for (let i = 0; i < ellipsisCount; i++) {
@@ -77,7 +87,9 @@ export default (
       }
     }, 1000);
 
-    return () => { clearInterval(t) }
+    return () => {
+      ellipsisIntervalRef.current && clearInterval(ellipsisIntervalRef.current)
+    }
   }, []);
 
   useEffect(() => {

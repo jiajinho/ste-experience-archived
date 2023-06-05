@@ -80,9 +80,13 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    if (progress >= 100) {
+    if (!(progress >= 100)) return;
+
+    const t = setTimeout(() => {
       setLoadAnimationStore("progress", "end");
-    }
+    }, 1000);
+
+    return () => { clearTimeout(t) }
   }, [progress]);
 
   return progress;

@@ -28,6 +28,7 @@ const Container = styled.div`
 
 const Word = styled.div`
   display: flex;
+  user-select: none;
 `;
 
 const Char = styled.p(({ $fontSize }: {
@@ -62,6 +63,8 @@ const SkipButton = styled.button`
 `;
 
 export default () => {
+  const skipableRef = useRef(false);
+
   const phase = useLoadAnimationStore(state => state.typewriter);
   const setLoadAnimationStore = useLoadAnimationStore(state => state.set);
 
@@ -81,8 +84,8 @@ export default () => {
       .split(" ");
   }, []);
 
-  useAnimation(chars, caret, button, wrapper, skip);
-  useDoubleClick();
+  useAnimation(chars, caret, button, wrapper, skip, skipableRef);
+  useDoubleClick(skipableRef);
 
   const handleSkipClick = () => {
     if (phase !== "start") return;

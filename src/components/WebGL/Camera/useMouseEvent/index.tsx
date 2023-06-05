@@ -7,6 +7,7 @@ import { disableEvent, enableEvent, executeEvent, resetEventState } from './util
 
 import useCameraStore from '@/stores/webgl/useCameraStore';
 import useEnvStore from '@/stores/useEnvStore';
+import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
 const eventState: EventState = {
   enabled: false,
@@ -28,9 +29,11 @@ export default () => {
   const canvas = useCameraStore(state => state.canvas);
   const camera = useCameraStore(state => state.camera);
   const shadowCamera = useCameraStore(state => state.shadowCamera);
+  const loading = useLoadAnimationStore(state => state.loading);
 
   useEffect(() => {
     if (env === "development") return;
+    if (loading) return;
     if (!canvas) return;
     if (!camera) return;
     if (!shadowCamera) return;
@@ -80,5 +83,5 @@ export default () => {
       canvas.removeEventListener("touchend", handleTouchEndMouseUp);
       canvas.removeEventListener("touchmove", handleTouchMove);
     }
-  }, [env, canvas, camera, shadowCamera, aspect]);
+  }, [env, canvas, camera, shadowCamera, aspect, loading]);
 }
