@@ -1,34 +1,87 @@
 import { useEffect, useState } from 'react';
+import { useProgress as useThreeProgress } from '@react-three/drei';
 
+import { clamp } from '@/utils';
 import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
+
+type Progress = {
+  webgl: number,
+  html: number,
+  bgm: number,
+  video: number,
+  fps: number,
+}
 
 export default () => {
   const [progress, setProgress] = useState(0);
 
-  const set = useLoadAnimationStore(state => state.set);
-  const { webgl, html, fps } = useLoadProgressStore(state => state);
+
+  const setLoadAnimationStore = useLoadAnimationStore(state => state.set);
 
   useEffect(() => {
-    let total = (webgl.total || 0)
-    total += Object.keys(html).length;
-    total += 1; //fps.completed
+    const progress: Progress = {
+      webgl: 0,
+      html: 0,
+      bgm: 0,
+      video: 0,
+      fps: 0
+    }
 
-    const htmlLoaded = Object.entries(html).reduce((prev, current) => {
-      if (current[1]) return prev + 1;
-      return prev;
-    }, 0);
+    const pie: Progress = {
+      webgl: 0.4,
+      html: 0.3,
+      bgm: 0.1,
+      video: 0.1,
+      fps: 0.1
+    }
 
-    let loaded = webgl.loaded + htmlLoaded;
-    fps.completed && loaded++;
+    const unsubThree = useThreeProgress.subscribe(({ loaded }) => {
+      const value = clamp(loaded / 162, 0, 1);
+      progress.webgl = value * pie.webgl;
 
-    const progress = (loaded / total) * 100;
-    setProgress(progress);
-  }, [webgl, html, fps]);
+      aggregrateProgress();
+    });
+
+    const unsubLoadProgress = useLoadProgressStore.subscribe(({ fps, html, misc }) => {
+      const htmlValues = Object.values(html);
+      const htmlTotal = htmlValues.length;
+
+      const htmlLoaded = Object.values(html).reduce((prev, current) => {
+        if (current) return prev + 1;
+        return prev;
+      }, 0);
+
+      progress.html = (htmlLoaded / htmlTotal) * pie.html;
+      progress.bgm = misc.bgm ? pie.bgm : 0;
+      progress.video = misc.eventVideo ? pie.video : 0;
+      progress.fps = fps.completed ? pie.fps : fps.progress * pie.fps;
+
+      aggregrateProgress();
+    });
+
+    function aggregrateProgress() {
+      const totalProgress = Object.values(progress).reduce((prev, current) => prev + current);
+      const adjustedProgress = Math.round(totalProgress * 100);
+
+      setProgress(adjustedProgress);
+
+      if (adjustedProgress >= 100) {
+        unsubscribe();
+      }
+    }
+
+    function unsubscribe() {
+      unsubThree();
+      unsubLoadProgress();
+    }
+
+    return () => { unsubscribe() }
+  }, []);
 
   useEffect(() => {
     if (progress >= 100) {
-      set("progress", "end");
+      setLoadAnimationStore("progress", "end");
     }
   }, [progress]);
 

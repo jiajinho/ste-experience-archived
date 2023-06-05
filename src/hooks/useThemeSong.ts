@@ -28,7 +28,7 @@ export default () => {
     audio.load();
 
     const handleCanPlayThrough = () => {
-      setLoadProgressStore("html", { bgm: true });
+      setLoadProgressStore("misc", { bgm: true });
       setAudio(audio);
 
       audio.play().catch(() => {

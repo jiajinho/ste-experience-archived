@@ -77,6 +77,9 @@ export default () => {
 
       frameCounter.current += 1;
 
+      const fpsProgress = clamp(frameCounter.current / maxFrameMeasure, 0, 1);
+      setLoadProgressStore("fps", { progress: fpsProgress });
+
       newDpr = clamp(newDpr, lowerLimit, maxDpr.current);
       setGLStore("dpr", newDpr);
 
