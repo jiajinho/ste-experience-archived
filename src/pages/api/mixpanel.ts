@@ -12,7 +12,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(400).json({ message: "Undefined query param for 'event'" });
   }
 
-  let debug = req.query.debug ? req.query.debug === "true" : true;
+  const debug = process.env.NODE_ENV !== "production";
 
   const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN, {
     protocol: 'http',
