@@ -84,7 +84,6 @@ export default ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="black" />
 
         {/* Domain verification */}
-        <meta name="google-site-verification" content="lSvXw1z8GqnyJGLTQXx72fC-cVbTFCsrQL9LexKGY7k" />
         <meta name="facebook-domain-verification" content={process.env.NEXT_PUBLIC_META_DOMAIN_ID} />
       </Head>
 

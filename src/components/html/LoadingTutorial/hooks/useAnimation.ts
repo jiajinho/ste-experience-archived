@@ -7,10 +7,12 @@ import useLoadAnimationStore from "@/stores/html/useLoadAnimationStore"
 export default (mask: React.RefObject<HTMLDivElement>, wrapper: React.RefObject<HTMLDivElement>) => {
   const phase = {
     mask: useLoadAnimationStore(state => state.mask),
-    wrapper: useLoadAnimationStore(state => state.wrapper)
+    wrapper: useLoadAnimationStore(state => state.wrapper),
+    progress: useLoadAnimationStore(state => state.progress),
+    typewriter: useLoadAnimationStore(state => state.typewriter)
   }
 
-  const set = useLoadAnimationStore(state => state.set);
+  const setLoadAnimationStore = useLoadAnimationStore(state => state.set);
 
   useEffect(() => {
     switch (phase.mask) {
@@ -45,9 +47,25 @@ export default (mask: React.RefObject<HTMLDivElement>, wrapper: React.RefObject<
           ease: "power2.out",
           autoAlpha: 0
         }).eventCallback("onComplete", () => {
-          set("loading", false);
+          setLoadAnimationStore("loading", false);
         });
         break;
     }
-  }, [phase.wrapper])
+  }, [phase.wrapper]);
+
+  useEffect(() => {
+    if (phase.progress !== "end") return;
+    if (phase.typewriter !== "end") return;
+
+    setLoadAnimationStore("ste", "end");
+    setLoadAnimationStore("mask", "cloudy");
+
+    const t = setTimeout(() => {
+      setLoadAnimationStore("card", "slide");
+    }, 750);
+
+    return () => { clearTimeout(t) }
+  }, [phase.progress, phase.typewriter]);
+
+
 }
