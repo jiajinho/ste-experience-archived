@@ -61,6 +61,10 @@ export default () => {
     });
 
     function aggregrateProgress() {
+      if (process.env.NODE_ENV === "development") {
+        console.log(progress);
+      }
+
       const totalProgress = Object.values(progress).reduce((prev, current) => prev + current);
       const adjustedProgress = Math.round(totalProgress * 100);
 
