@@ -10,7 +10,8 @@ export default (
   caret: React.RefObject<HTMLDivElement>,
   button: React.RefObject<HTMLButtonElement>,
   wrapper: React.RefObject<HTMLDivElement>,
-  skip: React.RefObject<HTMLButtonElement>
+  skip: React.RefObject<HTMLButtonElement>,
+  skipableRef: React.MutableRefObject<boolean>
 ) => {
   const phase = useLoadAnimationStore(state => state.typewriter);
   const set = useLoadAnimationStore(state => state.set);
@@ -31,17 +32,11 @@ export default (
 
 
       case "start":
+        if (!chars.current) return;
+
         let count = 0;
 
-        gsap.fromTo(skip.current, {
-          autoAlpha: 0
-        }, {
-          duration: 0.01,
-          autoAlpha: 1
-        });
-
-        //Animate
-        const tween = gsap
+        const tl = gsap.timeline()
           .fromTo(chars.current, {
             autoAlpha: 0
           }, {
@@ -59,9 +54,16 @@ export default (
                 count++;
               }
             }
-          });
+          })
+          .to(skip.current, {
+            duration: 0.5,
+            ease: "power2.out",
+            autoAlpha: 1,
+            onStart: () => { skipableRef.current = true }
+          }, `${0.08 * chars.current.length / 2}`);
 
-        tween.eventCallback("onComplete", () => {
+
+        tl.eventCallback("onComplete", () => {
           gsap.fromTo(caret.current, {
             autoAlpha: 1
           }, {
@@ -81,12 +83,12 @@ export default (
           });
 
           gsap.to(skip.current, {
-            duration: 0.01,
+            duration: 0.25,
             autoAlpha: 0
           });
         });
 
-        return () => { tween.kill() }
+        return () => { tl.kill() }
 
 
       case "skipped":
@@ -132,12 +134,11 @@ export default (
           autoAlpha: 0,
           overwrite: true
         }).eventCallback("onStart", () => {
-          set("ste", "end");
-          set("mask", "cloudy");
-        }).eventCallback("onComplete", () => {
-          t = setTimeout(() => {
-            set("card", "slide");
-          }, 750);
+          const progressPhase = useLoadAnimationStore.getState().progress;
+
+          if (progressPhase !== "end") {
+            set("progress", "visible");
+          }
         });
 
         gsap.to(skip.current, {

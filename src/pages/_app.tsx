@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import { Leva } from 'leva';
 
 import '../globals.css';
 import locale from '@/locale';
@@ -32,12 +31,6 @@ export default ({ Component, pageProps }: AppProps) => {
   return (
     <>
       {env === "development" && <Stats />}
-
-      <Leva
-        collapsed
-        hidden={env !== "development"}
-        theme={{ sizes: { numberInputMinWidth: "50px" } }}
-      />
 
       <Head>
         <title>{locale.global.title}</title>
@@ -91,13 +84,12 @@ export default ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="black" />
 
         {/* Domain verification */}
-        <meta name="google-site-verification" content="lSvXw1z8GqnyJGLTQXx72fC-cVbTFCsrQL9LexKGY7k" />
         <meta name="facebook-domain-verification" content={process.env.NEXT_PUBLIC_META_DOMAIN_ID} />
       </Head>
 
       <App>
-        <FacebookPixel />
-        <GoogleAnalytic />
+        {process.env.NODE_ENV === "production" && <FacebookPixel />}
+        {process.env.NODE_ENV === "production" && <GoogleAnalytic />}
 
         <Component {...pageProps} />
       </App>

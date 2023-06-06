@@ -2,7 +2,7 @@ export type WrapperPhase = "standby" | "fade-out";
 
 export type MaskPhase = "dark" | "cloudy";
 
-export type ProgressPhase = "standby" | "end";
+export type ProgressPhase = "standby" | "visible" | "end";
 
 export type STEncounterPhase = "standby" | "end";
 
