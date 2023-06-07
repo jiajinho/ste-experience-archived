@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useProgress as useThreeProgress } from '@react-three/drei';
+import { captureMessage } from '@sentry/nextjs';
 
 import { clamp } from '@/utils';
 import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
@@ -80,7 +81,14 @@ export default () => {
       unsubLoadProgress();
     }
 
-    return () => { unsubscribe() }
+    const t = setTimeout(() => {
+      captureMessage(`Loading has exceeded 1min: ${JSON.stringify(progress)}`, "warning");
+    }, 60 * 1000);
+
+    return () => {
+      unsubscribe();
+      clearTimeout(t);
+    }
   }, []);
 
   useEffect(() => {
