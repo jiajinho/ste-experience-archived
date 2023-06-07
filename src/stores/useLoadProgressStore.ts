@@ -1,14 +1,11 @@
-import { Merch } from "@/types";
 import { create } from "zustand";
+import { Merch } from "@/types";
 
 type LoadObject = {
   fps: {
     calibrating: boolean,
-    completed: boolean
-  }
-  webgl: {
-    total?: number,
-    loaded: number
+    completed: boolean,
+    progress: number, //0-1
   },
   html: {
     cardTemplateBack: boolean,
@@ -17,11 +14,12 @@ type LoadObject = {
     hellfireBack: boolean,
     theEncounterBack: boolean,
     whenWhereBack: boolean,
-
-    bgm: boolean,
-    eventVideo: boolean
   } | {
     [k in Merch]: boolean
+  },
+  misc: {
+    bgm: boolean,
+    eventVideo: boolean
   }
 }
 
@@ -33,11 +31,8 @@ type Store = LoadObject & {
 export default create<Store>((set) => ({
   fps: {
     calibrating: true,
-    completed: false
-  },
-  webgl: {
-    total: undefined,
-    loaded: 0
+    completed: false,
+    progress: 0,
   },
   html: {
     cardTemplateBack: false,
@@ -56,7 +51,8 @@ export default create<Store>((set) => ({
     merchShirt: false,
     merchVHS: false,
     merchVinyl: false,
-
+  },
+  misc: {
     bgm: false,
     eventVideo: false
   },

@@ -3,10 +3,7 @@ import type { NextRequest } from 'next/server';
 import { get } from '@vercel/edge-config';
 
 export async function middleware(request: NextRequest) {
-  const env = process.env.NEXT_PUBLIC_NODE_ENV;
-
-  if (env === "development") return NextResponse.next();
-  if (env === "staging") return NextResponse.next();
+  if (process.env.NODE_ENV !== "production") return NextResponse.next();
 
   //Production
   const maintenance = await get<boolean>('steEncounterIsInMaintenanceMode');

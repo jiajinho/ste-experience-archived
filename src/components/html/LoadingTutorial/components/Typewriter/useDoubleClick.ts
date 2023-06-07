@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { differenceInMilliseconds } from "date-fns";
 
 import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 
-export default () => {
-  const phase = useLoadAnimationStore(state => state.typewriter);
+export default (skipableRef: React.RefObject<boolean>) => {
   const setLoadAnimationStore = useLoadAnimationStore(state => state.set);
 
   useEffect(() => {
-    if (phase !== 'start') return;
-
     let prevTap: Date;
 
     function skipToEnd() {
+      if (!skipableRef.current) return;
+
       setLoadAnimationStore("typewriter", "skipped");
+
+      window.removeEventListener("dblclick", skipToEnd);
+      window.addEventListener("touchstart", checkDoubleTap);
     }
 
     function checkDoubleTap() {
@@ -25,12 +27,12 @@ export default () => {
         prevTap = now;
     }
 
-    window.addEventListener("dblclick", skipToEnd, { once: true });
-    window.addEventListener("touchstart", checkDoubleTap, { once: true });
+    window.addEventListener("dblclick", skipToEnd);
+    window.addEventListener("touchstart", checkDoubleTap);
 
     return () => {
       window.removeEventListener("dblclick", skipToEnd);
       window.addEventListener("touchstart", checkDoubleTap);
     }
-  }, [phase]);
+  }, []);
 }

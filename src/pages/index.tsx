@@ -15,12 +15,13 @@ import useCursorPointer from '@/hooks/useCursorPointer';
 import useExitBrowser from '@/hooks/useExitBrowser';
 import useGLStore from '@/stores/webgl/useGLStore';
 
-import WebGL from '@/components/WebGL';
 import LoadingTutorial from '@html/LoadingTutorial';
 
 const Canvas = dynamic(() => import('@react-three/fiber').then(c => c.Canvas), { ssr: false });
+
 const SceneOverlay = dynamic(() => import('@html/SceneOverlay'), { ssr: false });
 const CardOverlay = dynamic(() => import('@html/CardOverlay'), { ssr: false });
+const WebGL = dynamic(() => import('@/components/WebGL'), { ssr: false });
 
 const Wrapper = styled.div`
   position: relative;

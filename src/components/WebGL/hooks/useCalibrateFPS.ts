@@ -7,6 +7,10 @@ import useGLStore from '@/stores/webgl/useGLStore';
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
 import useEnvStore from '@/stores/useEnvStore';
 
+const fpsStep = 0.15;
+const lowerLimit = 0.8;
+const maxFrameMeasure = 9;
+
 export default () => {
   /**
    * Hooks
@@ -64,19 +68,22 @@ export default () => {
 
       if (fps >= 30) {
         fpsHitCounter.current += 1;
-        newDpr += 0.15;
+        newDpr += fpsStep;
       }
       else {
         fpsHitCounter.current = 0;
-        newDpr -= 0.15;
+        newDpr -= fpsStep;
       }
 
       frameCounter.current += 1;
 
-      newDpr = clamp(newDpr, 0.8, maxDpr.current);
+      const fpsProgress = clamp(frameCounter.current / maxFrameMeasure, 0, 1);
+      setLoadProgressStore("fps", { progress: fpsProgress });
+
+      newDpr = clamp(newDpr, lowerLimit, maxDpr.current);
       setGLStore("dpr", newDpr);
 
-      if (fpsHitCounter.current >= 5 || frameCounter.current >= 15) {
+      if (fpsHitCounter.current >= 3 || frameCounter.current >= maxFrameMeasure) {
         setLoadProgressStore("fps", {
           calibrating: false,
           completed: true

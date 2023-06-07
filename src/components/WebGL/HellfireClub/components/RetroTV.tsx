@@ -32,7 +32,7 @@ export default ({ knobRef, knob, ...props }: {
   const videoMap = useVideoTexture(videoUrl, {
     muted: true,
     oncanplaythrough: () => {
-      setLoadProgressStore("html", { eventVideo: true });
+      setLoadProgressStore("misc", { eventVideo: true });
     }
   });
 
