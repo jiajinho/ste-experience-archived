@@ -105,7 +105,7 @@ export default ({ hostUrl }: {
             shadows
             gl={{ alpha: false }}
             camera={{ fov: 50 }}
-            dpr={0.8}
+            dpr={dpr}
             onCreated={handleCanvasCreate}
             frameloop="never"
           >
