@@ -105,8 +105,9 @@ export default ({ hostUrl }: {
             shadows
             gl={{ alpha: false }}
             camera={{ fov: 50 }}
-            dpr={dpr}
+            dpr={0.8}
             onCreated={handleCanvasCreate}
+            frameloop="never"
           >
             <WebGL />
           </Canvas>

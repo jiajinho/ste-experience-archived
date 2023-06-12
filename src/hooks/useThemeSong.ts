@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 
+import { getAssetEnvUrl } from '@/utils';
 import useLoadAnimationStore from '@/stores/html/useLoadAnimationStore';
 import useBGMStore from '@/stores/useBGMStore';
 import useEnvStore from '@/stores/useEnvStore';
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
-import useAssetEnvUrl from './common/useAssetEnvUrl';
 
 const lowVolume = 0.2;
 const highVolume = 0.35;
 
-export default () => {
-  const url = useAssetEnvUrl('static/bgm.mp3');
+const url = getAssetEnvUrl('static/bgm.mp3');
 
+export default () => {
   const env = useEnvStore(state => state.env);
 
   const loading = useLoadAnimationStore(state => state.loading);

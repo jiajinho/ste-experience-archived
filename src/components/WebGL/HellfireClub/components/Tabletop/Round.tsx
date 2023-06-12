@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import materials from "@webgl/HellfireClub/materials";
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -12,9 +12,11 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
-  const url = useAssetEnvUrl('static/gltf/tabletop-round.glb');
+const url = getAssetEnvUrl('static/gltf/tabletop-round.glb');
 
+useGLTF.preload(url);
+
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   return (

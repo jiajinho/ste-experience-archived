@@ -3,11 +3,14 @@ import Image from 'next/image';
 
 import { IntrinsicHTML } from '@/types';
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
-import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
 
 import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';
 import BackTemplate from './components/BackTemplate';
+import { getAssetEnvUrl } from '@/utils';
+
+const frontUrl = getAssetEnvUrl('static/cards/hellfire-front.png');
+const backUrl = getAssetEnvUrl('static/cards/hellfire-back.png');
 
 export default React.forwardRef(({ flipped, ...props }: {
   flipped?: boolean,
@@ -15,9 +18,6 @@ export default React.forwardRef(({ flipped, ...props }: {
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
-
-  const frontUrl = useAssetEnvUrl('static/cards/hellfire-front.png');
-  const backUrl = useAssetEnvUrl('static/cards/hellfire-back.png');
 
   return (
     <Card ref={ref} flipped={flipped} {...props}>
