@@ -17,7 +17,7 @@ export default React.forwardRef(({ flipped, ...props }: {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
   const frontUrl = useAssetEnvUrl('static/cards/hellfire-front.png');
-  const backUrl = useAssetEnvUrl('static/cards/hellfire-back.png');
+  const backUrl = useAssetEnvUrl('static/cards/hellfire-back-v2.png');
 
   return (
     <Card ref={ref} flipped={flipped} {...props}>
