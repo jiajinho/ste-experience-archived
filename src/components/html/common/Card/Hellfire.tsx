@@ -8,6 +8,13 @@ import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
 import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';
 import BackTemplate from './components/BackTemplate';
+<<<<<<< Updated upstream
+=======
+import { getAssetEnvUrl } from '@/utils';
+
+const frontUrl = getAssetEnvUrl('static/cards/hellfire-front.png');
+const backUrl = getAssetEnvUrl('static/cards/hellfire-back-v2.png');
+>>>>>>> Stashed changes
 
 export default React.forwardRef(({ flipped, ...props }: {
   flipped?: boolean,
