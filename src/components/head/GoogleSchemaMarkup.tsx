@@ -81,6 +81,7 @@ export default () => {
 
   return (
     <Script
+      id="schema-markup"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
