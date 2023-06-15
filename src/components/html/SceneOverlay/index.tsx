@@ -8,7 +8,7 @@ import useBGMStore from '@/stores/useBGMStore';
 
 import STEncounter, { Wrapper as $STEncounter } from '@html/common/STEncounter';
 import ArrowGroup, { Wrapper as $ArrowGroup } from './components/ArrowGroup';
-import TicketButton from './components/TicketButton';
+import TicketButton from '../common/TicketButton';
 import MuteButton from './components/MuteButton';
 import Credit from './components/Credit';
 
