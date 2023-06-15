@@ -3,6 +3,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
+import config from '@/config';
 
 export default () => (
   <>
@@ -12,7 +13,7 @@ export default () => (
           height="1"
           width="1"
           style={{ display: 'none' }}
-          src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FB_PIXEL_ID}&ev=PageView&noscript=1`}
+          src={`https://www.facebook.com/tr?id=${config.analyticId.fbPixel}&ev=PageView&noscript=1`}
         />
       </noscript>
     </Head>
@@ -30,7 +31,7 @@ export default () => (
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', ${process.env.NEXT_PUBLIC_FB_PIXEL_ID});
+          fbq('init', ${config.analyticId.fbPixel});
           fbq('track', 'PageView');
       `}}
     />
