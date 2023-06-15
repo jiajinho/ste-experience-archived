@@ -2,19 +2,20 @@
 
 import React from 'react';
 import Script from 'next/script';
+import config from '@/config';
 
 export default () => (
   <>
     <Script
       id="gtag-script"
       async
-      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
+      src={`https://www.googletagmanager.com/gtag/js?id=${config.analyticId.googleTag}`}
     />
 
     <Script
       id="gdn-script"
       async
-      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GDN_ID}`}
+      src={`https://www.googletagmanager.com/gtag/js?id=${config.analyticId.gdn}`}
     />
 
     <Script
@@ -25,8 +26,8 @@ export default () => (
           function gtag(){dataLayer.push(arguments)};
           gtag('js', new Date());
         
-          gtag('config', '${process.env.NEXT_PUBLIC_GTAG_ID}');   
-          gtag('config', '${process.env.NEXT_PUBLIC_GDN_ID}');     
+          gtag('config', '${config.analyticId.googleTag}');   
+          gtag('config', '${config.analyticId.gdn}');     
         `
       }}
     />

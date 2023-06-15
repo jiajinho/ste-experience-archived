@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { Vector3 as Vector3JS } from "three";
 
 import locale from "@/locale";
@@ -11,6 +10,14 @@ import Clock from "@html/common/svg/Clock";
 import School from "@html/common/svg/School";
 import Star from "@html/common/svg/Star";
 import Ghost from "@html/common/svg/Ghost";
+
+const analyticId = {
+  fbPixel: "784354639968136",
+  metaDomain: "1wbeuo79jz1ojb2x0b6vih9zqf352f",
+  googleDomain: "JwKln_M7i5mn2-8q89Aqg8o7Jw_cNKwOFFvlxvK_8oc",
+  googleTag: "G-J3V93DVFGL",
+  gdn: "AW-10829690292"
+}
 
 const viewport: Viewport = {
   sm: "456px",
@@ -279,6 +286,7 @@ const merchCard: {
 const cdnBaseUrl = 'https://d2sie3twm806m7.cloudfront.net/sg-2023/general_admission_3d';
 
 export default {
+  analyticId,
   merchUrl,
   link,
   zoomSettings,
