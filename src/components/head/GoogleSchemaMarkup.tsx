@@ -47,13 +47,6 @@ export default () => {
       },
       {
         "@type": "Offer",
-        "name": "Regular XPASS - Weekend",
-        "priceCurrency": "SGD",
-        "price": "49",
-        "url": config.link.ticketing
-      },
-      {
-        "@type": "Offer",
         "name": "VIP XPASS - Weekday",
         "priceCurrency": "SGD",
         "price": "109",
