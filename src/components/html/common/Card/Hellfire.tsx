@@ -10,7 +10,7 @@ import BackTemplate from './components/BackTemplate';
 import { getAssetEnvUrl } from '@/utils';
 
 const frontUrl = getAssetEnvUrl('static/cards/hellfire-front.png');
-const backUrl = getAssetEnvUrl('static/cards/hellfire-back.png');
+const backUrl = getAssetEnvUrl('static/cards/hellfire-back-v2.png');
 
 export default React.forwardRef(({ flipped, ...props }: {
   flipped?: boolean,
