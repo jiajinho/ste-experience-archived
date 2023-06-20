@@ -1,3 +1,5 @@
+import config from "./config";
+
 export function applyStyleIf(predicate: boolean, style: string) {
   if (predicate) return style;
   return '';
@@ -15,4 +17,13 @@ export function sleep(ms: number) {
       resolve();
     }, ms);
   });
+}
+
+export function getAssetEnvUrl(path: string) {
+  const devUrl = `/${path}`;
+  const prodUrl = `${config.cdnBaseUrl}/${path}`;
+
+  const url = process.env.NODE_ENV === "production" ? prodUrl : devUrl;
+
+  return url;
 }

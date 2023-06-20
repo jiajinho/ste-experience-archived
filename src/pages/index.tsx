@@ -107,6 +107,7 @@ export default ({ hostUrl }: {
             camera={{ fov: 50 }}
             dpr={dpr}
             onCreated={handleCanvasCreate}
+            frameloop="never"
           >
             <WebGL />
           </Canvas>

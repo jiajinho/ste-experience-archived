@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import config from '@/config';
 import { IntrinsicHTML } from '@/types';
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
-import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
+import { getAssetEnvUrl } from '@/utils';
 
 import HexRing, { Wrapper as $HexRing } from '@html/common/svg/HexRing';
 import Card from './components/Card';
@@ -66,14 +66,14 @@ const Icon = styled.div`
   }
 `;
 
+const url = getAssetEnvUrl('static/cards/the-encounter-back.png');
+
 export default React.forwardRef(({ onRowHover, ...props }: {
   onRowHover?: (index: number) => void
 } & IntrinsicHTML<"div">,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
-
-  const url = useAssetEnvUrl('static/cards/the-encounter-back.png');
 
   return (
     <Card ref={ref} flipped={false} {...props}>

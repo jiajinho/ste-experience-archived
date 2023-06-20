@@ -9,7 +9,7 @@ type Store = State & {
 }
 
 export default create<Store>((set) => ({
-  dpr: 2,
+  dpr: 0.7,
 
   set: (key, value) => set((state) => {
     const clone = { ...state };

@@ -30,7 +30,7 @@ type Store = LoadObject & {
 
 export default create<Store>((set) => ({
   fps: {
-    calibrating: true,
+    calibrating: false,
     completed: false,
     progress: 0,
   },

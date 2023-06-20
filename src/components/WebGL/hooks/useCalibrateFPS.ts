@@ -7,8 +7,8 @@ import useGLStore from '@/stores/webgl/useGLStore';
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
 import useEnvStore from '@/stores/useEnvStore';
 
-const fpsStep = 0.15;
-const lowerLimit = 0.8;
+const fpsStep = 0.17;
+const lowerLimit = 0.7;
 const maxFrameMeasure = 9;
 
 export default () => {
@@ -34,10 +34,7 @@ export default () => {
   const frameCounter = useRef(0);
 
   useEffect(() => {
-    const dpr = Math.min(window.devicePixelRatio, 2);
-
-    maxDpr.current = dpr;
-    setGLStore("dpr", dpr);
+    maxDpr.current = Math.min(window.devicePixelRatio, 1.5);
   }, []);
 
   useFrame(() => {
@@ -83,7 +80,7 @@ export default () => {
       newDpr = clamp(newDpr, lowerLimit, maxDpr.current);
       setGLStore("dpr", newDpr);
 
-      if (fpsHitCounter.current >= 3 || frameCounter.current >= maxFrameMeasure) {
+      if (fpsHitCounter.current >= 5 || frameCounter.current >= maxFrameMeasure) {
         setLoadProgressStore("fps", {
           calibrating: false,
           completed: true

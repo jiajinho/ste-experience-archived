@@ -5,10 +5,10 @@ import locale from '@/locale';
 import config from '@/config';
 import { IntrinsicHTML } from '@/types';
 import useCardStore from '@/stores/html/useCardStore';
-import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
 
 import Card from './components/Card';
 import FrontTemplate from './components/FrontTemplate';
+import { getAssetEnvUrl } from '@/utils';
 
 const ImageContainer = styled.div(({ $heightRatio, $top, $left }: {
   $heightRatio: number,
@@ -78,7 +78,7 @@ export default React.forwardRef(({ ...props }: {
 
   const merchItem = merch ? config.merchCard[merch] : undefined;
 
-  const url = useAssetEnvUrl(merch ? config.merchUrl[merch] : '');
+  const url = getAssetEnvUrl(merch ? config.merchUrl[merch] : '');
 
   return (
     <Card ref={ref} {...props}>
