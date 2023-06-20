@@ -3,11 +3,13 @@ import Rift from '@hellfire/components/Rift';
 import { useGLTF } from '@react-three/drei';
 
 import { GLTFResult } from '../components/Rift/types';
-import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
+import { getAssetEnvUrl } from '@/utils';
+
+const url = getAssetEnvUrl('static/gltf/rifts-mini.glb');
+
+useGLTF.preload(url);
 
 export default () => {
-  const url = useAssetEnvUrl('static/gltf/rifts-mini.glb');
-
   const { materials } = useGLTF(url) as any as GLTFResult;
 
   materials.Rift.toneMapped = false;

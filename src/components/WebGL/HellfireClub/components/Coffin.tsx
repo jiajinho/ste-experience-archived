@@ -3,7 +3,7 @@ import { MeshStandardMaterial } from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -24,17 +24,18 @@ const material = {
   })
 }
 
+const gltfUrl = getAssetEnvUrl('static/gltf/coffin.glb');
+const coffinColorMapUrl = getAssetEnvUrl('static/texture/coffin/coffin.jpg');
+const crossNormalMapUrl = getAssetEnvUrl('static/texture/coffin/cross-normal.jpg')
+
+useGLTF.preload(gltfUrl);
+useTexture.preload(coffinColorMapUrl);
+useTexture.preload(crossNormalMapUrl);
+
 export default (props: JSX.IntrinsicElements["group"]) => {
-  const gltfUrl = useAssetEnvUrl('static/gltf/coffin.glb');
-
-  const mapUrl = {
-    coffin: useAssetEnvUrl('static/texture/coffin/coffin.jpg'),
-    crossNormal: useAssetEnvUrl('static/texture/coffin/cross-normal.jpg')
-  }
-
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
 
-  useTexture([mapUrl.coffin, mapUrl.crossNormal], t => {
+  useTexture([coffinColorMapUrl, crossNormalMapUrl], t => {
     const _t = t as [THREE.Texture, THREE.Texture];
 
     _t[0].flipY = false;

@@ -2,7 +2,7 @@ import React from "react";
 import { Image, useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -13,13 +13,15 @@ type GLTFResult = GLTF & {
   };
 };
 
+const url = getAssetEnvUrl('static/gltf/polaroid.glb');
+
+useGLTF.preload(url);
+
 export default ({ color, imgUrl, ...props }: {
   color?: number,
   imgUrl: string
 } & JSX.IntrinsicElements["group"]
 ) => {
-  const url = useAssetEnvUrl('static/gltf/polaroid.glb');
-
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   return (
