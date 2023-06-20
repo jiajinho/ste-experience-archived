@@ -26,6 +26,13 @@ const nextConfig = {
     disableLogger: true,
     autoInstrumentServerFunctions: false
   },
+  redirects: () => [
+    {
+      source: '/tickets',
+      destination: 'https://mightyexperiences.com/tickets/ste-sg',
+      permanent: true,
+    },
+  ],
   webpack: (config, { webpack }) => {
     config.plugins.push(
       new webpack.DefinePlugin({
