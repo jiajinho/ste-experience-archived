@@ -7,6 +7,7 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 
 const file = process.argv[2];
+//file example: "static/ste-encounter-v2.mp4"
 
 if (!file) throw Error("Undefined file path");
 if (!process.env.S3_BUCKET_NAME) throw Error("Undefined S3_BUCKET_NAME");
