@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
 };
 
 const gltfUrl = getAssetEnvUrl('static/gltf/retro-tv.glb');
-const videoUrl = getAssetEnvUrl('static/ste-encounter.mp4');
+const videoUrl = getAssetEnvUrl('static/ste-encounter-v2.mp4');
 
 useGLTF.preload(gltfUrl);
 
