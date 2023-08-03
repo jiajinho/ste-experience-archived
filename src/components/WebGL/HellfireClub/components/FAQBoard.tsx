@@ -23,7 +23,7 @@ export default ({ cta, buttonGlow = false, ...props }: {
   buttonGlow?: boolean,
 } & JSX.IntrinsicElements["group"]
 ) => {
-  const url = useAssetEnvUrl('static/gltf/faq-board.glb');
+  const url = useAssetEnvUrl('static/gltf/faq-board-v2.glb');
 
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
