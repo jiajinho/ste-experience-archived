@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
+import { getAssetEnvUrl } from '@/utils';
 
 export const Wrapper = styled.picture`
   position: relative;
@@ -12,9 +12,9 @@ export const Wrapper = styled.picture`
   display: block;
 `;
 
-export default React.forwardRef(({ }, ref: React.ForwardedRef<HTMLPictureElement>) => {
-  const url = useAssetEnvUrl('static/cards/filler/fnb-sunglass.png');
+const url = getAssetEnvUrl('static/cards/filler/fnb-sunglass.png');
 
+export default React.forwardRef(({ }, ref: React.ForwardedRef<HTMLPictureElement>) => {
   return (
     <Wrapper ref={ref}>
       <Image

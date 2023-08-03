@@ -6,12 +6,14 @@ import type { AppProps } from 'next/app';
 import '../globals.css';
 import locale from '@/locale';
 import fonts from '@/fonts';
+import config from '@/config';
 import useToggleEnv from '@/hooks/useToggleEnv';
 import useResponsive from '@/hooks/useResponsive';
 import useEnvStore from '@/stores/useEnvStore';
 
 import FacebookPixel from '@/components/head/FacebookPixel';
 import GoogleAnalytic from '@/components/head/GoogleAnalytic';
+import GoogleSchemaMarkup from '@/components/head/GoogleSchemaMarkup';
 
 const Stats = dynamic(() => import('@react-three/drei').then(l => l.Stats), { ssr: false });
 
@@ -84,12 +86,15 @@ export default ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="black" />
 
         {/* Domain verification */}
-        <meta name="facebook-domain-verification" content={process.env.NEXT_PUBLIC_META_DOMAIN_ID} />
+        <meta name="facebook-domain-verification" content={config.analyticId.metaDomain} />
+        <meta name="google-site-verification" content={config.analyticId.googleDomain} />
       </Head>
 
       <App>
         {process.env.NODE_ENV === "production" && <FacebookPixel />}
         {process.env.NODE_ENV === "production" && <GoogleAnalytic />}
+
+        <GoogleSchemaMarkup />
 
         <Component {...pageProps} />
       </App>

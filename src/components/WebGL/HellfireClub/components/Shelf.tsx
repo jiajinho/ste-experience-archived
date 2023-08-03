@@ -2,7 +2,7 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -35,6 +35,10 @@ type GLTFResult = GLTF & {
   };
 };
 
+const url = getAssetEnvUrl('static/gltf/shelf.glb');
+
+useGLTF.preload(url);
+
 export default ({ eleven, vecna, vhs, mug, cap, vinyl, bag, shirt, denim, ...props }: {
   eleven?: JSX.IntrinsicElements["mesh"],
   vecna?: JSX.IntrinsicElements["mesh"],
@@ -47,8 +51,6 @@ export default ({ eleven, vecna, vhs, mug, cap, vinyl, bag, shirt, denim, ...pro
   denim?: JSX.IntrinsicElements["mesh"],
 } & JSX.IntrinsicElements["group"]
 ) => {
-  const url = useAssetEnvUrl('static/gltf/shelf.glb');
-
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (

@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import materials from "@webgl/HellfireClub/materials";
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -12,11 +12,13 @@ type GLTFResult = GLTF & {
   }
 };
 
+const url = getAssetEnvUrl('static/gltf/ceiling-light-bulb.glb');
+
+useGLTF.preload(url);
+
 export default ({ material, ...props }: {
   material: THREE.Material
 } & JSX.IntrinsicElements["group"]) => {
-  const url = useAssetEnvUrl('static/gltf/ceiling-light-bulb.glb');
-
   const { nodes } = useGLTF(url) as any as GLTFResult;
 
   return (

@@ -14,12 +14,10 @@ export default () => {
   const loading = useLoadAnimationStore(state => state.loading);
 
   useEffect(() => useCardStore.subscribe(state => {
-    if (!!state.htmlEvent) {
+    if (!!state.htmlEvent)
       setFrameloop("never");
-    }
-    else {
+    else
       setFrameloop("always");
-    }
   }), [setFrameloop]);
 
   useEffect(() => {

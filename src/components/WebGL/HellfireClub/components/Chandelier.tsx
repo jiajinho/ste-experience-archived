@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import materials from "../materials";
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -12,11 +12,15 @@ type GLTFResult = GLTF & {
   }
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
-  const gltfUrl = useAssetEnvUrl('static/gltf/chandelier.glb');
-  const colorMapUrl = useAssetEnvUrl('static/texture/lamp-color.jpg');
-  const normalMapUrl = useAssetEnvUrl('static/texture/lamp-normal.jpg');
+const gltfUrl = getAssetEnvUrl('static/gltf/chandelier.glb');
+const colorMapUrl = getAssetEnvUrl('static/texture/lamp-color.jpg');
+const normalMapUrl = getAssetEnvUrl('static/texture/lamp-normal.jpg');
 
+useGLTF.preload(gltfUrl);
+useTexture.preload(colorMapUrl);
+useTexture.preload(normalMapUrl);
+
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes } = useGLTF(gltfUrl) as any as GLTFResult;
 
   const { colorMap, normalMap } = useTexture({

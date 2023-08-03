@@ -5,7 +5,7 @@ import styled from "styled-components";
 import config from "@/config";
 import { IntrinsicHTML } from "@/types";
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 import Card from "./components/Card";
 import BackTemplate from "./components/BackTemplate";
@@ -80,14 +80,14 @@ const Value = styled.p`
   white-space: pre-line;
 `;
 
+const url = getAssetEnvUrl('static/cards/when-where-back.png');
+
 export default React.forwardRef(({ onRowHover, ...props }: {
   onRowHover?: (index: number) => void,
 } & IntrinsicHTML<"div">,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
-
-  const url = useAssetEnvUrl('static/cards/when-where-back.png');
 
   return (
     <Card ref={ref} {...props}>

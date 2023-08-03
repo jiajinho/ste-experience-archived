@@ -17,7 +17,7 @@ type Progress = {
 export default () => {
   const [progress, setProgress] = useState(0);
 
-
+  const setLoadProgressStore = useLoadProgressStore(state => state.set);
   const setLoadAnimationStore = useLoadAnimationStore(state => state.set);
 
   useEffect(() => {
@@ -37,11 +37,23 @@ export default () => {
       fps: 0.1
     }
 
+    let typewriterCompleted = false;
+    let webglLoaded = false;
+
     const unsubThree = useThreeProgress.subscribe(({ loaded }) => {
       const value = clamp(loaded / 162, 0, 1);
       progress.webgl = value * pie.webgl;
 
+      webglLoaded = value >= 1;
+
       aggregrateProgress();
+      evaluateFpsCalibration();
+    });
+
+    const unsubLoadAnimation = useLoadAnimationStore.subscribe(state => {
+      typewriterCompleted = state.typewriter === "end";
+
+      evaluateFpsCalibration();
     });
 
     const unsubLoadProgress = useLoadProgressStore.subscribe(({ fps, html, misc }) => {
@@ -62,10 +74,6 @@ export default () => {
     });
 
     function aggregrateProgress() {
-      if (process.env.NODE_ENV === "development") {
-        console.log(progress);
-      }
-
       const totalProgress = Object.values(progress).reduce((prev, current) => prev + current);
       const adjustedProgress = Math.round(totalProgress * 100);
 
@@ -76,9 +84,19 @@ export default () => {
       }
     }
 
+    function evaluateFpsCalibration() {
+      if (!webglLoaded) return;
+      if (!typewriterCompleted) return;
+
+      setTimeout(() => {
+        setLoadProgressStore("fps", { calibrating: true });
+      }, 500);
+    }
+
     function unsubscribe() {
       unsubThree();
       unsubLoadProgress();
+      unsubLoadAnimation();
     }
 
     const t = setTimeout(() => {

@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import useAssetEnvUrl from '@/hooks/common/useAssetEnvUrl';
+import { getAssetEnvUrl } from '@/utils';
 
 export const Wrapper = styled.picture`
   position: relative;
@@ -12,17 +12,15 @@ export const Wrapper = styled.picture`
   display: block;
 `;
 
-export default React.forwardRef(({ }, ref: React.ForwardedRef<HTMLPictureElement>) => {
-  const url = useAssetEnvUrl('static/cards/filler/date-calendar.png');
+const url = getAssetEnvUrl('static/cards/filler/date-calendar.png');
 
-  return (
-    <Wrapper ref={ref}>
-      <Image
-        src={url}
-        alt="Date - Calendar"
-        fill
-        sizes="(max-width: 768px) 50vw, 100vw"
-      />
-    </Wrapper>
-  )
-});
+export default React.forwardRef(({ }, ref: React.ForwardedRef<HTMLPictureElement>) => (
+  <Wrapper ref={ref}>
+    <Image
+      src={url}
+      alt="Date - Calendar"
+      fill
+      sizes="(max-width: 768px) 50vw, 100vw"
+    />
+  </Wrapper>
+));

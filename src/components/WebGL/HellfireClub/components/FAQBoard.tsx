@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
 import useCTAGlowAnimation from "../hooks/useCTAGlowAnimation";
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,13 +18,15 @@ type GLTFResult = GLTF & {
   };
 };
 
+const url = getAssetEnvUrl('static/gltf/faq-board-v2.glb');
+
+useGLTF.preload(url);
+
 export default ({ cta, buttonGlow = false, ...props }: {
   cta?: JSX.IntrinsicElements["mesh"],
   buttonGlow?: boolean,
 } & JSX.IntrinsicElements["group"]
 ) => {
-  const url = useAssetEnvUrl('static/gltf/faq-board-v2.glb');
-
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   useCTAGlowAnimation(materials.cta, buttonGlow, 0xED1B30);

@@ -2,7 +2,7 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 
-import useAssetEnvUrl from "@/hooks/common/useAssetEnvUrl";
+import { getAssetEnvUrl } from "@/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -13,9 +13,9 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default (props: JSX.IntrinsicElements["group"]) => {
-  const url = useAssetEnvUrl('static/gltf/sticker-choco-can.glb');
+const url = getAssetEnvUrl('static/gltf/sticker-choco-can.glb');
 
+export default (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF(url) as any as GLTFResult;
 
   return (
@@ -27,3 +27,5 @@ export default (props: JSX.IntrinsicElements["group"]) => {
     </group>
   );
 }
+
+useGLTF.preload(url);
