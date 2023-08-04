@@ -6,6 +6,7 @@ import { clamp } from '@/utils';
 import useGLStore from '@/stores/webgl/useGLStore';
 import useLoadProgressStore from '@/stores/useLoadProgressStore';
 import useEnvStore from '@/stores/useEnvStore';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 const fpsStep = 0.17;
 const lowerLimit = 0.7;
@@ -24,6 +25,8 @@ export default () => {
   const fps = useLoadProgressStore(state => state.fps);
   const setLoadProgressStore = useLoadProgressStore(state => state.set);
 
+  const [storageDpr, setStorageDpr] = useLocalStorage("dpr", -1);
+
   const frames = useRef(0);
   const beginTime = useRef((performance || Date).now());
   const prevTime = useRef(beginTime.current);
@@ -36,6 +39,12 @@ export default () => {
   useEffect(() => {
     maxDpr.current = Math.min(window.devicePixelRatio, 1.5);
   }, []);
+
+  useEffect(() => {
+    if (storageDpr === -1) return;
+
+    setGLStore("dpr", storageDpr);
+  }, [storageDpr]);
 
   useFrame(() => {
     if (progress !== 100) return;
@@ -58,7 +67,18 @@ export default () => {
     frames.current++;
     const time = (performance || Date).now();
 
-    if (time > prevTime.current + 1000) {
+
+    if (storageDpr !== -1) {
+      const maxFrameCount = 10;
+      const predicate = frames.current < maxFrameCount;
+
+      setLoadProgressStore("fps", {
+        calibrating: predicate ? true : false,
+        completed: predicate ? false : true,
+        progress: frames.current / maxFrameCount
+      })
+    }
+    else if (time > prevTime.current + 1000) {
       const fps = Math.round((frames.current * 1000) / (time - prevTime.current));
 
       let newDpr = dpr;
@@ -85,6 +105,8 @@ export default () => {
           calibrating: false,
           completed: true
         });
+
+        setStorageDpr(newDpr);
       }
 
 
