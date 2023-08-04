@@ -18,7 +18,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-const url = getAssetEnvUrl('static/gltf/faq-board-v2.glb');
+const url = getAssetEnvUrl('static/gltf/faq-board-v3.glb');
 
 useGLTF.preload(url);
 
