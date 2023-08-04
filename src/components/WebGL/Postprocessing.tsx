@@ -30,6 +30,7 @@ export default () => {
         luminanceSmoothing={0.5}
         mipmapBlur
       />
+
       <Outline
         selection={outlineMeshes}
         visibleEdgeColor={0xff0000}
@@ -40,6 +41,7 @@ export default () => {
         pulseSpeed={env === "development" ? 0 : 0.5}
         blur
       />
+
       <Noise
         premultiply // enables or disables noise premultiplication
         blendFunction={BlendFunction.ADD} // blend mode
