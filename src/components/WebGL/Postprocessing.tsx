@@ -43,6 +43,7 @@ export default () => {
       <Noise
         premultiply // enables or disables noise premultiplication
         blendFunction={BlendFunction.ADD} // blend mode
+        opacity={0.5}
       />
     </EffectComposer>
   )
