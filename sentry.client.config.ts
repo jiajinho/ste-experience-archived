@@ -4,16 +4,18 @@
 
 import { init } from "@sentry/nextjs";
 
-if (process.env.NODE_ENV === "production" && !process.env.NEXT_PUBLIC_SENTRY_DSN) throw Error("Undefined NEXT_PUBLIC_SENTRY_DSN");
+export default {}
 
-if (process.env.NODE_ENV === "production") {
-  init({
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-    environment: process.env.NEXT_PUBLIC_NODE_ENV,
+// if (process.env.NODE_ENV === "production" && !process.env.NEXT_PUBLIC_SENTRY_DSN) throw Error("Undefined NEXT_PUBLIC_SENTRY_DSN");
 
-    tracesSampleRate: 1,
-    debug: false,
-    replaysOnErrorSampleRate: 1.0,
-    replaysSessionSampleRate: 0.1,
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   init({
+//     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+//     environment: process.env.NEXT_PUBLIC_NODE_ENV,
+
+//     tracesSampleRate: 1,
+//     debug: false,
+//     replaysOnErrorSampleRate: 1.0,
+//     replaysSessionSampleRate: 0.1,
+//   });
+// }
